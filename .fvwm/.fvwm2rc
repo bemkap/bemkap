@@ -1,0 +1,67 @@
+SetEnv fvwm_img ~/imagenes
+SetEnv fvwm_icon /usr/share/icons/Moka
+
+SetEnv fvwm_webbrowser chromium
+SetEnv fvwm_term urxvt
+SetEnv fvwm_video_player mpv
+
+DesktopSize 1x1
+DesktopName 0 web
+DesktopName 1 prog
+DesktopName 2 term
+DesktopName 3 other
+EdgeScroll 100 100
+EdgeResistance 50 50
+EdgeThickness 1
+
+ClickTime 350
+MoveThreshold 3
+Style * SloppyFocus, MouseFocusClickRaises
+Style * FPGrabFocus
+
+IgnoreModifiers L25
+
+Style * TileCascadePlacement
+Style * SnapGrid 10 10
+Style * EdgeResizeDelay -1
+Style * EdgeMoveResistance -1 -1
+HideGeometryWindow Never
+SnapAttraction 10 SameType Screen
+
+Style "Chromium" Icon 48x48/chromium-browser.png
+
+DestroyFunc FvwmM1T
+AddToFunc   FvwmM1T
++ D Maximize $0 $1
++ M Move
+
+DestroyFunc FvwmM2T
+AddToFunc   FvwmM2T
++ C Close
+
+DestroyFunc FvwmURxvt
+AddToFunc   FvwmUrxvt
++ I Exec exec urxvt
+
+DestroyFunc FvwmChromium
+AddToFunc   FvwmChromium
++ I Exec exec chromium
+
+DestroyFunc StartFunction
+AddToFunc   StartFunction
++ I Module FvwmTaskBar
++ I Module FvwmPager 0 2
++ I Module FvwmButtons MyButtons
+
+DestroyFunc InitFunction
+AddToFunc   InitFunction
++ I Exec exec fvwm-root -r $[fvwm_img]/fondo
+
+DestroyFunc RestartFunction
+AddToFunc   RestartFunction
++ I Nop
+
+Key   w      A 4 fvwmChromium
+Key   Return A 4 fvwmURxvt
+Mouse 1      T A FvwmM1T
+Mouse 2      T A FvwmM2T
