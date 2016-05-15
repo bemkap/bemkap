@@ -19,6 +19,7 @@ MoveThreshold 3
 Style * SloppyFocus, MouseFocusClickRaises
 Style * FPGrabFocus
 
+EwmhBaseStruts 0 0 0 24
 IgnoreModifiers L25
 
 Style * TileCascadePlacement
@@ -63,5 +64,36 @@ AddToFunc   RestartFunction
 
 Key   w      A 4 fvwmChromium
 Key   Return A 4 fvwmURxvt
+Key   1      A 4 GotoDesk 0 0
+Key   2      A 4 GotoDesk 0 1
+Key   3      A 4 GotoDesk 0 2
+Key   1      A S4 MoveToDesk 0 0
+Key   2      A S4 MoveToDesk 0 1
+Key   3      A S4 MoveToDesk 0 2
 Mouse 1      T A FvwmM1T
 Mouse 2      T A FvwmM2T
+Mouse 1      1 A Close
+Mouse 1      3 A Iconify
+Mouse 1      5 A Maximize 100 100
+
+Colorset 3 fg #101060, bg #e6e7d7
+Colorset 4 fg Black, bg #a6a797
+Colorset 5 fg White, bg Black
+
+DestroyDecor MyDecor
+AddToDecor   MyDecor
++ TitleStyle LeftJustified Height 16
++ ButtonStyle 1 ActiveUp   Vector 4 20x20@3 80x80@3 80x20@4 20x80@3 -- Flat
++ ButtonStyle 1 ActiveDown Vector 4 20x20@3 80x80@3 80x20@4 20x80@3 -- Flat
++ ButtonStyle 1 Inactive   Vector 4 20x20@3 80x80@3 80x20@4 20x80@3 -- Flat
++ ButtonStyle 3 ActiveUp   Vector 5 20x80@3 80x80@3 80x50@3 20x50@3 20x80@3 -- Flat
++ ButtonStyle 3 ActiveDown Vector 5 20x80@3 80x80@3 80x50@3 20x50@3 20x80@3 -- Flat
++ ButtonStyle 3 Inactive   Vector 5 20x80@3 80x80@3 80x50@3 20x50@3 20x80@3 -- Flat
++ ButtonStyle 5 ActiveUp   Vector 7 20x20@3 20x80@3 80x80@3 80x20@3 20x20@3 20x35@3 80x35@3 -- Flat
++ ButtonStyle 5 ActiveDown Vector 7 20x20@3 20x80@3 80x80@3 80x20@3 20x20@3 20x35@3 80x35@3 -- Flat
++ ButtonStyle 5 Inactive   Vector 7 20x20@3 20x80@3 80x80@3 80x20@3 20x20@3 20x35@3 80x35@3 -- Flat
++ TitleStyle -- Flat
++ BorderStyle Simple -- NoInset Flat
++ ButtonStyle All -- UseTitleStyle
+
+Style * UseDecor MyDecor
