@@ -91,7 +91,7 @@
 05 07 16 carne en cacerola,capeletinis			 tarta de espinaca
 06 07 16 albongidas mondongo con salsa			 pollo arrollado,choclo cremoso
 07 07 16 pastel de papa	     	 			 milanesa de soja,tarta de espinaca
-08 07 16 carne al horno,papa,camote                      pizza l.f. anchoas,choclo
+08 07 16 carne al horno,papa,camote                      pizza l.f. anchoas choclo
 09 07 16 asado,lechuga,tomate y pimiento                 lomo completo max burger
 10 07 16 canelones,ravioles                              picada al colorie,mousse de naranja
 11 07 16 sopa,bife,pure de papa                          tarta de espinaca
@@ -112,34 +112,65 @@
 30 07 16 costeletas de cerdo,caballa y atun              empanadas hoderatto verdura atun jyq
 31 07 16 pollo,chauchas con huevo      			 taco de pollo con picante
 
-01 08 16 sopa,bife,pure con zapallos			 empanadas de verdura,pollo al horno			_*
-02 08 16 bifes encebollados 				 32							-*
-03 08 16 carne al horno,papa camote			 merluza,tortilla de espinaca				_
-04 08 16 fideos con salsa    				 pollo a la plancha,calabaza berenjena al horno		
-05 08 16 costeletas de cerdo,arroz con lentejas		 hamburguesas de pescado     	       	  		__
-06 08 16 costillas de cerdo,lechuga y tomate		 asado,papas y camotes asados				_-
-07 08 16 canelones    					 filet de pollo completo				 -
-08 08 16 sopa con avena,costeletas,calabaza		 pollo enrollado,choclo cremoso				 _
-09 08 16 pollo con arroz				 milanesa al horno,relleno de atun			 _
-10 08 16 carne al horno,papa huevo tomate		 pizza salvado de choclo      				_*
-11 08 16 bifes encebollados  	   			 merluza,berenjenas,huevo poche				-
-12 08 16 costeleta de cerdo,capeletinis			 lomo americano						_-
-13 08 16 pollo a la plancha,lentejas con huevo		 sorrentinos de calabaza				 -
-14 08 16 choripan,sandwich de miga   	 		 pizza anchoas anana fugazza,brownie con helado		*^
-15 08 16 asado,papas asadas,tomate con pimiento		 tarta de espinaca y pollo	       	 		*_
+01 08 16 sopa,bife,pure con zapallos			 empanadas de verdura,pollo al horno
+02 08 16 bifes encebollados 				 32
+03 08 16 carne al horno,papa camote			 merluza,tortilla de espinaca
+04 08 16 fideos con salsa    				 pollo a la plancha,calabaza berenjena al horno
+05 08 16 costeletas de cerdo,arroz con lentejas		 hamburguesas de pescado
+06 08 16 costillas de cerdo,lechuga y tomate		 asado,papas y camotes asados
+07 08 16 canelones    					 filet de pollo completo
+08 08 16 sopa con avena,costeletas,calabaza		 pollo enrollado,choclo cremoso
+09 08 16 pollo con arroz				 milanesa al horno,relleno de atun
+10 08 16 carne al horno,papa huevo tomate		 pizza salvado de choclo
+11 08 16 bifes encebollados  	   			 merluza,berenjenas,huevo poche
+12 08 16 costeleta de cerdo,capeletinis			 lomo americano
+13 08 16 pollo a la plancha,lentejas con huevo		 sorrentinos de calabaza
+14 08 16 choripan,sandwich de miga   	 		 pizza anchoas anana fugazza,brownie con helado
+15 08 16 asado,papas asadas,tomate con pimiento		 tarta de espinaca y pollo
 16 08 16 sopa con avena,pollo a la plancha,pure		 pollo al horno con verduras
-17 08 16 merluza al horno con salsa			 pastel de papa						 -				
-18 08 16 albondigas con salsa 				 merluza al limon,arroz primavera			-
-19 08 16 carne al horno,arroz primavera			 pizza a.m. roquefort especial				-*
-20 08 16 costeleta,caballa con lentejas			 empanadas caballa pollo verdura			_* 
-21 08 16 pollo a la parrilla
-22 08 16 
-23 08 16 
-24 08 16 
-25 08 16 
-26 08 16 
-27 08 16 
-28 08 16 
-29 08 16 
-30 08 16 
-31 08 16
+17 08 16 merluza al horno con salsa			 pastel de papa
+18 08 16 albondigas con salsa 				 merluza al limon,arroz primavera
+19 08 16 carne al horno,arroz primavera			 pizza a.m. roquefort especial
+20 08 16 costeleta,caballa con lentejas			 empanadas caballa pollo verdura
+21 08 16 pollo a la parrilla   				 suprema mariland
+22 08 16 sopa con avena,choclo,pure,costeleta de cerdo	 sandwich de carne,empanadas
+23 08 16 capeletinis con salsa		      	 	 hamburguesas de pollo,huevo poche,brocoli
+24 08 16 carne al horno con provenzal,papa huevo tomate	 merluza,berenjena calabaza al horno
+25 08 16 pollo con arroz    		   	 	 pollo a la plancha,relleno de atun
+26 08 16 milanesas,huevos rellenos,tomate cebolla	 hamburguesas de pescado,choclo cremoso
+27 08 16 costeletas de cerdo,lentejas con huevo		 asado,calabaza
+28 08 16 costillas de cerdo,berenjenas papas asadas	 pizza l.f. choclo espinaca pollo
+29 08 16 sopa con avena,costeletas,pure	     		 supremas al horno,arroz primavera
+30 08 16 albondigas con salsa				 pollo enrollado,camotes al horno
+31 08 16 asado,chauchas y huevo,tomate y pimiento	 merluza,tortilla de espinaca
+
+01 09 16 potaje de legumbres				 pollo a la plancha,choclo cremoso,berenjena
+02 09 16 bifes encebollados,potaje			 suprema de pollo,lentejas
+03 09 16 costeleta,fideos tres colores			 asado,lechuga y tomate,flan con crema
+04 09 16 canelones	       				 centauro
+05 09 16 sopa con avena,costeleta,pure,mazorca		 tarta de espinaca
+06 09 16 ñoquis	  					 pizza casera a la parrilla
+07 09 16 pollo a la plancha,chauchas con huevo		 merluza,porotos,relleno de verdura
+08 09 16 arroz,bifes encebollados    	 		 berenjena rellena de atun
+09 09 16 carne al horno,lentejas,capeletinis		 tostado de pollo
+10 09 16 asado,papa asada,tomates con pimientos		 pata,multiples brownies,torta hungara
+11 09 16 ravioles   		      			 empanada,pizza italia,goulash
+12 09 16 sopa,costeleta,pure				 cacerola de pollo y fideos
+13 09 16 bifes criollos					 empanadas de verdura
+14 09 16 carne al horno,huevo papa y tomate	         merluza,arroz primavera,repollos de bruselas
+15 09 16 pollo a la portuguesa	     			 hamburguesas de pollo,huevo,relleno de verdura
+16 09 16 pollo a la plancha,lentejas y huevo		 alta milanesa napolitana,lentejas y huevo
+17 09 16 cerdo asado,berenjenas asadas,choclo cremoso	 pizza d.c. fugazza especial
+18 09 16 lomo completo,helado		      		 hamburguesa de pollo medium con guacamole
+19 09 16 sopa con avena,costeleta,pure			 pollo al horno con verduras
+20 09 16 albondigas con salsa				 tarta de atun
+21 09 16 milanesa al horno,chauchas con huevo		 merluza,repollos de bruselas,calabaza
+22 09 16 capeletinis   		    			 sandwich de pollo,choclo cremoso
+23 09 16 bifes encebollados				 pollo a la pizza(no pescado),mixta
+24 09 16 asado,lentejas con huevo,calabaza		 pizza d.c. choclo especial
+25 09 16 pollo asado,lechuga,zanahoria			 lomo pizza donna
+26 09 16 sopa con avena,costeleta,pure			 merluza con tomate
+27 09 16 carne con provenzal,papa huevo y tomate
+28 09 16
+29 09 16
+30 09 16
