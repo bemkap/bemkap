@@ -1,26 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-int*T,r=0;
 
-void A(char*cmd){
-  int s=0;
-  for(;*cmd;++cmd)
-    if(T[s*26+*cmd-'A']>0)s=T[s*26+*cmd-'A'];
-    else{T[s*26+*cmd-'A']=++r;T=realloc(T,sizeof(int)*26*(r+1));}
-}
-  
-void main(){
-  T=malloc(sizeof(int)*26);
-  A("CLS");
-  /*A("RET");
-    A("JP D");*/
-  int i,j;
-  for(i=0;i<r;++i){
-    for(j=0;j<26;j++)printf("%2d ",T[i*26+j]);
-    puts("");
-  }
-  free(T);
+#define na(n,a) (((n&0xf)<<12)|(a&0xfff))
+#define nnb(n,m,b) (((n&0xf)<<12)|(m&0xf<<8)|(b&0xff))
+#define nnnn(n,m,o,p) (((n&0xf)<<12)|((m&0xf)<<8)|((o&0xf)<<4)|(p&0xf))
+
+void line(unsigned short*p){
+  unsigned short a;
+  unsigned char b,c;
+  if(scanf("CLS")) *p=0x00e0;
+  else if(scanf("RET")) *p=0x00ee;
+  else if(scanf("JP %hu",&a)) *p=na(1,a);
+  else if(scanf("CALL %hu",&a)) *p=na(2,a);
+  else if(scanf("SE %hhu, %hhu",&b,&c)) *p=nnb(3,b,c);
+  else if(scanf("SNE %hhu, %hhu",&b,&c)) *p=nnb(4,b,c);
+  else if(scanf("SE %hhu, %hhu",&b,&c)) *p=nnnn(5,b,c,0);
+  else if(scanf("LD %hhu, %hhu",&b,&c)) *p=nnb(6,b,c);
+  else if(scanf("ADD %hhu, %hhu",&b,&c)) *p=nnb(7,b,c);
+  else if(scanf("LD %hhu, %hhu",&b,&c)) *p=nnb(7,b,c);
 }
 
 /*
@@ -28,7 +26,7 @@ CLS
 RET         
 JP   addr   
 CALL addr   
-SE   Vx, add
+SE   Vx, addr
 SNE  Vx, byte
 SE   Vx, Vy 
 LD   Vx, byte

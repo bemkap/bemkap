@@ -85,4 +85,16 @@ void ff(word opcode){switch(opcode&0xff){
   case 0x33:ffx33(opcode);break;
   case 0x55:ffx55(opcode);break;
   case 0x65:ffx65(opcode);break;}}
-            
+
+int main(int argc,char*argv[]){
+  inst OP[16]={f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,fa,fb,fc,fd,fe};
+  long s;size_t n,i;
+  FILE*in=fopen(argv[1],"rb");
+  fseek(in,0,SEEK_END);
+  s=ftell(in);
+  rewind(in);
+  n=fread(M.MEM+0x200,1,s,in);
+  for(i=0;i<n;++i)printf("%02hhx  ",M.MEM[0x200+i]);
+  fclose(in);
+  return 0;
+}
