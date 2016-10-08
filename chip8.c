@@ -1,43 +1,42 @@
 #include"chip8.h"
 
-F(x00e0,for(word i=0;i<32*64;++i) SCR[i]=0;PC+=2)        		//CLS
-F(x00ee,PC=STK[ST--])							//RET
-F(x1nnn,PC=nnn)								//JP   addr
-F(x2nnn,STK[++SP]=PC;PC=nnn)						//CALL addr
-F(x3xkk,if(Vx==kk) PC+=2)						//SE   Vx, addr
-F(x4xkk,if(Vx!=kk) PC+=2)						//SNE  Vx, byte
-F(x5xy0,if(Vx==Vy) PC+=2)						//SE   Vx, Vy
-F(x6xkk,Vx=kk;PC+=2)							//LD   Vx, byte
-F(x7xkk,Vx+=kk;PC+=2)							//ADD  Vx, byte
-F(x8xy0,Vy=Vx;PC+=2)							//LD   Vx, Vy
-F(x8xy1,Vx|=Vy;PC+=2)							//OR   Vx, Vy
-F(x8xy2,Vx&=Vy;PC+=2)							//AND  Vx, Vy
-F(x8xy3,Vx^=Vy;PC+=2)							//XOR  Vx, Vy
-F(x8xy4,word S=Vx+Vy;Vx=S&0xf;VF=S>>8&0x1;PC+=2)			//ADD  Vx, Vy
-F(x8xy5,VF=Vx>Vy;Vx-=Vy;PC+=2)						//SUB  Vx, Vy
-F(x8xy6,VF=Vx&1;Vx>>=1;PC+=2)						//SHR  Vx{, Vy}
-F(x8xy7,VF=Vy>Vx;Vx=Vy-Vx;PC+=2)					//SUBN Vx, Vy
-F(x8xye,VF=Vx&0x80;Vx<<=1;PC+=2)					//SHL  Vx{, Vy}
-F(x9xy0,PC+=2*(Vx!=Vy);PC+=2)						//SNE  Vx, Vy
-F(xannn,I=nnn;PC+=2)							//LD   I, addr
-F(xbnnn,PC=nnn+V0)							//JP   V0, addr
-F(xcxkk,srand(time(NULL));Vx=(rand()%256)&kk;PC+=2)			//RND  Vx, byte
-F(xdxyn,VF=0;for(byte i=0;i<n;++i) for(byte j=0;j<8;++j){		//DRW  Vx, Vy, nibble
-      if(SCR[Vx+i*64+(Vy+j)%64]+(MEM[I+i]>>j)&1==2) VF=1;
-      SCR[(Vx+i)*64+(Vy+j)%64]^=(MEM[I+i]>>j)&1;
-    }
-  PC+=2)
-F(xex9e,PC+=2*(KB&(1<<Vx));PC+=2)					//SKP  Vx
-F(xexa1,PC+=2*(0==KB&(1<<Vx));PC+=2)					//SKPN Vx
-F(xfx07,Vx=DT;PC+=2)							//LD   Vx, DT
-F(xfx0a,Vx=getchar();PC+=2)            					//LD   Vx, K
-F(xfx15,DT=Vx;PC+=2)							//LD   DT, Vx
-F(xfx18,ST=Vx;PC+=2)							//LD   ST, Vx
-F(xfx1e,I+=Vx;PC+=2)							//ADD  I, Vx
-F(xfx29,I=MEM[Vx];PC+=2)						//LD   F, Vx
-F(xfx33,MEM[I]=Vx/100;MEM[I+1]=(Vx)%100/10;MEM[I+2]=Vx%10;PC+=2)	//LD   B, Vx
-F(xfx55,for(byte i=0;i<Vx;++i) MEM[I+i]=V[i];PC+=2)			//LD   [I], Vx
-F(xfx65,for(byte i=0;i<Vx;++i) V[i]=MEM[I+i];PC+=2)			//LD   Vx, [I]
+F(x00e0,memset(M->SCR,0,32*64))          							//CLS
+F(x00ee,M->PC=M->STK[M->SP--];M->PC-=2)								//RET
+F(x1nnn,M->PC=nnn;M->PC-=2)									//JP   addr
+F(x2nnn,M->STK[++M->SP]=M->PC;M->PC=nnn;M->PC-=2)						//CALL addr
+F(x3xkk,if(M->V[x]==kk) M->PC+=2)								//SE   Vx, addr
+F(x4xkk,if(M->V[x]!=kk) M->PC+=2)								//SNE  Vx, byte
+F(x5xy0,if(M->V[x]==M->V[y]) M->PC+=2)								//SE   Vx, Vy
+F(x6xkk,M->V[x]=kk)										//LD   Vx, byte
+F(x7xkk,M->V[x]+=kk)										//ADD  Vx, byte
+F(x8xy0,M->V[y]=M->V[x])									//LD   Vx, Vy
+F(x8xy1,M->V[x]|=M->V[y])									//OR   Vx, Vy
+F(x8xy2,M->V[x]&=M->V[y])									//AND  Vx, Vy
+F(x8xy3,M->V[x]^=M->V[y])									//XOR  Vx, Vy
+F(x8xy4,word S=M->V[x]+M->V[y];M->V[x]=S&0xf;M->V[0xf]=S>>8&0x1)				//ADD  Vx, Vy
+F(x8xy5,M->V[0xf]=M->V[x]>M->V[y];M->V[x]-=M->V[y])						//SUB  Vx, Vy
+F(x8xy6,M->V[0xf]=M->V[x]&1;M->V[x]>>=1)							//SHR  Vx{, Vy}
+F(x8xy7,M->V[0xf]=M->V[y]>M->V[x];M->V[x]=M->V[y]-M->V[x])					//SUBN Vx, Vy
+F(x8xye,M->V[0xf]=M->V[x]&0x80;M->V[x]<<=1)							//SHL  Vx{, Vy}
+F(x9xy0,if(M->V[x]!=M->V[y]) M->PC+=2)								//SNE  Vx, Vy
+F(xannn,M->I=nnn)										//LD   I, addr
+F(xbnnn,M->PC=nnn+M->V[0x0];M->PC-=2)								//JP   V0, addr
+F(xcxkk,srand(time(NULL));M->V[x]=(rand()%256)&kk)						//RND  Vx, byte
+F(xdxyn,M->V[0xf]=0;for(byte i=0;i<n;++i) for(byte j=0;j<8;++j){				//DRW  Vx, Vy, nibble
+      if(SCR[(M->V[x]+i)*64+(M->V[y]+j)%64]+(M->MEM[M->I+i]>>(7-j))&1==2) M->V[0xf]=1;
+      SCR[(M->V[x]+i)*64+(M->V[y]+j)%64]^=(M->MEM[M->I+i]>>(7-j))&1;
+    })
+F(xex9e,if(M->KB&(1<<M->V[x])) M->PC+=2)				         		//SKP  Vx
+F(xexa1,if(!(M->KB&(1<<M->V[x]))) M->PC+=2)                         	         		//SKPN Vx
+F(xfx07,M->V[x]=M->DT)										//LD   Vx, DT
+F(xfx0a,M->V[x]=MAP[getchar()%256])								//LD   Vx, K
+F(xfx15,M->DT=M->V[x])										//LD   DT, Vx
+F(xfx18,M->ST=M->V[x])										//LD   ST, Vx
+F(xfx1e,M->I+=M->V[x])										//ADD  I, Vx
+F(xfx29,M->I=M->MEM[M->V[x]])								        //LD   F, Vx
+F(xfx33,M->MEM[M->I]=M->V[x]/100;M->MEM[M->I+1]=(M->V[x]%100)/10;M->MEM[M->I+2]=M->V[x]%10)	//LD   B, Vx
+F(xfx55,for(byte i=0;i<M->V[x];++i) M->MEM[M->I+i]=V[i])					//LD   [I], Vx
+F(xfx65,for(byte i=0;i<M->V[x];++i) V[i]=M->MEM[M->I+i])					//LD   Vx, [I]
 
 void f0(struct CHIP8*M,word oc){(inst[]){x00e0,x00ee}[oc>>1&1](M,oc);}
 void f8(struct CHIP8*M,word oc){(inst[]){x8xy0,x8xy1,x8xy2,x8xy3,x8xy4,x8xy5,x8xy6,x8xy7,0,0,0,0,0,0,x8xye,0}[oc&0xf](M,oc);}
@@ -48,18 +47,12 @@ void ff(struct CHIP8*M,word oc){inst H[256];
   H[oc&0xff](M,oc);
 }
 
-byte charset[5*16]={
-  0xf0,0x90,0x90,0x90,0xf0,  0x20,0x60,0x20,0x20,0x70,  0xf0,0x10,0xf0,0x80,0xf0,  0xf0,0x10,0xf0,0x10,0xf0,
-  0x90,0x90,0xf0,0x10,0x10,  0xf0,0x80,0xf0,0x10,0xf0,  0xf0,0x80,0xf0,0x90,0xf0,  0xf0,0x10,0x20,0x40,0x40,
-  0xf0,0x90,0xf0,0x90,0xf0,  0xf0,0x90,0xf0,0x10,0xf0,  0xf0,0x90,0xf0,0x90,0x90,  0xe0,0x90,0xe0,0x90,0xe0,
-  0xf0,0x80,0x80,0x80,0xf0,  0xe0,0x90,0x90,0x90,0xe0,  0xf0,0x80,0xf0,0x80,0xf0,  0xf0,0x80,0xf0,0x80,0x80
-};
-
 void init(struct CHIP8*M,char*fp){
   FILE*in=fopen(fp,"rb");
   fread(M->MEM+0x200,1,4096-0x200,in);
   fclose(in);
   memcpy(M->MEM,charset,5*16);
+  memset(M->SCR,0,32*64);
   M->PC=0x200;
   M->I=M->SP=0;
 }
@@ -80,20 +73,34 @@ void close_sdl(){
 }
 
 int main(int argc,char*argv[]){
-  inst OP[16]={f0,x1nnn,x2nnn,x3xkk,x4xkk,x5xy0,x6xkk,x7xkk,f8,x9xy0,xannn,xbnnn,xcxkk,xdxyn,fe};
+  inst OP[16]={f0,x1nnn,x2nnn,x3xkk,x4xkk,x5xy0,x6xkk,x7xkk,f8,x9xy0,xannn,xbnnn,xcxkk,xdxyn,fe,ff};
   struct CHIP8 M;
+  SDL_Event e;
+  int R=1;
   init(&M,argv[1]);
   init_sdl();
-  for(;;){
+  while(R){
+    while(SDL_PollEvent(&e))
+      switch(e.type){
+      case SDL_QUIT: R=0;break;
+      case SDL_KEYDOWN: M.KB|=(1<<MAP[e.key.keysym.sym%256]);break;
+      case SDL_KEYUP: M.KB&=~(1<<MAP[e.key.keysym.sym%256]);break;
+      }
     //exec
-    word i=*(word*)(M.MEM+0x200+M.PC);
+    word i=(M.MEM[M.PC]<<8)|M.MEM[M.PC+1];
+    printf("opcode: %04hx  PC: %04hx\n",i,M.PC);    
     OP[i>>12&0xf](&M,i);
     //draw
-    for(word i=0;i<32*64;++i) SDL_FillRect(s,&(SDL_Rect){10*i/64,10*i%64,10,10},M.SCR[i]?WHITE:BLACK);
+    for(word i=0;i<32*64;++i){
+      SDL_Rect pix={10*i%64,10*i/64,10,10};
+      SDL_FillRect(s,&pix,M.SCR[i]?WHITE:BLACK);
+    }
     SDL_UpdateWindowSurface(w);
+    SDL_Delay(1000/4);
     //update
     M.DT=(--M.DT<0)?0:M.DT;
     M.ST=(--M.ST<0)?0:M.ST;
+    M.PC+=2;
   }
   close_sdl();
   return 0;
