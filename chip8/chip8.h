@@ -6,9 +6,6 @@
 #include<string.h>
 #include<SDL2/SDL.h>
 
-#define WHITE 0xffffff
-#define BLACK 0x000000
-
 typedef unsigned char byte;
 typedef unsigned short word;
 
@@ -46,10 +43,7 @@ byte charset[5*16]={
 typedef void(*inst)(struct CHIP8*,word);
 
 #define F(id,body) void id(struct CHIP8*M,word oc){        \
-    byte x=oc>>8&0xf,y=oc>>4&0xf;			   \
-    byte n=oc&0xf,kk=oc&0xff;				   \
-    byte *MEM=M->MEM,*SCR=M->SCR,*V=M->V;                  \
-    word nnn=oc&0xfff,*STK=M->STK;			   \
+    byte x=oc>>8&0xf,y=oc>>4&0xf,n=oc&0xf,kk=oc&0xff;	   \
+    word nnn=oc&0xfff;					   \
     do{body;}while(0);                                     \
-    M->PC+=2;
   }
