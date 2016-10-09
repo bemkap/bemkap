@@ -1,42 +1,46 @@
 #include"chip8.h"
 
-F(x00e0,memset(M->SCR,0,32*64))          							//CLS
-F(x00ee,M->PC=M->STK[M->SP--];M->PC-=2)								//RET
-F(x1nnn,M->PC=nnn;M->PC-=2)									//JP   addr
-F(x2nnn,M->STK[++M->SP]=M->PC;M->PC=nnn;M->PC-=2)						//CALL addr
-F(x3xkk,if(M->V[x]==kk) M->PC+=2)								//SE   Vx, addr
-F(x4xkk,if(M->V[x]!=kk) M->PC+=2)								//SNE  Vx, byte
-F(x5xy0,if(M->V[x]==M->V[y]) M->PC+=2)								//SE   Vx, Vy
-F(x6xkk,M->V[x]=kk)										//LD   Vx, byte
-F(x7xkk,M->V[x]+=kk)										//ADD  Vx, byte
-F(x8xy0,M->V[y]=M->V[x])									//LD   Vx, Vy
-F(x8xy1,M->V[x]|=M->V[y])									//OR   Vx, Vy
-F(x8xy2,M->V[x]&=M->V[y])									//AND  Vx, Vy
-F(x8xy3,M->V[x]^=M->V[y])									//XOR  Vx, Vy
-F(x8xy4,word S=M->V[x]+M->V[y];M->V[x]=S&0xf;M->V[0xf]=S>>8&0x1)				//ADD  Vx, Vy
-F(x8xy5,M->V[0xf]=M->V[x]>M->V[y];M->V[x]-=M->V[y])						//SUB  Vx, Vy
-F(x8xy6,M->V[0xf]=M->V[x]&1;M->V[x]>>=1)							//SHR  Vx{, Vy}
-F(x8xy7,M->V[0xf]=M->V[y]>M->V[x];M->V[x]=M->V[y]-M->V[x])					//SUBN Vx, Vy
-F(x8xye,M->V[0xf]=M->V[x]&0x80;M->V[x]<<=1)							//SHL  Vx{, Vy}
-F(x9xy0,if(M->V[x]!=M->V[y]) M->PC+=2)								//SNE  Vx, Vy
-F(xannn,M->I=nnn)										//LD   I, addr
-F(xbnnn,M->PC=nnn+M->V[0x0];M->PC-=2)								//JP   V0, addr
-F(xcxkk,srand(time(NULL));M->V[x]=(rand()%256)&kk)						//RND  Vx, byte
-F(xdxyn,M->V[0xf]=0;for(byte i=0;i<n;++i) for(byte j=0;j<8;++j){				//DRW  Vx, Vy, nibble
-      if(SCR[(M->V[x]+i)*64+(M->V[y]+j)%64]+(M->MEM[M->I+i]>>(7-j))&1==2) M->V[0xf]=1;
-      SCR[(M->V[x]+i)*64+(M->V[y]+j)%64]^=(M->MEM[M->I+i]>>(7-j))&1;
-    })
-F(xex9e,if(M->KB&(1<<M->V[x])) M->PC+=2)				         		//SKP  Vx
-F(xexa1,if(!(M->KB&(1<<M->V[x]))) M->PC+=2)                         	         		//SKPN Vx
-F(xfx07,M->V[x]=M->DT)										//LD   Vx, DT
-F(xfx0a,M->V[x]=MAP[getchar()%256])								//LD   Vx, K
-F(xfx15,M->DT=M->V[x])										//LD   DT, Vx
-F(xfx18,M->ST=M->V[x])										//LD   ST, Vx
-F(xfx1e,M->I+=M->V[x])										//ADD  I, Vx
-F(xfx29,M->I=M->MEM[M->V[x]])								        //LD   F, Vx
-F(xfx33,M->MEM[M->I]=M->V[x]/100;M->MEM[M->I+1]=(M->V[x]%100)/10;M->MEM[M->I+2]=M->V[x]%10)	//LD   B, Vx
-F(xfx55,for(byte i=0;i<M->V[x];++i) M->MEM[M->I+i]=V[i])					//LD   [I], Vx
-F(xfx65,for(byte i=0;i<M->V[x];++i) V[i]=M->MEM[M->I+i])					//LD   Vx, [I]
+F(x00e0,memset(M->SCR,0,32*8))
+F(x00ee,M->PC=M->STK[M->SP--];M->PC-=2)
+F(x1nnn,M->PC=nnn;M->PC-=2)
+F(x2nnn,M->STK[++M->SP]=M->PC;M->PC=nnn;M->PC-=2)
+F(x3xkk,if(M->V[x]==kk) M->PC+=2)
+F(x4xkk,if(M->V[x]!=kk) M->PC+=2)
+F(x5xy0,if(M->V[x]==M->V[y]) M->PC+=2)
+F(x6xkk,M->V[x]=kk)
+F(x7xkk,M->V[x]+=kk)
+F(x8xy0,M->V[y]=M->V[x])
+F(x8xy1,M->V[x]|=M->V[y])
+F(x8xy2,M->V[x]&=M->V[y])
+F(x8xy3,M->V[x]^=M->V[y])
+F(x8xy4,word S=M->V[x]+M->V[y];M->V[x]=S&0xf;M->V[0xf]=S>>8&0x1)
+F(x8xy5,M->V[0xf]=M->V[x]>M->V[y];M->V[x]-=M->V[y])
+F(x8xy6,M->V[0xf]=M->V[x]&1;M->V[x]>>=1)
+F(x8xy7,M->V[0xf]=M->V[y]>M->V[x];M->V[x]=M->V[y]-M->V[x])
+F(x8xye,M->V[0xf]=M->V[x]&0x80;M->V[x]<<=1)
+F(x9xy0,if(M->V[x]!=M->V[y]) M->PC+=2)
+F(xannn,M->I=nnn)
+F(xbnnn,M->PC=nnn+M->V[0x0];M->PC-=2)
+F(xcxkk,srand(time(NULL));M->V[x]=(rand()%256)&kk)
+F(xdxyn,for(byte i=0;i<n;++i){
+    byte l=SCR[M->V[y]+i][M->V[x]>>3];
+    byte r=SCR[M->V[y]+i][((M->V[x]>>3)+1)%8];
+    SCR[M->V[y]+i][M->V[x]>>3]^=M->MEM[M->I+i]>>(M->V[x]%8);
+    SCR[M->V[y]+i][((M->V[x]>>3)+1)%8]^=M->MEM[M->I+i]<<(8-M->V[x]%8);
+    V[0xf]=(l&SCR[M->V[y]+i][M->V[x]>>3])>0;
+    V[0xf]|=(r&SCR[M->V[y]+i][((M->V[x]>>3)+1)%8])>0;
+  })
+F(xex9e,if(M->KB>>M->V[x]&1) M->PC+=2)
+F(xexa1,if(!(M->KB>>M->V[x]&1)) M->PC+=2)
+F(xfx07,M->V[x]=M->DT)
+F(xfx0a,M->V[x]=MAP[getchar()%256])
+F(xfx15,M->DT=M->V[x])
+F(xfx18,M->ST=M->V[x])
+F(xfx1e,M->I+=M->V[x])
+F(xfx29,M->I=M->MEM[M->V[x]])
+F(xfx33,M->MEM[M->I]=M->V[x]/100;M->MEM[M->I+1]=(M->V[x]%100)/10;M->MEM[M->I+2]=M->V[x]%10)
+F(xfx55,for(byte i=0;i<M->V[x];++i) M->MEM[M->I+i]=V[i])
+F(xfx65,for(byte i=0;i<M->V[x];++i) V[i]=M->MEM[M->I+i])
 
 void f0(struct CHIP8*M,word oc){(inst[]){x00e0,x00ee}[oc>>1&1](M,oc);}
 void f8(struct CHIP8*M,word oc){(inst[]){x8xy0,x8xy1,x8xy2,x8xy3,x8xy4,x8xy5,x8xy6,x8xy7,0,0,0,0,0,0,x8xye,0}[oc&0xf](M,oc);}
@@ -52,7 +56,7 @@ void init(struct CHIP8*M,char*fp){
   fread(M->MEM+0x200,1,4096-0x200,in);
   fclose(in);
   memcpy(M->MEM,charset,5*16);
-  memset(M->SCR,0,32*64);
+  memset(M->SCR,0,32*8);
   M->PC=0x200;
   M->I=M->SP=0;
 }
@@ -92,15 +96,14 @@ int main(int argc,char*argv[]){
     OP[i>>12&0xf](&M,i);
     //draw
     for(word i=0;i<32*64;++i){
-      SDL_Rect pix={10*i%64,10*i/64,10,10};
-      SDL_FillRect(s,&pix,M.SCR[i]?WHITE:BLACK);
+      SDL_Rect pix={10*(i%64),10*(i/64),10,10};
+      SDL_FillRect(s,&pix,(M.SCR[i]>>(7-i%8)&1)?WHITE:BLACK);
     }
     SDL_UpdateWindowSurface(w);
     SDL_Delay(1000/4);
     //update
     M.DT=(--M.DT<0)?0:M.DT;
     M.ST=(--M.ST<0)?0:M.ST;
-    M.PC+=2;
   }
   close_sdl();
   return 0;

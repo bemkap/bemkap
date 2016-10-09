@@ -13,7 +13,7 @@ typedef unsigned char byte;
 typedef unsigned short word;
 
 struct CHIP8 {
-  byte DT,ST,SP,MEM[4096],SCR[32*64],V[16];
+  byte DT,ST,SP,MEM[4096],SCR[32][8],V[16];
   word I,PC,KB,STK[16];
 };
 
@@ -51,4 +51,5 @@ typedef void(*inst)(struct CHIP8*,word);
     byte *MEM=M->MEM,*SCR=M->SCR,*V=M->V;                  \
     word nnn=oc&0xfff,*STK=M->STK;			   \
     do{body;}while(0);                                     \
+    M->PC+=2;
   }
