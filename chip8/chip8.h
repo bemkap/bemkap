@@ -10,7 +10,7 @@ typedef unsigned char byte;
 typedef unsigned short word;
 
 struct CHIP8 {
-  byte DT,ST,SP,MEM[4096],SCR[32][8],V[16];
+  byte DT,ST,SP,MEM[4096],SCR[32][8],V[16],DF;
   word I,PC,KB,STK[16];
 };
 
@@ -41,6 +41,8 @@ byte charset[5*16]={
 };
 
 typedef void(*inst)(struct CHIP8*,word);
+
+#define G(id) void id(struct CHIP8*M,word oc)
 
 #define F(id,body) void id(struct CHIP8*M,word oc){        \
     byte x=oc>>8&0xf,y=oc>>4&0xf,n=oc&0xf,kk=oc&0xff;	   \
