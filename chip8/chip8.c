@@ -1,7 +1,7 @@
 #include"chip8.h"
 
 G(nop ){}
-F(f00 ,memset(M->SCR,0,32*8))
+F(f00 ,memset(M->SCR,0,32*8);M->DF++)
 F(f0e ,M->PC=M->STK[M->SP--%16])
 G(f0  ){(inst[]){f00,f0e}[oc>>1&1](M,oc);}
 F(f1  ,M->PC=nnn)
@@ -38,12 +38,13 @@ F(fd  ,M->V[0xf]=0;for(byte i=0;i<n;++i){
     M->V[0xf]|=(l^M->SCR[iy][ ix     ])&l;
     M->V[0xf]|=(r^M->SCR[iy][(ix+1)%8])&r;
   }
-  M->V[0xf]=M->V[0xf]!=0)
+  M->V[0xf]=M->V[0xf]!=0;
+  M->DF++)
 F(fee ,if(  M->KB>>M->V[x]&1)  M->PC+=2)
 F(fe1 ,if(!(M->KB>>M->V[x]&1)) M->PC+=2)
 G(fe  ){(inst[]){fee,fe1}[oc&1](M,oc);}
 F(ff7 ,M->V[x]=M->DT)
-F(ffa ,M->V[x]=MAP[getchar()%256])
+F(ffa ,M->W=x)
 F(ff15,M->DT=M->V[x])
 F(ff8 ,M->ST=M->V[x])
 F(ffe ,M->I+=M->V[x])
@@ -61,7 +62,7 @@ void init(struct CHIP8*M,char*fp){
   memcpy(M->MEM,charset,5*16);
   memset(M->SCR,0,32*8);
   M->PC=0x200;
-  M->I=M->SP=M->KB=0;
+  M->I=M->SP=M->KB=M->W=0;
   srand(time(NULL));
 }
 
@@ -93,24 +94,30 @@ int main(int argc,char*argv[]){
     while(SDL_PollEvent(&e))
       switch(e.type){
       case SDL_QUIT   : R=0;break;
-      case SDL_KEYDOWN: M.KB|=  1<<MAP[e.key.keysym.sym%256] ;break;
+      case SDL_KEYDOWN:
+        M.KB|=1<<MAP[e.key.keysym.sym%256];
+        if(M.W){M.V[M.W]=MAP[e.key.keysym.sym%256];M.W=0;}
+        break;
       case SDL_KEYUP  : M.KB&=~(1<<MAP[e.key.keysym.sym%256]);break;
       }
     //exec
-    for(word i=0;i<5000;++i){
+    M.DF=0;
+    for(word i=0;i<5000&&M.W<1&&M.DF<1;++i){
       word oc=M.MEM[M.PC]<<8|M.MEM[M.PC+1];
       M.PC+=2;
       (inst[]){f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,fa,fb,fc,fd,fe,ff}[oc>>12&0xf](&M,oc);
     }
     //draw
-    for(word i=0;i<32*64;++i) pixmap[i]=0xffffff*(M.SCR[i/64][i%64/8]>>(7-i%8)&1);
-    SDL_UpdateTexture(t,NULL,pixmap,64*4);
-    SDL_RenderCopy(r,t,NULL,NULL);
-    SDL_RenderPresent(r);
+    if(M.DF){
+      for(word i=0;i<32*64;++i) pixmap[i]=0xffffff*(M.SCR[i/64][i%64/8]>>(7-i%8)&1);
+      SDL_UpdateTexture(t,NULL,pixmap,64*4);
+      SDL_RenderCopy(r,t,NULL,NULL);
+      SDL_RenderPresent(r);
+    }
     //delay,sound
     M.DT=(--M.DT<0)?0:M.DT;
     M.ST=(--M.ST<0)?0:M.ST;
-    SDL_Delay(1000/60);
+    SDL_Delay(1000/30);
   }
   close_sdl();
   return 0;

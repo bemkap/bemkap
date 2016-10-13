@@ -10,7 +10,7 @@ typedef unsigned char byte;
 typedef unsigned short word;
 
 struct CHIP8 {
-  byte DT,ST,SP,MEM[4096],SCR[32][8],V[16];
+  byte DT,ST,SP,MEM[4096],SCR[32][8],V[16],W,DF;
   word I,PC,KB,STK[16];
 };
 
