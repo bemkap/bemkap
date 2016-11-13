@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu xmlns="http://openbox.org/"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://openbox.org/
+				  file:///usr/share/openbox/menu.xsd">
+  <menu id="root-menu" label="Openbox 3">
+    <item label="urxvt">
+      <action name="Execute"><execute>urxvt</execute></action>
+    </item>
+    <separator/>
+    <menu id="internet" label="internet">
+      <item label="iceweasel">
+	<action name="Execute"><execute>iceweasel</execute></action>
+      </item>
+      <item label="transmission">
+	<action name="Execute"><execute>transmission-gtk</execute></action>
+      </item>
+      <item label="icedove">
+	<action name="Execute"><execute>icedove</execute></action>
+      </item>
+    </menu>
+    <menu id="prog" label="prog">
+      <item label="emacs">
+	<action name="Execute"><execute>emacs</execute></action>
+      </item>
+      <item label="gambas3">
+	<action name="Execute"><execute>gambas3</execute></action>
+      </item>
+    </menu>
+    <menu id="graph" label="graph">
+      <item label="blender">
+	<action name="Execute"><execute>blender</execute></action>
+      </item>
+      <item label="gimp">
+	<action name="Execute"><execute>gimp</execute></action>
+      </item>
+      <item label="mtpaint">
+	<action name="Execute"><execute>mtpaint</execute></action>
+      </item>
+    </menu>
+    <menu id="mult" label="mult">
+      <item label="moc">
+	<action name="Execute"><execute>urxvt -e mocp</execute></action>
+      </item>
+      <item label="smplayer">
+	<action name="Execute"><execute>smplayer</execute></action>
+      </item>
+      <item label="vlc">
+	<action name="Execute"><execute>vlc</execute></action>
+      </item>
+    </menu>
+    <menu id="arch" label="arch" execute="~/.config/openbox/A.pl /home/bemkap"/>
+    <separator />
+    <menu id="conf" label="conf">
+      <item label="obconf">
+	<action name="Execute"><execute>obconf</execute></action>
+      </item>
+      <item label="reconfigure">
+	<action name="Reconfigure" />
+      </item>
+      <item label="restart">
+	<action name="Restart" />
+      </item>
+    </menu>
+    <separator />
+    <item label="exit">
+      <action name="Exit" />
+    </item>
+  </menu>
+</openbox_menu>

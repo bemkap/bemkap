@@ -1,0 +1,7 @@
+~/.xflux -l -31 -g -61 &
+mpd &
+emacs --daemon &
+feh --bg-fill ~/imagenes/fondo &
+xinput --set-ptr-feedback 'Microsoft Microsoft 3-Button Mouse with IntelliEye(TM)' 0 0 1 &
+volti &
+tint2 &
