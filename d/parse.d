@@ -1,53 +1,74 @@
 import std.stdio;
 import std.array;
 import std.algorithm;
-import std.math;
 
-class LL {
+class CFG {
 private:
   int[string] alphabet;
-  int t = 1, nt = 1;
+  int sep; // Between non-terminals and terminals. Why?
   int[][][] rules; // I'm 11. What's this?
   bool[int][] firsts;
-public:
+  int[][] table;
   void calc_first() {
-    bool end;
-    while(!end) {
-      end = false;
-      foreach(i, sym; rules)
-	foreach(r; filter!(s => s.length > 0)(sym))
-	  if(r.front < 0)
-	    firsts[i][r.front] = true;
-	  else foreach(k, v; firsts[r.front - 1]) {
-	      end ||= (firsts[i][k] != v);
-	      firsts[i][k] = v;
-	    }
+    bool keep;
+    firsts.length = alphabet.length;
+    do {
+      keep = false;
+      foreach(k0, v0; alphabet)
+        if(v0 <= sep) {
+          foreach(r; filter!(s => s.length > 0)(rules[v0 - 1]))
+            if(r.front < 0) {
+              keep |= (r.front in firsts[v0 - 1]) is null;
+              firsts[v0 - 1][r.front] = true;
+            } else foreach(k1, v1; firsts[r.front - 1]) {
+                keep |= (k1 in firsts[v0 - 1]) is null;
+                firsts[v0 - 1][k1] = v1;
+              }
+        } else {
+          firsts[v0 - 1][v0] = true;
+        }
+    } while(keep);
+  }
+  void calc_table() {
+    table.length = rules.length; // n non-terminals
+    foreach(i, nt; rules) {
+      table[i].length = alphabet.length - rules.length; // n terminals
+      foreach(int j, r; nt)
+        foreach(k, v; firsts[r.front - 1])
+          table[i][k - 1 - sep] = j + 1;
     }
   }
-  void new_t(string[] ts ...) {
-    foreach(s; ts) alphabet[s] = -t++;
+public:
+  this(string[][string] R) {
+    foreach(nt; R.keys)
+      alphabet[nt] = alphabet.length + 1;
+    sep = rules.length = alphabet.length;
+    foreach(nt, rs; R)
+      foreach(r; rs) {
+	int[] r_id;
+	foreach(tok; split(r))
+	  if((tok in alphabet) is null) r_id ~= alphabet[tok] = alphabet.length + 1;
+	  else r_id ~= alphabet[tok];
+	rules[alphabet[nt] - 1] ~= r_id;
+      }
+    calc_first();
+    calc_table();
   }
-  void new_nt(string[] nts ...) {
-    foreach(s; nts) alphabet[s] = nt++;
-    rules.length = firsts.length = nt;
-  }
-  void new_rule(string l, string[] rs) {
-    foreach(r; rs) {
-      int[] one;
-      foreach(tok; split(r)) one ~= alphabet[tok];
-      rules[alphabet[l] - 1] ~= one;
+  bool parse(string sentence) {
+    int[] current = [alphabet["Session"]];
+    for(auto i = 0; i < sentence.length; ) {
+      // What is readability?
+      if(table[current.front - 1][alphabet[[sentence[i]]] - 1 - sep] - 1 < 0) return false;      
+      current = rules[current.front - 1][table[current.front - 1][alphabet[[sentence[i]]] - 1 - sep] - 1] ~ current[1 .. $];
+      while(i < sentence.length && current.front == alphabet[[sentence[i]]]) { write(sentence[i++]); current = current[1 .. $]; }
     }
+    return true;
   }
 }
 
 void main() {
-  auto g = new LL;
-  g.new_nt("Session", "Fact", "Question");
-  g.new_t("!", "?", "(", ")", "s");
-  writeln(g.alphabet);
-  g.new_rule("Session", ["Fact Session", "Question", "( Session ) Session"]);
-  g.new_rule("Fact", ["! s"]);
-  g.new_rule("Question", ["? s"]);
-  g.calc_first();
-  writeln(g.firsts);
+  auto g = new CFG(["Session": ["Fact Session", "Question", "( Session ) Session"],
+		    "Fact": ["! s"],
+		    "Question": ["? s"]]);
+  writeln(g.parse("(!s)?s"));
 }
