@@ -9,13 +9,16 @@
     "background": {
 	"scripts": ["background.js"]
     },
-    "content_scripts": [{
-	"matches": ["http://animeflv.net/ver/*"],
-	"js": ["anime.js"]
-    }],
+    "commands": {
+	"save-anime": {
+	    "suggested_key": {
+		"default": "Ctrl+Shift+A"
+	    },
+	    "description": "read the name"
+	}
+    },
     "permissions": [
 	"tabs",
-	"http://animeflv.net/ver/*",
-	"storage"
+	"bookmarks"
     ]
 }
