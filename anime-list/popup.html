@@ -4,24 +4,39 @@
     <title>anime-popup</title>
     <style>
       body {
-        font-family: "Lucida Grande", Tahoma, sans-serif;
-        font-size: 80%;
+      font-family: Tahoma, sans-serif;
+      font-size: 90%;
+      margin: 2px;
       }
-      table, th, td {
+      ul {
       font-weight: normal;
       text-align: left;
-      padding: 2px;
       }
-      th {
-      border: 1px #dddddd solid;
+      li {
+      min-width: 320px;
+      border-bottom: 1px #dddddd solid;
+      border-top: 1px #dddddd solid;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-bottom: 4px;
+      padding-top: 4px;
       }
-      th {
-      min-width: 300px;
+      a {
+      text-decoration: none;
+      color: black;
+      }
+      .title {
+      text-align: center;
+      background: black;
+      color: #eeeeee;
+      margin: 0;
       }
     </style>
     <script src="popup.js"></script>
   </head>
   <body style="background:#eeeeee">
-    <table id="last"/>
+    <list id="last" style="list-style-type:none">
+      <li class="title">Animes</li>
+    </list>
   </body>
 </html>
