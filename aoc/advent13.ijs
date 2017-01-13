@@ -9,8 +9,10 @@ G=: 39 31
 s=: 3 : 0
 st=. ,<v=. ,:1 1
 ps=. 0 2$0
-while. (0<#0{::st) do. NB. +.G -.@e. _1{::st do.
-  if. (51<#st)+.0=#_1{::st do.
+NB. while. (0<#0{::st) do. NB. part 2
+while. G -.@e. _1{::st do. NB. part 1
+  NB. if. (51<#st)+.0=#_1{::st do. part 2
+  if. 0=#_1{::st do. NB. part 1
     st=. (}: , (}. L: 0@:{:)) }:st
   else.
     ps=. ps,{._1{::st
