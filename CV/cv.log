@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  20 JAN 2017 14:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  18 MAR 2017 08:31
 entering extended mode
 **\input cv.tex
 (c:\Users\USUARIO\Documents\b\CV\cv.tex
@@ -314,30 +314,36 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 14.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 14.
+<face.jpg, id=1, 1494.7845pt x 993.7125pt>
+File: face.jpg Graphic file (type jpg)
+ <use face.jpg>
+Package pdftex.def Info: face.jpg used on input line 27.
+(pdftex.def)             Requested size: 113.81102pt x 105.88191pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 40.
-[1
+ [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <c:/Users/USUARIO/Document
+s/b/CV/face.jpg>]
 (c:\Users\USUARIO\Documents\b\CV\cv.aux) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 12 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 1371 strings out of 493921
- 17088 string characters out of 3147276
+ 1378 strings out of 493921
+ 17155 string characters out of 3147276
  69636 words of memory out of 3000000
- 4683 multiletter control sequences out of 15000+200000
+ 4687 multiletter control sequences out of 15000+200000
  10301 words of font info for 36 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,9n,19p,276b,193s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,9n,21p,276b,193s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 s10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on cv.pdf (1 page, 41145 bytes).
+Output written on cv.pdf (1 page, 1000384 bytes).
 PDF statistics:
- 18 PDF objects out of 1000 (max. 8388607)
+ 21 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 12 words of extra memory for PDF output out of 10000 (max. 10000000)
 
