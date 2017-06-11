@@ -1,0 +1,20 @@
+<project name="main" basedir="." default="main">
+  <property name="ob.dir" value="ob"/>
+  <property name="cl.dir" value="cl"/>
+  <property name="main-class" value="main.bi"/>
+  <target name="compile">
+    <mkdir dir="${cl.dir}"/>
+    <javac srcdir="${ob.dir}" destdir="${cl.dir}" includeantruntime="false"/>
+  </target>
+  <target name="jar" depends="compile">
+    <jar destfile="${ant.project.name}.jar" basedir="${cl.dir}">
+      <manifest>
+      	<attribute name="Main-Class" value="${main-class}"/>
+      </manifest>
+    </jar>
+  </target>
+  <target name="run" depends="jar">
+    <java jar="${ant.project.name}.jar" fork="true"/>
+  </target>
+  <target name="main" depends="run"/>
+</project>
