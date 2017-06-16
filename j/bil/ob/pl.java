@@ -29,9 +29,9 @@ public class pl implements dr{
   public void draw(Graphics2D g){
     g.setFont(new Font("Monospaced",Font.PLAIN,8));
     g.setPaint(new Color(0,0,0));
-    g.drawString("pl1",10,180);
-    g.drawString("pl2",10,190);
-    g.drawString("<<<",30,180+cp*10);
-    g.drawString("tiros "+ps[cp].n,60,185);
+    g.drawString("pl1",10,190);
+    g.drawString("pl2",10,200);
+    g.drawString("<<<",30,190+cp*10);
+    g.drawString("tiros "+ps[cp].n,60,195);
   }
 }

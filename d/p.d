@@ -21,10 +21,7 @@ class LR0:G {
     bool a=true;
     while(a){
       a=false;
-      foreach(i; I){
-	foreach(nt; NT){ IT[] c=GOTO(i,nt); if(c.length>0){ a=true; I~=c; } }
-	foreach( t;  T){ IT[] c=GOTO(i, t); if(c.length>0){ a=true; I~=c; } }
-      }
+      foreach(i; I) foreach(s; NT~T){ IT[] c=GOTO(i,s); if(c.length>0){ a=true; I~=c; } }
     }
     return I;
   }
@@ -38,13 +35,12 @@ class LR0:G {
   }
   IT[]CLOSURE(IT[] its){
     bool a=true;
-    int[S] I; foreach(i,nt; NT) I[nt]=i;
+    int[S] I; foreach(int i,nt; NT) I[nt]=i;
     while(a){
       a=false;
       foreach(i; its){
-	writeln(NT[i.nt],P[NT[i.nt]][i.p],i.d);
 	if(i.d<P[NT[i.nt]][i.p].length&&it2s(i) !in P) continue;
-	foreach(j,ps; P[it2s(i)]){
+	foreach(int j,ps; P[it2s(i)]){
 	  IT ni={ I[it2s(i)],j,0 };
 	  if(!canFind(its,ni)){ a=true; its~=ni; }
 	}
@@ -60,6 +56,5 @@ void main(){
 		 ["E + T","T"],
 		 ["T * F","F"],
 		 ["( E )","id"]]);
-  writeln(g.GOTO(g.CLOSURE([IT(0,0,0)]),"E"));
-  //writeln(g.ITEMS());
+  writeln(g.ITEMS());
 }

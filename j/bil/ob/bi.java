@@ -40,6 +40,7 @@ class sur extends JPanel implements ActionListener{
       else if( pla.curr().so&& hos.sosc&&!hos.stsc) pla.curr().n=1;
       else if(!pla.curr().so&&!hos.sosc&& hos.stsc) pla.curr().n=1;
       else pla.change(2);
+      pbr.cp=0;
       break;
     case ST_STO:
       cue.v=true;
@@ -68,8 +69,10 @@ class sur extends JPanel implements ActionListener{
 	case 0: pbr.first(); break;
 	case 1: pbr.second(); break;
 	case 2:
-	  double p=pbr.stop()/100*20;
-	  bas.whi.setf(p*Math.cos(cue.d),p*Math.sin(cue.d));
+	  pbr.stop();
+          double p=pbr.p1/100*15;
+          double d=cue.d+pbr.p2/10;
+	  bas.whi.setf(p*Math.cos(d),p*Math.sin(d));
 	  cue.v=false;
 	  bas.restart();
 	  hos.restart();
