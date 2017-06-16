@@ -12,29 +12,29 @@ public class ho{
       p=new ve(x,y);
     }
   }
-  public double th=1;
+  public double th=2,r=8;
   public boolean sosc=false,stsc=false;
   public h hos[]=new h[6];
   public ho(){
     for(int i=0;i<3;i++)
       for(int j=0;j<2;j++)
-	hos[i*2+j]=new h(14+i*(270-8)/2,14+j*(135-8));
+	hos[i*2+j]=new h(10+i*270/2,10+j*135);
   }
   public void draw(Graphics2D g){
     g.setPaint(new Color(32,32,32));
     g.setStroke(new BasicStroke(1));
     for(h hol:hos)
-      g.fill(new Ellipse2D.Double(hol.p.x()-7.5,hol.p.y()-7.5,15,15));
+      g.fill(new Ellipse2D.Double(hol.p.x()-r,hol.p.y()-r,r*2,r*2));
   }				    
   public boolean coll(int i,ba b){
-    return b.p.distanceSq(hos[i%6].p)<4*7.5*7.5;
+    return b.p.distanceSq(hos[i%6].p)<Math.pow(b.r+r,2);
   }
   public void reac(int i,ba b){
-    if(b.p.distanceSq(hos[i%6].p)<4*th*th){
+    if(b.p.distanceSq(hos[i%6].p)<Math.pow(th,2)){
       b.sc=true;
       sosc|=b instanceof so;
       stsc|=b instanceof st;
-    }else b.f.add(ve.mul(0.1,ve.sub(hos[i%6].p,b.p)));
+    }else b.f.add(ve.mul(1,ve.sub(hos[i%6].p,b.p)));
   }
   public void restart(){
     sosc=stsc=false;

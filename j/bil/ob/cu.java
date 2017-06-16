@@ -20,6 +20,9 @@ public class cu implements dr,up{
       Double dy2=Math.sin(d)*10;
       g.draw(new Line2D.Double(p.x()-dx1,p.y()-dy1,
 			       p.x()-dx2,p.y()-dy2));
+      g.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL,0,new float[]{2},0));
+      g.draw(new Line2D.Double(p.x()+dx2,p.y()+dy2,
+			       p.x()+dx1*2,p.y()+dy1*2));
     }
   }
   public void upda(){d+=r;}

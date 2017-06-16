@@ -1,7 +1,7 @@
 package ob;
 import java.awt.*;
 import java.awt.geom.*;
-import java.lang.Math.*;
+import java.lang.Math;
 import ob.dr;
 import ob.ve;
 
@@ -19,8 +19,8 @@ public class ba implements dr,up{
     return !sc&&p.distanceSq(b.p)<4*r*r;
   }
   public boolean coll(ta t){
-    boolean a=x()>280-r||x()<30-r;
-    boolean b=y()>145-r||y()<30-r;
+    boolean a=x()>t.x+t.w-r||x()<t.x+r;
+    boolean b=y()>t.y+t.h-r||y()<t.y+r;
     if(a) f.mul(-1,1);
     if(b) f.mul(1,-1);
     return !sc&&(a||b);
@@ -35,8 +35,8 @@ public class ba implements dr,up{
     b.setf(ve.sub(b.f,w));
   }
   public void reac(ta t){
-    setp(Math.min(280-r,Math.max(x(),10+r)),
-	 Math.min(145-r,Math.max(y(),10+r)));
+    setp(Math.min(t.x+t.w-r,Math.max(x(),t.x+r)),
+	 Math.min(t.y+t.h-r,Math.max(y(),t.y+r)));
   }
   public void draw(Graphics2D g){
     g.setPaint(c);

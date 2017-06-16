@@ -5,9 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import javax.swing.*;
-import java.lang.Math.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.lang.Math;
 
 class sur extends JPanel implements ActionListener{
   public bs bas=new bs();
@@ -25,12 +23,11 @@ class sur extends JPanel implements ActionListener{
     cue.upda(); pbr.upda();
     switch(bas.sta){
     case ST_MOV:
-      bas.upda();
-      for(int i=0;i<bas.size();i++){
-    	if(bas.get(i).coll(tab)) bas.get(i).reac(tab);
-    	for(int j=0;j<6;j++)
-    	  if(hos.coll(j,bas.get(i))) hos.reac(j,bas.get(i));
+      for(int i=0,j;i<bas.size();i++){
+	for(j=0;j<6;j++) if(hos.coll(j,bas.get(i))) hos.reac(j,bas.get(i));
+    	if(j==6&&bas.get(i).coll(tab)) bas.get(i).reac(tab);
       }
+      bas.upda();
       break;
     case ST_JST:
       bas.sta=bs.ST.ST_STO;
@@ -67,13 +64,16 @@ class sur extends JPanel implements ActionListener{
     case KeyEvent.VK_RIGHT: cue.rot(-Math.PI/90); break;
     case KeyEvent.VK_SPACE:
       if(bas.sta==bs.ST.ST_STO)
-	if(pbr.pushed()){
-	  double p=pbr.stop()/100*12;
+	switch(pbr.sta){
+	case 0: pbr.first(); break;
+	case 1: pbr.second(); break;
+	case 2:
+	  double p=pbr.stop()/100*20;
 	  bas.whi.setf(p*Math.cos(cue.d),p*Math.sin(cue.d));
 	  cue.v=false;
 	  bas.restart();
 	  hos.restart();
-	}else pbr.start();
+	}
     }
   }
   public void keyReleased(KeyEvent e){

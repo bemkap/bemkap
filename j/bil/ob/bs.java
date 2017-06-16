@@ -12,8 +12,8 @@ public class bs implements dr,up{
   public so whi,bla;
   public ba fhi=null;
   public bs(){
-    double c=Math.cos(Math.PI/6)*14;
-    double s=Math.sin(Math.PI/6)*14;
+    double c=Math.cos(Math.PI/6)*12;
+    double s=Math.sin(Math.PI/6)*12;
     int[] x={ 0,-1, 1,1, 2,2, 2,-2,-1,0,1, 1,2,2};
     int[] y={-2, 1,-1,3,-2,2,-4, 0,-1,2,1,-3,0,4};
     float[] r={1,1,0,0,1,0,  1,1,1,1,0,0,  1,  1};
