@@ -71,7 +71,7 @@ class sur extends JPanel implements ActionListener{
 	case 2:
 	  pbr.stop();
           double p=pbr.p1/100*15;
-          double d=cue.d;//+pbr.p2/10;
+          double d=cue.d+pbr.p2/20;
 	  bas.whi.setf(p*Math.cos(d),p*Math.sin(d));
 	  cue.v=false;
 	  bas.restart();

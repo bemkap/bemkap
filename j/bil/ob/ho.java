@@ -14,13 +14,12 @@ public class ho{
   }
   public double th=2,r=8;
   public boolean sosc=false,stsc=false;
-  public final int n=7;
+  public final int n=6;
   public h hos[]=new h[n];
   public ho(){
     for(int i=0;i<3;i++)
       for(int j=0;j<2;j++)
 	hos[i*2+j]=new h(10+i*270/2,10+j*135);
-    hos[6]=new h(130,70);
   }
   public void draw(Graphics2D g){
     g.setPaint(new Color(32,32,32));
@@ -39,7 +38,10 @@ public class ho{
     }else{
       ve v=ve.sub(hos[i%n].p,b.p);
       b.f.rot(Math.PI/90*Math.signum(v.angle()-b.f.angle()));
-      b.f.mul(1.01);
+      if(v.msqr()<r*r){
+	v.norm();
+	b.f.add(v);
+      }
     }
   }
   public void restart(){

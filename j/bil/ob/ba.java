@@ -40,8 +40,12 @@ public class ba implements dr,up{
   }
   public void draw(Graphics2D g){
     g.setPaint(c);
-    if(!sc) g.fill(new Ellipse2D.Double(x()-r,y()-r,2*r,2*r));
-    else g.fill(new Ellipse2D.Double(100+n*15,200,2*r,2*r));
+    Ellipse2D e;
+    e=sc?new Ellipse2D.Double(100+n*15,200,2*r,2*r):
+      new Ellipse2D.Double(x()-r,y()-r,2*r,2*r);
+    g.fill(e);
+    g.setColor(new Color(0,0,0));
+    g.draw(e);
   }
   public void upda(){
     if(!sc){

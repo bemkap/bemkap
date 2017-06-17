@@ -1,12 +1,14 @@
 package ob;
 import ob.ba;
 import java.awt.Color;
-import java.awt.GradientPaint;
+import java.awt.LinearGradientPaint;
+import java.awt.MultipleGradientPaint.CycleMethod;
 
 public class st extends ba{
   public st(double x,double y,float r,float g,float b,int n){
     super(x,y,n);
-    c=new GradientPaint((float)x-7,(float)y,Color.black,
-			(float)x,(float)y,new Color(r,g,b),true);
+    c=new LinearGradientPaint((float)x,(float)y-3,(float)x,(float)y+3,
+			      new float[]{0f,0.5f,1f},
+			      new Color[]{Color.WHITE,new Color(r,g,b),Color.WHITE});
   }
 }
