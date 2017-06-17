@@ -38,8 +38,15 @@ public class ve extends Point2D.Double{
   public static double dot(ve v,ve w){
     return v.getX()*w.getX()+v.getY()*w.getY();
   }
+  public void rot(double a){
+    setLocation(getX()*Math.cos(a)-getY()*Math.sin(a),
+		getX()*Math.sin(a)+getY()*Math.cos(a));
+  }
   public double msqr(){
     return distanceSq(0,0);
+  }
+  public double angle(){
+    return Math.atan2(getY(),getX());
   }
   public static ve norm(ve v){
     double l=Math.sqrt(v.msqr());

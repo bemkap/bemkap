@@ -15,6 +15,7 @@ class sur extends JPanel implements ActionListener{
   public ho hos=new ho();
   public Timer tim=new Timer(20,this);
   public pl pla=new pl();
+  public double sca=2;
   public sur(){
     tim.setInitialDelay(20);
     tim.start();
@@ -24,8 +25,9 @@ class sur extends JPanel implements ActionListener{
     switch(bas.sta){
     case ST_MOV:
       for(int i=0,j;i<bas.size();i++){
-	for(j=0;j<6;j++) if(hos.coll(j,bas.get(i))) hos.reac(j,bas.get(i));
-    	if(j==6&&bas.get(i).coll(tab)) bas.get(i).reac(tab);
+	for(j=0;j<hos.n;j++)
+	  if(hos.coll(j,bas.get(i))) hos.reac(j,bas.get(i));
+    	if(j==hos.n&&bas.get(i).coll(tab)) bas.get(i).reac(tab);
       }
       bas.upda();
       break;
@@ -50,7 +52,7 @@ class sur extends JPanel implements ActionListener{
   @Override
   public void paintComponent(Graphics g){
     Graphics2D g1=(Graphics2D)g;
-    g1.scale(2,2);
+    g1.scale(sca,sca);
     super.paintComponent(g);
     tab.draw(g1); hos.draw(g1); bas.draw(g1);
     cue.draw(g1); pbr.draw(g1); pla.draw(g1);
@@ -61,8 +63,6 @@ class sur extends JPanel implements ActionListener{
   }
   public void keyPressed(KeyEvent e){
     switch(e.getKeyCode()){
-    case KeyEvent.VK_LEFT: cue.rot(Math.PI/90); break;
-    case KeyEvent.VK_RIGHT: cue.rot(-Math.PI/90); break;
     case KeyEvent.VK_SPACE:
       if(bas.sta==bs.ST.ST_STO)
 	switch(pbr.sta){
@@ -71,7 +71,7 @@ class sur extends JPanel implements ActionListener{
 	case 2:
 	  pbr.stop();
           double p=pbr.p1/100*15;
-          double d=cue.d+pbr.p2/10;
+          double d=cue.d;//+pbr.p2/10;
 	  bas.whi.setf(p*Math.cos(d),p*Math.sin(d));
 	  cue.v=false;
 	  bas.restart();
@@ -79,10 +79,9 @@ class sur extends JPanel implements ActionListener{
 	}
     }
   }
-  public void keyReleased(KeyEvent e){
-    switch(e.getKeyCode()){
-    case KeyEvent.VK_LEFT: case KeyEvent.VK_RIGHT: cue.rot(0);
-    }
+  public void keyReleased(KeyEvent e){}
+  public void mouseMoved(MouseEvent e){
+    cue.d=ve.sub(new ve(e.getX()/sca,e.getY()/sca),cue.p).angle();
   }
 }
 
@@ -95,7 +94,12 @@ public class bi extends JFrame{
     addKeyListener(new KeyAdapter(){
 	@Override
 	public void keyPressed(KeyEvent e){s.keyPressed(e);}
+	@Override
 	public void keyReleased(KeyEvent e){s.keyReleased(e);}
+      });
+    addMouseMotionListener(new MouseMotionAdapter(){
+	@Override
+	public void mouseMoved(MouseEvent e){s.mouseMoved(e);}
       });
   }
   public static void main(String[]args){
