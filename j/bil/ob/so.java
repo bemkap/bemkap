@@ -7,4 +7,7 @@ public class so extends ba{
     super(x,y,n);
     c=new Color(r,g,b);
   }
+  public so(double x,double y,int n,String fn){
+    super(x,y,n,fn);
+  }
 }

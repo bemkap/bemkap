@@ -3,35 +3,52 @@ import ob.*;
 import java.awt.Graphics2D;
 import java.awt.Font;
 import java.awt.Color;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.net.*;
+import java.awt.image.BufferedImage;
 
-public class pl implements dr{
-  public class p{
-    public int n=1;
-    public boolean so;
-    public p(boolean s){
-      so=s;
-    }
-  }
-  public p[] ps=new p[2];
+public class pl{
+  public int[]n={1,1};
+  public Boolean[]so={null,null};
   public int cp=0;
+  public BufferedImage impl,imcu;
   public pl(){
-    ps[0]=new p(true);
-    ps[1]=new p(false);
+    URL u=null,v=null;
+    try{
+      u=new URL("file","","img/p.png");
+      v=new URL("file","","img/c.png");
+    }catch(MalformedURLException e){}
+    try{
+      impl=ImageIO.read(u);
+      imcu=ImageIO.read(v);
+    }catch(IOException e){}
   }
-  public void change(int nn){
+  public void change(int m){
     cp=(cp+1)%2;
-    ps[cp].n=nn;
+    n[cp]=m;
   }
   public void shoot(){
-    if(--ps[cp].n<=0) change(1);
+    if(--n[cp]<=0) change(1);
   }
-  public p curr(){return ps[cp];}
+  public Boolean so(){return so[cp];}
+  public int n(){return n[cp];}
+  public void setso(boolean s){
+    so[cp]=s;
+    so[(cp+1)%2]=!s;
+  }
+  public void setn(int m){n[cp]=m;}
   public void draw(Graphics2D g){
-    g.setFont(new Font("Monospaced",Font.PLAIN,8));
-    g.setPaint(new Color(0,0,0));
-    g.drawString("pl1",10,190);
-    g.drawString("pl2",10,200);
-    g.drawString("<<<",30,190+cp*10);
-    g.drawString("tiros "+ps[cp].n,60,195);
+    Graphics2D f=(Graphics2D)g.create();
+    f.setFont(new Font("Monospaced",Font.PLAIN,8));
+    f.drawString("1",74,182);
+    if(so[0]!=null) f.drawString(so[0]?"solid":"stripes",81,182);
+    f.drawString("2",209,182);
+    if(so[1]!=null) f.drawString(so[1]?"solid":"stripes",216,182);
+    f.drawImage(impl,null,65,185);
+    f.drawImage(impl,null,200,185);
+    for(int i=0;i<n[cp];i++)
+      f.drawImage(imcu,null,65+cp*135+i*12,210);
+    f.dispose();
   }
 }
