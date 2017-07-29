@@ -6,6 +6,9 @@ public class ve extends Point2D.Double{
   public ve(double x,double y){
     super(x,y);
   }
+  public ve(Point2D.Double p){
+    super(p.getX(),p.getY());
+  }
   @Override
   public void setLocation(double x,double y){
     this.x=x;
@@ -44,6 +47,18 @@ public class ve extends Point2D.Double{
   public void rot(double a){
     setLocation(getX()*Math.cos(a)-getY()*Math.sin(a),
 		getX()*Math.sin(a)+getY()*Math.cos(a));
+  }
+  public static ve rot(double a,ve v){
+    ve w=new ve(v.x(),v.y());
+    w.rot(a);
+    return w;
+  }
+  public void sca(double a){
+    norm();
+    mul(a);
+  }
+  public static ve sca(double a,ve v){
+    return ve.mul(a,ve.norm(v));
   }
   public double msqr(){
     return distanceSq(0,0);

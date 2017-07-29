@@ -7,7 +7,9 @@ import java.awt.event.MouseEvent;
 
 public interface gs{
   int upda();
-  void paint(Graphics2D g,double sca,int ox,int oy);
-  int key(KeyEvent e);
-  int mouse(MouseEvent e,double sca,int ox,int oy);
+  void paint(Graphics2D g);
+  int keyPressed(KeyEvent e);
+  int keyReleased(KeyEvent e);
+  int mouseClicked(MouseEvent e,double sca,int ox,int oy);
+  int mouseMoved(MouseEvent e,double sca,int ox,int oy);
 }

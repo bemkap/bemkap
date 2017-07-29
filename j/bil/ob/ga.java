@@ -4,16 +4,13 @@ import java.awt.event.KeyEvent;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
-public class ga implements gs{
+public class ga extends ag{
   public bs bas=new bs();
   public ta tab=new ta();
-  public cu cue=new cu(100,75);
-  public br pbr=new br();
+  public cu cue=new cu(0,0);
   public ho hos=new ho(tab.w,tab.h);
   public pl pla=new pl();
-  public bw bwh=new bw(300,10);
   public int upda(){
-    pbr.upda();
     switch(bas.sta){
     case ST_MOV:
       bas.upda();
@@ -27,70 +24,56 @@ public class ga implements gs{
       }
       break;
     case ST_JST:
+      cue.spi=0;
       bas.sta=bs.ST.ST_STO;
-      if(hos.sosc||hos.stsc){
-	if(bas.get(0).sc){
-	  if(pla.so()==null) pla.setso(hos.sosc);
-	  pla.change(2);
-	}else if(bas.get(1).sc){
-	  // if(bas.left(pla.so())<=0) win();
-	  // else loose();
-	}else if(pla.so()!=null){
-	  if(pla.so()==bas.fso&&pla.so()==hos.sosc) pla.setn(1);
-	  else pla.change(2);
-	}else{
-	  pla.setso(hos.sosc);
-	  pla.setn(1);
-	}
-      }else{
-	if(bas.fso!=null){
-	  if(pla.so()!=null){
-	    if(bas.fso==pla.so()) pla.shoot();
-	    else pla.change(2);
-	  }else pla.shoot();
-	}else pla.change(2);
+      int b0=(hos.sosc||hos.stsc)?1:0;
+      int b1=(bas.whi.sc)?2:0;
+      int b2=(pla.so()==null)?4:0;
+      int b3=(bas.bla.sc)?8:0;
+      int b4=(pla.so()==bas.fso)?16:0;
+      int b5=(b2==0&&pla.so()==hos.sosc)?32:0;
+      int b6=(bas.fso!=null)?64:0;
+      if(b1>0){bas.whi.setLocation(66.5,66.5); bas.whi.sc=false;}
+      switch(b0+b2+b3+b4+b5+b6){
+      case  5: pla.setso(hos.sosc); pla.setn(1); break;
+      case  7: pla.setso(hos.sosc); break;
+      case  9: return 1;
+      case 49: pla.setn(1); break;
+      case 68: case 80: pla.shoot(); break;
+      default: pla.change(2);
       }
-      pbr.cp=0;
       hos.sosc=false;
       hos.stsc=false;
       bas.fso=null;
       break;
     case ST_STO:
+      cue.upda();
+      cue.setLocation(bas.whi);
       cue.v=true;
-      cue.setLocation(bas.whi.x(),bas.whi.y());
+      if(cue.coll(bas.whi)){
+	cue.reac(bas.whi);
+	bas.whi.W=-cue.spi/ba.r*Math.PI/60;
+	bas.fso=null;
+	bas.sta=bs.ST.ST_MOV;
+	hos.sosc=false;
+	hos.stsc=false;
+      }
     }
     return 0;
   }
-  public void paint(Graphics2D g,double sca,int ox,int oy){
+  public void paint(Graphics2D g){
     Graphics2D f=(Graphics2D)g.create();
-    f.translate(ox,oy);
-    tab.draw(f); hos.draw(f); bas.draw(f);
-    cue.draw(f); pbr.draw(f); pla.draw(f);
-    bwh.draw(f);
+    tab.draw(f); hos.draw(f); cue.draw(f);
+    bas.draw(f); pla.draw(f,bas);
     f.dispose();
   }
-  public int key(KeyEvent e){
-    bwh.key(e);
-    switch(e.getKeyCode()){
-    case KeyEvent.VK_SPACE:
-      if(bas.sta==bs.ST.ST_STO)
-	if(!pbr.pushed()) pbr.first();
-	else{
-	  pbr.stop();
-          double p=(10*0.5/10)*pbr.cp/100*30;
-	  bas.whi.f.setLocation(p*Math.cos(cue.d),p*Math.sin(cue.d));
-	  bas.whi.af=ve.mul(5/2*10/ba.r/ba.r,bwh.w);
-	  cue.v=false;
-	  bas.fso=null;
-	  bas.sta=bs.ST.ST_MOV;
-	  hos.sosc=false;
-	  hos.stsc=false;
-	}
-    }
-    return 0;
+  public int keyPressed(KeyEvent e){
+    return cue.keyPressed(e);
   }
-  public int mouse(MouseEvent e,double sca,int ox,int oy){
-    cue.d=ve.sub(new ve(e.getX()/sca-ox,e.getY()/sca-oy),cue).angle();
-    return 0;
+  public int keyReleased(KeyEvent e){
+    return cue.keyReleased(e);
+  }
+  public int mouseMoved(MouseEvent e,double sca,int ox,int oy){
+    return cue.mouseMoved(e,sca,ox,oy);
   }
 }

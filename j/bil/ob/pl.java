@@ -2,11 +2,11 @@ package ob;
 import ob.*;
 import java.awt.Graphics2D;
 import java.awt.Font;
-import java.awt.Color;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.net.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class pl{
   public int[]n={1,1};
@@ -32,23 +32,25 @@ public class pl{
     if(--n[cp]<=0) change(1);
   }
   public Boolean so(){return so[cp];}
-  public int n(){return n[cp];}
   public void setso(boolean s){
     so[cp]=s;
     so[(cp+1)%2]=!s;
   }
   public void setn(int m){n[cp]=m;}
-  public void draw(Graphics2D g){
+  public void draw(Graphics2D g,bs bas){
     Graphics2D f=(Graphics2D)g.create();
     f.setFont(new Font("Monospaced",Font.PLAIN,8));
-    f.drawString("1",74,182);
-    if(so[0]!=null) f.drawString(so[0]?"solid":"stripes",81,182);
-    f.drawString("2",209,182);
-    if(so[1]!=null) f.drawString(so[1]?"solid":"stripes",216,182);
-    f.drawImage(impl,null,65,185);
-    f.drawImage(impl,null,200,185);
-    for(int i=0;i<n[cp];i++)
-      f.drawImage(imcu,null,65+cp*135+i*12,210);
+    f.drawString(new String(new char[n[cp]]).replace("\0","*"),90+cp*135,170);
+    for(int i=0;i<2;i++){
+      f.drawImage(impl,null,45+i*135,164);
+      f.drawString(String.format("pl%d",i),74+i*135,170);
+      f.drawString("color:"+(so[i]==null?"null":so[i].toString()),74+i*135,178);
+      f.drawString("in   :",74+i*135,186);
+      if(so[i]!=null){
+	ArrayList<Integer>s=bas.scored(so[i]);
+	f.drawString(s+" ("+s.size()+")",98+i*135,186);
+      }
+    }
     f.dispose();
   }
 }
