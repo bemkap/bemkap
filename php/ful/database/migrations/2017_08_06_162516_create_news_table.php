@@ -11,12 +11,14 @@ class CreateNewsTable extends Migration
         Schema::create('news',function(Blueprint $table){
             $table->increments('id');
             $table->mediumText('title');
-            $table->largeText('content');
+	    $table->mediumText('summary');
+            $table->longText('content');
+	    $table->text('image');
             $table->timestamps();
         });
     }
     public function down()
     {
-        Schema::drop('news');
+        Schema::dropIfExists('news');
     }
 }

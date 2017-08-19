@@ -10,24 +10,24 @@ import javax.swing.event.*;
 class sur extends JPanel implements ActionListener{
   public final int FPS=50;
   public final double sca=2;
-  public final int ofs=100;
+  public final int ofx=150,ofy=25;
   public Timer tim=new Timer(1000/FPS,this);
-  public gs gst[]={new ms(),new na(),new ga(),new es()};
+  public gs gst[]={new ms(),new ga(),new es()};
   public int cst=0;
-  public int[][] fsm={{0,1,2,3},{2,2,3,0}};
+  public int[][] fsm={{0,1,2},{1,2,0},{0,2,2}};
   public sur(){
     tim.setInitialDelay(1000/FPS);
     tim.start();
     addMouseMotionListener(new MouseMotionAdapter(){
 	@Override
 	public void mouseMoved(MouseEvent e){
-	  cst=fsm[gst[cst].mouseMoved(e,sca,ofs,ofs)][cst];
+	  cst=fsm[gst[cst].mouseMoved(e,sca,ofx,ofy)][cst];
 	}
       });
     addMouseListener(new MouseAdapter(){
 	@Override
 	public void mousePressed(MouseEvent e){
-	  cst=fsm[gst[cst].mouseClicked(e,sca,ofs,ofs)][cst];
+	  cst=fsm[gst[cst].mouseClicked(e,sca,ofx,ofy)][cst];
 	}
       });
   }
@@ -36,7 +36,7 @@ class sur extends JPanel implements ActionListener{
     super.paintComponent(g);
     Graphics2D g1=(Graphics2D)g;
     g1.scale(sca,sca);
-    g1.translate(ofs,ofs);
+    g1.translate(ofx,ofy);
     gst[cst].paint(g1);
   }
   public void actionPerformed(ActionEvent e){

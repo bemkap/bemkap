@@ -35,13 +35,14 @@ public class ga extends ag{
       int b6=(bas.fso!=null)?64:0;
       if(b1>0){bas.whi.setLocation(66.5,66.5); bas.whi.sc=false;}
       switch(b0+b2+b3+b4+b5+b6){
-      case  5: pla.setso(hos.sosc); pla.setn(1); break;
-      case  7: pla.setso(hos.sosc); break;
-      case  9: return 1;
+      case  7: pla.setso(hos.sosc); pla.change(2); break;
       case 49: pla.setn(1); break;
       case 68: case 80: pla.shoot(); break;
+      case 69: pla.setso(hos.sosc); pla.setn(1); break;
+      case 77: return bas.scored(pla.so()).size()==0?1:2;
       default: pla.change(2);
       }
+      // System.out.println(b0+b2+b3+b4+b5+b6);
       hos.sosc=false;
       hos.stsc=false;
       bas.fso=null;

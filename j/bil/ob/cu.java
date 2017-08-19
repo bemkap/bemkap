@@ -21,13 +21,6 @@ public class cu extends ve{
       ve sp=ve.sca(25,ve.sub(tp,this));
       ve tp1=ve.add(ve.sca(-spi,new ve(-sp.y(),sp.x())),tp);
       f.draw(new Line2D.Double(ve.sub(tp1,sp),ve.add(tp1,sp)));
-      ve w=new ve(x,y),a=ve.mul(2,ve.mul(0.1,ve.sub(this,tp)));
-      for(int i=0;i<20;i++){
-	f.fill(new Ellipse2D.Double(w.x()-1,w.y()-1,2,2));
-	a.rot(-spi/ba.r*Math.PI/60);
-	w.add(a);
-	a.mul(a.msqr()<0.05?0:0.96);
-      }
       f.dispose();
     }
   }

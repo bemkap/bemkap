@@ -42,13 +42,13 @@ public class pl{
     f.setFont(new Font("Monospaced",Font.PLAIN,8));
     f.drawString(new String(new char[n[cp]]).replace("\0","*"),90+cp*135,170);
     for(int i=0;i<2;i++){
-      f.drawImage(impl,null,45+i*135,164);
-      f.drawString(String.format("pl%d",i),74+i*135,170);
-      f.drawString("color:"+(so[i]==null?"null":so[i].toString()),74+i*135,178);
-      f.drawString("in   :",74+i*135,186);
+      f.drawImage(impl,null,35+i*135,164);
+      f.drawString(String.format("pl%d",i),64+i*135,170);
+      f.drawString("color:"+(so[i]==null?"null":(so[i]?"stripes":"solid")),64+i*135,178);
+      f.drawString("in   :",64+i*135,186);
       if(so[i]!=null){
 	ArrayList<Integer>s=bas.scored(so[i]);
-	f.drawString(s+" ("+s.size()+")",98+i*135,186);
+	f.drawString(s.toString()+" ("+s.size()+")",93+i*135,186);
       }
     }
     f.dispose();

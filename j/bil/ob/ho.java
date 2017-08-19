@@ -30,8 +30,8 @@ public class ho{
   public void reac(int i,ba b){
     if(!b.sc&&b.distanceSq(hos[i%6])<Math.pow(r-b.r,2)){
       b.sc=true;
-      sosc|=b instanceof so;
-      stsc|=b instanceof st;
+      sosc|=b.so;
+      stsc|=!b.so;
     }else{
       ve v=ve.sub(hos[i%6],b);
       b.f.rot(Math.PI/60*Math.signum(v.angle()-b.f.angle()));
