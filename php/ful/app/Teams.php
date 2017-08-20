@@ -10,4 +10,7 @@ class Teams extends Model
     public function fixture(){
 	return $this->hasMany(Fixture::class);
     }
+    public function league(){
+        return $this->hasMany(League::class);
+    }
 }

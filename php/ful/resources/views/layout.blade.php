@@ -54,7 +54,7 @@
           <a class="navbar-brand" href="/">Fútbol venadense</a>
 	  <ul class="nav navbar-nav">
 	    <li><a href="/fixture">Fixture</a></li>
-	    <li><a href="#">Equipos</a></li>
+	    <li><a href="/teams">Equipos</a></li>
 	  </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
