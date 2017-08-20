@@ -6,6 +6,10 @@ class TeamsTableSeeder extends Seeder
 {
     public function run()
     {
-	factory(App\Teams::class)->times(10)->create();
+	factory(App\Teams::class)->create(['name'=>'america']);
+        factory(App\Teams::class)->create(['name'=>'europa']);
+        factory(App\Teams::class)->create(['name'=>'africa']);
+        factory(App\Teams::class)->create(['name'=>'asia']);
+        factory(App\Teams::class)->create(['name'=>'oceania']);
     }
 }

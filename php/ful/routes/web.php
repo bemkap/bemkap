@@ -30,11 +30,15 @@ Route::get('/fixture',function(){
     if(request()->has('temp')){
 	$old_arr=App\Fixture::where('period',request('temp'))
 			    ->orderBy('day','desc')
-			    ->get();
+                            ->get();
 	$fixture=array();
 	foreach($old_arr as $e){
-	    array_push($fixture[$e['day']],$e);
-	}
+            if(array_key_exists($e['original']['day'],$fixture)){
+                array_push($fixture[$e['original']['day']],$e);
+            }else{
+                $fixture[$e['original']['day']]=array($e);
+            }
+        }
     }else{
 	$fixture=[];
     }
