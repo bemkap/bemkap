@@ -2,30 +2,55 @@ package ob;
 import ob.*;
 import java.awt.*;
 import java.awt.geom.*;
-import java.lang.Math.*;
+import java.lang.Math;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
 
-public class cu implements dr,up{
-  public ve p;
-  public double d=0,r=0;
+public class cu extends ve{
   public boolean v=true;
+  public ve tp,ptp;
+  public double spi=0,dspi=0;
   public cu(double x,double y){
-    p=new ve(x,y);
+    super(x,y);
+    tp=new ve(x,y);
+    ptp=new ve(x,y);
   }
   public void draw(Graphics2D g){
-    g.setPaint(new Color(0,0,0));
     if(v){
-      Double dx1=Math.cos(d)*80;
-      Double dy1=Math.sin(d)*80;
-      Double dx2=Math.cos(d)*10;
-      Double dy2=Math.sin(d)*10;
-      g.draw(new Line2D.Double(p.x()-dx1,p.y()-dy1,
-			       p.x()-dx2,p.y()-dy2));
-      g.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL,0,new float[]{2},0));
-      g.draw(new Line2D.Double(p.x()+dx2,p.y()+dy2,
-			       p.x()+dx1*2,p.y()+dy1*2));
+      Graphics2D f=(Graphics2D)g.create();
+      ve sp=ve.sca(25,ve.sub(tp,this));
+      ve tp1=ve.add(ve.sca(-spi,new ve(-sp.y(),sp.x())),tp);
+      f.draw(new Line2D.Double(ve.sub(tp1,sp),ve.add(tp1,sp)));
+      f.dispose();
     }
   }
-  public void upda(){d+=r;}
-  public void rot(double dd){r=dd;}
-  public void setp(double x,double y){p.setLocation(x,y);}
+  public boolean coll(ba b){
+    return ve.sub(tp,b).msqr()<Math.pow(b.r+25,2);
+  }
+  public void reac(ba b){
+    b.f=ve.mul(2,ve.sub(tp,ptp));
+    b.setLocation(ve.add(tp,ve.sca(31,ve.sub(this,tp))));
+    v=false;
+  }
+  public int mouseMoved(MouseEvent e,double sca,int ox,int oy){
+    ptp.setLocation(tp);
+    tp.setLocation(e.getX()/sca-ox,e.getY()/sca-oy);
+    return 0;
+  }
+  public int keyPressed(KeyEvent e){
+    switch(e.getKeyCode()){
+    case KeyEvent.VK_LEFT: dspi=-0.5; break;
+    case KeyEvent.VK_RIGHT: dspi=0.5;
+    }
+    return 0;
+  }
+  public int keyReleased(KeyEvent e){
+    switch(e.getKeyCode()){
+    case KeyEvent.VK_LEFT: case KeyEvent.VK_RIGHT: dspi=0;
+    }
+    return 0;
+  }
+  public void upda(){
+    spi=Math.max(-ba.r,Math.min(ba.r,spi+dspi));
+  }
 }

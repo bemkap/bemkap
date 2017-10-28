@@ -6,6 +6,9 @@ public class ve extends Point2D.Double{
   public ve(double x,double y){
     super(x,y);
   }
+  public ve(Point2D.Double p){
+    super(p.getX(),p.getY());
+  }
   @Override
   public void setLocation(double x,double y){
     this.x=x;
@@ -38,16 +41,39 @@ public class ve extends Point2D.Double{
   public static double dot(ve v,ve w){
     return v.getX()*w.getX()+v.getY()*w.getY();
   }
+  public static double cross(ve v,ve w){
+    return v.getX()*w.getY()-v.getY()*w.getX();
+  }
+  public void rot(double a){
+    setLocation(getX()*Math.cos(a)-getY()*Math.sin(a),
+		getX()*Math.sin(a)+getY()*Math.cos(a));
+  }
+  public static ve rot(double a,ve v){
+    ve w=new ve(v.x(),v.y());
+    w.rot(a);
+    return w;
+  }
+  public void sca(double a){
+    norm();
+    mul(a);
+  }
+  public static ve sca(double a,ve v){
+    return ve.mul(a,ve.norm(v));
+  }
   public double msqr(){
     return distanceSq(0,0);
   }
+  public double mag(){
+    return Math.sqrt(msqr());
+  }
+  public double angle(){
+    return Math.atan2(getY(),getX());
+  }
   public static ve norm(ve v){
-    double l=Math.sqrt(v.msqr());
-    return ve.mul(1/l,v);
+    return ve.mul(1/v.mag(),v);
   }
   public void norm(){
-    double l=Math.sqrt(msqr());
-    setLocation(x/l,y/l);
+    setLocation(x/mag(),y/mag());
   }
   public double x(){
     return getX();
