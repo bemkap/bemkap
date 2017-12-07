@@ -50,7 +50,7 @@ class bc:
     def addrec(self,plat,almu,dia=None):
         return self.insert("bita",[date.fromtimestamp(time.time()).isoformat() if dia==None else dia,almu,plat])
     def printt(self,builder):
-        print "\n".join(''.join("%20s"%s for s in r) for r in self.select(builder))
+        print "\n".join(''.join("%30s"%s for s in r) for r in self.select(builder))
     def printb(self,dfrom="2000-01-01",dto="2099-12-31"):
         di={}
         for d in self.select("bita",where="fech>='%s' and fech<='%s'"%(dfrom,dto)):
@@ -61,4 +61,4 @@ class bc:
             for i in xrange(max(len(di[d][0]),len(di[d][1]))):
                 p1=di[d][1][i] if i<len(di[d][1]) else ''
                 p2=di[d][0][i] if i<len(di[d][0]) else ''
-                print "%20s %20s"%(p1,p2)
+                print "%30s %30s"%(p1,p2)
