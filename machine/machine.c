@@ -1,0 +1,187 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include "machine.h"
+extern int yyparse();
+extern FILE*yyin;
+
+int count,entry=0;
+struct Instruction code[512];
+const char*regname[REGS]={"\%zero","\%pc","\%sp","\%r0","\%r1","\%r2","\%r3","\%flags"};
+struct Machine machine;
+
+int reg(const char*r){
+  int i;
+  for(i=0;i<REGS;i++) if(strcmp(r,regname[i])==0) return i;
+  printf("Unkown Register %s\n",r);
+  abort();
+}
+
+void dumpMachine(){
+  int i;
+  printf("**************** Machine state at PC=%d **************\n",machine.reg[PC]);
+  for(i=0;i<REGS;i++) 
+    if(strlen(regname[i])==0) continue; 
+    else printf("%s\t\t= \t\t%d \t\t%x\n",regname[i],machine.reg[i],machine.reg[i]);
+  printf("******************************************************\n");
+}
+
+void setBit(int*n,int p,int b){
+  if(b>=0&&b<=1){ // b=0 o b=1
+    *n&=~(1<<p); // n[p]=0
+    *n|=(b<<p);  // n[p]|=b
+  }
+}
+
+void runIns(struct Instruction i){
+  int*ASRC[]={&machine.reg[i.src.val],(int*)&machine.memory[i.src.val]};
+  int  SRC[]={i.src.val,machine.reg[i.src.val],machine.memory[i.src.val]};
+  int*ADST[]={&machine.reg[i.dst.val],(int*)&machine.memory[i.dst.val]};
+  int  DST[]={i.dst.val,machine.reg[i.dst.val],machine.memory[i.dst.val]};
+  switch(i.op){
+  case NOP   : break;
+  case MOV   : *ADST[i.dst.type-1]=SRC[i.src.type]; break;
+  case LW    : *ADST[i.dst.type-1]=machine.memory[SRC[i.src.type]]; break;
+  case SW    : machine.memory[DST[i.dst.type]]=SRC[i.src.type]; break;
+  case PUSH  : machine.reg[SP]-=4; machine.memory[machine.reg[SP]]=SRC[i.src.type]; break;
+  case POP   : *ASRC[i.src.type-1]=machine.reg[SP]; machine.reg[SP]+=4; break;
+  case PRINT : printf("%d\n",SRC[i.src.type]); break;
+  case READ  : scanf("%d",ASRC[i.src.type-1]); break;
+  case ADD   : *ADST[i.dst.type-1]+=SRC[i.src.type]; break;
+  case SUB   : *ADST[i.dst.type-1]-=SRC[i.src.type]; break;
+  case MUL   : *ADST[i.dst.type-1]*=SRC[i.src.type]; break;
+  case DIV   : *ADST[i.dst.type-1]/=SRC[i.src.type]; break;
+  case AND   : *ADST[i.dst.type-1]&=SRC[i.src.type]; break;
+  case OR    : *ADST[i.dst.type-1]|=SRC[i.src.type]; break;
+  case XOR   : *ADST[i.dst.type-1]^=SRC[i.src.type]; break;
+  case NOT   : *ASRC[i.dst.type-1]&=SRC[i.src.type]; break;
+  case SHR   :
+    if(SRC[i.src.type]>0){
+      *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]-1;
+      setBit(&machine.reg[FLAGS],CARRY_FLAGS,*ADST[i.dst.type-1]&1);
+      *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>1;
+    }
+    break;
+  case SHL   :
+    if(SRC[i.src.type]>0){
+      *ADST[i.dst.type-1]<<=SRC[i.src.type]-1;
+      setBit(&machine.reg[FLAGS],CARRY_FLAGS,(*ADST[i.dst.type-1]>>31)&1);
+      *ADST[i.dst.type-1]<<1;
+    }
+    break;
+  case CMP   :
+    setBit(&machine.reg[FLAGS],EQUAL_BIT_FLAGS,DST[i.dst.type]==SRC[i.src.type]);
+    setBit(&machine.reg[FLAGS],LOWER_BIT_FLAGS,DST[i.dst.type]< SRC[i.src.type]);
+    break;
+  /* jumps y call restan 1 al pc porque después se incrementa en run() */
+  case JMP   : machine.reg[PC]=SRC[i.src.type]-1; break;
+  case JMPZ  : if(ISSET_ZERO) machine.reg[PC]=SRC[i.src.type]-1; break;
+  case JMPE  : if(ISSET_EQUAL) machine.reg[PC]=SRC[i.src.type]-1; break;
+  case JMPL  : if(ISSET_LOWER) machine.reg[PC]=SRC[i.src.type]-1; break;
+  case HLT   : abort();
+  case LABEL : break;
+  case CALL  :
+    machine.reg[SP]-=4; machine.memory[machine.reg[SP]]=machine.reg[PC];
+    machine.reg[PC]=SRC[i.src.type]-1;
+    break;
+  case RETURN: machine.reg[PC]=machine.memory[machine.reg[SP]]; machine.reg[SP]+=4; break;
+  default    : printf("Instruction not implemented\n"); abort();
+  }
+}
+
+void run(struct Instruction*code){
+  machine.reg[PC]=entry; //Start at main function
+  machine.reg[SP]=MEM_SIZE; 
+  while(code[machine.reg[PC]].op!=HLT){
+    runIns(code[machine.reg[PC]]);
+    //If not a jump, continue with next instruction
+    machine.reg[PC]++;
+  }
+}
+
+void processLabels(){
+  int i,j,k;
+  for(i=0;i<count;i++){
+    if(code[i].op==LABEL){
+      if(strcmp(code[i].src.lab,"main")==0) entry=i;
+      for(j=0;j<count;j++){
+	if(code[j].op==JMP || code[j].op==JMPE || code[j].op==JMPL || code[j].op==CALL){
+	  if(code[j].src.lab && strcmp(code[j].src.lab,code[i].src.lab)==0){
+	    code[j].src.type=IMM;
+	    code[j].src.val=i;
+	    code[j].src.lab=NULL;
+	  }
+	}
+      }
+      for(j=i;j<count-1;j++) code[j]=code[j+1];
+      count--;     
+    }
+  }
+  for(j=0;j<count;j++){
+    if(code[j].op==JMP || code[j].op==JMPE || code[j].op==JMPL || code[j].op==CALL){
+      if(code[j].src.lab){
+	printf("Jump to unkown label %s\n",code[j].src.lab);
+	exit(-1);
+      }
+    }
+  }
+}
+
+void printOperand(struct Operand s){
+  switch(s.type){
+  case IMM: printf("$%d",s.val); break;
+  case REG: printf("%s",regname[s.val]); break;
+  case MEM: printf("%d",s.val); break;
+  } 
+}
+
+void printInstr(struct Instruction i){
+  switch(i.op){
+  case NOP   : printf("NOP\n"); break;
+  case HLT   : printf("HLT\n"); break;
+  case MOV   : printf("MOV "); break;
+  case LW    : printf("LW "); break;
+  case SW    : printf("SW "); break;
+  case PUSH  : printf("PUSH "); break;
+  case POP   : printf("POP "); break;
+  case ADD   : printf("ADD "); break;
+  case MUL   : printf("MUL "); break;
+  case SUB   : printf("SUB "); break;
+  case DIV   : printf("DIV "); break;
+  case JMPL  : printf("JMPL "); break;
+  case JMPE  : printf("JMPE "); break;
+  case JMP   : printf("JMP "); break;
+  case CMP   : printf("CMP "); break;
+  case LABEL : printf("LABEL %s",i.src.lab); break;
+  case PRINT : printf("PRINT "); break;
+  case READ  : printf("READ "); break;
+  case CALL  : printf("CALL "); break;
+  case RETURN: printf("RETURN "); break;
+  }
+  if(i.op!=NOP && i.op!=HLT && i.op!=RETURN) printOperand(i.src);
+  switch(i.op){
+  case MOV:case LW:case SW:case ADD:case MUL:case SUB:case DIV:case CMP:
+    printf(","); printOperand(i.dst); break;
+  case JMPL:case JMPE:case JMP:
+    if(i.src.lab) printf("%s",i.src.lab); break;
+  }
+  printf("\n");
+}
+
+int main(int argc,char*argv[]){
+  int i;
+  if(argc>0){
+    yyin=fopen(argv[1],"r");
+    yyparse();
+    processLabels();
+    printf("Running the following code\n");
+    for(i=0;i<count;i++){
+      printf("%d: ",i);
+      printInstr(code[i]);
+    }
+    printf("***************\n");
+    run(code);
+  }
+  return 0;
+}

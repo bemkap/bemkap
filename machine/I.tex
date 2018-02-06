@@ -1,0 +1,29 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\title{{\textbf{\Large{Trabajo Práctico}\\Mini VM}}}
+\author{Rossi, Martín. Legajo 9901/8}
+\date{Febrero 2018}
+\begin{document}
+\maketitle
+\section*{Problemas}
+\begin{enumerate}
+\item Encontrar una forma concisa de escribir los casos de cada instrucción, sean memoria, registro o inmediato.
+\item Los registros son int y la memoria es char.
+\item Al agregar call y ret el programa no necesariamente inicia en la primera instrucción del código.
+\end{enumerate}
+\section*{Soluciones}
+\begin{enumerate}
+\item Elegir con un array indexado por el tipo de operando.
+\item La memoria se maneja manualmente como arreglo de ints.
+\item Empezar por la etiqueta main. Cuando se procesan las etiquetas se guarda la ubicación de main y se empieza por ahí. Si no existe main empieza por el principio del código.
+\end{enumerate}
+\section*{Extensiones}
+\begin{itemize}
+\item Agregar secciones data y text, e instrucciones para reservar espacio para números o texto.
+\item Agregar instrucciones más complejas de x86.
+\item Usar el registro FLAGS para acarreo de operaciones o desbordamiento.
+\item Agregar más registros, y simular la unidad de punto flotante.
+\item Que la salida del programa sea un ejecutable para no hacer el parsing cada vez que se corre el programa.
+\end{itemize}
+\end{document}
