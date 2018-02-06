@@ -72,15 +72,17 @@ extern int yydebug;
     TOKNOT = 282,
     TOKSHR = 283,
     TOKSHL = 284,
-    TOKCMP = 285,
-    TOKJMP = 286,
-    TOKJMPZ = 287,
-    TOKJMPE = 288,
-    TOKJMPL = 289,
-    TOKHLT = 290,
-    TOKLABEL = 291,
-    TOKCALL = 292,
-    TOKRETURN = 293
+    TOKSAR = 285,
+    TOKSAL = 286,
+    TOKCMP = 287,
+    TOKJMP = 288,
+    TOKJMPZ = 289,
+    TOKJMPE = 290,
+    TOKJMPL = 291,
+    TOKHLT = 292,
+    TOKLABEL = 293,
+    TOKCALL = 294,
+    TOKRETURN = 295
   };
 #endif
 
@@ -96,7 +98,7 @@ union YYSTYPE
   struct Operand *oper;
   struct Instruction *inst;
 
-#line 100 "parser.tab.h" /* yacc.c:1909  */
+#line 102 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

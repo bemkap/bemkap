@@ -30,6 +30,8 @@ ID       [a-z][a-z0-9]*
 "not"    {return TOKNOT;}
 "shr"    {return TOKSHR;}
 "shl"    {return TOKSHL;}
+"sar"    {return TOKSAR;}
+"sal"    {return TOKSAL;}
 "cmp"	 {return TOKCMP;}
 "jmp"	 {return TOKJMP;}
 "jmpz"   {return TOKJMPZ;}

@@ -55,21 +55,33 @@ void runIns(struct Instruction i){
   case AND   : *ADST[i.dst.type-1]&=SRC[i.src.type]; break;
   case OR    : *ADST[i.dst.type-1]|=SRC[i.src.type]; break;
   case XOR   : *ADST[i.dst.type-1]^=SRC[i.src.type]; break;
-  case NOT   : *ASRC[i.dst.type-1]&=SRC[i.src.type]; break;
-  case SHR   :
-    if(SRC[i.src.type]>0){
-      *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]-1;
-      setBit(&machine.reg[FLAGS],CARRY_FLAGS,*ADST[i.dst.type-1]&1);
-      *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>1;
-    }
-    break;
-  case SHL   :
-    if(SRC[i.src.type]>0){
-      *ADST[i.dst.type-1]<<=SRC[i.src.type]-1;
-      setBit(&machine.reg[FLAGS],CARRY_FLAGS,(*ADST[i.dst.type-1]>>31)&1);
-      *ADST[i.dst.type-1]<<1;
-    }
-    break;
+  case NOT   : *ASRC[i.src.type-1]=~SRC[i.src.type]; break;
+  case SHR   : *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]; break;
+  case SHL   : case SAL: *ADST[i.dst.type-1]<<=SRC[i.src.type]; break;
+  case SAR   : *ADST[i.dst.type-1]>>=SRC[i.src.type]; break;
+  /*   if(SRC[i.src.type]>0){ */
+  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]-1; */
+  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,*ADST[i.dst.type-1]&1); */
+  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>1; */
+  /*   }else if(SRC[i.src.type]<0){ */
+  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]+1; */
+  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,(*ADST[i.dst.type-1]>>31)&1); */
+  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>-1; */
+  /*   break; */
+  /* case SHL   : case SAL: */
+  /*   if(SRC[i.src.type]>0){ */
+  /*     *ADST[i.dst.type-1]<<=SRC[i.src.type]-1; */
+  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,(*ADST[i.dst.type-1]>>31)&1); */
+  /*     *ADST[i.dst.type-1]<<1; */
+  /*   } */
+  /*   break; */
+  /* case SAR   : */
+  /*   if(SRC[i.src.type]>0){ */
+  /*     *ADST[i.dst.type-1]=*ADST[i.dst.type-1]>>SRC[i.src.type]-1; */
+  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,*ADST[i.dst.type-1]&1); */
+  /*     *ADST[i.dst.type-1]=*ADST[i.dst.type-1]>>1; */
+  /*   } */
+  /*   break; */
   case CMP   :
     setBit(&machine.reg[FLAGS],EQUAL_BIT_FLAGS,DST[i.dst.type]==SRC[i.src.type]);
     setBit(&machine.reg[FLAGS],LOWER_BIT_FLAGS,DST[i.dst.type]< SRC[i.src.type]);
@@ -137,33 +149,18 @@ void printOperand(struct Operand s){
 }
 
 void printInstr(struct Instruction i){
-  switch(i.op){
-  case NOP   : printf("NOP\n"); break;
-  case HLT   : printf("HLT\n"); break;
-  case MOV   : printf("MOV "); break;
-  case LW    : printf("LW "); break;
-  case SW    : printf("SW "); break;
-  case PUSH  : printf("PUSH "); break;
-  case POP   : printf("POP "); break;
-  case ADD   : printf("ADD "); break;
-  case MUL   : printf("MUL "); break;
-  case SUB   : printf("SUB "); break;
-  case DIV   : printf("DIV "); break;
-  case JMPL  : printf("JMPL "); break;
-  case JMPE  : printf("JMPE "); break;
-  case JMP   : printf("JMP "); break;
-  case CMP   : printf("CMP "); break;
-  case LABEL : printf("LABEL %s",i.src.lab); break;
-  case PRINT : printf("PRINT "); break;
-  case READ  : printf("READ "); break;
-  case CALL  : printf("CALL "); break;
-  case RETURN: printf("RETURN "); break;
-  }
+  const char* opname[]={"NOP\n","MOV ","LW ","SW ","PUSH ",
+                        "POP ","PRINT ","READ ","ADD ","SUB ","MUL ",
+                        "DIV ","AND ","OR ","XOR ","NOT ","SHR ","SHL ",
+                        "SAR ","SAL ","CMP ","JMP ","JMPZ ","JMPE ","JMPL ",
+                        "HLT\n","LABEL ","CALL ","RETURN "};
+  printf(opname[i.op]);
   if(i.op!=NOP && i.op!=HLT && i.op!=RETURN) printOperand(i.src);
   switch(i.op){
   case MOV:case LW:case SW:case ADD:case MUL:case SUB:case DIV:case CMP:
+  case AND:case OR:case XOR:case SHR:case SHL:case SAR:case SAL:
     printf(","); printOperand(i.dst); break;
-  case JMPL:case JMPE:case JMP:
+  case JMP:case JMPZ:case JMPE:case JMPL:
     if(i.src.lab) printf("%s",i.src.lab); break;
   }
   printf("\n");

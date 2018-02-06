@@ -44,6 +44,8 @@ int reg(const char*);
 %token TOKNOT
 %token TOKSHR
 %token TOKSHL
+%token TOKSAR
+%token TOKSAL
 %token TOKCMP
 %token TOKJMP
 %token TOKJMPZ
@@ -80,6 +82,8 @@ inst: 		TOKNOP {$$=malloc(sizeof(struct Instruction)); $$->op=NOP;}
 	| 	TOKNOT operand {$$=malloc(sizeof(struct Instruction)); $$->op=NOT; $$->src=*$2;}
 	| 	TOKSHR operand TOKCOMA operand {$$=malloc(sizeof(struct Instruction)); $$->op=SHR; $$->src=*$2; $$->dst=*$4;}
 	| 	TOKSHL operand TOKCOMA operand {$$=malloc(sizeof(struct Instruction)); $$->op=SHL; $$->src=*$2; $$->dst=*$4;}
+	| 	TOKSAR operand TOKCOMA operand {$$=malloc(sizeof(struct Instruction)); $$->op=SAR; $$->src=*$2; $$->dst=*$4;}
+	| 	TOKSAL operand TOKCOMA operand {$$=malloc(sizeof(struct Instruction)); $$->op=SAL; $$->src=*$2; $$->dst=*$4;}
 	| 	TOKJMP operand {$$=malloc(sizeof(struct Instruction)); $$->op=JMP; $$->src=*$2;}
 	|	TOKJMPZ operand {$$=malloc(sizeof(struct Instruction)); $$->op=JMPE; $$->src=*$2;}
 	| 	TOKJMPE operand {$$=malloc(sizeof(struct Instruction)); $$->op=JMPE; $$->src=*$2;}
