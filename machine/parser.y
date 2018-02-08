@@ -9,10 +9,11 @@ int reg(const char*);
 
 %union{
   int i;
-  char *strval;
-  struct Operand *oper;
-  struct Instruction *inst;
+  char*strval;
+  struct Operand*oper;
+  struct Instruction*inst;
 }
+
 %token TOKNUM
 %token TOKREG
 %token TOKCOMA
@@ -64,9 +65,9 @@ input: /* 	empty */
 		;
 
 inst: 		TOKNOP {$$=malloc(sizeof(struct Instruction)); $$->op=NOP;}
-	| 	TOKMOV operand TOKCOMA operand  {$$=malloc(sizeof(struct Instruction)); $$->op=MOV; $$->src=*$2; $$->dst=*$4;}
-	| 	TOKSW operand TOKCOMA operand  {$$=malloc(sizeof(struct Instruction)); $$->op=SW; $$->src=*$2; $$->dst=*$4;}
-	| 	TOKLW operand TOKCOMA operand  {$$=malloc(sizeof(struct Instruction)); $$->op=LW; $$->src=*$2; $$->dst=*$4;}
+	| 	TOKMOV operand TOKCOMA operand {$$=malloc(sizeof(struct Instruction)); $$->op=MOV; $$->src=*$2; $$->dst=*$4;}
+	| 	TOKSW operand TOKCOMA operand {$$=malloc(sizeof(struct Instruction)); $$->op=SW; $$->src=*$2; $$->dst=*$4;}
+	| 	TOKLW operand TOKCOMA operand {$$=malloc(sizeof(struct Instruction)); $$->op=LW; $$->src=*$2; $$->dst=*$4;}
 	| 	TOKPUSH operand {$$=malloc(sizeof(struct Instruction)); $$->op=PUSH; $$->src=*$2;}
 	| 	TOKPOP operand {$$=malloc(sizeof(struct Instruction)); $$->op=POP; $$->src=*$2;}
 	| 	TOKPRINT operand {$$=malloc(sizeof(struct Instruction)); $$->op=PRINT ; $$->src=*$2;}

@@ -94,9 +94,9 @@ union YYSTYPE
 #line 10 "parser.y" /* yacc.c:1909  */
 
   int i;
-  char *strval;
-  struct Operand *oper;
-  struct Instruction *inst;
+  char*strval;
+  struct Operand*oper;
+  struct Instruction*inst;
 
 #line 102 "parser.tab.h" /* yacc.c:1909  */
 };

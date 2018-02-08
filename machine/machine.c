@@ -35,67 +35,42 @@ void setBit(int*n,int p,int b){
 }
 
 void runIns(struct Instruction i){
-  int*ASRC[]={&machine.reg[i.src.val],(int*)&machine.memory[i.src.val]};
-  int  SRC[]={i.src.val,machine.reg[i.src.val],machine.memory[i.src.val]};
-  int*ADST[]={&machine.reg[i.dst.val],(int*)&machine.memory[i.dst.val]};
-  int  DST[]={i.dst.val,machine.reg[i.dst.val],machine.memory[i.dst.val]};
+  int*ASRC[]={&i.src.val,&machine.reg[i.src.val],(int*)&machine.memory[i.src.val]};
+  int*ADST[]={&i.dst.val,&machine.reg[i.dst.val],(int*)&machine.memory[i.dst.val]};
   switch(i.op){
   case NOP   : break;
-  case MOV   : *ADST[i.dst.type-1]=SRC[i.src.type]; break;
-  case LW    : *ADST[i.dst.type-1]=machine.memory[SRC[i.src.type]]; break;
-  case SW    : machine.memory[DST[i.dst.type]]=SRC[i.src.type]; break;
-  case PUSH  : machine.reg[SP]-=4; machine.memory[machine.reg[SP]]=SRC[i.src.type]; break;
-  case POP   : *ASRC[i.src.type-1]=machine.reg[SP]; machine.reg[SP]+=4; break;
-  case PRINT : printf("%d\n",SRC[i.src.type]); break;
-  case READ  : scanf("%d",ASRC[i.src.type-1]); break;
-  case ADD   : *ADST[i.dst.type-1]+=SRC[i.src.type]; break;
-  case SUB   : *ADST[i.dst.type-1]-=SRC[i.src.type]; break;
-  case MUL   : *ADST[i.dst.type-1]*=SRC[i.src.type]; break;
-  case DIV   : *ADST[i.dst.type-1]/=SRC[i.src.type]; break;
-  case AND   : *ADST[i.dst.type-1]&=SRC[i.src.type]; break;
-  case OR    : *ADST[i.dst.type-1]|=SRC[i.src.type]; break;
-  case XOR   : *ADST[i.dst.type-1]^=SRC[i.src.type]; break;
-  case NOT   : *ASRC[i.src.type-1]=~SRC[i.src.type]; break;
-  case SHR   : *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]; break;
-  case SHL   : case SAL: *ADST[i.dst.type-1]<<=SRC[i.src.type]; break;
-  case SAR   : *ADST[i.dst.type-1]>>=SRC[i.src.type]; break;
-  /*   if(SRC[i.src.type]>0){ */
-  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]-1; */
-  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,*ADST[i.dst.type-1]&1); */
-  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>1; */
-  /*   }else if(SRC[i.src.type]<0){ */
-  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>SRC[i.src.type]+1; */
-  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,(*ADST[i.dst.type-1]>>31)&1); */
-  /*     *ADST[i.dst.type-1]=((unsigned)*ADST[i.dst.type-1])>>-1; */
-  /*   break; */
-  /* case SHL   : case SAL: */
-  /*   if(SRC[i.src.type]>0){ */
-  /*     *ADST[i.dst.type-1]<<=SRC[i.src.type]-1; */
-  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,(*ADST[i.dst.type-1]>>31)&1); */
-  /*     *ADST[i.dst.type-1]<<1; */
-  /*   } */
-  /*   break; */
-  /* case SAR   : */
-  /*   if(SRC[i.src.type]>0){ */
-  /*     *ADST[i.dst.type-1]=*ADST[i.dst.type-1]>>SRC[i.src.type]-1; */
-  /*     setBit(&machine.reg[FLAGS],CARRY_FLAGS,*ADST[i.dst.type-1]&1); */
-  /*     *ADST[i.dst.type-1]=*ADST[i.dst.type-1]>>1; */
-  /*   } */
-  /*   break; */
+  case MOV   : *ADST[i.dst.type]=*ASRC[i.src.type]; break;
+  case LW    : *ADST[i.dst.type]=machine.memory[*ASRC[i.src.type]]; break;
+  case SW    : machine.memory[*ADST[i.dst.type]]=*ASRC[i.src.type]; break;
+  case PUSH  : machine.reg[SP]-=4; machine.memory[machine.reg[SP]]=*ASRC[i.src.type]; break;
+  case POP   : *ASRC[i.src.type]=machine.reg[SP]; machine.reg[SP]+=4; break;
+  case PRINT : printf("%d\n",*ASRC[i.src.type]); break;
+  case READ  : scanf("%d",ASRC[i.src.type]); break;
+  case ADD   : *ADST[i.dst.type]+=*ASRC[i.src.type]; break;
+  case SUB   : *ADST[i.dst.type]-=*ASRC[i.src.type]; break;
+  case MUL   : *ADST[i.dst.type]*=*ASRC[i.src.type]; break;
+  case DIV   : *ADST[i.dst.type]/=*ASRC[i.src.type]; break;
+  case AND   : *ADST[i.dst.type]&=*ASRC[i.src.type]; break;
+  case OR    : *ADST[i.dst.type]|=*ASRC[i.src.type]; break;
+  case XOR   : *ADST[i.dst.type]^=*ASRC[i.src.type]; break;
+  case NOT   : *ASRC[i.src.type]=~*ASRC[i.src.type]; break;
+  case SHR   : *ADST[i.dst.type]=((unsigned)*ADST[i.dst.type])>>*ASRC[i.src.type]; break;
+  case SHL   : case SAL: *ADST[i.dst.type]<<=*ASRC[i.src.type]; break;
+  case SAR   : *ADST[i.dst.type]>>=*ASRC[i.src.type]; break;
   case CMP   :
-    setBit(&machine.reg[FLAGS],EQUAL_BIT_FLAGS,DST[i.dst.type]==SRC[i.src.type]);
-    setBit(&machine.reg[FLAGS],LOWER_BIT_FLAGS,DST[i.dst.type]< SRC[i.src.type]);
+    setBit(&machine.reg[FLAGS],EQUAL_BIT_FLAGS,*ADST[i.dst.type]==*ASRC[i.src.type]);
+    setBit(&machine.reg[FLAGS],LOWER_BIT_FLAGS,*ADST[i.dst.type]< *ASRC[i.src.type]);
     break;
   /* jumps y call restan 1 al pc porque después se incrementa en run() */
-  case JMP   : machine.reg[PC]=SRC[i.src.type]-1; break;
-  case JMPZ  : if(ISSET_ZERO) machine.reg[PC]=SRC[i.src.type]-1; break;
-  case JMPE  : if(ISSET_EQUAL) machine.reg[PC]=SRC[i.src.type]-1; break;
-  case JMPL  : if(ISSET_LOWER) machine.reg[PC]=SRC[i.src.type]-1; break;
+  case JMP   : machine.reg[PC]=*ASRC[i.src.type]-1; break;
+  case JMPZ  : if(ISSET_ZERO) machine.reg[PC]=*ASRC[i.src.type]-1; break;
+  case JMPE  : if(ISSET_EQUAL) machine.reg[PC]=*ASRC[i.src.type]-1; break;
+  case JMPL  : if(ISSET_LOWER) machine.reg[PC]=*ASRC[i.src.type]-1; break;
   case HLT   : abort();
   case LABEL : break;
   case CALL  :
     machine.reg[SP]-=4; machine.memory[machine.reg[SP]]=machine.reg[PC];
-    machine.reg[PC]=SRC[i.src.type]-1;
+    machine.reg[PC]=*ASRC[i.src.type]-1;
     break;
   case RETURN: machine.reg[PC]=machine.memory[machine.reg[SP]]; machine.reg[SP]+=4; break;
   default    : printf("Instruction not implemented\n"); abort();

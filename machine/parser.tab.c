@@ -155,9 +155,9 @@ union YYSTYPE
 #line 10 "parser.y" /* yacc.c:355  */
 
   int i;
-  char *strval;
-  struct Operand *oper;
-  struct Instruction *inst;
+  char*strval;
+  struct Operand*oper;
+  struct Instruction*inst;
 
 #line 163 "parser.tab.c" /* yacc.c:355  */
 };
@@ -477,10 +477,10 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    62,    62,    63,    66,    67,    68,    69,    70,    71,
-      72,    73,    74,    75,    76,    77,    78,    79,    80,    81,
-      82,    83,    84,    85,    86,    87,    88,    89,    90,    91,
-      92,    93,    94,    98,    99,   100,   101,   102
+       0,    63,    63,    64,    67,    68,    69,    70,    71,    72,
+      73,    74,    75,    76,    77,    78,    79,    80,    81,    82,
+      83,    84,    85,    86,    87,    88,    89,    90,    91,    92,
+      93,    94,    95,    99,   100,   101,   102,   103
 };
 #endif
 
@@ -1310,211 +1310,211 @@ yyreduce:
   switch (yyn)
     {
         case 3:
-#line 63 "parser.y" /* yacc.c:1646  */
+#line 64 "parser.y" /* yacc.c:1646  */
     {code[count++]=*(yyvsp[-1].inst);}
 #line 1316 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 66 "parser.y" /* yacc.c:1646  */
+#line 67 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=NOP;}
 #line 1322 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 67 "parser.y" /* yacc.c:1646  */
+#line 68 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=MOV; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1328 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 68 "parser.y" /* yacc.c:1646  */
+#line 69 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=SW; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1334 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 69 "parser.y" /* yacc.c:1646  */
+#line 70 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=LW; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1340 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 70 "parser.y" /* yacc.c:1646  */
+#line 71 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=PUSH; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1346 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 71 "parser.y" /* yacc.c:1646  */
+#line 72 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=POP; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1352 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 72 "parser.y" /* yacc.c:1646  */
+#line 73 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=PRINT ; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1358 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 73 "parser.y" /* yacc.c:1646  */
+#line 74 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=READ; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1364 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 74 "parser.y" /* yacc.c:1646  */
+#line 75 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=ADD; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1370 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 75 "parser.y" /* yacc.c:1646  */
+#line 76 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=SUB; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1376 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 76 "parser.y" /* yacc.c:1646  */
+#line 77 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=MUL; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1382 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 77 "parser.y" /* yacc.c:1646  */
+#line 78 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=DIV; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1388 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 78 "parser.y" /* yacc.c:1646  */
+#line 79 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=CMP; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1394 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 79 "parser.y" /* yacc.c:1646  */
+#line 80 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=AND; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1400 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 80 "parser.y" /* yacc.c:1646  */
+#line 81 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=OR; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1406 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 81 "parser.y" /* yacc.c:1646  */
+#line 82 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=XOR; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1412 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 82 "parser.y" /* yacc.c:1646  */
+#line 83 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=NOT; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1418 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 83 "parser.y" /* yacc.c:1646  */
+#line 84 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=SHR; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1424 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 84 "parser.y" /* yacc.c:1646  */
+#line 85 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=SHL; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1430 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 85 "parser.y" /* yacc.c:1646  */
+#line 86 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=SAR; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1436 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 86 "parser.y" /* yacc.c:1646  */
+#line 87 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=SAL; (yyval.inst)->src=*(yyvsp[-2].oper); (yyval.inst)->dst=*(yyvsp[0].oper);}
 #line 1442 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 87 "parser.y" /* yacc.c:1646  */
+#line 88 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=JMP; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1448 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 88 "parser.y" /* yacc.c:1646  */
+#line 89 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=JMPE; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1454 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 89 "parser.y" /* yacc.c:1646  */
+#line 90 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=JMPE; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1460 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 90 "parser.y" /* yacc.c:1646  */
+#line 91 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=JMPL; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1466 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 91 "parser.y" /* yacc.c:1646  */
+#line 92 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=LABEL; (yyval.inst)->src.lab=(yyvsp[0].strval);}
 #line 1472 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 92 "parser.y" /* yacc.c:1646  */
+#line 93 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=CALL; (yyval.inst)->src=*(yyvsp[0].oper);}
 #line 1478 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 93 "parser.y" /* yacc.c:1646  */
+#line 94 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=RETURN;}
 #line 1484 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 94 "parser.y" /* yacc.c:1646  */
+#line 95 "parser.y" /* yacc.c:1646  */
     {(yyval.inst)=malloc(sizeof(struct Instruction)); (yyval.inst)->op=HLT;}
 #line 1490 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 98 "parser.y" /* yacc.c:1646  */
+#line 99 "parser.y" /* yacc.c:1646  */
     {(yyval.oper)=malloc(sizeof(struct Operand)); (yyval.oper)->type=REG; (yyval.oper)->val=reg((yyvsp[0].strval));}
 #line 1496 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 99 "parser.y" /* yacc.c:1646  */
+#line 100 "parser.y" /* yacc.c:1646  */
     {(yyval.oper)=malloc(sizeof(struct Operand)); (yyval.oper)->type=MEM; (yyval.oper)->val=reg((yyvsp[-1].strval));}
 #line 1502 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 100 "parser.y" /* yacc.c:1646  */
+#line 101 "parser.y" /* yacc.c:1646  */
     {(yyval.oper)=malloc(sizeof(struct Operand)); (yyval.oper)->type=MEM; (yyval.oper)->val=(yyvsp[0].i);}
 #line 1508 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 101 "parser.y" /* yacc.c:1646  */
+#line 102 "parser.y" /* yacc.c:1646  */
     {(yyval.oper)=malloc(sizeof(struct Operand)); (yyval.oper)->type=IMM; (yyval.oper)->val=(yyvsp[0].i);}
 #line 1514 "parser.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 102 "parser.y" /* yacc.c:1646  */
+#line 103 "parser.y" /* yacc.c:1646  */
     {(yyval.oper)=malloc(sizeof(struct Operand)); (yyval.oper)->type=LABELOP; (yyval.oper)->lab=(yyvsp[0].strval);}
 #line 1520 "parser.tab.c" /* yacc.c:1646  */
     break;
@@ -1748,5 +1748,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 105 "parser.y" /* yacc.c:1906  */
+#line 106 "parser.y" /* yacc.c:1906  */
 
