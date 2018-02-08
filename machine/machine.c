@@ -124,11 +124,11 @@ void printOperand(struct Operand s){
 }
 
 void printInstr(struct Instruction i){
-  const char* opname[]={"NOP\n","MOV ","LW ","SW ","PUSH ",
-                        "POP ","PRINT ","READ ","ADD ","SUB ","MUL ",
-                        "DIV ","AND ","OR ","XOR ","NOT ","SHR ","SHL ",
-                        "SAR ","SAL ","CMP ","JMP ","JMPZ ","JMPE ","JMPL ",
-                        "HLT\n","LABEL ","CALL ","RETURN "};
+  const char*opname[]={"NOP\n","MOV ","LW ","SW ","PUSH ",
+                       "POP ","PRINT ","READ ","ADD ","SUB ","MUL ",
+                       "DIV ","AND ","OR ","XOR ","NOT ","SHR ","SHL ",
+                       "SAR ","SAL ","CMP ","JMP ","JMPZ ","JMPE ","JMPL ",
+                       "HLT\n","LABEL ","CALL ","RETURN "};
   printf(opname[i.op]);
   if(i.op!=NOP && i.op!=HLT && i.op!=RETURN) printOperand(i.src);
   switch(i.op){
@@ -149,7 +149,7 @@ int main(int argc,char*argv[]){
     processLabels();
     printf("Running the following code\n");
     for(i=0;i<count;i++){
-      printf("%d: ",i);
+      printf("%02d. ",i);
       printInstr(code[i]);
     }
     printf("***************\n");
