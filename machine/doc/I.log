@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.18)  8 FEB 2018 00:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.11.18)  10 FEB 2018 23:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -387,14 +387,14 @@ Here is how much of TeX's memory you used:
  4202 multiletter control sequences out of 15000+600000
  9284 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,7n,19p,1245b,249s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 23i,7n,19p,1231b,249s stack positions out of 5000i,500n,10000p,200000b,80000s
 </u
 sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12
 .pfb>
-Output written on I.pdf (4 pages, 66507 bytes).
+Output written on I.pdf (4 pages, 66486 bytes).
 PDF statistics:
  37 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream

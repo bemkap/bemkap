@@ -3,12 +3,12 @@
 \usepackage{fullpage}
 \usepackage{indentfirst}
 \title{{\textbf{\Large{Trabajo Práctico}\\Mini VM}}}
-\author{Rossi, Martín. Legajo 9901/8}
-\date{Febrero 2018}
+\author{Rossi, Martín. Legajo R-9901/8}
+\date{14-02-2018}
 \begin{document}
 \maketitle
 \section*{Resumen}
-\indent El programa está compuesto por tres partes, el lexer o analizador léxico (flex), el parser o analizador sintáctico (bison) y el programa que simula la máquina.\par Lo primero que se ejecuta es el lexer que toma como entrada el nombre de un archivo, lo lee y lo separa en tokens. Ésto está definido en el archivo $parser.lex$. Un token puede ser una cadena fija, como por ejemplo la palabra $call$, o un conjunto de cadenas, y para ello se usan expresiones regulares, como por ejemplo \verb+"\$"DIGIT+ donde \verb+DIGIT+ se define como \verb+[0-9]\++.\par Luego se ejecuta el parser, que toma los tokens como entrada y a partir de una gramática libre de contexto forma la estructura de árbol correspondiente a la cadena que define la gramática. En el archivo $parser.y$ se definen los tokens que serán la entrada y las reglas, así como un código que se ejecutará cuando se apliquen. En este caso cuando se aplica la regla para el no terminal \verb+input+ se guarda en el arreglo \verb+code+ una estructura que representa a una instrucción.\par Finalmente se ejecuta el programa principal que va leyendo el código y modifica el estado de la máquina virtual, o sea, los registros y la memoria.
+\indent El programa está compuesto por tres partes, el lexer o analizador léxico (flex), el parser o analizador sintáctico (bison) y el simulador de la máquina.\par Lo primero que se ejecuta es el lexer (definido en $parser.lex$), que toma como entrada el nombre de un archivo, lo lee y lo separa en tokens. Un token puede ser una cadena fija, como por ejemplo la palabra $call$, o un conjunto de cadenas, y para ello se usan expresiones regulares, como \verb+"\$"DIGIT+ donde \verb+DIGIT+ se define como \verb+[0-9]\++.\par Luego se ejecuta el parser, que toma los tokens como entrada y a partir de una gramática libre de contexto forma la estructura de árbol correspondiente a la cadena que pertenece al lenguaje definido por la gramática. En el archivo $parser.y$ se definen los tokens que serán la entrada y las reglas, así como un código que se ejecutará cuando se apliquen. En este caso cuando se aplica la regla para el no terminal \verb+input+ se guarda en el arreglo \verb+code+ una estructura que representa una instrucción.\par Finalmente se ejecuta el programa principal que va leyendo el código y modifica el estado de la máquina virtual, o sea, los registros y la memoria.
 \section*{Posibles extensiones}
 \begin{itemize}
 \item Agregar secciones data y text, e instrucciones para reservar espacio para números o texto.
@@ -99,5 +99,5 @@ Instruction code[]={
 }
 \end{verbatim}
 \subsubsection*{Explicación}
-Primero se cargan números a la memoria simulando un arreglo, en este caso 4, 5, 6, 7 en las ubicaciones 0, 4, 8, 12. Ésto se hace con la instrucción \verb+SW+. Después se hace push de el inicio del arreglo, 0, el tamaño, 4, y se llama a la función \verb+sum+. \verb+sum+ primero pone en 0 a \verb+r0+, y copia los argumentos (arreglo y tamaño) en \verb+r1+ y \verb+r2+. A partir de \verb+loop+ se suma a \verb+r0+ el número apuntado por \verb+r1+ y se resta en 1 \verb+r2+. Se repite hasta que \verb+r2+ sea 0, quedando en \verb+r0+ la suma, que luego muestra por pantalla.
+Primero se cargan números a la memoria simulando un arreglo, en este caso 4, 5, 6, 7 en las ubicaciones 0, 4, 8, 12 respectivamente. Ésto se hace con la instrucción \verb+SW+. Después se hace push de el inicio del arreglo, 0, el tamaño, 4, y se llama a la función \verb+sum+. \verb+sum+ primero pone en 0 a \verb+r0+, y copia los argumentos (arreglo y tamaño) en \verb+r1+ y \verb+r2+. A partir de \verb+loop+ se suma a \verb+r0+ el número apuntado por \verb+r1+ y se resta en 1 \verb+r2+. Se repite hasta que \verb+r2+ sea 0, quedando en \verb+r0+ la suma, que luego muestra por pantalla.
 \end{document}
