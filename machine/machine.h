@@ -5,7 +5,7 @@
 #define EQUAL_BIT_FLAGS 2
 #define LOWER_BIT_FLAGS 3
 // #define CARRY_FLAGS 4
-#define ISSET_BIT(X) (machine.reg[FLAGS] & (1<<(X)))
+#define ISSET_BIT(X) (machine.reg[FLAGS]&(1<<(X)))
 #define ISSET_ZERO ISSET_BIT(ZERO_BIT_FLAGS)
 #define ISSET_EQUAL ISSET_BIT(EQUAL_BIT_FLAGS)
 #define ISSET_LOWER ISSET_BIT(LOWER_BIT_FLAGS)

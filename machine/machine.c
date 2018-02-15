@@ -63,7 +63,6 @@ void runIns(struct Instruction i){
     break;
   /* jumps y call restan 1 al pc porque después se incrementa en run() */
   case JMP   : machine.reg[PC]=*ASRC[i.src.type]-1; break;
-  case JMPZ  : if(ISSET_ZERO) machine.reg[PC]=*ASRC[i.src.type]-1; break;
   case JMPE  : if(ISSET_EQUAL) machine.reg[PC]=*ASRC[i.src.type]-1; break;
   case JMPL  : if(ISSET_LOWER) machine.reg[PC]=*ASRC[i.src.type]-1; break;
   case HLT   : abort();
