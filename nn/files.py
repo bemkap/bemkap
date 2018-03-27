@@ -15,6 +15,6 @@ def img(fn):
     fd.seek(4)
     sz=struct.unpack(">L",fd.read(4))[0]
     fd.seek(16)
-    re=[a.reshape((784,1)) for a in np.split(np.array(bytearray(fd.read())),sz)]
+    re=[a.reshape((784,1))/255.0 for a in np.split(np.array(bytearray(fd.read())),sz)]
     fd.close()
     return re
