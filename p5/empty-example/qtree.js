@@ -28,10 +28,27 @@ class QTree{
     points(c,r,ps){
         if(c.x+r<this.x||c.x-r>this.x+this.w||
            c.y+r<this.y||c.y-r>this.y+this.h) return;
-        for(let i=0; i<this.ps.length; i++)
-            if(dist(c.x,c.y,this.ps[i].x,this.ps[i].y)<r) ps.push(this.ps[i]);
+        for(let i=0; i<this.ps.length; i++){
+            let d=dist(c.x,c.y,this.ps[i].x,this.ps[i].y);
+            if(d>0&&d<r) ps.push(this.ps[i]);
+        }
         for(let i=0; i<4; i++)
             if(this.son[i]) this.son[i].points(c,r,ps);
+    }
+    closest(c,r){
+        let a=[];
+        this.points(c,r,a);
+        if(a.length==0) return null;
+        let b=a[0];
+        let d=dist(c.x,c.y,a[0].x,a[0].y);
+        for(let i=1; i<a.length; i++){
+            let d1=dist(c.x,c.y,a[i].x,a[i].y);
+            if(d1<d){
+                b=a[i];
+                d=d1;
+            }
+        }
+        return b;
     }
     remove(f){
 	for(let i=this.ps.length-1; i>=0; i--)
@@ -42,6 +59,11 @@ class QTree{
     map(f){
 	for(let i=this.ps.length-1; i>=0; i--) f(this.ps[i])
 	for(let i=0; i<4; i++) if(this.son[i]) this.son[i].map(f);
+    }
+    length(){
+        let l=this.ps.length;
+        for(let i=0; i<4; i++) if(this.son[i]) l+=this.son[i].length();
+        return l;
     }
     draw(){
         noFill();

@@ -1,17 +1,19 @@
 class Actor extends p5.Vector{
-    constructor(x,y,spd,dir,sight,life,type){
-	super(x,y);
-	this.spd=spd;
-	this.v=createVector(spd*cos(dir),spd*sin(dir));
-        this.sight=sight;
+    constructor({x=null,y=null,spd=null,dir=null,sight=0,life=5000,type=null}){
+	super(x?x:random(width),y?y:random(height));
+	this.spd=spd?spd:random(1);
+        dir=dir?dir:random(360);
+	this.v=createVector(this.spd*cos(dir),this.spd*sin(dir));
+        this.sight=random(20)+20;
         this.life=life;
         this.tick=0;
-        this.type=type;
+        this.type=type?type:floor(random(2));
+        this.breed=2;
     }
     static update(a){
         a.add(a.v);
-        a.x=(a.x+width)%width;
-        a.y=(a.y+height)%height;
+        if(a.x<0||a.x>width) a.v.x*=-1;
+        if(a.y<0||a.y>height) a.v.y*=-1;
 	++a.tick;
     }
     static draw(a){
@@ -22,24 +24,26 @@ class Actor extends p5.Vector{
         ellipse(a.x,a.y,a.sight*2,a.sight*2);
     }
     static survive(a,m){
-        let as=[];
-        m.points(a,a.sight,as);
-        for(let i=0; i<as.length; i++){
-	    if(a!=as[i]&&a.tick>a.life/10){
-		a.v=p5.Vector.sub(as[i],a);
-		a.v.setMag(a.spd);
-		if(as[i].type<a.type) a.v.mult(-1);
-		if(p5.Vector.dist(as[i],a)<a.spd){
-		    if(a.type==as[i].type){
-			let n=new Actor(a.x,a.y,max(a.spd,as[i].spd),random(360),
-					max(a.sight,as[i].sight),1000,a.type);
-			m.insert(n);
-		    }else if(a.type>as[i].type){
-			a.tick=0;
-			as[i].tick=as[i].life;
-		    }
-		}
+        let b=m.closest(a,a.sight);
+        if(b){
+	    a.v=p5.Vector.sub(b,a);
+	    a.v.setMag(a.spd);
+	    if(b.type>a.type) a.v.mult(-1);
+	    if(p5.Vector.dist(b,a)<max(a.spd,b.spd)){
+	        if(a.type==b.type){
+                    let n=new Actor({spd:max(a.spd,b.spd),
+                                     sight:max(a.sight,b.sight),
+                                     type:a.type});
+                    m.insert(n);
+                    a.x=random(width); a.y=random(height);
+                    b.x=random(width); b.y=random(height);
+                    a.breed+=round(random(-1,1));
+                    b.breed+=round(random(-1,1));
+	        }else if(a.type>b.type){
+		    a.tick=0;
+		    b.tick=b.life;
+	        }
 	    }
-	}
+        }
     }
 }
