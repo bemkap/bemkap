@@ -1,16 +1,15 @@
-let qtree;
+let sys;
 function setup(){
     colorMode(HSB,255);
     createCanvas(500,500);
-    qtree=new QTree(0,0,width,height,4);
-    for(let i=0; i<5; i++)
-        qtree.insert(new Actor({}));
+    sys=new System();
+    for(let i=0; i<10; i++) sys.push(new Actor({}));
 }
 function draw(){
     background(0);
-    qtree.draw();
-    qtree.map(a=>Actor.survive(a,qtree));
-    qtree.map(a=>Actor.update(a));
-    qtree.remove(a=>a.life<a.tick);
-    qtree.map(a=>Actor.draw(a));
+    sys.pairwise((a,b)=>Actor.move(a,b));
+    sys.map(a=>Actor.update(a));
+    sys.pairwise((a,b)=>Actor.bok(a,b,sys));
+    sys.remove(a=>a.life<a.tick);
+    sys.map(a=>Actor.draw(a));
 }
