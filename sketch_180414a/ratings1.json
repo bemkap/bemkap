@@ -1,0 +1,447 @@
+[
+    {
+	"userId": 0,
+	"movieId": 2,
+	"rating": 3.3
+    },
+    {
+	"userId": 0,
+	"movieId": 32,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 44,
+	"rating": 3.4
+    },
+    {
+	"userId": 0,
+	"movieId": 111,
+	"rating": 3.7
+    },
+    {
+	"userId": 0,
+	"movieId": 170,
+	"rating": 3.2
+    },
+    {
+	"userId": 0,
+	"movieId": 175,
+	"rating": 3
+    },
+    {
+	"userId": 0,
+	"movieId": 260,
+	"rating": 4.1
+    },
+    {
+	"userId": 0,
+	"movieId": 293,
+	"rating": 3.9
+    },
+    {
+	"userId": 0,
+	"movieId": 296,
+	"rating": 4.2
+    },
+    {
+	"userId": 0,
+	"movieId": 364,
+	"rating": 4.4
+    },
+    {
+	"userId": 0,
+	"movieId": 374,
+	"rating": 3.3
+    },
+    {
+	"userId": 0,
+	"movieId": 441,
+	"rating": 2.5
+    },
+    {
+	"userId": 0,
+	"movieId": 493,
+	"rating": 2.9
+    },
+    {
+	"userId": 0,
+	"movieId": 527,
+	"rating": 3.3
+    },
+    {
+	"userId": 0,
+	"movieId": 541,
+	"rating": 4.5
+    },
+    {
+	"userId": 0,
+	"movieId": 586,
+	"rating": 4
+    },
+    {
+	"userId": 0,
+	"movieId": 593,
+	"rating": 4.1
+    },
+    {
+	"userId": 0,
+	"movieId": 673,
+	"rating": 4.1
+    },
+    {
+	"userId": 0,
+	"movieId": 858,
+	"rating": 3.7
+    },
+    {
+	"userId": 0,
+	"movieId": 923,
+	"rating": 3.1
+    },
+    {
+	"userId": 0,
+	"movieId": 1196,
+	"rating": 4
+    },
+    {
+	"userId": 0,
+	"movieId": 1199,
+	"rating": 4.2
+    },
+    {
+	"userId": 0,
+	"movieId": 1200,
+	"rating": 3.9
+    },
+    {
+	"userId": 0,
+	"movieId": 1206,
+	"rating": 3.4
+    },
+    {
+	"userId": 0,
+	"movieId": 1210,
+	"rating": 3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 1214,
+	"rating": 3.9
+    },
+    {
+	"userId": 0,
+	"movieId": 1219,
+	"rating": 3.2
+    },
+    {
+	"userId": 0,
+	"movieId": 1222,
+	"rating": 3.6
+    },
+    {
+	"userId": 0,
+	"movieId": 1246,
+	"rating": 2.6
+    },
+    {
+	"userId": 0,
+	"movieId": 1258,
+	"rating": 4.4
+    },
+    {
+	"userId": 0,
+	"movieId": 1265,
+	"rating": 4.7
+    },
+    {
+	"userId": 0,
+	"movieId": 1270,
+	"rating": 4.4
+    },
+    {
+	"userId": 0,
+	"movieId": 1391,
+	"rating": 2.5
+    },
+    {
+	"userId": 0,
+	"movieId": 1396,
+	"rating": 3.5
+    },
+    {
+	"userId": 0,
+	"movieId": 1527,
+	"rating": 3.9
+    },
+    {
+	"userId": 0,
+	"movieId": 1573,
+	"rating": 4
+    },
+    {
+	"userId": 0,
+	"movieId": 1580,
+	"rating": 4.1
+    },
+    {
+	"userId": 0,
+	"movieId": 1625,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 1682,
+	"rating": 3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 1704,
+	"rating": 4.2
+    },
+    {
+	"userId": 0,
+	"movieId": 1722,
+	"rating": 3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 1732,
+	"rating": 3.3
+    },
+    {
+	"userId": 0,
+	"movieId": 1748,
+	"rating": 3.5
+    },
+    {
+	"userId": 0,
+	"movieId": 1921,
+	"rating": 4.6
+    },
+    {
+	"userId": 0,
+	"movieId": 1961,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 1974,
+	"rating": 3.4
+    },
+    {
+	"userId": 0,
+	"movieId": 1994,
+	"rating": 2.5
+    },
+    {
+	"userId": 0,
+	"movieId": 1997,
+	"rating": 4.2
+    },
+    {
+	"userId": 0,
+	"movieId": 2011,
+	"rating": 4
+    },
+    {
+	"userId": 0,
+	"movieId": 2012,
+	"rating":3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 2076,
+	"rating": 3.7
+    },
+    {
+	"userId": 0,
+	"movieId": 2105,
+	"rating": 3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 2134,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 2160,
+	"rating": 3.9
+    },
+    {
+	"userId": 0,
+	"movieId": 2296,
+	"rating": 2.4
+    },
+    {
+	"userId": 0,
+	"movieId": 2324,
+	"rating": 4.7
+    },
+    {
+	"userId": 0,
+	"movieId": 2329,
+	"rating": 3
+    },
+    {
+	"userId": 0,
+	"movieId": 2411,
+	"rating": 3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 2412,
+	"rating": 2.7
+    },
+    {
+	"userId": 0,
+	"movieId": 2420,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 2421,
+	"rating": 3.1
+    },
+    {
+	"userId": 0,
+	"movieId": 2459,
+	"rating": 3.4
+    },
+    {
+	"userId": 0,
+	"movieId": 2529,
+	"rating": 4
+    },
+    {
+	"userId": 0,
+	"movieId": 2555,
+	"rating": 1.5
+    },
+    {
+	"userId": 0,
+	"movieId": 2571,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 2600,
+	"rating": 3.5
+    },
+    {
+	"userId": 0,
+	"movieId": 2706,
+	"rating": 3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 2710,
+	"rating": 4.1
+    },
+    {
+	"userId": 0,
+	"movieId": 2915,
+	"rating": 3.2
+    },
+    {
+	"userId": 0,
+	"movieId": 2916,
+	"rating": 3.7
+    },
+    {
+	"userId": 0,
+	"movieId": 2924,
+	"rating": 3
+    },
+    {
+	"userId": 0,
+	"movieId": 2959,
+	"rating": 4
+    },
+    {
+	"userId": 0,
+	"movieId": 2997,
+	"rating": 3.6
+    },
+    {
+	"userId": 0,
+	"movieId": 3075,
+	"rating": 2.1
+    },
+    {
+	"userId": 0,
+	"movieId": 3147,
+	"rating": 3.6
+    },
+    {
+	"userId": 0,
+	"movieId": 3174,
+	"rating": 3.5
+    },
+    {
+	"userId": 0,
+	"movieId": 3409,
+	"rating": 3.4
+    },
+    {
+	"userId": 0,
+	"movieId": 3476,
+	"rating": 3.1
+    },
+    {
+	"userId": 0,
+	"movieId": 3503,
+	"rating": 2.4
+    },
+    {
+	"userId": 0,
+	"movieId": 3535,
+	"rating": 3.3
+    },
+    {
+	"userId": 0,
+	"movieId": 3578,
+	"rating": 3.9
+    },
+    {
+	"userId": 0,
+	"movieId": 3676,
+	"rating": 2.3
+    },
+    {
+	"userId": 0,
+	"movieId": 3785,
+	"rating": 3.8
+    },
+    {
+	"userId": 0,
+	"movieId": 3868,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 3869,
+	"rating": 4.3
+    },
+    {
+	"userId": 0,
+	"movieId": 4011,
+	"rating": 4
+    },
+    {
+	"userId": 0,
+	"movieId": 4022,
+	"rating": 3.5
+    },
+    {
+	"userId": 0,
+	"movieId": 318,
+	"rating": 4.2
+    },
+    {
+	"userId": 0,
+	"movieId": 7153,
+	"rating": 4
+    }
+]

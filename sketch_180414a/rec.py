@@ -1,14 +1,15 @@
 import json
 import math
 class rating:
-    def __init__(self,r_fn,m_fn):
-        r_fd=open(r_fn,"r")
-        m_fn=open(m_fn,"r")
+    def __init__(self,r_fns,m_fn):
         self.d={}
-        for i in json.load(r_fd):
-            self.d.setdefault(i['userId'],{})
-            self.d[i['userId']][i['movieId']]=i['rating']
-        r_fd.close()
+        for r_fn in r_fns:
+            r_fd=open(r_fn,"r")
+            for i in json.load(r_fd):
+                self.d.setdefault(i['userId'],{})
+                self.d[i['userId']][i['movieId']]=i['rating']
+            r_fd.close()
+        m_fn=open(m_fn,"r")
         self.m=dict((i['movieId'],i['title']) for i in json.load(m_fn))
         m_fn.close()
     def distance(self,met,u1,u2):
@@ -42,5 +43,5 @@ def pearson(p1,p2):
     den=math.sqrt((sq1-pow(su1,2)/len(p1))*(sq2-pow(su2,2)/len(p1)))
     return 0 if den==0 else num/den
 
-r=rating("ratings.json","movies.json")
-for i in r.recommend(pearson,672,5)[:10]: print(i[1])
+r=rating(["ratings.json","ratings1.json"],"movies.json")
+for i in r.recommend(pearson,0,5)[:10]: print(i[1])
