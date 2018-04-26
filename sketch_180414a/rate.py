@@ -8,7 +8,7 @@ def search(event):
 def rate(event):
     rs[ds[cb.get()]]=float(en.get())
 def save(event):
-    fd=open("ratings2.json","w")
+    fd=open("ratings1.json","w")
     json.dump([{"userId":0,"movieId":k,"rating":rs[k]} for k in rs],fd)
 
 root=tk.Tk()
@@ -20,14 +20,17 @@ m_fd=open("movies.json")
 ds,values={},[]
 rs=dict((e["movieId"],e["rating"]) for e in json.load(r_fd))
 for e in json.load(m_fd):
-    values.append(e["title"])
+    i=e["title"].rfind("(")
+    values.append((e["title"][i+1:i+5] if i>0 else 0,e["title"]))
     ds[e["title"]]=e["movieId"]
-cb["values"]=values
+values=sorted(values)
+cb["values"]=map(lambda x: x[1],values)
+
 cb.bind("<<ComboboxSelected>>",search)
 en.bind("<Return>",rate)
-en.bind("<LostFocus>",rate)
+en.bind("<FocusOut>",rate)
 bt.bind("<Button-1>",save)
-cb.pack()
-en.pack()
-bt.pack()
+cb.pack(side=tk.LEFT)
+en.pack(side=tk.LEFT)
+bt.pack(side=tk.LEFT)
 root.mainloop()
