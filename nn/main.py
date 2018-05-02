@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 from nn1 import *
 import files as fi
 import numpy as np
@@ -10,9 +11,8 @@ def sigmoid1(x): return sigmoid(x)*(1-sigmoid(x))
 
 nn=CNN([CONV((28,28),3,1),
         RELU(),
-        POOL(2,2)])
-        # FULL(14,7,sigmoid,sigmoid1),
-        # SOFT()])
+        POOL(2,2),
+        FLAT(),
+        FULL(169,30,sigmoid,sigmoid1)])
 
-
-print(nn.ff(ii[0].reshape(28,28)).shape)
+print(nn.ff(ii[0].reshape(28,28)))
