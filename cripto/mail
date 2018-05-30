@@ -1,0 +1,22 @@
+Les envío el código modificado para que tenga en cuenta el espacio, y corregí algunos errores que tenía.
+El diccionario se obtuvo de la siguiente forma: Se tomó un texto en español largo, se eliminaron los espacios, y se contaron la cantidad de veces que aparecía cada cadena de 4 letras, o sea, no se tuvieron en cuenta los espacios.
+Lo que hice yo ahora fue agregar a la clave un caracter para el espacio(#), que al momento de calcular el fitness se borra del texto cifrado.
+Antes lo que había hecho fue que al ver el texto descifrado, me di cuenta que era el himno, pero tenía algunas letras cambiadas y que era porque había un caracter para el espacio. Después vi que ese caracter era ξ y lo borré del texto cifrado, pero manualmente. Ahora lo arreglé para que lo haga solo.
+
+Explico de vuelta el algoritmo:
+La clave es una permutación del abecedario, en el código la variable @A.
+1. Se arranca con una clave aleatoria
+2. Se calcula el fitness con la clave actual eliminando del texto cifrado el espacio y se guarda en una variable
+3. Se intercambian caracteres de la clave, siguiendo esta secuencia:
+   (0,1,1),	   cambia la posición 0 por 1, y 1 por 1, es decir, intercambia el 0 por el 1
+   (0,1,2),        cambia la posición 0 por 1, y 1 por 2
+   (0,1,3),        0, 1, 3 -> 1, 3, 0
+   ...
+   (0,2,2),	   0, 2 -> 2, 0
+   (0,2,3),	   0, 2, 3 -> 2, 3, 0
+   ...
+   Así se prueban todas las combinaciones de dos y tres índices. Esto lo hace hasta que encuentra una clave que dé un fitness mayor al actual. Entonces empieza de nuevo el paso 2.
+4. Si no hay mejor combinación, termina el algoritmo.
+
+Y lo de las categorías, para buscar el camino de un nodo a la raíz lo que habría que hacer, suponiendo que el nodo es N0 y con campos N0.lft y N0.rgt, es buscar secuencialmente otro nodo N1 tal que N1.lft < N0.lft y N0.rgt < N1.rgt, teniendo así que N0 es subcategoría de N1. Y repetir hasta llegar a la raíz del árbol. Como hay que recorrer uno por uno sí puede ser ineficiente. Además que el N1 que encuentres con esa condición no te garantiza que sea la categoría padre subsiguiente. Lo que se podría hacer es agregar un campo a la tabla con el id de la categoría padre. Así habría que seguir solamente los id para llegar a la raíz.
+Este modelo de nested set tiene de malo, que para insertar o eliminar un nodo hay que cambiar toda la tabla. Yo supuse que para el tema de clasificados no habría tantas modificaciones.
