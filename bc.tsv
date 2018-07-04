@@ -1,810 +1,807 @@
-10 04 16 ñoquis,canelones				 picada de carlitos el rey
-11 04 16 sopa,bife,pure de calabaza			 32
-12 04 16 pollo a la plancha,lentejas,papa huevo y tomate merluza al horno,pure de camote
-13 04 16 albondigas con salsa				 empanadas de pollo y atun
-14 04 16 carne al horno con ajo y perejil,papa y zapallo pollo con mostaza,brocolis con ajo
-15 04 16 costeletas de cerdo,pollo a la plancha,calabaza pollo a la plancha,atun con mayonesa
-16 04 16 costillas de cerdo				 pizzas l.m. muzzarella especial
-17 04 16 fideos con salsa				 sandwich cesar
-18 04 16 sopa,bife,choclo				 niños envueltos de pollo
-19 04 16 sandwich de carne				 empanadas de verdura
-20 04 16 bife,chaucha y huevo				 merluza al horno,lechuga tomate y cebolla
-21 04 16 arroz con pollo				 pollo a la plancha,caballa con lentejas
-22 04 16 carne al horno,lentejas,huevo			 cornalitos,caballa con espinaca
-23 04 16 matambre de cerdo,camotes,tomate		 tostados de pollo,milanesa de soja
-24 04 16 canelones					 barranquero,miga de choclo tomate huevo
-25 04 16 sopa,bife,pure de papas			 tarta de pollo y espinaca
-26 04 16 bifes criollos					 pollo al horno con verduras
-27 04 16 merluza al horno con salsa,arroz		 milanesa de soja,empanada de pollo,calabaza
-28 04 16 guiso de fideos      				 merluza al horno,relleno de empanadas,huevo
-29 04 16 ñoquis	  				 	 pollo a la plancha,atun con huevo,huevo poche
-30 04 16 asado,chaucha y huevo,tomates			 pizza a.m. muzzarella napolitana verdura
+10 04 16 ñoquis,canelones;picada carlitos el rey
+11 04 16 sopa,bife,pure calabaza;32
+12 04 16 pollo plancha,lentejas,papa huevo tomate;merluza horno,pure camote
+13 04 16 albondigas salsa;empanadas pollo atun
+14 04 16 carne horno ajo perejil,papa zapallo;pollo mostaza,brocolis ajo
+15 04 16 costeleta cerdo,pollo plancha,calabaza;pollo plancha,atun mayonesa
+16 04 16 costilla cerdo;pizza l.m. m. e.
+17 04 16 fideos salsa;sandwich cesar
+18 04 16 sopa,bife,choclo;niños envueltos pollo
+19 04 16 sandwich carne;empanadas verdura
+20 04 16 bife,chauchas huevo;merluza horno,lechuga tomate cebolla
+21 04 16 arroz pollo;pollo plancha,caballa lentejas
+22 04 16 carne horno,lentejas huevo;cornalitos,caballa espinaca
+23 04 16 matambre cerdo,camote,tomate;tostado pollo,milanesa soja
+24 04 16 canelones;barranquero,sandwich d.p. c.t.h.
+25 04 16 sopa,bife,pure;tarta pollo espinaca
+26 04 16 bifes criollos;pollo horno verduras
+27 04 16 merluza tomate,arroz;milanesa soja,empanada pollo,calabaza
+28 04 16 guiso fideos;merluza horno,relleno empanadas,huevo
+29 04 16 ñoquis;pollo plancha,atun huevo,huevo poche
+30 04 16 asado,chauchas huevo,tomate;pizza a.m. muzzarella napolitana verdura
 							 
-01 05 16 pollo asado,porotos en escabeche		 sandwich de pollo
-02 05 16 fideos,torreja,cornalitos,pollo con salsa carne sandwich carne con verduras
-      	 de vaca cerdo,lentejas en escabeche,lechuga	  
-03 05 16 sopa,bife,choclo				 empanadas de pollo y verdura
-04 05 16 guiso de lentejas				 canelones
-05 05 16 carne al horno,berenjenas,camotes		 pionono,merluza al horno con limon
-06 05 16 pollo a la plancha,calabaza,fideos verdes	 pizza hot choclo especial
-07 05 16 matambre de cerdo,chaucha y huevo,tomates	 sandwich de miga,picada
-08 05 16 ravioles    		     			 empanadas de atun verdura
-09 05 16 sopa,bife,pure de papas			 pollo al horno,brocoli con huevo
-10 05 16 bifes encebollados,arroz			 ravioles verdes de calabaza,costeletas de cerdo
-11 05 16 lasagna de zapallitos				 sandwich arabe de pollo con huevo y morrones
-12 05 16 fideos con salsa				 pejerrey al horno,verduras,papas
-13 05 16 carne al horno con verduras,bejenjenas		 pizza a.m. roquefort napolitana
-14 05 16 costeletas de cerdo,lentejas con atun		 matambre a la pizza
-15 05 16 canelones verdes,raviolones de verdura		 carre de cerdo a la portuguesa,lechuga y tomate
-16 05 16 sopa,costeleta de cerdo,zapallito y papa	 hamburguesas caseras de pollo
-17 05 16 pollo a la portuguesa,arroz	     		 tacos de carne
-18 05 16 carne al horno,revuelto de zapallitos		 tarta de pollo y espinaca
-19 05 16 milanesas napolitanas,berenjenas,fideos 	 merluza al horno,tarta de pollo y espinaca
-20 05 16 albondigas con salsa,calabaza,lentejas		 pizza a.m. margarita fugazza
-21 05 16 costillas de cerdo,lechuga y tomate		 milanesa de soja,cornalitos
-22 05 16 ñoquis	      		      		 	 centauro
-23 05 16 sopa,costeleta de cerdo y vaca,pure mixto	 pechuga rellena,arroz primavera
-24 05 16 pastel de papa	   	   	     		 pollo al horno con verduras
-25 05 16 asado,lechon,calabaza,lechuga y tomate		 asado,arroz primavera,fideos verdes
-26 05 16 bifes encebollados	       	 		 tarta de atun
-27 05 16 fideos con salsa				 tarta de atun,milanesa de soja
-28 05 16 cerdo,pollo,lentejas con huevo			 empanadas caprese verdura arabes
-29 05 16 ravioles de pavita con nuez			 tostado de pollo
-30 05 16 sopa con avena,bife,pure			 consome de langostinos
-31 05 16 pollo al horno,berenjenas                       milanesa napolitana,calabaza
-							 
-01 06 16 polenta  					 tarta de choclo
-02 06 16 carne al horno,cabalaza			 merluza al horno,revuelto de brocoli
-03 06 16 pollo a la plancha,lentejas			 cornalitos
-04 06 16 costillas de cerdo,chauchas y huevo		 pizza a.m. pollo choclo
-05 06 16 ñoquis	   	      		       	         pollo a la piedra,empanadas
-06 06 16 sopa,bife,pure de papa				 hamburguesas de pollo
-07 06 16 pollo a la portuguesa				 empanadas de caballa y espinaca
-08 06 16 carne al horno con provenzal,papas,camotes      sandwich don pablo de pollo
-09 06 16 milanesas napolitanas,lentejas con huevo	 ensalada cesar
-10 06 16 costeletas de cerdo,pure de camote 		 pizza l.m. choclo mozzarella anchoas
-11 06 16 asado,tomates con pimientos,papa asada		 lomo simple
-12 06 16 fideos	       	   		  		 taco de carne
-13 06 16 sopa,bife,pure de papas			 tarta de pollo y espinaca atun
-14 06 16 albondigas mondongo con salsa			 carne al horno con verduras
-15 06 16 costeletas de cerdo,chauchas con huevo		 milanesas al horno,tarta de atun
-16 06 16 arroz con pollo                                 merluza al horno,tarta de espinaca y pollo
-17 06 16 costillas de cerdo,fideos verdes		 barranquero
-18 06 16 pollo a la plancha,lentejas con huevo		 pizza casera roquefort calabresa especial
-19 06 16 canelones  		     	 		 suprema mariland,budin de pan
-20 06 16 asado,camotes asados,tomate y pimientos	 tacos de pollo
-21 06 16 sopa con avena,bife,mazorca                     56
-22 06 16 bifes encebollados                              empanadas de pollo y verdura atun
-23 06 16 pollo al horno,chauchas con huevo               merluza al horno,pure de papa
-24 06 16 guiso de fideos                                 milanesa de soja,revuelto de brocoli
-25 06 16 pollo a la plancha,lentejas y huevo             lomo de medio metro
-26 06 16 pollo asado,tomate y cebolla                    empanadas de atun
-27 06 16 sopa con avena,lechuga,bife                     pechugas rellenas de verduras
-28 06 16 carne al horno,papas y camotes                  hamburguesas de pollo,arroz primavera
-29 06 16 ñoquis                                          milanesa napolitana max burger
-30 06 16 costeletas de cerdo,lentejas con huevo,calabaza berenjena rellena de atun
-							 
-01 07 16 pollo con verduras	      	  		 empanadas de espinaca y pollo
-02 07 16 costillas de cerdo,tomate y cebolla		 pizza a.m. verdura especial roquefort napolitana
-03 07 16 fideos	      		     			 lomo completo max burger
-04 07 16 sopa,costeleta de cerdo,mazorca		 merluza,arroz
-05 07 16 carne en cacerola,capeletinis			 tarta de espinaca
-06 07 16 albongidas mondongo con salsa			 pollo arrollado,choclo cremoso
-07 07 16 pastel de papa	     	 			 milanesa de soja,tarta de espinaca
-08 07 16 carne al horno,papa,camote                      pizza l.f. anchoas choclo
-09 07 16 asado,lechuga,tomate y pimiento                 lomo completo max burger
-10 07 16 canelones,ravioles                              picada al colorie,mousse de naranja
-11 07 16 sopa,bife,pure de papa                          tarta de espinaca
-12 07 16 bifes encebollados                              pollo a la plancha,relleno de espinaca
-13 07 16 pollo al horno con verduras                     sushi
-14 07 16 costeleta de cerdo,canelones                    milanesa al horno,lenteja y huevo
-15 07 16 lasagna de zapallitos                           pollo a la plancha,choclo cremoso,calabaza
-16 07 16 asado,provoleta,tomate y pimientos              pizza 5 especial roquefort pollo
-17 07 16 fideos						 
-22 07 16                                                 lomo de medio metro
-23 07 16                                                 pizza 5 florentina,muzzarella
-24 07 16 canelones                                       barranquero
-25 07 16 sopa,bife,choclo                                empanadas de verdura
-26 07 16 carne al horno                                  pollo a la plancha
-27 07 16 merluza al horno con tomate                     banana,pera
-28 07 16 pollo con arroz                                 asado,choclo cremoso
-29 07 16 ñoquis                                          suprema de pollo,revuelto de brocoli
-30 07 16 costeletas de cerdo,caballa y atun              empanadas hoderatto verdura atun jyq
-31 07 16 pollo,chauchas con huevo      			 taco de pollo con picante
-							 
-01 08 16 sopa,bife,pure con zapallos			 empanadas de verdura,pollo al horno
-02 08 16 bifes encebollados 				 32
-03 08 16 carne al horno,papa camote			 merluza,tortilla de espinaca
-04 08 16 fideos con salsa    				 pollo a la plancha,calabaza berenjena al horno
-05 08 16 costeletas de cerdo,arroz con lentejas		 hamburguesas de pescado
-06 08 16 costillas de cerdo,lechuga y tomate		 asado,papas y camotes asados
-07 08 16 canelones    					 filet de pollo completo
-08 08 16 sopa con avena,costeletas,calabaza		 pollo enrollado,choclo cremoso
-09 08 16 pollo con arroz				 milanesa al horno,relleno de atun
-10 08 16 carne al horno,papa huevo tomate		 pizza salvado de choclo
-11 08 16 bifes encebollados  	   			 merluza,berenjenas,huevo poche
-12 08 16 costeleta de cerdo,capeletinis			 lomo americano
-13 08 16 pollo a la plancha,lentejas con huevo		 sorrentinos de calabaza
-14 08 16 choripan,sandwich de miga   	 		 pizza anchoas anana fugazza,brownie con helado
-15 08 16 asado,papas asadas,tomate con pimiento		 tarta de espinaca y pollo
-16 08 16 sopa con avena,pollo a la plancha,pure		 pollo al horno con verduras
-17 08 16 merluza al horno con salsa			 pastel de papa
-18 08 16 albondigas con salsa 				 merluza al limon,arroz primavera
-19 08 16 carne al horno,arroz primavera			 pizza a.m. roquefort especial
-20 08 16 costeleta,caballa con lentejas			 empanadas caballa pollo verdura
-21 08 16 pollo a la parrilla   				 suprema mariland
-22 08 16 sopa con avena,choclo,pure,costeleta de cerdo	 sandwich de carne,empanadas
-23 08 16 capeletinis con salsa		      	 	 hamburguesas de pollo,huevo poche,brocoli
-24 08 16 carne al horno con provenzal,papa huevo tomate	 merluza,berenjena calabaza al horno
-25 08 16 pollo con arroz    		   	 	 pollo a la plancha,relleno de atun
-26 08 16 milanesas,huevos rellenos,tomate cebolla	 hamburguesas de pescado,choclo cremoso
-27 08 16 costeletas de cerdo,lentejas con huevo		 asado,calabaza
-28 08 16 costillas de cerdo,berenjenas papas asadas	 pizza l.f. choclo espinaca pollo
-29 08 16 sopa con avena,costeletas,pure	     		 supremas al horno,arroz primavera
-30 08 16 albondigas con salsa				 pollo enrollado,camotes al horno
-31 08 16 asado,chauchas y huevo,tomate y pimiento	 merluza,tortilla de espinaca
-							 
-01 09 16 potaje de legumbres				 pollo a la plancha,choclo cremoso,berenjena
-02 09 16 bifes encebollados,potaje			 suprema de pollo,lentejas
-03 09 16 costeleta,fideos tres colores			 asado,lechuga y tomate,flan con crema
-04 09 16 canelones	       				 centauro
-05 09 16 sopa con avena,costeleta,pure,mazorca		 tarta de espinaca
-06 09 16 ñoquis	  					 pizza casera a la parrilla
-07 09 16 pollo a la plancha,chauchas con huevo		 merluza,porotos,relleno de verdura
-08 09 16 arroz,bifes encebollados    	 		 berenjena rellena de atun
-09 09 16 carne al horno,lentejas,capeletinis		 tostado de pollo
-10 09 16 asado,papa asada,tomates con pimientos		 pata,multiples brownies,torta hungara
-11 09 16 ravioles   		      			 empanada,pizza italia,goulash
-12 09 16 sopa,costeleta,pure				 cacerola de pollo y fideos
-13 09 16 bifes criollos					 empanadas de verdura
-14 09 16 carne al horno,huevo papa y tomate	         merluza,arroz primavera,repollos de bruselas
-15 09 16 pollo a la portuguesa	     			 hamburguesas de pollo,huevo,relleno de verdura
-16 09 16 pollo a la plancha,lentejas y huevo		 alta milanesa napolitana,lentejas y huevo
-17 09 16 cerdo asado,berenjenas asadas,choclo cremoso	 pizza d.c. fugazza especial
-18 09 16 lomo completo,helado		      		 hamburguesa de pollo medium con guacamole
-19 09 16 sopa con avena,costeleta,pure			 pollo al horno con verduras
-20 09 16 albondigas con salsa				 tarta de atun
-21 09 16 milanesa al horno,chauchas con huevo		 merluza,repollos de bruselas,calabaza
-22 09 16 capeletinis   		    			 sandwich de pollo,choclo cremoso
-23 09 16 bifes encebollados				 pollo a la pizza(no pescado),mixta
-24 09 16 asado,lentejas con huevo,calabaza		 pizza d.c. choclo especial
-25 09 16 pollo asado,lechuga,zanahoria			 lomo pizza donna
-26 09 16 sopa con avena,costeleta,pure			 merluza con tomate
-27 09 16 carne con provenzal,papa huevo y tomate	 milanesas napolitanas
-28 09 16 tallarines,costeleta de cerdo	  		 bistec,chauchas con huevo
-29 09 16 ñoquis		      	 			 merluza,choclo cremoso,relleno de espinaca
-30 09 16 pollo al horno					 torrejas,zapallo con huevo,peceto
-							 
-01 10 16 asado,lentejas con huevo			 tarta de espinaca
-02 10 16 polenta	    				 hamburguesa de pescado
-03 10 16 sopa con avena,costeleta,pure,mazorca		 pollo a la plancha,berenjenas,relleno de espinaca
-04 10 16 pastel de papa					 empanadas de verdura
-05 10 16 carne al horno,lentejas,tomate con cebolla	 merluza,arroz primavera
-06 10 16 tallarines con salsa		    		 hamburguesas de atun,arroz primavera
-07 10 16 pollo a la plancha,chauchas con huevo		 barranquero
-08 10 16 costeletas de cerdo,papa huevo y tomate	 pizza a.m. choclo mozzarella
-09 10 16 pollo asado,tortilla de acelga	  		 sandwich de miga c.t.h. p.q. p.p.h.,empanadas de verdura
-10 10 16 asado,lentejas con choclo,tomates con huevo,	 tacos de pollo
-      	 bomba de papa,arrollado,huevo relleno,		 
-	 pionono,torreja,coliflor,budin de pan		 
-11 10 16 sopa con avena,pure,costeleta de cerdo,helado	 hamburguesas de pollo
-12 10 16 zapallitos rellenos	       	  		 merluza,calabaza,berenjena
-13 10 16 carne al horno                                  pollo al horno con verduras
-14 10 16 potaje de legumbres                             pizza bowling especial anchoas fugazza
-15 10 16 pollo a la plancha,potaje			 picada carlitos,rabas,helado
-16 10 16 pollo a la parrilla,lentejas con huevo		 filet de pollo completo
-17 10 16 sopa con avena,bife,pure     	  		 pollo enrollado,zanahoria con huevo
-18 10 16 fideos con salsa                                relleno de tacos,caballa con lentejas
-19 10 16 carne al horno  				 merluza a la portuguesa
-20 10 16 carne con ajo y perejil                         pechuga rellena con salsa de champiñones
-21 10 16 bifes encebollados                              choripan con salsa criolla
-22 10 16 pollo a la plancha,lentejas con huevo           pizza a.m. choclo especial anchoas fugazza
-23 10 16 asado,calabaza,lechuga zanahoria huevo          tostado de pollo
-24 10 16 sopa con avena,costeleta,mazorca,pure           pollo al horno con mostaza
-25 10 16 fideos con salsa                                napolitanas con queso cheddar,garbanzos tomate y huevo
-26 10 16 asado duro,zanahoria huevo,tomate pimientos ceb merluza,relleno de verdura
-27 10 16 pastel de papa                                  hamburguesas de atun
-28 10 16 fideos con salsa                                sandwich don pablo n.r.sg. c.t.h. p.q. 
-29 10 16 pollo a la plancha,chauchas con huevo           pizza 5 muzzarella,especial
-30 10 16 canelones                                       hamburguesa de puerco
-31 10 16 sopa con avena,costeleta,pure                   tarta de atun,apio y panceta
-							 
-01 11 16 milanesa al horno,lentejas con huevo            pollo con mostaza
-02 11 16 bifes encebollados,arroz   			 atun a la plancha,tortilla de espinaca
-03 11 16 pastel de papa					 milanesa de soja,tarta de atun
-04 11 16 fideos con salsa				 no falafel,lechuga y tomate,pollo a la plancha
-05 11 16 costillas de cerdo,lentejas con huevo           barranquero
-06 11 16 pollo,lechuga tomate y huevo                    suprema napolitana,pure
-07 11 16 sopa con avena,pollo a la plancha,pure          merluza,zapallo con papa
-08 11 16 albondigas con salsa                            asadaso,choclo,papas
-09 11 16 bifes encebollados,arroz                        empanadas de verdura
-10 11 16 pollo al horno en colchon de vegetales.esia     merluza,garbanzos con huevo
-11 11 16 costeleta de cerdo,huevos rellenos              grasa con carne,huevos rellenos,calabaza
-12 11 16 pollo a la plancha,lentejas con huevo           pizza a.m. verdura especial
-13 11 16 pollo a la parrilla,lechuga tomate huevo	 burrito mixto de chilango
-14 11 16 sopa con avena,choclo,costeleta    		 buenos ñoquis de espinaca con salsa carbonara
-15 11 16 pastel de papa					 pechuga con mostaza y miel,atun lentejas y huevo
-16 11 16 carne al horno,huevo papa tomate		 matambre arrollado,pizza choclo
-17 11 16 polenta  	      	   			 merluza,tortilla de brocoli
-18 11 16 costeletas de cerdo,chauchas con huevo		 tempura de cornalitos,tostado de pollo
-19 11 16 costillas de cerdo,lentejas  	  		 pizza 5 mozzarella especial
-20 11 16 asado don tenorio				 burrito mixto
-21 11 16 sopa con avena,calabaza,costeleta		 tarta de espinaca atun
-22 11 16 ñoquis	  					 pollo al horno vegetales
-23 11 16 pescado con tomate cebolla pimintos		 milanesa de cerdo,arroz primavera
-24 11 16 milanesa de pollo,arroz primavera con mayonesa  milanesa de soja,caballa tomate cebolla
-25 11 16 pollo a la plancha,relleno de verdura 		 lomo completo
-26 11 16 lomito de cerdo,lentejas con huevo,calabaza	 don pablo empanadas j.q. sandwich c.t.h. p.q.
-27 11 16 mayonesa de atun,lechon,huevos rellenos	 0.5 quesadilla,0.5 burrito,taco
-28 11 16 ravioles    					 restos de cerdo lechon huevos,arroz marron
-29 11 16 sopa con avena,bistec,papa con zapallo		 wok de pollo y vegetales,zanahoria y huevo
-30 11 16 carne al horno con ajo y perejil,papa camote	 merluza,chauchas y huevo
-							 
-01 12 16 bifes encebollados,fideos verdes		 hamburguesas de atun
-02 12 16 costeleta,papa tomate huevo		         resto de wok,arroz marron
-03 12 16 pollo a la plancha,huevo con lentejas           pizza a.m. especial anchoas napolitana fugazza
-04 12 16 asado, tiros con huevo                          burrito de vegetales
-05 12 16 sopa con avena,costeleta,pure                   lomo de cerdo con verduras,calabaza
-06 12 16 pollo a la portuguesa,arroz			 tarta de choclo
-07 12 16 pastel de papa					 merluza,rabas(para que),berenjenas
-08 12 16 carne al horno,capeletinis,calabaza		 milanesa napolitana
-09 12 16 costeleta,tomate y pimiento,lenteja y huevo     sardinas en tomate,berenjenas con queso
-10 12 16 costillas de cerdo,zanaharia y huevo  		 asado lechon mendieta,tomate y huevo,helado
-11 12 16 pollo asado,chauchas y huevo 			 hamburguesa americana
-12 12 16 sopa con avena,zanahoria con huevo,costeleta	 abadejo con verduras,moros con cristianos
-13 12 16 albondigas con salsa	      			 pollo a la plancha,fideos verdes
-14 12 16 carne al horno,calabaza			 burrito mixto
-15 12 16 costeletas,revuelto de zapallo huevo		 caballa con arroz marron,milanesa de soja
-16 12 16 caballa y arroz,bifes encebollados		 milanesa napolitana tuty
-17 12 16 lentejas con huevo,pollo a la plancha		 4 hamburguesas,torta
-18 12 16 asado						 pizza choclo champiñones fugazza
-19 12 16 sopa,choclo,costeleta,pure			 milanesas al horno,berenjena,tomate y cebolla
-20 12 16 capeletinis con salsa			         wok de pollo,pure de calabaza zanahoria papa
-21 12 16 carne al horno,papa huevo tomate		 merluza al horno,arroz frito
-22 12 16 arroz primavera,merluza tomate cebolla		 barranquero
-23 12 16 carne al horno,lentejas huevo			 milanesa verona
-24 12 16 pollo a la plancha,pure calabaza papa		 lechon,mayonesa de ave,multiples porquerias
-25 12 16 lechon,mayonesa de ave,multiples porquerias	 hamburguesa con papas
-26 12 16 sopa,costeleta de cerdo,pure	  		 moros cristianos,resto de wok
-27 12 16 pollo al horno,fideos				 empanadas salteñita j.q. a. c.q.
-28 12 16 carne al horno,lechuga tomate pimientos	 berenjena rellena de atun
-29 12 16 ñoquis	  		       			 barranquero
-30 12 16 costeletas,chauchas huevo			 empanadas l.p.l.p. j.q. p. c.
-31 12 16 pollo a la plancha,lentejas huevo		 sandwich d.p. d.p. c.t.h.,vitel tone,mayonesa atun
-      	       	    		     			 paquete de almendras pasas con chocolate
-							 
-01 01 17 pollo a la parrilla,mayonesa atun		 filet de pollo,papas,choclo cremoso
-02 01 17 sopa,costeleta,mayonesa atun,tomate cebolla	 hamburguesa de pollo,atun arroz
-03 01 17 bifes encebollados,capeletinis                  milanesa verona,papas
-04 01 17 pollo a la plancha,costeleta,zanahoria huevo    asado,papa berenjena
-05 01 17 pescado tomate cebolla,arroz                    tarta atun y jamon queso
-06 01 17 pollo al horno,papas camotes			 sardinas en tomate
-07 01 17 milanesas pollo vaca,lentejas huevo             asado
-08 01 17 asado don tenorio,tiramisu    			 burrito
-09 01 17 sopa,pure mixto,costeleta			 bife cerdo,relleno verdura
-10 01 17 pastel de papa  				 pollo con verduras
-11 01 17 ñoquis						 milanesa napolitana,brocoli revuelto
-12 01 17 bifes encebollados				 relleno taco,caballa
-13 01 17 carne al horno,papa huevo tomate		 sandwich de pata
-14 01 17 costeletas,lentejas huevo			 pata,calabaza
-15 01 17 canelones,ravioles				 pollo bob milan
-16 01 17 sopa,choclo,costeleta,pure			 pollo a la plancha,arroz invierno
-17 01 17 merluza,papa camote				 tarta espinaca
-18 01 17 carne al horno,repollo,tomate cebolla		 tostados,tarta espinaca
-19 01 17 fideos,bifes encebollados			 milanesa pejerrey,papa huevo tomate
-20 01 17 pollo al horno,zanahoria huevo			 burrito
-21 01 17 costeleta de cerdo,lentejas huevo		 pizza a.m. m. v.
-22 01 17 asado,zanahoria huevo,helado			 lomo gallina,papas cheddar
-23 01 17 sopa avena,calabaza				 empanadas verdura,jamon queso
-24 01 17 papa huevo tomate,milanesa napolitana		 wok de pollo
-25 01 17 fideos,costeleta				 arroz revuelto,sandwich pata
-26 01 17 carne al horno,huevos rellenos			 quiche puerros jamon cocido
-27 01 17 bifes criollos	       				 caballa,milanesa soja
-28 01 17 asado,matambre de cerdo,lentejas huevo		 trucha con salsa de alcaparras,papas fritas
-29 01 17 ñoquis,postre helado		  		 pizza bolos n. a. h. f.
-30 01 17 sopa,costeleta,lechuga tomate			 pollo verduras
-31 01 17 milanesa al horno,capeletinis			 sandwich atun,zapallo revuelto
-							 
-01 02 17 bifes cebolla,arroz				 merluza enrollada espinaca
-02 02 17 fideos con salsa				 asado,zanahoria huevo
-03 02 17 pescado tomate cebolla				 milanesa soja,huevo revuelto,tomate
-04 02 17 costeleta de cerdo,lentejas huevo		 burrito
-05 02 17 pollo asado,mayonesa de ave 			 nada
-06 02 17 sopa avena,costeleta,calabaza			 wok de pollo,mayonesa de ave
-07 02 17 carne al horno,arroz,tomate cebolla		 tarta de atun
-08 02 17 zapallos rellenos	     			 pizza a.m. c. e. n.
-09 02 17 milanesa al horno,choclo tomate huevo		 merluza frita,zanahoria calabaza papa
-10 02 17 pollo con arroz	  	 		 pizza bolos an. m. e. cq.
-11 02 17 pollo a la plancha,tarta atun,lentejas huevo	 empanadas l.s. a. j.q. á.
-12 02 17 canelones,ravioles pavita nuez			 lomo completo
-13 02 17 sopa con avena,costeleta,calabaza		 milanesa de pollo,choclo tomate huevo
-14 02 17 guiso de lentejas con chorizo			 cerdo y verduras
-15 02 17 bifes encebollados,fideos			 hamburguesa delicious street
-16 02 17 milanesa,lechuga tomate			 empanadas verdura
-17 02 17 asado,tomate,zanahoria huevo			 medallon pollo drops
-18 02 17 costeleta,chauchas lentejas huevo		 mayonesa de ave,pollo arrollado,asado,helado,torta
-19 02 17 pollo asado,lechuga tomate                      burrito
-20 02 17 sopa,costeleta,pure                             revuelto de arvejas,pescado
-21 02 17 costeleta puerco,zapallo papa                   pollo lechuga huevo queso panceta choclo
-22 02 17 fideos                                          sardinas en tomate
-23 02 17 pollo a la plancha,zanahoria huevo              hamburguesas caseras,papas al horno
-24 02 17 costeleta,capeletinis,tomate cebolla pimiento	 milanesa soja cheddar,arroz frito
-25 02 17 pollo a la plancha,lentejas huevo    		 pizza a.m. e. f. a.
-26 02 17 asado,choclo huevo tomate,mousse chocolate	 burrito
-27 02 17 sopa,choclo,costeleta		  		 empanadas estelita cs. á. p.
-28 02 17 asado,lechuga tomate,papasada			 sandwich don pablo n.r. a.m.h. b.q.
-							 
-01 03 17 pollo a la portuguesa				 pescado,tortilla acelga
-02 03 17 milanesa de pollo carne,chauchas huevo		 wok pollo,calabaza
-03 03 17 bifes encebollados		  		 milanesa soja,rabas
-04 03 17 costillas cerdo,lentejas huevo			 burrito
-05 03 17 canelones 		  			 empanadas l.s. a. s. j.q.a.
-06 03 17 sopa,zapallo papa,costeleta			 pollo mostaza,papas camotes
-07 03 17 pescado cebolla pimientos			 pizza verona s. m. e.
-08 03 17 fideos	 	 				 pollo empimentado,arroz primavera
-09 03 17 carne al horno,arroz primavera,huevos rellenos  mostachole queso acelga alcauciles
-10 03 17 bifes encebollados,papa al horno                milenasa napolitana
-11 03 17 asado,lentejas huevo	    			 pizza bolos c.q. p. h.
-12 03 17 ravioles					 empanadas l.s. a. s. v.
-13 03 17 sopa,calabaza,costeleta			 pollo a la plancha,salteado verduras,helado nahuel
-14 03 17 milanesa napolitana				 tarta de acelga
-15 03 17 zapallo relleno,albondigas			 pizza semi-casera ultra crocante
-16 03 17 carne ajo perejil,papas,camotes		 atun a la plancha,lentejas huevo
-17 03 17 pollo con arroz				 hamburguesa cordero juan griego,pizza m.,waffle nutella
-18 03 17 costeleta cerdo,lentejas arroz			 quesadilla vegetales,pedazito burrito,nachos
-19 03 17 pollo asado,chauchas huevo			 matambre de cerdo en salsa de peras,papas noisette
-20 03 17 sopa,costeleta,choclo				 pescado,arvejas huevo
-21 03 17 fideos						 hamburguesas pollo espinaca,crema de calabaza
-22 03 17 asado al horno,papa huevo tomate		 pizza verona m. s.
-23 03 17 bifes encebollados,arroz  			 salteado de cerdo
-24 03 17 pollo con arroz				 burrito
-25 03 17 asado vaca cerdo,lentejas huevo		 barranquero
-26 03 17 canelones  		   			 pizza verona m. c.
-27 03 17 sopa,costeleta,calabaza			 tarta de choclo
-28 03 17 milanesas,zanahoria huevo			 pollo verduras
-29 03 17 carne al horno camotes papas			 pescado,arvejas huevo
-30 03 17 ñoquis	  					 hamburguesa papa pescado cebolla,arroz
-31 03 17 bifes encebollados,fideos			 burrito
-							 
-01 04 17 asado al horno,lentejas huevo			 abadejo a la vasca,papas noisette,cheesecake
-02 04 17 fideos	  		 			 medio lomo
-03 04 17 sopa,costeleta,choclo,calabaza			 medio lomo,huevo tomate papa
-04 04 17 milanesa al horno,tomate cebolla,papas		 tarta puerros cebolla queso
-05 04 17 pastel de papa		  			 pescado,salteado vegetales
-06 04 17 pollo verduras,papa camote			 cornalitos,calabaza
-07 04 17 capeletinis chorizo 				 pizza a.m. ch. m.
-08 04 17 asado cerdo al horno,lentejas huevo		 2.5 choripan
-09 04 17 lechon,pollo asado,tomate pimiento		 tostado de pollo
-10 04 17 sopa,costeleta,pure	   			 pechuga rellena j.q.,crema espinaca
-11 04 17 bifes encebollados				 costeletas cerdo,choclo huevo tomate
-12 04 17 costeleta,zanahoria huevo,berenjena		 calabaza puerro cebolla,media pechuga rellena,empanada j.q.
-13 04 17 milanesas,fideos hélice			 hamburguesa pollo centro cheddar,salteado cerdo
-14 04 17 pescado tomate	  				 empanadas caballa espinaca
-15 04 17 costeleta,lentejas huevo ajo perejil		 pizza a.m. m. n.
-16 04 17 canelones estelita 	      			 pescado,pure n.c.
-17 04 17 sopa,calabaza,costeleta			 tarta atun
-18 04 17 pollo al horno,papa camote zanahoria		 tacos pollo
-19 04 17 colita cuadril,fideos	    			 omelette vegetales,cerdo salsa pera
-20 04 17 ravioles					 milanesa soja espinaca queso,tarta atun
-21 04 17 bifes encebollados				 barranquero
-22 04 17 asado,lentejas huevo				 pizza bolos e. f. p. a. h.
-23 04 17 matambre cerdo,pollo,fideos			 empanadas tere a. v. c.
-24 04 17 sopa,costeleta,mazorca				 torrejas,milanesa soja
-25 04 17 pollo arroz					 costeleta cerdo,zanahoria huevo
-26 04 17 carne al horno camotes				 caballa espinaca,omelette zuchini
-27 04 17 calabaza rellena choclo			 pescado,pure camote arvejas
-28 04 17 bifes encebollados				 relleno tacos,zanahoria huevo
-29 04 17 pollo a la plancha,lentejas huevo		 hamburguesa completa,papas
-30 04 17 ñoquis	    		     			 pizza verona m.b.p. m. n.
-							 
-01 05 17 asado,c.t.h.,huevo relleno,pionono,		 empanadas pollo espinaca,caballa espinaca,choclo
-      	 papa con algo,verdura salsa blanca		 
-02 05 17 sopa,costeleta,calabaza			 milanesa soja,brocoli
-03 05 17 pollo al horno,papa,camote			 asado al horno,calabaza,lechuga tomate
-04 05 17 guiso de lentejas				 pescado,arroz primavera
-05 05 17 carne al horno,arroz primavera			 burrito
-06 05 17 matambre,a la pizza,lentejas huevo		 rabas,pizza shut up p.y.b. s.u.
-07 05 17 pollo asado,papa zapallito   			 hamburguesa simple,choclo
-08 05 17 sopa,pure,costeleta				 tarta atun
-09 05 17 polenta					 pollo a la plancha,pure zanahoria calabaza
-10 05 17 huevos rellenos,milanesa			 pescado,brocoli
-11 05 17 bifes encebollados,arroz			 costeletas cerdo,humita
-12 05 17 pollo al horno,papa camote			 milanesa soja,tarta atun
-13 05 17 pollo a la plancha,lentejas huevo		 pizza bolos c. e. ch. h.
-14 05 17 asado,chauchas huevo	     			 burrito
-15 05 17 sopa,costeleta,calabaza			 pescado,brocoli
-16 05 17 fideos,pollo a la plancha			 bife cerdo,coles bruselas
-17 05 17 ravioles con salsa				 costeleta,lentejas huevo
-18 05 17 cerdo al horno,lentejas huevo			 empanadas pollo caballa espinaca,pure zanahoria calabaza avena
-19 05 17 pollo portuguesa	 			 milanesa soja,choclo tomate
-20 05 17 pollo plancha,repollo				 empanadas l.s. v. hu. p.
-21 05 17 pollo asado,ravioles				 bondiola cerdo laqueada,vegetales salteados
-22 05 17 sopa,costeleta cerdo,calabaza			 costeleta,papa zapallito
-23 05 17 milanesa al horno,pure camote arvejas		 pescado,arroz yamani primavera
-24 05 17 bifes encebollados,lentejas	 		 vacio,humita,calabaza
-25 05 17 fideos con salsa				 tarta de atun,humus
-26 05 17 colita cuadril,camotes				 burrito 
-27 05 17 pollo plancha,lentejas huevo			 hamburguesa completa
-28 05 17 ravioles					 don pablo empanadas verdura,sandwich c.t.h.
-29 05 17 sopa,choclo,costeleta				 milanesa soja,pure camote arvejas
-30 05 17 pollo verduras					 empanadas verdura,arvejas
-31 05 17 guiso de fideos				 pescado,crema calabaza puerro
-							 
-01 06 17 carne al horno,lentejas			 matambre,choclo asado
-02 06 17 bifes encebollados				 pollo plancha,moros cristianos
-03 06 17 costeletas,lentejas huevo			 tacos mixtos,salsa barbacoa
-04 06 17 canelones,ravioles  				 pollo a la piedra,repollo lechuga zanahoria
-05 06 17 sopa,costeleta,calabaza			 mayonesa ave,milanesa
-06 06 17 carne al horno ajo perejil,mayonesa ave	 sandwich carne verduras,brocoli
-07 06 17 pollo a la portuguesa,arroz	     		 pescado,lechuga tomate
-08 06 17 pescado tomate,fideos				 tarta calabaza,calabaza,milanesa soja
-09 06 17 costeletas,camotes				 omelette caprese,muslo,choclo tomate huevo
-10 06 17 milanesa,lentejas huevo,tomate cebolla		 burrito guacamole
-11 06 17 pollo,ravioles	   				 asado,lechuga tomate,pimiento
-12 06 17 sopa,choclo,costeleta				 tarta espinaca
-13 06 17 albondigas salsa				 pescado,alcauciles lechuga pimientos asados huevo poche
-14 06 17 bifes encebollados				 hamburguesa espinaca queso,pure camote arjevas
-15 06 17 carne al horno,papa huevo tomate		 tarta espinaca,calabaza
-16 06 17 pollo verduras	     	   			 lomo al plato,pure,helado nahuel
-17 06 17 costeleta,lentejas huevo			 burrito
-18 06 17 verdura empanada,mayonesa ave,huevo relleno	 suprema gratinada,cremoso de papa
-         asado,lechuga lechuguin tomate huevo,macedonia	 
-19 06 17 sopa,costeleta,choclo				 pizza casera parrilla m. e. 3/10
-20 06 17 ravioles pavita nuez,carne al horno		 milanesa,brocoli ajo
-21 06 17 pastel de papa	 	       			 rollos pescado salsa blanca tomates,calabaza
-22 06 17 fideos	   					 pollo a la plancha,lechuga zanahoria huevo
-23 06 17 costeleta,chauchas huevo			 empanadas caballa espinaca
-24 06 17 milanesa,lentejas huevo			 matambre,zanahoria huevo,camote
-25 06 17 ravioles,lechon,empanada caballa espinaca	 pizza a.m. choclo especial napolitana
-26 06 17 sopa,pollo plancha,calabaza	  		 risotto champiñones pollo
-27 06 17 bifes encebollados				 empanadas pollo espinaca,huevo poche
-28 06 17 carne al horno,papas camotes			 omelette caprese,pescado
-29 06 17 ñoquis chorizo	      				 asado,pure calabaza choclo
-30 06 17 milanesa,zanahoria huevo			 pizza casera m. f. 6/10
-							 
-01 07 17 bondiola plancha,lentejas huevo		 bife chorizo completo,papas
-02 07 17 pollo asado,lechuga tomate huevo		 tacos mixtos
-03 07 17 sopa,costeleta,pure papa   			 wok pollo,huevos rellenos atun
-04 07 17 carne ajo perejil verduras,papas camotes	 costeletas cerdo,arroz primavera,huevo relleno atun
-05 07 17 pescado cebolla pimiento tomate,mostacholes	 hamburguesas espinaca queso,calabaza choclo arvejas,huevos rellenos
-06 07 17 milanesas,papa tomate huevo			 gua bao pollo cebolla pimiento
-07 07 17 pollo a la portuguesa,arroz			 costeleta,omelette jamon queso tomate
-08 07 17 bondiola horno,lentejas huevo			 pizza 5 p. n.r. empanadas 5 a. á. c.d.
-09 07 17 canelones espinaca carne panceta		 pollo a la piedra,ensalada rusa
-10 07 17 sopa,pure,costetela	  			 pastel de papa
-11 07 17 guiso de fideos				 tacos mixtos
-12 07 17 pollo con verduras,camotes papas		 atun a la plancha,zanahoria lechuga huevo
-13 07 17 milanesas,arroz primavera  			 pastel de camote,pollo al limon petersen
-14 07 17 polenta	 				 napolitana con papas verona
-15 07 17 lentejas huevo,torrejas,bondiola plancha	 tacos mixtos,quesadilla champiñones
-16 07 17 pollo asado,zanahoria brocoli	  		 barranquero
-17 07 17 sopa,costeleta,choclo				 risotto calabaza,pollo limon tomillo
-18 07 17 bifes criollos					 vacio a la cerveza negra,camotes al horno con pimenton
-19 07 17 bondiola al horno,chauchones huevo		 tarta cebolla puerro roquefort
-20 07 17 milanesa,calabaza,torrejas   			 pizza a.m. p. n. a.
-21 07 17 pollo con arroz				 guiso de salteado de pollo
-22 07 17 bondiola,lentejas huevo,revuelto espinaca	 picana marinada,pure de papa nm
-23 07 17 lechon,lechuga tomate,empanadas,ensalada rusa   tacos mixtos
-24 07 17 sopa,costeleta,pure			  	 pescado,hummus,huevo poche
-25 07 17 fideos						 pollo y verduras con cerverza negra
-26 07 17 asado,lechuga,tomate pimiento			 suprema napolitana,huevos rellenos atun
-27 07 17 bifes encebollados   				 pizza l.c. m. e.
-28 07 17 albondigas con salsa				 frittata arvejas jamon,sandwich atun,empanada
-29 07 17 pollo plancha,lentejas huevo			 burrito
-30 07 17 ravioles ricotta				 milanesa,lechuga tomate pimiento huevo rabanitos
-31 07 17 sopa,costeleta,pure nm				 pollo arrollado,papas camotes mayonesa
+01 05 16 pollo asado,porotos escabeche;sandwich pollo
+02 05 16 fideos,torreja,cornalitos,lentejas escabeche;sandwich carne verduras
+03 05 16 sopa,bife,choclo;empanadas pollo verdura
+04 05 16 guiso lentejas;canelones
+05 05 16 carne horno,berenjena,camote;pionono,merluza horno limon
+06 05 16 pollo plancha,calabaza,fideos verdes;pizza hot c. e.
+07 05 16 matambre cerdo,chauchas huevo,tomate;sandwich miga,picada
+08 05 16 ravioles;empanadas atun verdura
+09 05 16 sopa,bife,pure;pollo horno,brocoli huevo
+10 05 16 bifes encebollados,arroz;ravioles verdes calabaza,costeleta cerdo
+11 05 16 lasagna zapallito;sandwich arabe pollo huevo morrones
+12 05 16 fideos salsa;pejerrey horno verduras,papas
+13 05 16 carne horno verduras,berenjena;pizza a.m. r. n.
+14 05 16 costeleta cerdo,lentejas atun;matambre pizza
+15 05 16 canelones verdes,raviolones verdura;carre cerdo portuguesa,lechuga tomate
+16 05 16 sopa,costeleta cerdo,zapallito papa;hamburguesa pollo
+17 05 16 pollo portuguesa,arroz;tacos carne
+18 05 16 carne horno,revuelto zapallito;tarta pollo espinaca
+19 05 16 milanesa napolitana,berenjena,fideos;merluza horno,tarta pollo espinaca
+20 05 16 albondigas salsa,calabaza,lentejas;pizza a.m. ma. f.
+21 05 16 costilla cerdo,lechuga tomate;milanesa soja,cornalitos
+22 05 16 ñoquis;centauro
+23 05 16 sopa,costeleta cerdo vaca,pure mixto;pechuga rellena,arroz primavera
+24 05 16 pastel de papa;pollo horno verduras
+25 05 16 asado,lechon,calabaza,lechuga tomate;asado,arroz primavera,fideos verdes
+26 05 16 bifes encebollados;tarta atun
+27 05 16 fideos salsa;tarta atun,milanesa soja
+28 05 16 cerdo,pollo,lentejas huevo;empanadas caprese verdura arabes
+29 05 16 ravioles pavita nuez;tostado pollo
+30 05 16 sopa,bife,pure;consome langostinos
+31 05 16 pollo horno,berenjena;milanesa napolitana,calabaza
 
-01 08 17 carne al horno con verduras			 empanadas espinaca
-02 08 17 polenta  	    				 pizza margarita,especial 7/10
-03 08 17 berenjena rellena arroz			 pizza de nuevo,verona an. s.p. p.
-04 08 17 pescado cebollo pimiento,pure arvejas		 sardinas ch,repollo zanahoria arvejas queso nuez
-05 08 17 milanesa cerdo,lentejas huevo 			 costillas de cordero,papas fritas,mousse chocolate frutilla
-06 08 17 canelones		 			 tacos
-07 08 17 sopa,fideos,costeleta				 salteado pollo verduras
-08 08 17 milanesas,chauchas huevo			 lomo cerdo salsa de pera,camotes
-09 08 17 pollo portuguesa,pure				 pizza a.
-10 08 17 carne al horno ajo perejil,lechuga tomate	 pescado,arroz frito
-11 08 17 bifes encebollados   		    		 cornalitos,capresse,lechuga zanahoria repollo pasas
-12 08 17 milanesa cerdo,lentejas huevo			 pizza e.,helado
-13 08 17 asado,zanahoria huevo,camotes,pimiento relleno	 burrito
-14 08 17 sopa,calabaza,costeleta			 tarta puerro cebolla
-15 08 17 sorrentinos acelga ricota			 carne y brocoli,arroz
-16 08 17 pollo al horno,papa huevo tomate		 pescado,crema de calabaza
-17 08 17 carne al horno,camotes,papas			 costeleta cerdo,bondiola,revuelto espinaca
-18 08 17 bifes encebollados,fideos			 milanesa verona,arroz frito
-19 08 17 pollo plancha,lentejas huevo			 pizza muzzarella,especial 7/10
-20 08 17 ravioles					 burrito vegetales
-21 08 17 sandwich carne,0.5 sandwich bondiola		 0.5 lomo glup,papas
-22 08 17 sopa,choclo,costeleta	     			 atun marinado,camotes,lechuga tomate crutones
-23 08 17 carne al horno,chauchas huevos			 sandwich vacio a la cerveza negra
-24 08 17 pollo con arroz	 			 gyoza vacio,relleno tarta
-25 08 17 milanesa,papa,camote				 pollo curcuma limon tomate pimentos aji,falafel
-26 08 17 matambre,lentejas huevo,helado			 sushi
-27 08 17 fideos		   				 sandwich pollo pan de leche
-28 08 17 sopa,pollo plancha,pure			 tortilla pollo verduras,pollo relleno espinaca queso
-29 08 17 costeleta,lechuga tomate arroz			 abadejo salsa soja aji miel,camotes
-30 08 17 bifes criollos	   	  			 bondiola,lentejas arroz
-31 08 17 costillas de cerdo,lechuga zanahoria huevo	 calabaza rellena de choclo
+01 06 16 polenta;tarta choclo
+02 06 16 carne horno,cabalaza;merluza horno,revuelto brocoli
+03 06 16 pollo plancha,lentejas;cornalitos
+04 06 16 costilla cerdo,chauchas huevo;pizza a.m. pollo choclo
+05 06 16 ñoquis;pollo piedra,empanadas
+06 06 16 sopa,bife,pure;hamburguesa pollo
+07 06 16 pollo portuguesa;empanadas caballa espinaca
+08 06 16 carne horno ajo perejil,papa camote;barranquero
+09 06 16 milanesa napolitana,lentejas huevo;ensalada cesar
+10 06 16 costeleta cerdo,pure camote;pizza l.m. c. m. a.
+11 06 16 asado,tomate pimiento,papa asada;lomo simple
+12 06 16 fideos;taco carne
+13 06 16 sopa,bife,pure;tarta pollo espinaca atun
+14 06 16 albondigas mondongo salsa;carne horno verduras
+15 06 16 costeleta cerdo,chauchas huevo;milanesa,tarta atun
+16 06 16 arroz pollo;merluza,tarta espinaca pollo
+17 06 16 costilla cerdo,fideos verdes;barranquero
+18 06 16 pollo plancha,lentejas huevo;mi pizza r. c. e.
+19 06 16 canelones;suprema mariland,budin de pan
+20 06 16 asado,camote asado,tomate pimiento;tacos pollo
+21 06 16 sopa,bife,mazorca;56
+22 06 16 bifes encebollados;empanadas pollo verdura atun
+23 06 16 pollo horno,chauchas huevo;merluza horno,pure
+24 06 16 guiso fideos;milanesa soja,revuelto brocoli
+25 06 16 pollo plancha,lentejas huevo;lomo medio metro
+26 06 16 pollo asado,tomate cebolla;empanadas atun
+27 06 16 sopa,lechuga,bife;pechuga rellena verdura
+28 06 16 carne horno,papa camote;hamburguesa pollo,arroz primavera
+29 06 16 ñoquis;milanesa napolitana max burger
+30 06 16 costeleta cerdo,lentejas huevo,calabaza;berenjena rellena atun
 
-01 09 17 pastel de papa		    	      		 carne brocoli fideos
-02 09 17 milanesa napolitana,torrejas,lentejas huevo	 asado,picada
-03 09 17 pollo asado,lechuga tomate	       		 pizza f. c. m. f.
-04 09 17 sopa,costeleta,pure 				 risotto calabaza pollo
-05 09 17 carne al horno con verduras,papa camote	 revuelto zapallito,hamburguesa garbanzo
-06 09 17 pollo al horno,ravioles	  		 abadejo ajo jengibre aji naranja,bechamel chedar brocoli
-07 09 17 bifes encebollados				 omelette risotto,lechuga zanahoria muzzarella rabanitos
-08 09 17 milanesas,chauchas huevo			 pizza 5 m. a.
-09 09 17 costeletas cerdo,lentejas huevo		 sandwich pata
-10 09 17 ñoquis	    		   			 pollo plancha,arroz calabaza choclo
-11 09 17 sopa,costeleta,choclo				 colita cuadril en vino,papas
-12 09 17 pollo con arroz				 empanadas verdura atun
-13 09 17 milanesas,mayonesa de ave			 mis tacos mixtos
-14 09 17 pescado,pure de papa  				 pizza l.c. n. r. p.s.
-15 09 17 carne al horno,papa camote			 bondiola miel jengibre salsa soja,mayonesa ave
-16 09 17 asado,lentejas huevo,pimiento asado		 pollo al horno,rabas
-17 09 17 ravioles		       			 pan jamon crudo,papas bravas,brocheta cerdo,pastel colombiano,shawarma
-18 09 17 sopa,costeleta,choclo				 gnocchi espinaca papa con salsa alfredo
-19 09 17 pollo a la portuguesa,pure			 rouladen,zanahoria huevo lechuga
-20 09 17 carne ajo perejil,papa camote			 pescado horno,arroz frito
-21 09 17 pescado,arroz					 gyoza cerdo,falafel
-22 09 17 milanesa,lechuga				 sandwich pollo marinado,omelette arvejas jamon
-23 09 17 matambre de cerdo,lentejas huevo		 pizza l.f. m. r.
-24 09 17 canelones,lechon	    			 tacos
-25 09 17 sopa con arroz,costeleta durisima,pure calabaza tarta pollo hongo
-26 09 17 pollo al horno,repollo	  			 lomo con pan hojaldrado,choclo tomate huevo
-27 09 17 fideos	  					 tarta espinaca
-28 09 17 carne al horno,lechuga tomate,papa camote	 tacos
-29 09 17 bifes encebollados		    		 atun glaseado,arroz frito
-30 09 17 costillas de cerdo,lentejas huevo,helado        pizza l.f. e. p.r.
+01 07 16 pollo verduras;empanadas espinaca pollo
+02 07 16 costilla cerdo,tomate cebolla;pizza a.m. v. e. r. n.
+03 07 16 fideos;lomo completo max burger
+04 07 16 sopa,costeleta cerdo,mazorca;merluza,arroz
+05 07 16 cacerola carne,capeletinis;tarta espinaca
+06 07 16 albongidas mondongo salsa;pollo arrollado,choclo cremoso
+07 07 16 pastel de papa;milanesa soja,tarta espinaca
+08 07 16 carne horno,papa,camote;pizza l.f. a. ch.
+09 07 16 asado,lechuga,tomate pimiento;lomo completo max burger
+10 07 16 canelones,ravioles;picada al colorie,mousse naranja
+11 07 16 sopa,bife,pure;tarta espinaca
+12 07 16 bifes encebollados;pollo plancha,relleno espinaca
+13 07 16 pollo horno verduras;sushi
+14 07 16 costeleta cerdo,canelones;milanesa horno,lentejas huevo
+15 07 16 lasagna zapallito;pollo plancha,choclo cremoso,calabaza
+16 07 16 asado,provoleta,tomate pimiento;pizza 5 e. r. p.
+17 07 16 fideos
+22 07 16 ;lomo medio metro
+23 07 16 ;pizza 5 m. es.
+24 07 16 canelones;barranquero
+25 07 16 sopa,bife,choclo;empanadas verdura
+26 07 16 carne horno;pollo plancha
+27 07 16 merluza tomate;banana,pera
+28 07 16 pollo arroz;asado,choclo cremoso
+29 07 16 ñoquis;suprema pollo,revuelto brocoli
+30 07 16 costeleta cerdo,caballa atun;empanadas hoderatto v. a. j.yq.
+31 07 16 pollo,chauchas huevo;taco pollo picante
 
-01 10 17 ravioles     		     			 empanadas l.c. c. p. j.q.
-02 10 17 sopa,costeleta,choclo				 pollo papas berenjena en bolsa
-03 10 17 ñoquis						 hamburguesa p.e.q. p.j.q.
-04 10 17 milanesa,chauchas huevo			 falafel,pure calabaza puerro
-05 10 17 carne al horno	   				 gyoza,arroz
-06 10 17 bifes encebollados				 cordon bleu,omelette f. cebolla
-07 10 17 costeleta,lentejas huevo			 jamon crudo anana,pollo salsa puerro,helado,tartas
-08 10 17 pollo asado,huevo tomate			 burrito
-09 10 17 sopa,costeleta,lechuga tomate			 bifes stroganoff,pure camote
-10 10 17 pollo con arroz				 hamburguesas de atun,verduras al horno
-11 10 17 milanesas,mayonesa de ave			 salteado pollo fideos verduras
-12 10 17 fideos		       				 dumplings,croquetas atun,relleno tartas
-13 10 17 carne al horno verduras,papas camotes		 bondiola,revuelto pollo verduras
-14 10 17 mi asado,lentejas huevo       			 hamburguesa tere gourmet
-15 10 17 pollo asado,ravioles				 pizza f. e. n.
-16 10 17 sourdough primero,fideos      			 estofado con cerveza negra,pure camote
-17 10 17 sopa,costeleta,pure				 pescado,choclo tomate huevo
-18 10 17 milanesa napolitana,papa tomate huevo		 bife y brocoli,calabaza
-19 10 17 polenta  		  	 		 tarta espinaca pollo
-20 10 17 bifes encebollados				 costeletas crema de albahaca,arroz garbanzos arvejas
-21 10 17 costeletas,lentejas huevo			 tacos
-22 10 17 costillas cordero,zanahoria repollo		 pizza bolos n. p.
-23 10 17 sopa,pollo plancha,cordero,calabaza     	 empanadas verdura
-24 10 17 pollo al horno,chauchas huevo,relleno tarta     bife stroganoff
-25 10 17 fideos	  		 	       		 arroz relleno tarta,costeleta cerdo
-26 10 17 carne ajo perejil,papa camote,repollo		 asado,camote,garbanzo espinaca
-27 10 17 milanesa,choclo tomate huevo			 brochetas de pollo soja miel,brocoli
-28 10 17 aguja,lentejas huevo				 pizza bolos n. p. h. f.
-29 10 17 ravioles,lechon				 burrito
-30 10 17 sopa,choclo,costeleta				 pollo con verduras,papas
-31 10 17 ñoquis						 niños envueltos de cerdo
+01 08 16 sopa,bife,pure cabalaza;empanadas verdura,pollo horno
+02 08 16 bifes encebollados;32
+03 08 16 carne horno,papa camote;merluza,tortilla espinaca
+04 08 16 fideos salsa;pollo plancha,calabaza berenjena horno
+05 08 16 costeleta cerdo,arroz lentejas;hamburguesa pescado
+06 08 16 costilla cerdo,lechuga tomate;asado,papa camote asados
+07 08 16 canelones;filet pollo completo
+08 08 16 sopa,costeleta,calabaza;pollo enrollado,choclo cremoso
+09 08 16 pollo arroz;milanesa horno,relleno atun
+10 08 16 carne horno,papa huevo tomate;pizza salvado choclo
+11 08 16 bifes encebollados;merluza,berenjena,huevo poche
+12 08 16 costeleta cerdo,capeletinis;lomo americano
+13 08 16 pollo plancha,lentejas huevo;sorrentinos calabaza
+14 08 16 choripan,sandwich miga;pizza a. an. f.,brownie helado
+15 08 16 asado,papa asada,tomate pimiento;tarta espinaca pollo
+16 08 16 sopa,pollo plancha,pure;pollo horno verduras
+17 08 16 merluza horno salsa;pastel de papa
+18 08 16 albondigas salsa;merluza limon,arroz primavera
+19 08 16 carne horno,arroz primavera;pizza a.m. r. e.
+20 08 16 costeleta,caballa lentejas;empanadas caballa pollo verdura
+21 08 16 pollo asado;suprema mariland
+22 08 16 sopa,choclo,pure,costeleta cerdo;sandwich carne,empanadas
+23 08 16 capeletinis;hamburguesa pollo,huevo poche,brocoli
+24 08 16 carne horno ajo perejil,papa huevo tomate;merluza,berenjena calabaza horno
+25 08 16 pollo arroz;pollo plancha,relleno atun
+26 08 16 milanesas,huevos rellenos,tomate cebolla;hamburguesa pescado,choclo cremoso
+27 08 16 costeleta cerdo,lentejas huevo;asado,calabaza
+28 08 16 costilla cerdo,berenjena papa asadas;pizza l.f. ch. es. p.
+29 08 16 sopa,costeleta,pure;suprema,arroz primavera
+30 08 16 albondigas salsa;pollo enrollado,camotes horno
+31 08 16 asado,chauchas huevo,tomate pimiento;merluza,tortilla espinaca
 
-01 11 17 costillas cerdo,repollo			 merluza frita,aloo masala
-02 11 17 bifes encebollados,arroz			 cordero al horno,zanahoria huevo
-03 11 17 milanesa gratinada,zanahoria huevo		 barranquero
-04 11 17 costeleta cerdo,arroz lentejas huevo		 pizza shut up p.sb.,helado
-05 11 17 canelones 	       				 tacos
-06 11 17 sopa,costeleta,choclo				 salteado pollo pimiento hongos brocoli,arroz
-07 11 17 pollo al horno,papas camotes			 pescado envuelto al horno con verduras
-08 11 17 ravioles 	      				 choripan cancha
-09 11 17 milanesa,papa tomate huevo			 bondiola plancha,relleno tarta
-10 11 17 bifes criollos	      				 asado,chorizo,pimiento relleno,calabaza asada
-11 11 17 pollo plancha,lentejas				 pizza l.f. l. e. f. n.
-12 11 17 pollo asado,mayonesa ave,sourdough bueno	 sandwich colita cuadril rucula hongos cebolla,papas fritas
-13 11 17 sopa,costeleta,mayonesa ave	    		 pollo arroz azafran
-14 11 17 carne al horno,huevos rellenos			 tarta atun 2
-15 11 17 pastel de papa	       				 bife y brocoli
-16 11 17 milanesa,fideos				 asado,zanahoria huevo choclo lino
-17 11 17 bifes encebollados,pure			 merluza horno,tarta atun 2
-18 11 17 matambre,lentejas,torrejas			 pizza l.f. e. f. p.c.
-19 11 17 ravioles					 empanadas pizza 5 j.q. c.s. a. v.
-20 11 17 costillas cerdo,camotes,tomate cebolla		 pollo enrollado 2,mostachole blancos
-21 11 17 sopa,costeleta cerdo,choclo			 mis tacos mixtos
-22 11 17 ravioles					 choripan cancha
-23 11 17 milanesa,chaucha huevo				 vacio,lechuga tomate huevo
-24 11 17 bifes encebollados,pure			 relleno mis tacos,kongnamool
-25 11 17 milenesa pollo,lentejas huevo			 pizza bolos n. r. a. p.
-26 11 17 pollo asado,tomate cebolla			 pechuga asada,papas fritas
-27 11 17 sopa,costeleta,choclo				 calabaza salteada,pescado horno limon
-28 11 17 albondigas salsa				 cerdo agridulce
-29 11 17 carne horno,papa camote			 muslo cerveza negra,brocoli
-30 11 17 milanesa napolitana,papa huevo tomate		 costeleta cerdo,tortilla falafel
+01 09 16 potaje legumbres;pollo plancha,choclo cremoso,berenjena
+02 09 16 bifes encebollados,potaje;suprema,lentejas
+03 09 16 costeleta,fideos tres colores;asado,lechuga tomate,flan crema
+04 09 16 canelones;centauro
+05 09 16 sopa,costeleta,pure,mazorca;tarta espinaca
+06 09 16 ñoquis;mi pizza parrilla
+07 09 16 pollo plancha,chauchas huevo;merluza,porotos,relleno verdura
+08 09 16 arroz,bifes encebollados;berenjena rellena atun
+09 09 16 carne horno,lentejas,capeletinis;tostado pollo
+10 09 16 asado,papa asada,tomate pimiento;pata,multiples brownies,torta hungara
+11 09 16 ravioles;empanada,pizza italia,goulash
+12 09 16 sopa,costeleta,pure;cacerola pollo fideos
+13 09 16 bifes criollos;empanadas verdura
+14 09 16 carne horno,huevo papa tomate;merluza,arroz primavera,repollo bruselas
+15 09 16 pollo portuguesa;hamburguesa pollo,huevo,relleno verdura
+16 09 16 pollo plancha,lentejas huevo;alta milanesa napolitana,lentejas huevo
+17 09 16 cerdo asado,berenjena asada,choclo cremoso;pizza d.c. f. e.
+18 09 16 lomo completo,helado;hamburguesa pollo medium guacamole
+19 09 16 sopa,costeleta,pure;pollo horno verduras
+20 09 16 albondigas salsa;tarta atun
+21 09 16 milanesa,chauchas huevo;merluza,repollo bruselas,calabaza
+22 09 16 capeletinis;sandwich pollo,choclo cremoso
+23 09 16 bifes encebollados;pollo pizza(no pescado),mixta
+24 09 16 asado,lentejas huevo,calabaza;pizza d.c. ch. e.
+25 09 16 pollo asado,lechuga,zanahoria;lomo pizza donna
+26 09 16 sopa,costeleta,pure;merluza tomate
+27 09 16 carne horno ajo perejil,papa huevo tomate;milanesa napolitana
+28 09 16 fideos,costeleta cerdo;bistec,chauchas huevo
+29 09 16 ñoquis;merluza,choclo cremoso,relleno espinaca
+30 09 16 pollo horno;torrejas,zapallo huevo,peceto
 
-01 12 17 bifes encebollados	  			 milanesa verona,calabaza salteada
-02 12 17 aguja plancha,lentejas huevo			 pizza a.m. especial mozzarella
-03 12 17 costilla,matambre cerdo,camote asado		 tacos
-04 12 17 sopa,aguja plancha				 pollo griego,choclo cremoso 2
-05 12 17 fideos	    					 tarta pollo espinaca
-06 12 17 colita cuadril horno				 merluza,brocoli soja
-07 12 17 bifes encebollados,arroz			 bondiola ajo jengibre naranja soja,tarta pollo espinaca
-08 12 17 milanesa,huevos rellenos			 costilla,vacio,morcilla,papa asada
-09 12 17 costeleta cerdo,lentejas huevo			 burrito
-10 12 17 costilla,tapa,brocoli picante,lechuga tomate	 suprema napolitana
-11 12 17 sopa,costeleta cerdo,choclo	       		 pollo mostaza crema,tortilla
-12 12 17 pastel de papa					 merluza,pure camote arvejas
-13 12 17 ravioles  					 bisque calabaza,cerdo agridulce 2
-14 12 17 carne horno ajo perejil,lechuga tomate cebolla  pollo lo mein
-15 12 17 bifes encebollados		 		 tamagoyaki
-16 12 17 aguja plancha,lentejas huevo			 lomo completo
-17 12 17 pollo asado					 pizza bolos n. f. a.
-18 12 17 sopa,aguja plancha,choclo			 bondiola plancha,pure papa	 
-19 12 17 milanesa,zanahoria choclo,tomate cebolla	 merluza,pollo lo mein
-20 12 17 fideos salsa	    		  		 tarta atun
-21 12 17 milanesa fugazza club milanesa,papas fritas	 costeleta cerdo,tarta atun
-22 12 17 bifes encebollados,pure	      		 pollo salsa champiñones,omelette garbanzo
-23 12 17 choripan					 asado,papa huevo,tomate
-24 12 17 pollo piedra,lechuga,relleno tarta atun	 tapa,mayonesa ave,vitel tone,lechuga tomate,fiambre
-25 12 17 tapa,mayonesa ave,vitel tone,lechuga tomate     merluza cebolla caramelizada,lechuga
-         mejor sourdough
-26 12 17 sopa,aguja,mayonesa ave			 tacos asado
-27 12 17 pollo portuguesa,papa camote			 bifes stroganoff,brocoli
-28 12 17 milanesa,lentejas huevo			 gyoza pollo,relleno tacos asado
-29 12 17 carne al horno,papa huevo tomate		 suprema napolitana
-30 12 17 costeleta,lentejas huevo,lechuga tomate	 pizza 5 c. m. r.
-31 12 17 ravioles crema,pollo		  		 lechon,pionono,fiambre,sandwich d.p. r.m.h,huevos rellenos
+01 10 16 asado,lentejas huevo;tarta espinaca
+02 10 16 polenta;hamburguesa pescado
+03 10 16 sopa,costeleta,pure,mazorca;pollo plancha,berenjena,relleno espinaca
+04 10 16 pastel de papa;empanadas verdura
+05 10 16 carne horno,lentejas,tomate cebolla;merluza,arroz primavera
+06 10 16 tallarines salsa;hamburguesa atun,arroz primavera
+07 10 16 pollo plancha,chauchas huevo;barranquero
+08 10 16 costeleta cerdo,papa huevo tomate;pizza a.m. ch. m.
+09 10 16 pollo asado,tortilla acelga;sandwich miga c.t.h. p.q. p.p.h.,empanadas verdura
+10 10 16 asado,lentejas choclo,tomate huevo,bomba papa,arrollado,huevos rellenos,pionono,torrejas,coliflor,budin de pan;tacos pollo
+11 10 16 sopa,pure,costeleta cerdo,helado;hamburguesa pollo
+12 10 16 zapallitos rellenos;merluza,calabaza,berenjena
+13 10 16 carne horno;pollo horno verduras
+14 10 16 potaje legumbres;pizza bolos e. a. f.
+15 10 16 pollo plancha,potaje legumbres;picada carlitos,rabas,helado
+16 10 16 pollo asado,lentejas huevo;filet pollo completo
+17 10 16 sopa,bife,pure;pollo enrollado,zanahoria huevo
+18 10 16 fideos;relleno tacos,caballa lentejas
+19 10 16 carne horno;merluza portuguesa
+20 10 16 carne horno ajo perejil;pechuga rellena salsa champiñones
+21 10 16 bifes encebollados;choripan salsa criolla
+22 10 16 pollo plancha,lentejas huevo;pizza a.m. ch. e. a. f.
+23 10 16 asado,calabaza,lechuga zanahoria huevo;tostado pollo
+24 10 16 sopa,costeleta,mazorca,pure;pollo mostaza
+25 10 16 fideos;milanesa napolitana cheddar,garbanzo tomate huevo
+26 10 16 asado duro,zanahoria huevo,tomate pimiento cebolla;merluza,relleno verdura
+27 10 16 pastel de papa;hamburguesa atun
+28 10 16 fideos;sandwich miga n.r.sg. c.t.h. p.q. 
+29 10 16 pollo plancha,chauchas huevo;pizza 5 m. e.
+30 10 16 canelones;hamburguesa puerco
+31 10 16 sopa,costeleta,pure;tarta atun,apio panceta
 
-01 01 18 lechon,papas fritas,huevos rellenos		 lechon,huevos rellenos
-02 01 18 sopa,costeleta cerdo,choclo,huevos rellenos	 pollo caribeño,arroz anana cilantro,pionono
-03 01 18 carne horno cebolla pimientos,lechuga tomate	 gyoza pollo,pionono,huevos rellenos
-04 01 18 bifes encebollados  		       		 vacio,lechuga tomate
-05 01 18 aguja,capeletinis,pionono			 pizza verona n. c. a. sp.
-06 01 18 lentejas huevo,milanesa			 matambre a la pizza,cebolla lechuga tomate,ensalada rusa
-07 01 18 costilla,lentejas huevo,tomate			 nada
-08 01 18 sopa,pure,pollo plancha			 bibimbap
-09 01 18 carne horno,chauchas huevo			 sardina en tomate
-10 01 18 bifes encebollados   				 pollo arrollado acelga tomate queso,berenjena soja
-11 01 18 pollo horno,papa,camote			 hamburguesa lenteja,garbanzo,repollo cocido
-12 01 18 milanesa,zapallito papa			 pizza chocho f. c. e. r.n.
-13 01 18 costeleta cerdo,lentejas huevo,torrejas	 burrito
-14 01 18 pollo asado,lechuga tomate			 hamburguesa completa
-15 01 18 sopa,costeleta cerdo,choclo			 tarta pollo espinaca
-16 01 18 fideos salsa					 pollo caribeño,papa calabaza gravy
-17 01 18 costeleta,zanahoria huevo			 lomo cerdo salsa pera
-18 01 18 merluza,pure	     				 vacio,torrejas calabaza
-19 01 18 costillas cerdo,zapallito papa			 pollo y champiñones,escarola tomate choclo
-20 01 18 costeleta cerdo,lentejas huevo			 pizza bowling r. a. n. p.
-21 01 18 entrecot cerdo salsa mostaza,pure,empanada j.q. burrito
-22 01 18 sopa,costeleta,pure  			    	 pollo teriyaki horno,arroz
-23 01 18 bifes encebollados,fideos			 salteado cerdo bibimbap choclo
-24 01 18 milanesa,ravioles				 costilla,camote asado,lentejas huevo
-25 01 18 carne horno,zanahoria choclo huevo		 costeleta cerdo italiano
-26 01 18 merluza cebolla pimiento,torteleti jamon	 alitas horno,calabaza camote horno
-27 01 18 costeleta cerdo,lentejas huevo,arroz choclo	 costilla,matambre,lechuga tomate
-28 01 18 hamburguesa axion	  	      		 tabla de mar,pescado crema de puerros 
-29 01 18 aguja,papas 					 bondiola mostaza,camotes fritos,gelato
-30 01 18 fideos crema					 pizza vincent caribeña napolitana
-31 01 18 aguja,arroz crema				 gambas al ajillo,papas
+01 11 16 milanesa,lentejas huevo;pollo mostaza
+02 11 16 bifes encebollados,arroz;atun plancha,tortilla espinaca
+03 11 16 pastel de papa;milanesa soja,tarta atun
+04 11 16 fideos;no falafel,lechuga tomate,pollo plancha
+05 11 16 costilla cerdo,lentejas huevo;barranquero
+06 11 16 pollo,lechuga tomate huevo;suprema napolitana,pure
+07 11 16 sopa,pollo plancha,pure;merluza,zapallo papa
+08 11 16 albondigas salsa;asadaso,choclo,papas
+09 11 16 bifes encebollados,arroz;empanadas verdura
+10 11 16 pollo horno en colchon de vegetales.esia;merluza,garbanzo huevo
+11 11 16 costeleta cerdo,huevos rellenos;grasa carne,huevos rellenos,calabaza
+12 11 16 pollo plancha,lentejas huevo;pizza a.m. v. e.
+13 11 16 pollo asado,lechuga tomate huevo;burrito
+14 11 16 sopa,choclo,costeleta;buenos ñoquis espinaca salsa carbonara
+15 11 16 pastel de papa;pechuga mostaza miel,atun lentejas huevo
+16 11 16 carne horno,huevo papa tomate;matambre arrollado,pizza ch.
+17 11 16 polenta;merluza,tortilla brocoli
+18 11 16 costeleta cerdo,chauchas huevo;tempura cornalitos,tostado pollo
+19 11 16 costilla cerdo,lentejas;pizza 5 m. e.
+20 11 16 asado don tenorio;burrito
+21 11 16 sopa,calabaza,costeleta;tarta espinaca atun
+22 11 16 ñoquis;pollo horno vegetales
+23 11 16 merluza tomate;milanesa cerdo,arroz primavera
+24 11 16 milanesa pollo,arroz primavera mayonesa;milanesa soja,caballa tomate cebolla
+25 11 16 pollo plancha,relleno verdura;lomo completo
+26 11 16 lomito cerdo,lentejas huevo,calabaza;empanadas d.p. j.q.,sandwich miga c.t.h. p.q.
+27 11 16 mayonesa atun,lechon,huevos rellenos;0.5 quesadilla,0.5 burrito,taco
+28 11 16 ravioles;restos cerdo lechon huevos,arroz marron
+29 11 16 sopa,bistec,papa zapallo;wok pollo vegetales,zanahoria huevo
+30 11 16 carne horno ajo perejil,papa camote;merluza,chauchas huevo
 
-01 02 18 arroz huevo arvejas atun			 panzoti verdura salsa mixta
-02 02 18 guacamole crispy,papas				 parrillada,matambre pizza,lechuga tomate
-03 02 18 arroz huevo arvejas atun jamon			 lomo funghi,pure hongos tomate,gelato
-04 02 18 doble caramelizada ypf,papas			 empanadas tere atun caprese
-05 02 18 sopa,costeleta,mayonesa ave			 chow mein pollo
-06 02 18 carne horno,tomate huevo choclo		 pati plancha,revuelto zapallito zanahoria papa
-07 02 18 bondiola,chauchas huevo  			 costilla,papa asada
-08 02 18 pollo plancha,atun arroz,torrejas		 sopa wonton,torrejas
-09 02 18 milanesa,fideos    				 pizza bolos n. 4q. p. a.
-10 02 18 aguja,arroz lentejas				 sandwich miga don pablo a.l.t. a.j.sg. j.t.q.
-11 02 18 ravioles,canelones				 vacio,champiñones salteados
-12 02 18 sopa,aguja,choclo				 vuelo marucha,matambre vaca cerdo,lechuga tomate
-13 02 18 costilla,arroz					 tarta atun
-14 02 18 hamburguesa r&f,papas,repollo mayonesa		 tacos
-15 02 18 costillas cerdo,fideos	       			 chow mein pollo cerdo,pescado
-16 02 18 pollo plancha,arroz atun			 empanadas espinaca pollo
-17 02 18 lentejas huevo,costeleta,bondiola		 matambre vaca cerdo,vacio,lechuga,0.6 tiramisu
-18 02 18 matambre arrollado,pollo asado,pure		 tacos mixtos
-19 02 18 sopa,costeleta,zapallito papa			 pollo asado,chips calabaza,coleslaw
-20 02 18 milanesas,zanahoria huevo			 matambre,brocoli ajo
-21 02 18 bondiola,mayonesa ave				 un reuben,berenjena soja
-22 02 18 merluza tomate,arroz atun			 bondiola naranja ajo jengibre soja,camote horno
-23 02 18 costeleta,ravioles   				 pescado frito,revuelto arvejas jamon
-24 02 18 matambre cerdo,costillas cerdo,torrejas	 pizza 5 e. m.p. a.
-25 02 18 panzoti verdura ricota,canelones		 hamburguesa completa bolos,papas
-26 02 18 sopa,costeleta,pure				 caballa con arroz
-27 02 18 pollo horno,berenjenas,chauchas huevo		 matambre cerdo,lechuga
-28 02 18 carne horno ajo perejil,papas camotes 		 gyeranmari,arroz zanahoria papa
+01 12 16 bifes encebollados,fideos verdes;hamburguesa atun
+02 12 16 costeleta,papa tomate huevo;resto wok,arroz marron
+03 12 16 pollo plancha,lentejas huevo;pizza a.m. e. a. n. f.
+04 12 16 asado,tiros huevo;burrito vegetales
+05 12 16 sopa,costeleta,pure;lomo cerdo verduras,calabaza
+06 12 16 pollo portuguesa,arroz;tarta choclo
+07 12 16 pastel de papa;merluza,rabas(para que),berenjena
+08 12 16 carne horno,capeletinis,calabaza;milanesa napolitana
+09 12 16 costeleta,tomate pimiento,lentejas huevo;sardinas tomate,berenjena queso
+10 12 16 costilla cerdo,zanaharia huevo;asado lechon mendieta,tomate huevo,helado
+11 12 16 pollo asado,chauchas huevo;hamburguesa americana
+12 12 16 sopa,zanahoria huevo,costeleta;abadejo verduras,moros cristianos
+13 12 16 albondigas salsa;pollo plancha,fideos verdes
+14 12 16 carne horno,calabaza;burrito
+15 12 16 costeleta,revuelto zapallo;caballa arroz marron,milanesa soja
+16 12 16 caballa arroz,bifes encebollados;milanesa napolitana tuty
+17 12 16 lentejas huevo,pollo plancha;4 hamburguesa,torta
+18 12 16 asado;pizza ch. cha. f.
+19 12 16 sopa,choclo,costeleta,pure;milanesa,berenjena,tomate cebolla
+20 12 16 capeletinis salsa;wok pollo,pure calabaza zanahoria papa
+21 12 16 carne horno,papa huevo tomate;merluza horno,arroz frito
+22 12 16 arroz primavera,merluza tomate;barranquero
+23 12 16 carne horno,lentejas huevo;milanesa verona
+24 12 16 pollo plancha,pure calabaza papa;lechon,mayonesa ave,multiples porquerias
+25 12 16 lechon,mayonesa ave,multiples porquerias;hamburguesa papas
+26 12 16 sopa,costeleta cerdo,pure;moros cristianos,resto wok
+27 12 16 pollo horno,fideos;empanadas salteñita j.q. a. c.q.
+28 12 16 carne horno,lechuga tomate pimiento;berenjena rellena atun
+29 12 16 ñoquis;barranquero
+30 12 16 costeleta,chauchas huevo;empanadas l.p.l.p. j.q. p. c.
+31 12 16 pollo plancha,lentejas huevo;sandwich d.p. d.p. c.t.h.,vitel tone,mayonesa atun,paquete almendras pasas chocolate
 
-01 03 18 milanesas,fideos	       			 lomo cerdo miel mostaza,pure camote
-02 03 18 arroz atun,costeleta cerdo			 mi pizza m. 9/10
-03 03 18 aguja,lentejas,tomate pimiento			 picada,costillas,vacio,marucha,tomate lechuga
-04 03 18 pollo asado,matambre arrollado,tomate pimiento	 tostado pollo,empadana espinaca
-05 03 18 sopa,costeleta,pure  		       		 tarta puerro
-06 03 18 costeletea,fideos				 pescado cajun,tarta puerro
-07 03 18 bifes encebollados,arroz			 bibimbap
-08 03 18 costilla cerdo,camote,pepino			 pescado frito,wonton
-09 03 18 fideos salsa					 tacos
-10 03 18 costilla,falda,lentejas			 empanadas tere j.q. j.r. a. e.
-11 03 18 fideos salsa					 sandwich vacio,papas,0.5 taco juan griego
-12 03 18 sopa,costeleta,pure				 carne cerveza negra,papas camotes
-13 03 18 milanesa,arroz tomate choclo			 pollo mostaza,atun arroz
-14 03 18 bifes criollos	       				 burrito palta,atun arroz
-15 03 18 cerdo horno,huevos rellenos			 pescado frito,repollo soja
-16 03 18 carne horno,papas  				 pizza a.m. m. c.
-17 03 18 costilla,marucha,papas asadas			 lomo glup
-18 03 18 canelones,fideos				 pizza bolos p. n. f. h.
-19 03 18 sopa,aguja,pure				 tarta pollo verduras salsa blanca
-20 03 18 milanesa,pure calabaza				 pescado,tarta pollo verduras salsa blanca
-21 03 18 carne horno,papas camotes			 pollo kiev,papa tomate huevo
-22 03 18 polenta	   				 pollo mostaza,repollo
-23 03 18 bifes encebollados,arroz			 hamburguesa comision,papas fritas sogueadas
-24 03 18 lechon,mayonesa ave				 entraña,papa crema panceta
-25 03 18 fideos		 				 sandwich entraña huevo chucrut,calabaza horno
-26 03 18 sopa,milanesa,mayonesa ave                      tacos pollo tomate palta
-27 03 18 pollo horno,papas,mayonesa ave                  vacio,lentejas arroz huevo
-28 03 18 pastel de papa                                  bondiola salsa provenzal,camote zapallito zanahoria
-29 03 18 ñoquis	   					 pescado frito,lechuga pollo chucrut
-30 03 18 pescado,empanadas e.c. c.q.		 	 pizza a.m. a. c. e. n.
-31 03 18 milanesa,lentejas huevo			 costilla cerdo,falda,morcilla,lechuga tomate,picada
+01 01 17 pollo asado,mayonesa atun;filet pollo,papas,choclo cremoso
+02 01 17 sopa,costeleta,mayonesa atun,tomate cebolla;hamburguesa pollo,atun arroz
+03 01 17 bifes encebollados,capeletinis;milanesa verona,papas
+04 01 17 pollo plancha,costeleta,zanahoria huevo;asado,papa berenjena
+05 01 17 pescado tomate cebolla,arroz;tarta atun jamon queso
+06 01 17 pollo horno,papas camotes;sardinas en tomate
+07 01 17 milanesas pollo vaca,lentejas huevo;asado
+08 01 17 asado don tenorio,tiramisu;burrito
+09 01 17 sopa,pure mixto,costeleta;bife cerdo,relleno verdura
+10 01 17 pastel de papa;pollo verduras
+11 01 17 ñoquis;milanesa napolitana,brocoli revuelto
+12 01 17 bifes encebollados;relleno taco,caballa
+13 01 17 carne horno,papa huevo tomate;sandwich pata
+14 01 17 costeleta,lentejas huevo;pata,calabaza
+15 01 17 canelones,ravioles;pollo bob milan
+16 01 17 sopa,choclo,costeleta,pure;pollo plancha,arroz invierno
+17 01 17 merluza,papa camote;tarta espinaca
+18 01 17 carne horno,repollo,tomate cebolla;tostados,tarta espinaca
+19 01 17 fideos,bifes encebollados;milanesa pejerrey,papa huevo tomate
+20 01 17 pollo horno,zanahoria huevo;burrito
+21 01 17 costeleta cerdo,lentejas huevo;pizza a.m. m. v.
+22 01 17 asado,zanahoria huevo,helado;lomo gallina,papas cheddar
+23 01 17 sopa,calabaza;empanadas verdura j.yq.
+24 01 17 papa huevo tomate,milanesa napolitana;wok pollo
+25 01 17 fideos,costeleta;arroz revuelto,sandwich pata
+26 01 17 carne horno,huevos rellenos;quiche puerros jamon cocido
+27 01 17 bifes criollos;caballa,milanesa soja
+28 01 17 asado,matambre cerdo,lentejas huevo;trucha salsa alcaparras,papas fritas
+29 01 17 ñoquis,postre helado;pizza bolos n. a. h. f.
+30 01 17 sopa,costeleta,lechuga tomate;pollo verduras
+31 01 17 milanesa,capeletinis;sandwich atun,zapallo revuelto
 
-01 04 18 ravioles	   				 tostado pollo
-02 04 18 0.5 sandwich milanesa,empanada l. atun		 relleno tacos,zanahoria glaseada soja
-03 04 18 sopa,costeleta,pure		   		 vacio,lechuga tomate
-04 04 18 pollo horno,empanada e.c.,zanahoria huevo	 carne cerveza negra,arroz atun
-05 04 18 costillas cerdo,arroz tomate choclo,papas	 aguja,omelette espinaca tomate
-06 04 18 aguja encebollada,fideos     			 milanesa verona,papas
-07 04 18 costeleta cerdo,lentejas huevo			 tostado pollo
-08 04 18 ravioles,canelones	  			 pizza bolos n. c. f.
-09 04 18 sopa,aguja,pure				 higado encebollado,arroz
-10 04 18 pollo portuguesa				 tarta atun,tarta jamon queso
-11 04 18 aguja,chauchas huevo				 tarta atun,arroz lentejas
-12 04 18 milanesa,huevo papa arveja mayonesa		 sardina tomate palta,huevo papa arveja mayonesa
-13 04 18 pescado cebolla pimiento,fideos		 pescado cebolla pimiento,coliflor gratinada
-14 04 18 matambre,torrejas				 pizza l.f. e. c.
-15 04 18 asado,tomate pimiento				 tostado pollo
-16 04 18 sopa,costeleta,choclo				 aguja cebolla pimiento,pure camote
-17 04 18 milanesa,papa zapallito			 colita cuadril vino,broncos
-18 04 18 costilla cerdo,arroz atun			 empanadas pollo espinaca
-19 04 18 fideos salsa	      				 pescado horno,tortilla vegetales
-20 04 18 carne horno,papas camotes			 tacos mixtos
-21 04 18 costeleta cerdo,lentejas huevo			 pizza l.f. m. e.
-22 04 18 pollo asado,ravioles	  			 sardinas salsa tomate,torrejas sogue
-23 04 18 sopa,aguja,choclo				 pollo queso crema,coliflor,papas
-24 04 18 milanesa pollo,chauchas huevo			 costilla cerdo mostaza,arroz
-25 04 18 ravioles 		 			 huevos rellenos,pescado horno
-26 04 18 colita cuadril,costillas cerdo,huevos rellenos	 pollo salsa puerro,berenjena soja
-27 04 18 bifes encebollados,fideos	       		 falafel,papa huevo arveja
-28 04 18 aguja,ravioles					 pizza 4p. e. 4q. champa
-29 04 18 costilla,entraña,morcilla,tripa,tomate pimiento tostado pollo
-30 04 18 sopa,choclo,aguja				 empanadas l.s. j.q. s. a.
+01 02 17 bifes encebollados,arroz;merluza enrollada espinaca
+02 02 17 fideos;asado,zanahoria huevo
+03 02 17 merluza tomate;milanesa soja,huevo revuelto,tomate
+04 02 17 costeleta cerdo,lentejas huevo;burrito
+05 02 17 pollo asado,mayonesa ave;nada
+06 02 17 sopa,costeleta,calabaza;wok pollo,mayonesa ave
+07 02 17 carne horno,arroz,tomate cebolla;tarta atun
+08 02 17 zapallitos rellenos;pizza a.m. c. e. n.
+09 02 17 milanesa,choclo tomate huevo;merluza frita,zanahoria calabaza papa
+10 02 17 pollo arroz;pizza bolos an. m. e. cq.
+11 02 17 pollo plancha,tarta atun,lentejas huevo;empanadas l.s. a. j.q. á.
+12 02 17 canelones,ravioles pavita nuez;lomo completo
+13 02 17 sopa,costeleta,calabaza;suprema,choclo tomate huevo
+14 02 17 guiso lentejas chorizo;cerdo verduras
+15 02 17 bifes encebollados,fideos;hamburguesa delicious street
+16 02 17 milanesa,lechuga tomate;empanadas espinaca
+17 02 17 asado,tomate,zanahoria huevo;medallon pollo drops
+18 02 17 costeleta,chauchas lentejas huevo;mayonesa ave,pollo arrollado,asado,helado,torta
+19 02 17 pollo asado,lechuga tomate;burrito
+20 02 17 sopa,costeleta,pure;revuelto arvejas,pescado
+21 02 17 costeleta puerco,zapallo papa;pollo lechuga huevo queso panceta choclo
+22 02 17 fideos;sardinas tomate
+23 02 17 pollo plancha,zanahoria huevo;hamburguesa caseras,papa
+24 02 17 costeleta,capeletinis,tomate cebolla pimiento;milanesa soja cheddar,arroz frito
+25 02 17 pollo plancha,lentejas huevo;pizza a.m. e. f. a.
+26 02 17 asado,choclo huevo tomate,mousse chocolate;burrito
+27 02 17 sopa,choclo,costeleta;empanadas estelita c.s. á. p.
+28 02 17 asado,lechuga tomate,papasada;sandwich d.p. n.r. a.m.h. b.q.
 
-01 05 18 pollo asado,papa zapallito			 tarta peppin
-02 05 18 fideos		  				 aguja encebollada,camote horno
-03 05 18 milanesa,tortilla				 pescado,tarta peppin
-04 05 18 pollo portuguesa,pure				 hamburguesa m.b.
-05 05 18 milanesa,lentejas huevo			 pizza l.f. e. r.
-06 05 18 canelones,ravioles				 pollo l.v.,lechuga zanahoria repollo
-07 05 18 sopa,choclo,aguja				 pollo queso crema,broncos ajo,camote frito
-08 05 18 carne horno,papa camote			 tacos carne
-09 05 18 albondigas salsa 				 bondiola plancha,risotto garbanzo
-10 05 18 pollo horno,lechuga tomate			 aguja stroganoff,pure camote
-11 05 18 pescado cebolla pimiento,arroz			 burrito
-12 05 18 costeleta cerdo,lentejas huevo			 pizza a.m. m. e.,sandwich miga con cajon
-13 05 18 pollo asado,lechuga tomate			 tostado pollo
-14 05 18 sopa,zapallo,aguja  				 pollo mostaza,arroz atun choclo sesamo tostado
-15 05 18 milanesa,fideos				 pescado frito,zanahoria choclo huevo
-16 05 18 fideos salsa					 aguja salsa estragon,pure zanahoria calabaza queso
-17 05 18 carne horno,papa camote			 empanadas pollo espinaca j.q.
-18 05 18 bifes encebollados,pure			 relleno pollo espinaca,arroz frito cerdo
-19 05 18 costilla,morcilla,lentejas huevo		 fiambre,ensalada rusa,asado,pollo,lechuga tomate,mousse
-20 05 18 canelones		    			 tostado pollo
-21 05 18 sopa,pure,costeleta				 pollo bolsa barbacoa,broncos
-22 05 18 suprema napolitana,zapallito huevo		 aguja encebollada,papa huevo arveja
-23 05 18 polenta 		      			 pastel de papa
-24 05 18 carne horno,papa camote			 empanadas l.s. j.q. a. s.
-25 05 18 pollo asado,lechuga tomate			 pizza a.m. e. m.
-26 05 18 matambre,camotes fritos			 vacio,costilla,morcilla,ensalada rusa
-27 05 18 ravioles	  				 bondiola miel soja,risotto porotos
-28 05 18 sopa,costeleta,choclo				 entraña champiñones crema,tortilla
-29 05 18 pollo arroz					 pollo lorraine,lechuga zanahoria
-30 05 18 aguja,fideos					 pescado verduras,torrejas
-31 05 18 milanesa,zapallo				 
+01 03 17 pollo portuguesa;pescado,tortilla acelga
+02 03 17 milanesa pollo carne,chauchas huevo;wok pollo,calabaza
+03 03 17 bifes encebollados;milanesa soja,rabas
+04 03 17 costilla cerdo,lentejas huevo;burrito
+05 03 17 canelones;empanadas l.s. a. s. j.q.a.
+06 03 17 sopa,zapallo papa,costeleta;pollo mostaza,papa camote
+07 03 17 merluza tomate;pizza verona s. m. e.
+08 03 17 fideos;pollo empimentado,arroz primavera
+09 03 17 carne horno,arroz primavera,huevos rellenos;mostachole queso acelga alcauciles
+10 03 17 bifes encebollados,papa;milenasa napolitana
+11 03 17 asado,lentejas huevo;pizza bolos c.q. p. h.
+12 03 17 ravioles;empanadas l.s. a. s. v.
+13 03 17 sopa,calabaza,costeleta;pollo plancha,salteado verduras,helado nahuel
+14 03 17 milanesa napolitana;tarta acelga
+15 03 17 calabaza rellena,albondigas;pizza semi-casera ultra crocante
+16 03 17 carne ajo perejil,papas,camotes;atun plancha,lentejas huevo
+17 03 17 pollo arroz;hamburguesa cordero juan griego,pizza m.,waffle nutella
+18 03 17 costeleta cerdo,lentejas arroz;quesadilla vegetales,pedacito burrito,nachos
+19 03 17 pollo asado,chauchas huevo;matambre cerdo salsa peras,papas noisette
+20 03 17 sopa,costeleta,choclo;pescado,arvejas huevo
+21 03 17 fideos;hamburguesa pollo espinaca,crema calabaza
+22 03 17 asado horno,papa huevo tomate;pizza verona m. s.
+23 03 17 bifes encebollados,arroz;salteado cerdo
+24 03 17 pollo arroz;burrito
+25 03 17 asado vaca cerdo,lentejas huevo;barranquero
+26 03 17 canelones;pizza verona m. c.
+27 03 17 sopa,costeleta,calabaza;tarta choclo
+28 03 17 milanesas,zanahoria huevo;pollo verduras
+29 03 17 carne horno camotes papas;pescado,arvejas huevo
+30 03 17 ñoquis;hamburguesa papa pescado cebolla,arroz
+31 03 17 bifes encebollados,fideos;burrito
+
+01 04 17 asado horno,lentejas huevo;abadejo vasca,papas noisette,cheesecake
+02 04 17 fideos;medio lomo
+03 04 17 sopa,costeleta,choclo,calabaza;medio lomo,huevo tomate papa
+04 04 17 milanesa horno,tomate cebolla,papas;tarta puerros cebolla queso
+05 04 17 pastel de papa;pescado,salteado vegetales
+06 04 17 pollo verduras,papa camote;cornalitos,calabaza
+07 04 17 capeletinis chorizo;pizza a.m. ch. m.
+08 04 17 asado cerdo horno,lentejas huevo;2.5 choripan
+09 04 17 lechon,pollo asado,tomate pimiento;tostado pollo
+10 04 17 sopa,costeleta,pure;pechuga rellena j.q.,crema espinaca
+11 04 17 bifes encebollados;costeleta cerdo,choclo huevo tomate
+12 04 17 costeleta,zanahoria huevo,berenjena;calabaza puerro cebolla,media pechuga rellena,empanada j.q.
+13 04 17 milanesas,fideos hélice;hamburguesa pollo centro cheddar,salteado cerdo
+14 04 17 pescado tomate;empanadas caballa espinaca
+15 04 17 costeleta,lentejas huevo ajo perejil;pizza a.m. m. n.
+16 04 17 canelones estelita;pescado,pure n.c.
+17 04 17 sopa,calabaza,costeleta;tarta atun
+18 04 17 pollo horno,papa camote zanahoria;tacos pollo
+19 04 17 colita cuadril,fideos;omelette vegetales,cerdo salsa pera
+20 04 17 ravioles;milanesa soja espinaca queso,tarta atun
+21 04 17 bifes encebollados;barranquero
+22 04 17 asado,lentejas huevo;pizza bolos e. f. p. a. h.
+23 04 17 matambre cerdo,pollo,fideos;empanadas tere a. v. c.
+24 04 17 sopa,costeleta,mazorca;torrejas,milanesa soja
+25 04 17 pollo arroz;costeleta cerdo,zanahoria huevo
+26 04 17 carne horno camotes;caballa espinaca,omelette zuchini
+27 04 17 calabaza rellena choclo;pescado,pure camote arvejas
+28 04 17 bifes encebollados;relleno tacos,zanahoria huevo
+29 04 17 pollo plancha,lentejas huevo;hamburguesa completa,papas
+30 04 17 ñoquis;pizza verona m.b.p. m. n.
+
+01 05 17 asado,c.t.h.,huevo relleno,pionono,papa algo,verdura salsa blanca;empanadas pollo espinaca,caballa espinaca,choclo
+02 05 17 sopa,costeleta,calabaza;milanesa soja,brocoli
+03 05 17 pollo horno,papa,camote;asado horno,calabaza,lechuga tomate
+04 05 17 guiso lentejas;pescado,arroz primavera
+05 05 17 carne horno,arroz primavera;burrito
+06 05 17 matambre,a la pizza,lentejas huevo;rabas,pizza shut up p.y.b. s.u.
+07 05 17 pollo asado,papa zapallito;hamburguesa simple,choclo
+08 05 17 sopa,pure,costeleta;tarta atun
+09 05 17 polenta;pollo plancha,pure zanahoria calabaza
+10 05 17 huevos rellenos,milanesa;pescado,brocoli
+11 05 17 bifes encebollados,arroz;costeleta cerdo,humita
+12 05 17 pollo horno,papa camote;milanesa soja,tarta atun
+13 05 17 pollo plancha,lentejas huevo;pizza bolos c. e. ch. h.
+14 05 17 asado,chauchas huevo;burrito
+15 05 17 sopa,costeleta,calabaza;pescado,brocoli
+16 05 17 fideos,pollo plancha;bife cerdo,coles bruselas
+17 05 17 ravioles salsa;costeleta,lentejas huevo
+18 05 17 cerdo horno,lentejas huevo;empanadas pollo caballa espinaca,pure zanahoria calabaza avena
+19 05 17 pollo portuguesa;milanesa soja,choclo tomate
+20 05 17 pollo plancha,repollo;empanadas l.s. v. hu. p.
+21 05 17 pollo asado,ravioles;bondiola cerdo laqueada,vegetales salteados
+22 05 17 sopa,costeleta cerdo,calabaza;costeleta,papa zapallito
+23 05 17 milanesa horno,pure camote arvejas;pescado,arroz yamani primavera
+24 05 17 bifes encebollados,lentejas;vacio,humita,calabaza
+25 05 17 fideos salsa;tarta atun,humus
+26 05 17 colita cuadril,camotes;burrito 
+27 05 17 pollo plancha,lentejas huevo;hamburguesa completa
+28 05 17 ravioles;don pablo empanadas verdura,sandwich c.t.h.
+29 05 17 sopa,choclo,costeleta;milanesa soja,pure camote arvejas
+30 05 17 pollo verduras;empanadas verdura,arvejas
+31 05 17 guiso fideos;pescado,crema calabaza puerro
+
+01 06 17 carne horno,lentejas;matambre,choclo asado
+02 06 17 bifes encebollados;pollo plancha,moros cristianos
+03 06 17 costeleta,lentejas huevo;tacos mixtos,salsa barbacoa
+04 06 17 canelones,ravioles;pollo piedra,repollo lechuga zanahoria
+05 06 17 sopa,costeleta,calabaza;mayonesa ave,milanesa
+06 06 17 carne horno ajo perejil,mayonesa ave;sandwich carne verduras,brocoli
+07 06 17 pollo portuguesa,arroz;pescado,lechuga tomate
+08 06 17 pescado tomate,fideos;tarta calabaza,calabaza,milanesa soja
+09 06 17 costeleta,camotes;omelette caprese,muslo,choclo tomate huevo
+10 06 17 milanesa,lentejas huevo,tomate cebolla;burrito guacamole
+11 06 17 pollo,ravioles;asado,lechuga tomate,pimiento
+12 06 17 sopa,choclo,costeleta;tarta espinaca
+13 06 17 albondigas salsa;pescado,alcauciles lechuga pimientos asados huevo poche
+14 06 17 bifes encebollados;hamburguesa espinaca queso,pure camote arjevas
+15 06 17 carne horno,papa huevo tomate;tarta espinaca,calabaza
+16 06 17 pollo verduras;lomo al plato,pure,helado nahuel
+17 06 17 costeleta,lentejas huevo;burrito
+18 06 17 verdura empanada,mayonesa ave,huevos rellenos,asado,lechuga lechuguin tomate huevo,macedonia;suprema gratinada,cremoso papa
+19 06 17 sopa,costeleta,choclo;pizza casera parrilla m. e. 3/10
+20 06 17 ravioles pavita nuez,carne horno;milanesa,brocoli ajo
+21 06 17 pastel de papa;rollos pescado salsa blanca tomates,calabaza
+22 06 17 fideos;pollo plancha,lechuga zanahoria huevo
+23 06 17 costeleta,chauchas huevo;empanadas caballa espinaca
+24 06 17 milanesa,lentejas huevo;matambre,zanahoria huevo,camote
+25 06 17 ravioles,lechon,empanada caballa espinaca;pizza a.m. choclo especial napolitana
+26 06 17 sopa,pollo plancha,calabaza;risotto champiñones pollo
+27 06 17 bifes encebollados;empanadas pollo espinaca,huevo poche
+28 06 17 carne horno,papas camotes;omelette caprese,pescado
+29 06 17 ñoquis chorizo;asado,pure calabaza choclo
+30 06 17 milanesa,zanahoria huevo;pizza casera m. f. 6/10
+
+01 07 17 bondiola plancha,lentejas huevo;bife chorizo completo,papas
+02 07 17 pollo asado,lechuga tomate huevo;tacos mixtos
+03 07 17 sopa,costeleta,pure papa;wok pollo,huevos rellenos atun
+04 07 17 carne ajo perejil verduras,papas camotes;costeleta cerdo,arroz primavera,huevo relleno atun
+05 07 17 pescado cebolla pimiento tomate,mostacholes;hamburguesa espinaca queso,calabaza choclo arvejas,huevos rellenos
+06 07 17 milanesas,papa tomate huevo;gua bao pollo cebolla pimiento
+07 07 17 pollo portuguesa,arroz;costeleta,omelette jamon queso tomate
+08 07 17 bondiola horno,lentejas huevo;pizza 5 p. n.r. empanadas 5 a. á. c.d.
+09 07 17 canelones espinaca carne panceta;pollo piedra,ensalada rusa
+10 07 17 sopa,pure,costetela;pastel de papa
+11 07 17 guiso fideos;tacos mixtos
+12 07 17 pollo verduras,camotes papas;atun plancha,zanahoria lechuga huevo
+13 07 17 milanesas,arroz primavera;pastel camote,pollo al limon petersen
+14 07 17 polenta;napolitana papas verona
+15 07 17 lentejas huevo,torrejas,bondiola plancha;tacos mixtos,quesadilla champiñones
+16 07 17 pollo asado,zanahoria brocoli;barranquero
+17 07 17 sopa,costeleta,choclo;risotto calabaza,pollo limon tomillo
+18 07 17 bifes criollos;vacio cerveza negra,camotes horno pimenton
+19 07 17 bondiola horno,chauchones huevo;tarta cebolla puerro roquefort
+20 07 17 milanesa,calabaza,torrejas;pizza a.m. p. n. a.
+21 07 17 pollo arroz;guiso salteado pollo
+22 07 17 bondiola,lentejas huevo,revuelto espinaca;picana marinada,pure nm
+23 07 17 lechon,lechuga tomate,empanadas,ensalada rusa;tacos mixtos
+24 07 17 sopa,costeleta,pure;pescado,hummus,huevo poche
+25 07 17 fideos;pollo verduras cerverza negra
+26 07 17 asado,lechuga,tomate pimiento;suprema napolitana,huevos rellenos atun
+27 07 17 bifes encebollados;pizza l.c. m. e.
+28 07 17 albondigas salsa;frittata arvejas jamon,sandwich atun,empanada
+29 07 17 pollo plancha,lentejas huevo;burrito
+30 07 17 ravioles ricotta;milanesa,lechuga tomate pimiento huevo rabanitos
+31 07 17 sopa,costeleta,pure nm;pollo arrollado,papas camotes mayonesa
+
+01 08 17 carne horno verduras;empanadas espinaca
+02 08 17 polenta;pizza margarita,especial 7/10
+03 08 17 berenjena rellena arroz;pizza nuevo,verona an. s.p. p.
+04 08 17 pescado cebollo pimiento,pure arvejas;sardinas ch,repollo zanahoria arvejas queso nuez
+05 08 17 milanesa cerdo,lentejas huevo;costilla cordero,papas fritas,mousse chocolate frutilla
+06 08 17 canelones;tacos
+07 08 17 sopa,fideos,costeleta;salteado pollo verduras
+08 08 17 milanesas,chauchas huevo;lomo cerdo salsa pera,camotes
+09 08 17 pollo portuguesa,pure;pizza a.
+10 08 17 carne horno ajo perejil,lechuga tomate;pescado,arroz frito
+11 08 17 bifes encebollados;cornalitos,capresse,lechuga zanahoria repollo pasas
+12 08 17 milanesa cerdo,lentejas huevo;pizza e.,helado
+13 08 17 asado,zanahoria huevo,camotes,pimiento relleno;burrito
+14 08 17 sopa,calabaza,costeleta;tarta puerro cebolla
+15 08 17 sorrentinos acelga ricota;carne brocoli,arroz
+16 08 17 pollo horno,papa huevo tomate;pescado,crema calabaza
+17 08 17 carne horno,camotes,papas;costeleta cerdo,bondiola,revuelto espinaca
+18 08 17 bifes encebollados,fideos;milanesa verona,arroz frito
+19 08 17 pollo plancha,lentejas huevo;pizza muzzarella,especial 7/10
+20 08 17 ravioles;burrito vegetales
+21 08 17 sandwich carne,0.5 sandwich bondiola;0.5 lomo glup,papas
+22 08 17 sopa,choclo,costeleta;atun marinado,camotes,lechuga tomate crutones
+23 08 17 carne horno,chauchas huevos;sandwich vacio cerveza negra
+24 08 17 pollo arroz;gyoza vacio,relleno tarta
+25 08 17 milanesa,papa,camote;pollo curcuma limon tomate pimentos aji,falafel
+26 08 17 matambre,lentejas huevo,helado;sushi
+27 08 17 fideos;sandwich pollo pan leche
+28 08 17 sopa,pollo plancha,pure;tortilla pollo verduras,pollo relleno espinaca queso
+29 08 17 costeleta,lechuga tomate arroz;abadejo salsa soja aji miel,camotes
+30 08 17 bifes criollos;bondiola,lentejas arroz
+31 08 17 costilla cerdo,lechuga zanahoria huevo;calabaza rellena choclo
+
+01 09 17 pastel de papa;carne brocoli fideos
+02 09 17 milanesa napolitana,torrejas,lentejas huevo;asado,picada
+03 09 17 pollo asado,lechuga tomate;pizza f. c. m. f.
+04 09 17 sopa,costeleta,pure;risotto calabaza pollo
+05 09 17 carne horno verduras,papa camote;revuelto zapallito,hamburguesa garbanzo
+06 09 17 pollo horno,ravioles;abadejo ajo jengibre aji naranja,bechamel chedar brocoli
+07 09 17 bifes encebollados;omelette risotto,lechuga zanahoria muzzarella rabanitos
+08 09 17 milanesas,chauchas huevo;pizza 5 m. a.
+09 09 17 costeleta cerdo,lentejas huevo;sandwich pata
+10 09 17 ñoquis;pollo plancha,arroz calabaza choclo
+11 09 17 sopa,costeleta,choclo;colita cuadril en vino,papas
+12 09 17 pollo arroz;empanadas verdura atun
+13 09 17 milanesas,mayonesa ave;mis tacos mixtos
+14 09 17 pescado,pure;pizza l.c. n. r. p.s.
+15 09 17 carne horno,papa camote;bondiola miel jengibre salsa soja,mayonesa ave
+16 09 17 asado,lentejas huevo,pimiento asado;pollo horno,rabas
+17 09 17 ravioles;pan jamon crudo,papas bravas,brocheta cerdo,pastel colombiano,shawarma
+18 09 17 sopa,costeleta,choclo;gnocchi espinaca papa salsa alfredo
+19 09 17 pollo portuguesa,pure;rouladen,zanahoria huevo lechuga
+20 09 17 carne ajo perejil,papa camote;pescado horno,arroz frito
+21 09 17 pescado,arroz;gyoza cerdo,falafel
+22 09 17 milanesa,lechuga;sandwich pollo marinado,omelette arvejas jamon
+23 09 17 matambre cerdo,lentejas huevo;pizza l.f. m. r.
+24 09 17 canelones,lechon;tacos
+25 09 17 sopa arroz,costeleta durisima,pure calabaza tarta pollo hongo;26 09 17 pollo horno,repollo;lomo pan hojaldrado,choclo tomate huevo
+27 09 17 fideos;tarta espinaca
+28 09 17 carne horno,lechuga tomate,papa camote;tacos
+29 09 17 bifes encebollados;atun glaseado,arroz frito
+30 09 17 costilla cerdo,lentejas huevo,helado;pizza l.f. e. p.r.
+
+01 10 17 ravioles;empanadas l.c. c. p. j.q.
+02 10 17 sopa,costeleta,choclo;pollo papas berenjena en bolsa
+03 10 17 ñoquis;hamburguesa p.e.q. p.j.q.
+04 10 17 milanesa,chauchas huevo;falafel,pure calabaza puerro
+05 10 17 carne horno;gyoza,arroz
+06 10 17 bifes encebollados;cordon bleu,omelette f. cebolla
+07 10 17 costeleta,lentejas huevo;jamon crudo anana,pollo salsa puerro,helado,tartas
+08 10 17 pollo asado,huevo tomate;burrito
+09 10 17 sopa,costeleta,lechuga tomate;bifes stroganoff,pure camote
+10 10 17 pollo arroz;hamburguesa atun,verduras horno
+11 10 17 milanesas,mayonesa ave;salteado pollo fideos verduras
+12 10 17 fideos;dumplings,croquetas atun,relleno tartas
+13 10 17 carne horno verduras,papas camotes;bondiola,revuelto pollo verduras
+14 10 17 mi asado,lentejas huevo;hamburguesa tere gourmet
+15 10 17 pollo asado,ravioles;pizza f. e. n.
+16 10 17 sourdough primero,fideos;estofado cerveza negra,pure camote
+17 10 17 sopa,costeleta,pure;pescado,choclo tomate huevo
+18 10 17 milanesa napolitana,papa tomate huevo;bife brocoli,calabaza
+19 10 17 polenta;tarta espinaca pollo
+20 10 17 bifes encebollados;costeleta crema albahaca,arroz garbanzos arvejas
+21 10 17 costeleta,lentejas huevo;tacos
+22 10 17 costilla cordero,zanahoria repollo;pizza bolos n. p.
+23 10 17 sopa,pollo plancha,cordero,calabaza;empanadas verdura
+24 10 17 pollo horno,chauchas huevo,relleno tarta;bife stroganoff
+25 10 17 fideos;arroz relleno tarta,costeleta cerdo
+26 10 17 carne ajo perejil,papa camote,repollo;asado,camote,garbanzo espinaca
+27 10 17 milanesa,choclo tomate huevo;brochetas pollo soja miel,brocoli
+28 10 17 aguja,lentejas huevo;pizza bolos n. p. h. f.
+29 10 17 ravioles,lechon;burrito
+30 10 17 sopa,choclo,costeleta;pollo verduras,papas
+31 10 17 ñoquis;niños envueltos cerdo
+
+01 11 17 costilla cerdo,repollo;merluza frita,aloo masala
+02 11 17 bifes encebollados,arroz;cordero horno,zanahoria huevo
+03 11 17 milanesa gratinada,zanahoria huevo;barranquero
+04 11 17 costeleta cerdo,arroz lentejas huevo;pizza shut up p.sb.,helado
+05 11 17 canelones;tacos
+06 11 17 sopa,costeleta,choclo;salteado pollo pimiento hongos brocoli,arroz
+07 11 17 pollo horno,papas camotes;pescado envuelto horno verduras
+08 11 17 ravioles;choripan cancha
+09 11 17 milanesa,papa tomate huevo;bondiola plancha,relleno tarta
+10 11 17 bifes criollos;asado,chorizo,pimiento relleno,calabaza asada
+11 11 17 pollo plancha,lentejas;pizza l.f. l. e. f. n.
+12 11 17 pollo asado,mayonesa ave,sourdough bueno;sandwich colita cuadril rucula hongos cebolla,papas fritas
+13 11 17 sopa,costeleta,mayonesa ave;pollo arroz azafran
+14 11 17 carne horno,huevos rellenos;tarta atun 2
+15 11 17 pastel de papa;bife brocoli
+16 11 17 milanesa,fideos;asado,zanahoria huevo choclo lino
+17 11 17 bifes encebollados,pure;merluza horno,tarta atun 2
+18 11 17 matambre,lentejas,torrejas;pizza l.f. e. f. p.c.
+19 11 17 ravioles;empanadas pizza 5 j.q. c.s. a. v.
+20 11 17 costilla cerdo,camotes,tomate cebolla;pollo enrollado 2,mostachole blancos
+21 11 17 sopa,costeleta cerdo,choclo;mis tacos mixtos
+22 11 17 ravioles;choripan cancha
+23 11 17 milanesa,chauchas huevo;vacio,lechuga tomate huevo
+24 11 17 bifes encebollados,pure;relleno mis tacos,kongnamool
+25 11 17 milenesa pollo,lentejas huevo;pizza bolos n. r. a. p.
+26 11 17 pollo asado,tomate cebolla;pechuga asada,papas fritas
+27 11 17 sopa,costeleta,choclo;calabaza salteada,pescado horno limon
+28 11 17 albondigas salsa;cerdo agridulce
+29 11 17 carne horno,papa camote;muslo cerveza negra,brocoli
+30 11 17 milanesa napolitana,papa huevo tomate;costeleta cerdo,tortilla falafel
+
+01 12 17 bifes encebollados;milanesa verona,calabaza salteada
+02 12 17 aguja plancha,lentejas huevo;pizza a.m. especial mozzarella
+03 12 17 costilla,matambre cerdo,camote asado;tacos
+04 12 17 sopa,aguja plancha;pollo griego,choclo cremoso 2
+05 12 17 fideos;tarta pollo espinaca
+06 12 17 colita cuadril horno;merluza,brocoli soja
+07 12 17 bifes encebollados,arroz;bondiola ajo jengibre naranja soja,tarta pollo espinaca
+08 12 17 milanesa,huevos rellenos;costilla,vacio,morcilla,papa asada
+09 12 17 costeleta cerdo,lentejas huevo;burrito
+10 12 17 costilla,tapa,brocoli picante,lechuga tomate;suprema napolitana
+11 12 17 sopa,costeleta cerdo,choclo;pollo mostaza crema,tortilla
+12 12 17 pastel de papa;merluza,pure camote arvejas
+13 12 17 ravioles;bisque calabaza,cerdo agridulce 2
+14 12 17 carne horno ajo perejil,lechuga tomate cebolla;pollo lo mein
+15 12 17 bifes encebollados;tamagoyaki
+16 12 17 aguja plancha,lentejas huevo;lomo completo
+17 12 17 pollo asado;pizza bolos n. f. a.
+18 12 17 sopa,aguja plancha,choclo;bondiola plancha,pure papa	 
+19 12 17 milanesa,zanahoria choclo,tomate cebolla;merluza,pollo lo mein
+20 12 17 fideos salsa;tarta atun
+21 12 17 milanesa fugazza club milanesa,papas fritas;costeleta cerdo,tarta atun
+22 12 17 bifes encebollados,pure;pollo salsa champiñones,omelette garbanzo
+23 12 17 choripan;asado,papa huevo,tomate
+24 12 17 pollo piedra,lechuga,relleno tarta atun;tapa,mayonesa ave,vitel tone,lechuga tomate,fiambre
+25 12 17 tapa,mayonesa ave,vitel tone,lechuga tomate,mejor sourdough;merluza cebolla caramelizada,lechuga
+26 12 17 sopa,aguja,mayonesa ave;tacos asado
+27 12 17 pollo portuguesa,papa camote;bifes stroganoff,brocoli
+28 12 17 milanesa,lentejas huevo;gyoza pollo,relleno tacos asado
+29 12 17 carne horno,papa huevo tomate;suprema napolitana
+30 12 17 costeleta,lentejas huevo,lechuga tomate;pizza 5 c. m. r.
+31 12 17 ravioles crema,pollo;lechon,pionono,fiambre,sandwich d.p. r.m.h,huevos rellenos
+
+01 01 18 lechon,papas fritas,huevos rellenos;lechon,huevos rellenos
+02 01 18 sopa,costeleta cerdo,choclo,huevos rellenos;pollo caribeño,arroz anana cilantro,pionono
+03 01 18 carne horno cebolla pimientos,lechuga tomate;gyoza pollo,pionono,huevos rellenos
+04 01 18 bifes encebollados;vacio,lechuga tomate
+05 01 18 aguja,capeletinis,pionono;pizza verona n. c. a. sp.
+06 01 18 lentejas huevo,milanesa;matambre pizza,cebolla lechuga tomate,ensalada rusa
+07 01 18 costilla,lentejas huevo,tomate;nada
+08 01 18 sopa,pure,pollo plancha;bibimbap
+09 01 18 carne horno,chauchas huevo;sardina en tomate
+10 01 18 bifes encebollados;pollo arrollado acelga tomate queso,berenjena soja
+11 01 18 pollo horno,papa,camote;hamburguesa lenteja,garbanzo,repollo cocido
+12 01 18 milanesa,zapallito papa;pizza chocho f. c. e. r.n.
+13 01 18 costeleta cerdo,lentejas huevo,torrejas;burrito
+14 01 18 pollo asado,lechuga tomate;hamburguesa completa
+15 01 18 sopa,costeleta cerdo,choclo;tarta pollo espinaca
+16 01 18 fideos salsa;pollo caribeño,papa calabaza gravy
+17 01 18 costeleta,zanahoria huevo;lomo cerdo salsa pera
+18 01 18 merluza,pure;vacio,torrejas calabaza
+19 01 18 costilla cerdo,zapallito papa;pollo champiñones,escarola tomate choclo
+20 01 18 costeleta cerdo,lentejas huevo;pizza bowling r. a. n. p.
+21 01 18 entrecot cerdo salsa mostaza,pure,empanada j.q. burrito;22 01 18 sopa,costeleta,pure;pollo teriyaki horno,arroz
+23 01 18 bifes encebollados,fideos;salteado cerdo bibimbap choclo
+24 01 18 milanesa,ravioles;costilla,camote asado,lentejas huevo
+25 01 18 carne horno,zanahoria choclo huevo;costeleta cerdo italiano
+26 01 18 merluza cebolla pimiento,torteleti jamon;alitas horno,calabaza camote horno
+27 01 18 costeleta cerdo,lentejas huevo,arroz choclo;costilla,matambre,lechuga tomate
+28 01 18 hamburguesa axion;tabla mar,pescado crema puerros 
+29 01 18 aguja,papas;bondiola mostaza,camotes fritos,gelato
+30 01 18 fideos crema;pizza vincent caribeña napolitana
+31 01 18 aguja,arroz crema;gambas al ajillo,papas
+
+01 02 18 arroz huevo arvejas atun;panzoti verdura salsa mixta
+02 02 18 guacamole crispy,papas;parrillada,matambre pizza,lechuga tomate
+03 02 18 arroz huevo arvejas atun jamon;lomo funghi,pure hongos tomate,gelato
+04 02 18 doble caramelizada ypf,papas;empanadas tere atun caprese
+05 02 18 sopa,costeleta,mayonesa ave;chow mein pollo
+06 02 18 carne horno,tomate huevo choclo;pati plancha,revuelto zapallito zanahoria papa
+07 02 18 bondiola,chauchas huevo;costilla,papa asada
+08 02 18 pollo plancha,atun arroz,torrejas;sopa wonton,torrejas
+09 02 18 milanesa,fideos;pizza bolos n. 4q. p. a.
+10 02 18 aguja,arroz lentejas;sandwich miga don pablo a.l.t. a.j.sg. j.t.q.
+11 02 18 ravioles,canelones;vacio,champiñones salteados
+12 02 18 sopa,aguja,choclo;vuelo marucha,matambre vaca cerdo,lechuga tomate
+13 02 18 costilla,arroz;tarta atun
+14 02 18 hamburguesa r&f,papas,repollo mayonesa;tacos
+15 02 18 costilla cerdo,fideos;chow mein pollo cerdo,pescado
+16 02 18 pollo plancha,arroz atun;empanadas espinaca pollo
+17 02 18 lentejas huevo,costeleta,bondiola;matambre vaca cerdo,vacio,lechuga,0.6 tiramisu
+18 02 18 matambre arrollado,pollo asado,pure;tacos mixtos
+19 02 18 sopa,costeleta,zapallito papa;pollo asado,chips calabaza,coleslaw
+20 02 18 milanesas,zanahoria huevo;matambre,brocoli ajo
+21 02 18 bondiola,mayonesa ave;un reuben,berenjena soja
+22 02 18 merluza tomate,arroz atun;bondiola naranja ajo jengibre soja,camote horno
+23 02 18 costeleta,ravioles;pescado frito,revuelto arvejas jamon
+24 02 18 matambre cerdo,costilla cerdo,torrejas;pizza 5 e. m.p. a.
+25 02 18 panzoti verdura ricota,canelones;hamburguesa completa bolos,papas
+26 02 18 sopa,costeleta,pure;caballa arroz
+27 02 18 pollo horno,berenjena,chauchas huevo;matambre cerdo,lechuga
+28 02 18 carne horno ajo perejil,papas camotes;gyeranmari,arroz zanahoria papa
+
+01 03 18 milanesas,fideos;lomo cerdo miel mostaza,pure camote
+02 03 18 arroz atun,costeleta cerdo;mi pizza m. 9/10
+03 03 18 aguja,lentejas,tomate pimiento;picada,costilla,vacio,marucha,tomate lechuga
+04 03 18 pollo asado,matambre arrollado,tomate pimiento;tostado pollo,empadana espinaca
+05 03 18 sopa,costeleta,pure;tarta puerro
+06 03 18 costeletea,fideos;pescado cajun,tarta puerro
+07 03 18 bifes encebollados,arroz;bibimbap
+08 03 18 costilla cerdo,camote,pepino;pescado frito,wonton
+09 03 18 fideos salsa;tacos
+10 03 18 costilla,falda,lentejas;empanadas tere j.q. j.r. a. e.
+11 03 18 fideos salsa;sandwich vacio,papas,0.5 taco juan griego
+12 03 18 sopa,costeleta,pure;carne cerveza negra,papas camotes
+13 03 18 milanesa,arroz tomate choclo;pollo mostaza,atun arroz
+14 03 18 bifes criollos;burrito palta,atun arroz
+15 03 18 cerdo horno,huevos rellenos;pescado frito,repollo soja
+16 03 18 carne horno,papas;pizza a.m. m. c.
+17 03 18 costilla,marucha,papas asadas;lomo glup
+18 03 18 canelones,fideos;pizza bolos p. n. f. h.
+19 03 18 sopa,aguja,pure;tarta pollo verduras salsa blanca
+20 03 18 milanesa,pure calabaza;pescado,tarta pollo verduras salsa blanca
+21 03 18 carne horno,papas camotes;pollo kiev,papa tomate huevo
+22 03 18 polenta;pollo mostaza,repollo
+23 03 18 bifes encebollados,arroz;hamburguesa comision,papas fritas sogueadas
+24 03 18 lechon,mayonesa ave;entraña,papa crema panceta
+25 03 18 fideos;sandwich entraña huevo chucrut,calabaza horno
+26 03 18 sopa,milanesa,mayonesa ave;tacos pollo tomate palta
+27 03 18 pollo horno,papas,mayonesa ave;vacio,lentejas arroz huevo
+28 03 18 pastel de papa;bondiola salsa provenzal,camote zapallito zanahoria
+29 03 18 ñoquis;pescado frito,lechuga pollo chucrut
+30 03 18 pescado,empanadas e.c. c.q.;pizza a.m. a. c. e. n.
+31 03 18 milanesa,lentejas huevo;costilla cerdo,falda,morcilla,lechuga tomate,picada
+
+01 04 18 ravioles;tostado pollo
+02 04 18 0.5 sandwich milanesa,empanada l. atun;relleno tacos,zanahoria glaseada soja
+03 04 18 sopa,costeleta,pure;vacio,lechuga tomate
+04 04 18 pollo horno,empanada e.c.,zanahoria huevo;carne cerveza negra,arroz atun
+05 04 18 costilla cerdo,arroz tomate choclo,papas;aguja,omelette espinaca tomate
+06 04 18 aguja encebollada,fideos;milanesa verona,papas
+07 04 18 costeleta cerdo,lentejas huevo;tostado pollo
+08 04 18 ravioles,canelones;pizza bolos n. c. f.
+09 04 18 sopa,aguja,pure;higado encebollado,arroz
+10 04 18 pollo portuguesa;tarta atun,tarta jamon queso
+11 04 18 aguja,chauchas huevo;tarta atun,arroz lentejas
+12 04 18 milanesa,huevo papa arveja mayonesa;sardina tomate palta,huevo papa arveja mayonesa
+13 04 18 pescado cebolla pimiento,fideos;pescado cebolla pimiento,coliflor gratinada
+14 04 18 matambre,torrejas;pizza l.f. e. c.
+15 04 18 asado,tomate pimiento;tostado pollo
+16 04 18 sopa,costeleta,choclo;aguja cebolla pimiento,pure camote
+17 04 18 milanesa,papa zapallito;colita cuadril vino,broncos
+18 04 18 costilla cerdo,arroz atun;empanadas pollo espinaca
+19 04 18 fideos salsa;pescado horno,tortilla vegetales
+20 04 18 carne horno,papas camotes;tacos mixtos
+21 04 18 costeleta cerdo,lentejas huevo;pizza l.f. m. e.
+22 04 18 pollo asado,ravioles;sardinas salsa tomate,torrejas sogue
+23 04 18 sopa,aguja,choclo;pollo queso crema,coliflor,papas
+24 04 18 milanesa pollo,chauchas huevo;costilla cerdo mostaza,arroz
+25 04 18 ravioles;huevos rellenos,pescado horno
+26 04 18 colita cuadril,costilla cerdo,huevos rellenos;pollo salsa puerro,berenjena soja
+27 04 18 bifes encebollados,fideos;falafel,papa huevo arveja
+28 04 18 aguja,ravioles;pizza 4p. e. 4q. champa
+29 04 18 costilla,entraña,morcilla,tripa,tomate pimiento;tostado pollo
+30 04 18 sopa,choclo,aguja;empanadas l.s. j.q. s. a.
+
+01 05 18 pollo asado,papa zapallito;tarta peppin
+02 05 18 fideos;aguja encebollada,camote horno
+03 05 18 milanesa,tortilla;pescado,tarta peppin
+04 05 18 pollo portuguesa,pure;hamburguesa m.b.
+05 05 18 milanesa,lentejas huevo;pizza l.f. e. r.
+06 05 18 canelones,ravioles;pollo l.v.,lechuga zanahoria repollo
+07 05 18 sopa,choclo,aguja;pollo queso crema,broncos ajo,camote frito
+08 05 18 carne horno,papa camote;tacos carne
+09 05 18 albondigas salsa;bondiola plancha,risotto garbanzo
+10 05 18 pollo horno,lechuga tomate;aguja stroganoff,pure camote
+11 05 18 pescado cebolla pimiento,arroz;burrito
+12 05 18 costeleta cerdo,lentejas huevo;pizza a.m. m. e.,sandwich miga cajon
+13 05 18 pollo asado,lechuga tomate;tostado pollo
+14 05 18 sopa,zapallo,aguja;pollo mostaza,arroz atun choclo sesamo tostado
+15 05 18 milanesa,fideos;pescado frito,zanahoria choclo huevo
+16 05 18 fideos salsa;aguja salsa estragon,pure zanahoria calabaza queso
+17 05 18 carne horno,papa camote;empanadas pollo espinaca j.q.
+18 05 18 bifes encebollados,pure;relleno pollo espinaca,arroz frito cerdo
+19 05 18 costilla,morcilla,lentejas huevo;fiambre,ensalada rusa,asado,pollo,lechuga tomate,mousse
+20 05 18 canelones;tostado pollo
+21 05 18 sopa,pure,costeleta;pollo bolsa barbacoa,broncos
+22 05 18 suprema napolitana,zapallito huevo;aguja encebollada,papa huevo arveja
+23 05 18 polenta;pastel de papa
+24 05 18 carne horno,papa camote;empanadas l.s. j.q. a. s.
+25 05 18 pollo asado,lechuga tomate;pizza a.m. e. m.
+26 05 18 matambre,camotes fritos;vacio,costilla,morcilla,ensalada rusa
+27 05 18 ravioles;bondiola miel soja,risotto porotos
+28 05 18 sopa,costeleta,choclo;entraña champiñones crema,tortilla
+29 05 18 pollo arroz;pollo lorraine,lechuga zanahoria
+30 05 18 aguja,fideos;pescado verduras,torrejas
+31 05 18 milanesa,zapallo;pollo chimichurri tomillo,colchon arvejas version tortilla
+
+01 06 18 bifes encebollados;sardina tomate palta,relleno taco
+02 06 18 costeleta cerdo,lentejas,ravioles;pizza a.m. e. a. c. n.
+03 06 18 costilla,tripa,papa asada;tostado pollo,empanadas tere c.c.c.
+04 06 18 sopa,aguja,pure calabaza;suprema napolitana,arroz primavera jamon
+05 06 18 guiso fideos;
