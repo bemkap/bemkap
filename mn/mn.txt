@@ -1,0 +1,88 @@
+metodo de la biseccion
+       acotacion del error
+metodo de newton
+       derivacion de la formula
+       analisis del error
+metodo de la secante
+metodo de la falsa posicion
+metodos iterativos de punto fijo
+       2 teoremas de existencia de solucion
+sistemas no lineales
+       metodo de newton
+sistemas lineales
+       regla de cramer
+       eliminacion de gauss
+       pivoteo
+       pivoteo parcial
+       metodo gauss-jordan
+       factorizacion lu
+       metodo doolittle
+       descomposicion de craut
+       lu con matriz de permutacion
+       unicidad de lu
+matriz estrictamente diagonal dominante
+       teorema
+matriz definida positiva
+       teorema definiciones
+matrices no simetricas reales
+definicion extendida para matrices no simetricas
+ortogonalizacion de gram-schmidt
+problemas de minimos cuadrados
+       teorema conjunto solucion
+matriz hessiana
+normas vectoriales y matriciales
+       norma matricial submultiplicativa
+       norma natural
+espectro y radio espectral
+estabilidad de la resolucion de sistemas lineales
+       teoremas
+metodos iterativos
+       metodo de jacobi
+       metodo de gauss-seidel
+       esquema general de los metodos iterativos
+       teorema convergencia
+       teorema estabilidad de un sistema lineal
+       teorema convergencia jacobi
+       teorema convergencia gauss-seidel
+       metodo de sobrerelajacion
+autovalores y autovectores
+matriz simetrica
+       teorema
+circulos de gerschgorin
+       teorema
+metodo de la potencia
+interpolacion
+       interpolacion polinomial
+       existencia y unicidad del polinomio interpolante
+       interpolacion de lagrange
+       diferencias divididas de newton
+       teorema diferencias de newton
+       teorema generalizado de rolle
+       error interpolacion polinomial
+       error interpolacion lineal
+       acotacion del error(caso general)
+       polinomio de chevyshev
+       aproximacion con polinomio de chevishev
+       aproximacion de minimos cuadrados
+       aproximacion lineal de minimos cuadrados
+       aproximacion polinomial de minimos cuadrados
+integracion numerica
+       integracion basada en polinomios interpolantes
+       teorema del valor medio ponderado para integrales
+       regla del trapecio
+       metodo compuesto del trapecio
+       error del metodo
+       estimacion del error trapezoidal
+       metodo de simpson
+       metodo compuesto de simpson
+       teorema error
+       estimacion del error integracion de simpson
+       integracion numerica en dominio bidimensional
+sucesiones y series de funciones
+       campo de convergencia
+       convergencia puntual
+       convergencia uniforme
+       convergencia uniforme e integracion
+       criterio m de weierstrass
+       serie de potencias
+       
