@@ -1,6 +1,7 @@
-import Tkinter as tk
+import tkinter as tk
 import json
 import ven
+import threading
 from ven import db
 
 class gui:
@@ -22,17 +23,17 @@ class gui:
         self.lst[1].bind("<Double-Button-1>",self.sel0)
         self.root.mainloop()
     def fill(self):
-        self.lab[0].config(text="downloaded({0})".format(self.lst[0].size()))
-        self.lst[0].delete(0,tk.END)
-        self.lab[1].config(text="lelf({0})".format(self.lst[1].size()))
-        self.lst[1].delete(1,tk.END)
+        for i in [0,1]: self.lst[i].delete(0,tk.END)
         for i in sorted(self.db.downloaded()): self.lst[0].insert(tk.END,i)
         for i in sorted(self.db.left()): self.lst[1].insert(tk.END,i)
+        for l,i in zip(["downloaded({0})","left({0})"],[0,1]):
+            self.lab[i].config(text=l.format(self.lst[i].size()))
     def sel0(self,event):
-        self.stt.config(text="downloading {0}...".format(self.lst[1].get(tk.ACTIVE)))
-        self.db.download_one(self.lst[1].get(tk.ACTIVE))
+        t="downloading {0}...".format(self.lst[1].get(tk.ACTIVE))
+        self.stt.config(text=t)
+        t=threading.Thread(target=self.db.download_one,args=(self.lst[1].get(tk.ACTIVE),))
+        t.start()
         self.stt.config(text=self.stt.cget("text")+"ok")
         self.fill()
 
 G=gui()
-

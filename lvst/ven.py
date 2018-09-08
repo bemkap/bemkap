@@ -1,5 +1,5 @@
-import BeautifulSoup
-import urllib2
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
 import sys
 import json
 
@@ -10,7 +10,7 @@ class db:
     def record(self,r1,r2):
         url="http://venganzasdelpasado.com.ar/posts/page/{0}"
         for n in xrange(r1,r2+1):
-            p=urllib2.urlopen(url.format(n)).read()
+            p=urlopen(url.format(n)).read()
             t=BeautifulSoup.BeautifulSoup(p,"html.parser")
             for l in t.findAll("source"):
                 u=l.get("src")
@@ -22,13 +22,19 @@ class db:
             if n<=0: break
     def download_one(self,k):
         if not self.dic[k]["downloaded"]:
-            mp3=urllib2.urlopen(self.dic[k]["name"])
-            with open(k,"wb") as fd: fd.write(mp3.read())
-            self.dic[k]["downloaded"]=True
+            mp3=urlopen(self.dic[k]["name"])
+            size=mp3.info()["Content-Length"]
+            with open(k,"wb") as fd:
+                while True:
+                    d=mp3.read(size/50)
+                    if not d: break
+                    else: fd.write(d)
+    def set(self,k):
+        self.dic[k]["downloaded"]=True
     def downloaded(self):
         return([k for k in self.dic if self.dic[k]["downloaded"]])
     def left(self):
         return([k for k in self.dic if not self.dic[k]["downloaded"]])
-    def __del__(self):
+    def close(self):
         with open("db.json","w") as fd:
             fd.write(json.dumps(self.dic))
