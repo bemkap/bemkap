@@ -1,4 +1,4 @@
-import BeautifulSoup
+from bs4 import BeautifulSoup
 from urllib2 import urlopen
 import sys
 import json
@@ -26,8 +26,11 @@ class db:
                 for i in xrange(int(ceil(size/self.CHUNK))):
                     d=mp3.read(self.CHUNK)
                     fd.write(d)
-                    self.listener.act("   %.2fMB/%.2fMB"%(float(i*self.CHUNK)/1000000,size/1000000),n)
+                    s="%.2fMB/%.2fMB"%(float(i*self.CHUNK)/1e6,size/1e6)
+                    self.listener.act(s,n)
             self.listener.finish()
+        else:
+            self.listener.act("already downloaded")
     def set(self,k):
         self.dic[k]["downloaded"]=True
     def downloaded(self):
