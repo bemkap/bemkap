@@ -1,6 +1,8 @@
-from bs4 import BeautifulSoup
+try:
+    import BeautifulSoup
+except ImportError:
+    from bs4 import BeautifulSoup
 from urllib2 import urlopen
-import sys
 import json
 from math import ceil
 
@@ -8,8 +10,7 @@ class db:
     def __init__(self,listener):
         self.listener=listener
         self.CHUNK=4096*16
-        with open("db.json","r") as fd:
-            self.dic=json.load(fd)
+        with open("db.json","r") as fd: self.dic=json.load(fd)
     def record(self,r1,r2):
         url="http://venganzasdelpasado.com.ar/posts/page/%d"
         for n in xrange(r1,r2+1):
@@ -24,13 +25,12 @@ class db:
             size=float(mp3.info()["Content-Length"])
             with open(k,"wb") as fd:
                 for i in xrange(int(ceil(size/self.CHUNK))):
-                    d=mp3.read(self.CHUNK)
-                    fd.write(d)
+                    fd.write(mp3.read(self.CHUNK))
                     s="%.2fMB/%.2fMB"%(float(i*self.CHUNK)/1e6,size/1e6)
                     self.listener.act(s,n)
             self.listener.finish()
         else:
-            self.listener.act("already downloaded")
+            self.listener.act("already downloaded",n)
     def set(self,k):
         self.dic[k]["downloaded"]=True
     def downloaded(self):
@@ -38,5 +38,4 @@ class db:
     def left(self):
         return([k for k in self.dic if not self.dic[k]["downloaded"]])
     def close(self):
-        with open("db.json","w") as fd:
-            fd.write(json.dumps(self.dic))
+        with open("db.json","w") as fd: fd.write(json.dumps(self.dic))
