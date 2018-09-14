@@ -1,7 +1,7 @@
 import Tkinter as tk
 import json
 import threading
-from ven import db
+from db import db
 
 class gui:
     def __init__(self):
@@ -10,6 +10,7 @@ class gui:
         self.lst=[tk.Listbox(self.root),tk.Listbox(self.root)]
         self.scr=[tk.Scrollbar(self.root),tk.Scrollbar(self.root)]
         self.stt=[tk.Listbox(self.root),tk.Listbox(self.root)]
+        self.cnt=tk.Label(self.root,width=64,bg="white",justify=tk.LEFT)
         self.n=0
         self.db=db(self)
         self.fill()
@@ -20,8 +21,10 @@ class gui:
             self.lab[i].grid(row=0,column=i*2)            
             self.scr[i].config(command=self.lst[i].yview)
             self.scr[i].grid(row=1,column=1+i*2,sticky=tk.N+tk.S)
-            self.stt[i].grid(row=2,column=i*2,columnspan=2,sticky=tk.W+tk.E)
+            self.stt[i].grid(row=2,column=i*2,columnspan=1,sticky=tk.W+tk.E)
         self.lst[1].bind("<Double-Button-1>",self.begin_dl)
+        self.lst[1].bind("<Button-1>",self.show_cnt)
+        self.cnt.grid(row=1,column=5,rowspan=2,sticky=tk.N+tk.S)
         self.root.protocol("WM_DELETE_WINDOW",self.close)
         self.root.mainloop()
     def fill(self):
@@ -49,5 +52,7 @@ class gui:
                            args=(self.lst[1].get(tk.ACTIVE),self.n))
         t.start()
         self.n+=1
+    def show_cnt(self,event):
+        self.cnt.config(text=self.db.content(self.lst[1].get(tk.ACTIVE)))
 
 gui()
