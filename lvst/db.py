@@ -14,15 +14,14 @@ class db:
             with open("db1.json","r") as fd: self.dic=json.load(fd)
         except IOError:
             self.dic={}
-    def record(self,r1,r2):
-        url="http://venganzasdelpasado.com.ar/posts/page/%d"
-        for n in xrange(r1,r2+1):
-            p=urlopen(url%n).read()
-            t=BeautifulSoup(p,"html.parser")
-            for e in t.findAll("article",{"class":"post"}):
-                s=e.find("source").get("src")
-                c=e.find("div",{"class":"content"}).get_text()
-                self.dic.setdefault(s.split("/")[-1],{"s":s,"c":c,"dl":False})
+    def record(self,p):
+        url="http://venganzasdelpasado.com.ar/posts/page/%d"%p
+        p=urlopen(url).read()
+        t=BeautifulSoup(p,"html.parser")
+        for e in t.findAll("article",{"class":"post"}):
+            s=e.find("source").get("src")
+            c=e.find("div",{"class":"content"}).get_text()
+            self.dic.setdefault(s.split("/")[-1],{"s":s,"c":c,"dl":False})
     def download(self,k,n):
         if not self.dic[k]["dl"]:
             mp3=urlopen(self.dic[k]["s"])
@@ -31,10 +30,8 @@ class db:
                 for i in xrange(int(ceil(size/self.CHUNK))):
                     fd.write(mp3.read(self.CHUNK))
                     s="%.2fMB/%.2fMB"%(float(i*self.CHUNK)/1e6,size/1e6)
-                    self.listener.act(s,n)
+                    self.listener.refresh(s,n)
             self.listener.finish()
-        else:
-            self.listener.act("already downloaded",n)
     def content(self,k):
         return self.dic[k]["c"]
     def set(self,k):
