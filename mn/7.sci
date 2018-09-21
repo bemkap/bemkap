@@ -11,8 +11,8 @@ function y=lagrange(xs,ys,x)
     y=y+ys(j)*l(xs,j,x);
   end
 endfunction
-xs=[0 0.2 0.4 0.6];
-ys=[1 1.2214 1.4918 1.8221];
+//xs=[0 0.2 0.4 0.6];
+//ys=[1 1.2214 1.4918 1.8221];
 function y=ddif(xs,ys)
   if length(ys)<=1 then
     y=ys(1);
@@ -31,7 +31,4 @@ function y=newton(xs,ys,x)
   for j=1:length(xs)
     y=y+ddif(xs(1:j),ys(1:j))*n(xs,j,x);
   end
-endfunction
-function tabula()
-  
 endfunction

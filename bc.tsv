@@ -859,7 +859,7 @@
 21 08 18 puchero;suprema napolitana,papas rosti
 22 08 18 bifes criollos;merluza vasca,risotto calabaza
 23 08 18 milanesa,tortilla,lechuga;higado encebollado
-24 08 18 carne horno,papa camote;sardina tomate palta,fideos aglio oleo
+24 08 18 carne horno,papa camote;sardina tomate palta,fideos ajo aceite
 25 08 18 aguja,lenteja huevo;asado,zanahoria tomate
 26 08 18 pollo asado,mayonesa ave;tostado pollo
 27 08 18 puchero,mayonesa ave;hamburguesa mcdonalds,papa
@@ -875,4 +875,16 @@
 06 09 18 carne horno ajo perejil,papa camote;milanesa napolitana,arroz primavera
 07 09 18 aguja,fideos;burrito
 08 09 18 costilla,zanahoria huevo;lechon,papa huevo
-09 09 18 canelones;
+09 09 18 canelones;lomo completo,papas fritas
+10 09 18 puchero;sandwich pata
+11 09 18 pollo horno,chaucha huevo;tacos
+12 09 18 costeleta,ravioles;sardina tomate palta,arroz
+13 09 18 bifes encebollados,pure;pollo champiñones,berenjena napolitana
+14 09 18 vacio horno,huevos rellenos;falafel,tomate cebolla
+15 09 18 milanesa,lenteja huevo;empanadas l.s. j.yq. salteña pollo
+16 09 18 lechon,mayonesa atun;tostado pollo
+17 09 18 sopa,mayonesa atun,costeleta;aguja encebollada,mostachol ajo aceite
+18 09 18 carne horno ajo perejil,papa camote;pollo mostaza,papa mostaza,berenjena
+19 09 18 fideos salsa;merluza,torrejas
+20 09 18 pastel de papa;empanadas espinaca
+21 09 18 
