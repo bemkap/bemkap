@@ -7,8 +7,7 @@ import json
 from math import ceil
 
 class db:
-    def __init__(self,listener):
-        self.listener=listener
+    def __init__(self):
         self.CHUNK=4096*16
         try:
             with open("db1.json","r") as fd: self.dic=json.load(fd)
@@ -22,7 +21,7 @@ class db:
             s=e.find("source").get("src")
             c=e.find("div",{"class":"content"}).get_text()
             self.dic.setdefault(s.split("/")[-1],{"s":s,"c":c,"dl":False})
-    def download(self,k,n):
+    def download(self,k,pb):
         if not self.dic[k]["dl"]:
             mp3=urlopen(self.dic[k]["s"])
             size=float(mp3.info()["Content-Length"])
@@ -30,7 +29,7 @@ class db:
                 for i in xrange(int(ceil(size/self.CHUNK))):
                     fd.write(mp3.read(self.CHUNK))
                     s="%.2fMB/%.2fMB"%(float(i*self.CHUNK)/1e6,size/1e6)
-                    self.listener.refresh(s,n)
+                    pb.step(ceil(size/self.CHUNK))
             self.listener.finish()
     def content(self,k):
         return self.dic[k]["c"]
