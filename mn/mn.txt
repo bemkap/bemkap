@@ -7,6 +7,7 @@ metodo de la secante
 metodo de la falsa posicion
 metodos iterativos de punto fijo
        2 teoremas de existencia de solucion
+       corolario
 sistemas no lineales
        metodo de newton
 sistemas lineales
@@ -17,7 +18,7 @@ sistemas lineales
        metodo gauss-jordan
        factorizacion lu
        metodo doolittle
-       descomposicion de craut
+       descomposicion de crout
        lu con matriz de permutacion
        unicidad de lu
 matriz estrictamente diagonal dominante
@@ -36,6 +37,7 @@ normas vectoriales y matriciales
 espectro y radio espectral
 estabilidad de la resolucion de sistemas lineales
        teoremas
+
 metodos iterativos
        metodo de jacobi
        metodo de gauss-seidel

@@ -19,3 +19,5 @@ function y=newton(f,x,e)
     x=x-inv(J)*f(x);
   end
 endfunction
+function x=fi(g,x,n); for i=1:n do x=g(x); end endfunction
+function y=g(x); y=x+5*(x^2-5); endfunction

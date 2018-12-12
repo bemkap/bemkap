@@ -18,3 +18,9 @@ endfunction
 function x=progre(A,x)
   x=regre(A($:-1:1,$:-1:1),x($:-1:1))($:-1:1);
 endfunction
+function x=iter(f,n,x)
+  for i=1:n do x=f(x); end
+endfunction
+function y=e7(x)
+  y=4*%pi^2/(245*tanh(4*x));
+endfunction

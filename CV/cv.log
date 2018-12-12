@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  10 SEP 2018 00:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.10)  21 SEP 2018 12:21
 entering extended mode
 **\input cv.tex
 (c:\Users\USUARIO\Documents\b\CV\cv.tex
@@ -375,6 +375,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 20.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 20.
+<face_c.jpg, id=1, 928.21782pt x 928.21782pt>
+File: face_c.jpg Graphic file (type jpg)
+ <use face_c.jpg>
+Package pdftex.def Info: face_c.jpg used on input line 32.
+(pdftex.def)             Requested size: 113.81102pt x 113.80328pt.
 
 Overfull \hbox (45.78925pt too wide) in paragraph at lines 35--52
 [] 
@@ -382,26 +387,26 @@ Overfull \hbox (45.78925pt too wide) in paragraph at lines 35--52
 
 [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(c:\Users\USUARIO\Documents\b\CV\cv.aux) )
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <c:/Users/USUARIO/Document
+s/b/CV/face_c.jpg>] (c:\Users\USUARIO\Documents\b\CV\cv.aux) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 18 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 1861 strings out of 493921
- 24450 string characters out of 3147276
+ 1868 strings out of 493921
+ 24527 string characters out of 3147276
  86272 words of memory out of 3000000
- 5162 multiletter control sequences out of 15000+200000
+ 5166 multiletter control sequences out of 15000+200000
  10302 words of font info for 36 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,9n,19p,242b,195s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,9n,21p,242b,195s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 s10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on cv.pdf (1 page, 41342 bytes).
+Output written on cv.pdf (1 page, 380260 bytes).
 PDF statistics:
- 18 PDF objects out of 1000 (max. 8388607)
+ 21 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 12 words of extra memory for PDF output out of 10000 (max. 10000000)
 
