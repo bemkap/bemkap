@@ -55,25 +55,25 @@ wt=: 2&{::         NB. weak to
 it=: 3&{::         NB. immune to
 ty=: 5&{::         NB. attack type
 in=: 6&{::         NB. initiative
-gr=: 7&{::         NB. group
+gr=: 7&{::         NB. gr
 
 NB. conditions
+di=: ~:&id            NB. different id
 dg=: ~:&gr            NB. different group
 da=: ep@[             NB. damage
 wm=: 2 * ty@[ e. wt@] NB. weak to multiplier
 im=: ty@[ -.@e. it@]  NB. immune to multiplier
-co=: im * wm * da * dg
+co=: im * wm * da * dg * di
 
 sp=: 3 : 0 NB. select phase
- AO=. \: (ep , in)"1 II=. Immune,Infection NB. attack order
- TA=. (AO{II) ([: \: (co , ep@] , in@])"1)"1 2 ] 1 ]\. AO{II NB. targets orders
- ~. {."1 (|.~"1 0 ([: ({: e. }:)\ {."1))^:40 TA
+ II=. Immune,Infection
+ TO=. ([: \: (co , ep@] , in@])"1)"1 2/~ II NB. targets order
+ SO=. \: (ep , in)"1 II NB. select order
+ A =. 0$0
+ for. i.#TO=. SO{TO do.
+  A =. A,{.A-.~{.TO
+  TO=. }.TO
+ end./:~ SO,.A
 )
 
 atk=: ([: < 0 >. un@] - ih@] <.@%~ hp@] - da@[)`1:`]}
-
-ap=: 3 : 0 NB. attack phase
- for_i. sp'' do.
-  
- end.
-)
