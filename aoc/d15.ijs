@@ -1,42 +1,51 @@
-A =: '#.GE'
-M =: A i. 'm' fread '~temp/input15e.txt'
+M =: '#.GE' i. 'm' fread '~temp/input15e.txt'
 G =: 0,.~($M) #: I. 2=,M
 E =: 1,.~($M) #: I. 3=,M
-P =: /:~ G,E
+P =: 200 ,. /:~ G,E
 M =: 1<.M
-pl=: 2&{."1
+li=: 0&{"1
+pl=: 1 2&{"1
+gr=: 3&{"1
 ra=: ([: ,/ +"1/)&(_1 0,0 _1,0 1,:1 0) NB.range
 bc=: [: *./ <: NB.bound check
 mn=: 0 0&bc NB.min bound check
 mx=: bc&(<:$M) NB.max bound check
-ne=: (wf # ]) [: (#~ ib) [: ra ,:
-wf=: 1 = ({~ <)"_ 1 NB.wall free
 ib=: (mn *. mx)"1 NB.in bounds
+wf=: 1 = ({~ <)"_ 1 NB.wall free
+ne=: (wf # ]) [: (#~ ib) [: ra ,:
 md=: ([: +/ [: | -)"1 NB.manhattan distance
 ap=: 4 : 0 NB. A* path finding
  t=. {:y
  S=. ,<1{.y
- z=. ;~ (x ne [: {. 0&{::) -. ;
- o=. ([: }. 1&{::) ; 2&}.
+ z=. ;~ (t (] /: (md,.])) x ne [: {. 0&{::) -. ;
+ o=. ([: }.&.> 1&{) 0} }.
  s=. 0 >: [: # 0&{::
- e=. (0 >: #) +: t e. 0&{::
- {. S: 0 (z`o@.s)^:e^:_ S
+ e=. -:&(,<0 2$0) +: t e. 0&{::
+ r=. (z`o@.s)^:e^:_ S
+ if. r -: ,<0 2$0 do. 0 2$0 else. t,_2 ]\,> {.L:0 }.r end.
 )
 ev=: 4 : 0
- RA=. x (] #~ (wf pl)) (#~ ib@:pl) (ra@:pl ,. 4#{:"1) y
+ AT=. (1 = ([: md/~ pl) * [: ~:/~ gr) y NB.attack table
+ AI=. I. +./"1 AT NB.attacker indices
+ DI=. AI { ([: {. I. /: #&y)"1 AT NB.defender indices
+ for_i. DI do. y=. (_3 0 0 0 + i{y) i} y end. NB.attack
+ PL=. (i.#y) -. AI NB.players left
  N =. 0 (<"1 pl y)} x
- y (N #@:ap ,:)&pl/ RA
+ RA=. N (] #~ (wf pl)) (#~ ib@:pl) ((4#li) ,. ra@:pl ,. 4#gr) y NB.ranges
+ EN=. (PL{y) ~:&gr/ RA
+ D =. _ | <: EN *. (PL{y) (N #@:ap ,:)&pl/ RA NB.distances table
+ MI=. (i. <./)"1 D
+ if. 0<#PL do.
+  y =. y (<PL;1 2)}~ (PL{y) (N (_2 { ap)"2 ,:"1)&pl MI{RA
+  AT=. ((1 = md/&:pl~ * ~:/&:gr~) PL&{) y
+  AI=. I. +./"1 AT NB.attacker indices
+  DI=. AI { ([: {. I. /: #&y)"1 AT NB.defender indices
+  for_i. DI do. y=. (_3 0 0 0 + i{y) i} y end. NB.attack
+ end.(#~ 0<li)y
 )
-NB. ok=: [: (#~ wf) (#~ ib) NB.ok cell
-NB. sp=: ([: \:~ [: ~. [: ok (pl P) -.~ (,ra))^:_@:,: NB.span
-NB. in=: [ -. -. NB.intersection
-NB. fn=: 3 : 0
-NB.  RA=. (ra@:pl ,. 4 # {:"1) y NB.player range
-NB.  RA=. (#~ wf@:pl) (#~ ib@:pl) RA
-NB.  RA=. RA #~ -. RA e.&pl P
-NB.  RR=. <@:sp"1 pl RA NB.span of all range cells
-NB.  RP=. <@:sp"1 pl y NB.span of each player
-NB.  IR=. RP (0 < #@:in)&>/ RR NB.in range table
-NB.  EN=. y ~:"0/&gr RA NB.enemy table
-NB.  y (i. <./)@:(md"1/&pl #&RA)"1 IR*.EN
-NB. )
+sh=: 4 : 0
+ x=. '#.GE' {~ (2+gr y) (;/pl y)} x
+ a=. ([: ;/ 1&{"1 ":/. li)@:(/: pl) y
+ b=. ([: ~. 1&{"1) y
+ x,.' ',.>a b} 7#a:
+)
