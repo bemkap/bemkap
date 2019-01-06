@@ -36,7 +36,9 @@ ev=: 4 : 0
  D =. _ | <: EN *. (PL{y) (N #@:ap ,:)&pl/ RA NB.distances table
  MI=. (i. <./)"1 D
  if. 0<#PL do.
-  y =. y (<PL;1 2)}~ (PL{y) (N (_2 { ap)"2 ,:"1)&pl MI{RA
+  PA=. N <@:ap"_ 2 (PL{y) ,:"1&pl MI{RA
+  I =. (<0 2$0)&~: PA 
+  y =. y  (<(I#PL);1 2)}~ _2 { S: 0 I#PA
   AT=. ((1 = md/&:pl~ * ~:/&:gr~) PL&{) y
   AI=. I. +./"1 AT NB.attacker indices
   DI=. AI { ([: {. I. /: #&y)"1 AT NB.defender indices
@@ -45,7 +47,8 @@ ev=: 4 : 0
 )
 sh=: 4 : 0
  x=. '#.GE' {~ (2+gr y) (;/pl y)} x
- a=. ([: ;/ 1&{"1 ":/. li)@:(/: pl) y
+ y=. (/: pl) y
+ a=. ([: ;/ 1&{"1 ":/. li) y
  b=. ([: ~. 1&{"1) y
  x,.' ',.>a b} 7#a:
 )
