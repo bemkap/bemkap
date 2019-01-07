@@ -24,27 +24,21 @@ ap=: 4 : 0 NB. A* path finding
  r=. (z`o@.s)^:e^:_ S
  if. r -: ,<0 2$0 do. 0 2$0 else. t,_2 ]\,> {.L:0 }.r end.
 )
-ev=: 4 : 0
- AT=. (1 = ([: md/~ pl) * [: ~:/~ gr) y NB.attack table
- AI=. I. +./"1 AT NB.attacker indices
- DI=. AI { ([: {. I. /: #&y)"1 AT NB.defender indices
- for_i. DI do. y=. (_3 0 0 0 + i{y) i} y end. NB.attack
- PL=. (i.#y) -. AI NB.players left
- N =. 0 (<"1 pl y)} x
- RA=. N (] #~ (wf pl)) (#~ ib@:pl) ((4#li) ,. ra@:pl ,. 4#gr) y NB.ranges
- EN=. (PL{y) ~:&gr/ RA
- D =. _ | <: EN *. (PL{y) (N #@:ap ,:)&pl/ RA NB.distances table
- MI=. (i. <./)"1 D
- if. 0<#PL do.
-  PA=. N <@:ap"_ 2 (PL{y) ,:"1&pl MI{RA
-  I =. (<0 2$0)&~: PA 
-  y =. y  (<(I#PL);1 2)}~ _2 { S: 0 I#PA
-  AT=. ((1 = md/&:pl~ * ~:/&:gr~) PL&{) y
-  AI=. I. +./"1 AT NB.attacker indices
-  DI=. AI { ([: {. I. /: #&y)"1 AT NB.defender indices
-  for_i. DI do. y=. (_3 0 0 0 + i{y) i} y end. NB.attack
- end.(#~ 0<li)y
+ev1=: 4 : 0
+ if. 0<#AT=. I. 1 = (x{y) (md&pl * ~:&gr) y do.
+  y=. y+_3 (<0,~{.(/: {&y) AT)} 0$~$y
+ else.
+  N =. 0 (<"1 pl y)} M
+  RA=. N (] #~ (wf pl)) (#~ ib@:pl) ((4#li) ,. ra@:pl ,. 4#gr) y
+  EN=. RA #~ (x{y) ~:&gr RA
+  PA=. N <@:ap"_ 2 (x{y) ,:&pl EN
+  NC=. (#~ (<0 2$0)&~:) (/: #S:0) PA
+  if. 0<#NC do. y =. y (<x;1 2)}~ _2{0{::NC end.
+  AT=. I. 1 = (x{y) (md&pl * ~:&gr) y
+  if. 0<#AT do. y=. y+_3 (<0,~{.(/: {&y) AT)} 0$~$y end.
+ end.y
 )
+ev=: 3 : 'for_i. i.#y do. y=. i ev1 y end.(/: pl)(#~ 0<li) y'
 sh=: 4 : 0
  x=. '#.GE' {~ (2+gr y) (;/pl y)} x
  y=. (/: pl) y
