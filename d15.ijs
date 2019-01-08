@@ -26,18 +26,20 @@ ap=: 4 : 0 NB. a path
   ([: {. /:~) S: 0 o
  end.
 )
-ev1=: 4 : 0
- if. 0<#AT=. I. 1 = (x{y) (md&pl * ~:&gr) y do.
-  y=. y+_3 (<0,~{.(/: {&y) AT)} 0$~$y
- else.
-  N =. 0 (<"1 pl y)} M
-  RA=. N (] #~ (wf pl)) (#~ ib@:pl) ((4#li) ,. ra@:pl ,. 4#gr) y
-  EN=. RA #~ (x{y) ~:&gr RA
-  PA=. N <@:ap"_ 2 (x{y) ,:&pl EN
-  NC=. (#~ (<0 2$0)&~:) (/: #S:0)^:(0<#) PA
-  if. 0<#NC do. y =. y (<x;1 2)}~ _2{0{::NC end.
-  AT=. I. 1 = (x{y) (md&pl * ~:&gr) y
-  if. 0<#AT do. y=. y+_3 (<0,~{.(/: {&y) AT)} 0$~$y end.
+ev1=: 4 : 0 NB.evolve one
+ if. 0<li x{y do.
+  if. 0<#AT=. I. 1 = (x{y) (md&pl * ~:&gr * 0<li@:]) y do. 
+   y=. y+_3 (<0,~{.(/: {&y) AT)} 0$~$y NB.attack if its in range
+  else.
+   N =. 0 (<"1 pl y)} M
+   RA=. N (] #~ (wf pl)) (#~ ib@:pl) ((4#li),.ra@:pl,.4#gr) y NB.pl range
+   EN=. RA #~ (x{y) ~:&gr RA NB.is enemy table
+   PA=. N <@:ap"_ 2 (x{y) ,:&pl EN NB.paths
+   NC=. (#~ (<0 2$0)&~:) (/: #S:0)^:(0<#) PA NB.sorted non empty paths
+   if. 0<#NC do. y =. y (<x;1 2)}~ _2{0{::NC end. NB.move to new cell
+   AT=. I. 1 = (x{y) (md&pl * ~:&gr * 0<li@:]) y NB.test again if can attack
+   if. 0<#AT do. y=. y+_3 (<0,~{.(/: {&y) AT)} 0$~$y end.
+  end.
  end.y
 )
 ev=: 3 : 'for_i. i.#y do. y=. i ev1 y end.(/: pl)(#~ 0<li) y'
