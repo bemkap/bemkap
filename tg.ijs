@@ -1,19 +1,24 @@
 require'regex'
+y=: 'av 10 gd 45 rp 5 [av 10 rp 2 [gi 45 av 5] gi 90] av 20'
+w=: 'av 10 gd 90 av 10 gd 90 av 10 gd 90 av 10'
+r=: '(av \d+)|(gd \d+)|(gi \d+)|(rp \d+)|(?:\[(.*)\])'
+
+br=: '[]'-:{.,{:
+mt=: r rxall }.@:}:
+to=: ((,".&.>)/@:;:)L:0
+lx=: [:to[:]`mt@.br L:0^:_ r&rxall
+
+NB. mf =:  : '{.u&n`'''''
 cm=: ;:'av gd gi rp'
-st=: _1 0 0 0j0 0 NB. cmd counter pc position angle
+T =: <0j0 0
+av=: ]+(0,~(r.{:))
+gd=: (0,[)-]
+gi=: (0,[)+]
+NB. rp =: ^:
+NB. NB. sm =: (av mf@:arg)`(gd mf@:arg)`(gi mf@:arg)`rp@.(cm i. {.)
 
-av=: 0 0} ]
-gd=: 1 0} ]
-gi=: 2 0} ]
-rp=: 3 0} ]
+ex=: 4 : '(1{::x) av`gd`gi@.(cm i. 0{x) y'
 
-AV=: ]+0 0 0,0,~(r.{:)
-GD=: (-0 0 0 0&,)~
-GI=: (+0 0 0 0&,)~
-RP=: 2}
-CM=: AV`GD`GI`RP
-NU=: CM@.(0{])
-
-fa=. 3 : '{.(":y)&NU`'''''
-
-y =: 'av 10 gd 45 rp 5 [av 10 rp 2 [gi 45 av 5] gi 90] av 20'
+NB. br=: '[]'-:{.,{:
+NB. mt=: r&(}."2@:rxmatches rxfrom ])
+NB. lx=: [:".L:0[:]`mt@.br L:0^:_ mt
