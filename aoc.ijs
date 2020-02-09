@@ -1,17 +1,14 @@
 C=: '.abcdefghijklmnopqrstuvwxyz@ABCDEFGHIJKLMNOPQRSTUVWXYZ#'
 free=: (C i. 'A')&>
 key=: 1=(_1 0+C i. 'az')&I.
+door=: 1=(_1 0+C i. 'AZ')&I.
 kpos=: ($@:]#:((=,)i.1:))"0 _ NB. key position
 I=: <27 kpos M=: C i. >cutLF(0 : 0)
-#################
-#i.G..c...e..H.p#
-########.########
-#j.A..b...f..D.o#
-########@########
-#k.E..a...g..B.n#
-########.########
-#l.F..d...h..C.m#
-#################
+########################
+#...............b.C.D.f#
+#.######################
+#.....@.a.B.c.d.A.e.F.g#
+########################
 )
 N=: +/,key M
 tr=: 3 : 0
@@ -26,14 +23,21 @@ TMAPS=: tr"2 MP=: M&open"0 >:i.26 NB. transition maps
 TR1=: tr M NB. transitions without open doors
 TR0=: ~.@:,&.>/TMAPS NB. transitions with every door open
 
+step=: ([:>[:,&.>/([:<expl1/)"1)
+npath=: 4 : '<:#TR0 expl^:(1-y e. ])^:a: x'
+aux=: 4 : '(TR0&expl)&.>^:(1-y e. >)^:a: <x'
+path=: [:,aux([-.-.)&,&>|.@:aux~
+KTKM=: (<:@:#,_27+(#~door))@:(path&</@:kpos{])&M L:0 {;~>:i.N NB. key to key map
+
+
+
 expl1=: 4 : 0 NB. explore with key
  mp=. <./M,MP{~<:>x
  tm=. ~.@:,&.>/TR1,TMAPS{~<:>x
  kp=. key ce=. mp{~ex=. tm expl^:_ y
  (kp#ex),.~x,&.>kp#ce
 )
-step=: ([:>[:,&.>/([:<expl1/)"1)
-npath=: 4 : '<:#TR0 expl^:(1-y e. ])^:a: x'
+
 solve=: 3 : 0
  min=. _
  while. 0<#y do.
