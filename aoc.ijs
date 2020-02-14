@@ -34,6 +34,11 @@ expl1=: 3 : 0
 )
 step=: 3 : '<"1>,&.>/expl1&.>"0 y'
 solve=: 3 : 0
+ f =. 0(0})_$~N+1
+ nb=. c-.~I.(c*./@:e.~}.)&>r=. KTKM{~{:c=. >{.y
+ t =. (g{~{:c)+{.&>nb{r
+ 
+
  L=. 0:min=. _
  PLEN=. {.&>KTKM
  while. #y do.
