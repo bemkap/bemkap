@@ -47,7 +47,26 @@ fill=: 1 : 0
   f 90 gd 90 f@:gi^:3 ]90 f@:gd^:3 f 90 gi f y
  else. size av y end.
 )
-lhilbert=: 1 : 0
- 'size level'=. m
- 90 gi y
+hilbert=: 1 : 0
+ 'size level p'=. m
+ if. level>0 do.
+  lh=. (size,(<:level), p)hilbert
+  rh=. (size,(<:level),-p)hilbert
+  an=. 90*p
+  an gi rh size av an gd lh size av lh an gd size av rh an gi y
+ else. y end.
 )
+nest=: 2 : 0
+ 'size level'=. m
+ an=. 360>.@%n
+ if. level>0 do.
+  an gd (size av an gd ])^:(<:n) (-:size) av (m subnest n) (-:size) av y
+ else. y end.
+)
+subnest=: 2 : 0
+ 'size level'=. m
+ an=. <.-:360%n
+ an gi (((-:size),(<:level)) nest n) an gd y
+)
+
+
