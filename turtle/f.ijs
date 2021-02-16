@@ -1,4 +1,4 @@
-load'~temp/turtle/turtle.ijs'
+load '~temp/turtle/turtle.ijs'
 
 branch=: 1 : 0
  'l s'=. m
