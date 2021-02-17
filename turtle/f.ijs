@@ -58,17 +58,24 @@ hilbert=: 1 : 0
 )
 nest=: 2 : 0
  'size level'=. m
- an=. 360>.@%n
+ an=. 360
+%n
  if. level>0 do.
   an gd (size av an gd ])^:(<:n) (-:size) av (m subnest n) (-:size) av y
  else. y end.
 )
 subnest=: 2 : 0
  'size level'=. m
- an=. <.-:360%n
+ an=. -:360%n
  ai=. 1p1*(n-2)%n
  size1=. ((-:size)*sin ai)%sin -:1p1-ai
  an gi ((size1,(<:level)) nest n) an gd y
 )
-
-
+pf=: 2 : 0
+ 'size level'=. m
+ if. level>0 do.
+  y=. (180-180*(n-2)%n) gi (1r3*size) av y
+  for. i.<:n do. y=. (180*(n-2)%n) gd (((1r3*size),<:level) pf n)y end.
+  (1r3*size) av 180 gd y
+ else. size av y end.
+)
