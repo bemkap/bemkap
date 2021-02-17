@@ -66,7 +66,9 @@ nest=: 2 : 0
 subnest=: 2 : 0
  'size level'=. m
  an=. <.-:360%n
- an gi (((-:size),(<:level)) nest n) an gd y
+ ai=. 1p1*(n-2)%n
+ size1=. ((-:size)*sin ai)%sin -:1p1-ai
+ an gi ((size1,(<:level)) nest n) an gd y
 )
 
 
