@@ -74,8 +74,8 @@ subnest=: 2 : 0
 pf=: 2 : 0
  'size level'=. m
  if. level>0 do.
-  y=. (180-180*(n-2)%n) gi (1r3*size) av y
-  for. i.<:n do. y=. (180*(n-2)%n) gd (((1r3*size),<:level) pf n)y end.
+  y=. (180-360%n) gi (1r3*size) av y
+  for. i.<:n do. y=. (360%n) gd (((1r3*size),<:level) pf n)y end.
   (1r3*size) av 180 gd y
  else. size av y end.
 )
