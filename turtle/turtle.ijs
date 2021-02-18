@@ -9,8 +9,8 @@ Tpe=: 2{]
 
 ap=: 1 : '],(u{:)'
 av=: (Tan,((r.{.)+Txy),Tpe)ap
-gi=: ((Tan+d2r@:[),Txy,Tpe)ap
-gd=: ((Tan-d2r@:[),Txy,Tpe)ap
+gi=: (((Tan+d2r@:[),Txy,Tpe)ap) :. gd
+gd=: (((Tan-d2r@:[),Txy,Tpe)ap) :. gi
 sp=: (Tan,Txy,[)ap
 convert=: 3 : '(<"1@:|:@:+.@:(Txy"1))&>(#~0<#&>)({.,}.&.>@:}.)(</.~+/\@:-.@:({:"1))y'
 tp=: 3 : 0
@@ -31,7 +31,7 @@ win_timer=: 3 : 0
 )
 ta=: 1 : 0
  TICS=: 0
- T1xy=: 10+300((%>./)*"1])(-"1<./)+.Txy"1 T1=.;u&.><T
+ T1xy=: 10+300((%>./)*"1])(-"1<./)+.(#~(1,}.~:}:))Txy"1 T1=.;u&.><T
  T1pe=: Tpe"1 T1
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;ptimer ',(":y),';pshow;'
 )
