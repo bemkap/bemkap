@@ -85,8 +85,12 @@ ht=: 1 : 0
   (120 f@:gd size av ])^:2 f 120 gd (-:size) av 60 gi f 60 gd (-:size) av y
  else. y end.
 )
-sc=: 1 : 0
+scale=: (1:,[,1:)*"1]
+glue1=: 2 : 0
  'size level'=. m
- if. level>0 do. (45 gi 45 (((1r3*size),<:level)sc)@:gi size av ])^:3 y
- else. y end.
+ if. level>0 do.
+  f=. ((-:size),<:level)glue1
+  (1 sp (-:size) av 90 gd (-:size) av 0 sp f)^:4 y
+ else. size scale n y end.
 )
+  
