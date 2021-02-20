@@ -85,7 +85,7 @@ ht=: 1 : 0
   (120 f@:gd size av ])^:2 f 120 gd (-:size) av 60 gi f 60 gd (-:size) av y
  else. y end.
 )
-square=: 4 : '({:y),~0 sp x av 135 gd (1r3*x) av 90 gi (1r3*x) av 135 gd x av y'
+square=: 4 : '({:y),~0 sp (90 gd x av ])^:3 y'
 glue1=: 2 : 0
  'size level'=. m
  if. level>0 do. (1 sp 90 gd size av 0 sp (((-:size),<:level) glue2 v))^:4 y else. size v y end.
@@ -104,4 +104,8 @@ duopoly=: 1 : 0
  for_i. i.(*%+.)&(360&((*%+.)%]))/{:"1 m do. for_j. m do.
   y=. ({.j) av (i*{:j) sh y
  end. end.
+)
+gospel=: 1 : 0
+ 'side angle level'=. m
+ if. level>0 do. ((side,(360|+:angle),<:level)gospel) side av angle gi y else. y end.
 )
