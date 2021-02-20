@@ -31,7 +31,8 @@ win_timer=: 3 : 0
 )
 ta=: 1 : 0
  TICS=: 0
- T1xy=: 10+300((%>./)*"1])(-"1<./)+.(#~(1,}.~:}:))Txy"1 T1=.;u&.><T
- T1pe=: Tpe"1 T1
+ b=. (1,}.~:}:)Txy"1 T1=.;u&.><T
+ T1xy=: 10+300((%>./)*"1])(-"1<./)+.b#Txy"1 T1
+ T1pe=: b#Tpe"1 T1
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;ptimer ',(":y),';pshow;'
 )
