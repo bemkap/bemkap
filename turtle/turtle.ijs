@@ -12,6 +12,7 @@ av=: (Tan,((r.{.)+Txy),Tpe)ap
 gi=: (((Tan+d2r@:[),Txy,Tpe)ap) :. gd
 gd=: (((Tan-d2r@:[),Txy,Tpe)ap) :. gi
 sp=: (Tan,Txy,[)ap
+sh=: (d2r@:[(0})])ap
 convert=: 3 : '(<"1@:|:@:+.@:(Txy"1))&>(#~0<#&>)({.,}.&.>@:}.)(</.~+/\@:-.@:({:"1))y'
 tp=: 3 : 0
  pd'reset;labels 0 0;frame 0;grids 0 0;tics 0 0'
@@ -31,7 +32,7 @@ win_timer=: 3 : 0
 )
 ta=: 1 : 0
  TICS=: 0
- b=. (1,}.~:}:)Txy"1 T1=.;u&.><T
+ b=. -.(0,}.-:"1}:)}."1 T1=.;u&.><T
  T1xy=: 10+300((%>./)*"1])(-"1<./)+.b#Txy"1 T1
  T1pe=: b#Tpe"1 T1
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;ptimer ',(":y),';pshow;'

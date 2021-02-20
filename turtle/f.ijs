@@ -85,18 +85,23 @@ ht=: 1 : 0
   (120 f@:gd size av ])^:2 f 120 gd (-:size) av 60 gi f 60 gd (-:size) av y
  else. y end.
 )
-square=: 4 : '({:y),~0 sp x av 150 gi x av 150 gd x av 15 gd y'
+square=: 4 : '({:y),~0 sp x av 135 gd (1r3*x) av 90 gi (1r3*x) av 135 gd x av y'
 glue1=: 2 : 0
  'size level'=. m
- if. level>0 do. (1 sp 90 gd size av 0 sp (((-:size),<:level) glue1 v))^:4 y else. size v y end.
+ if. level>0 do. (1 sp 90 gd size av 0 sp (((-:size),<:level) glue2 v))^:4 y else. size v y end.
 )
 glue2=: 2 : 0
  'size level'=. m
  if. level>0 do. 
-  sf=. ((-:size),<:level) glue2 v
+  sf=. ((-:size),<:level) glue1 v
   y=. (-:size) av 90 gi 0 sp sf 1 sp 90 gd (-:size) av 0 sp y
   y=. 90 gd size av 0 sp sf 1 sp 90 gd y
   y=. (-:size) av 90 gi 0 sp sf 1 sp 90 gd (-:size) av y 
   y=. 90 gd size av 0 sp sf 1 sp 90 gd y
  else. size v y end.
+)
+duopoly=: 1 : 0
+ for_i. i.(*%+.)&(360&((*%+.)%]))/{:"1 m do. for_j. m do.
+  y=. ({.j) av (i*{:j) sh y
+ end. end.
 )
