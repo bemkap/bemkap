@@ -1,4 +1,4 @@
-load '~temp/turtle/turtle.ijs'
+load '~temp/turtle/turtle_c.ijs'
 
 branch=: 1 : 0
  'l s'=. m
@@ -7,9 +7,7 @@ branch=: 1 : 0
   lb=. (((<:l),4r5*s)branch)45 gi y
   rb=. (((<:l),3r5*s)branch)45 gd y
   (0 sp y),(0 sp lb),(0 sp rb)
- else.
-  y
- end.
+ else. y end.
 )
 face=: 4 : '({:*.y -&Txy x)(0})x'
 chamber=: 1 : 0
