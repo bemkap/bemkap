@@ -21,7 +21,11 @@ roll =: (TH,([ rot TL,:TU),([ rot TU,:-@:TL),TP,TPE)ap
 yaw  =: (([ rot TH,:TL),([ rot TL,:-@:TH),TU,TP,TPE)ap
 
 E =: (=i.3),0 0 _20
-pp=: E&$:"1 : ((}:@:](+/ .*"1)(-{:))~)"_ 1
+NB. pp=: ((}:@:]+/ .*"1(-{:))~)"_ 1
+pp=: (4 : 0)"_ 1
+ r=. y-3{x
+ (r+/ .*0{x),(r+/ .*1{x)
+)
 
 MXY=: 0 0
 
@@ -34,10 +38,10 @@ win_grph_paint=: 3 : 0
 win_grph_mbldown=: 3 : 'MXY=: 2{.".sysdata'
 win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
-  'dx dy'=. d2r 30**MXY-2{.D
+  'dx dy'=. *MXY-2{.D
   MXY=: 2{.D
-  Ep=. (-dx) rot (3{E),:20 0 0
-  E=: 4 3$Ep,~_3}.{:dx pitch ,:1,~,E
+NB.   Ep=. (-dx) rot (,:1 0 0*+/&.:*:){:E
+NB.   E=: 4 3$Ep,~_4}.{:dx pitch ,:1,~,E
   glpaint''
  end.
 )
