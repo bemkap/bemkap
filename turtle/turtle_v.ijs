@@ -29,6 +29,7 @@ MXY=: 0 0
 win_grph_paint=: 3 : 0
  try.
   glrect 0 0 320 320
+  glclip 0 0 320 320
   gllines,(160 160+}:)"1<.E pp T1
  catch. return. end. 
 )
@@ -42,7 +43,7 @@ win_grph_mmove=: 3 : 0
  end.
 )
 sphere=: (10 pitch (10 yaw 1 av ])^:36)^:36
-poly3d=: 90 pitch 90 yaw 90 roll 1 av ]
+poly=: (20 pitch _20 yaw 1 av 20 pitch 20 yaw 1 av ])^:9
 ta=: 1 : 0
  T1=: 320*(%"1(>./-<./))TP u T
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;pshow;'
