@@ -1,4 +1,4 @@
-load '~temp/turtle/turtle_c.ijs'
+load'~temp/turtle/turtle_c.ijs'
 
 branch=: 1 : 0
  'l s'=. m
@@ -106,4 +106,29 @@ duopoly=: 1 : 0
 gospel=: 1 : 0
  'side angle level'=. m
  if. level>0 do. ((side,(360|+:angle),<:level)gospel) side av angle gi y else. y end.
+)
+scissor=: 1 : 0
+ 'distance phase'=. m
+ phase gd distance av (+:phase) gi distance av phase gd y
+)
+poly_s=: 1 : 0
+ 'd a phase'=. m
+ (a gi ((d,phase)scissor))^:(sym a)y
+)
+poly_ds=: 2 : 0
+ 'd a dphase'=. m
+ for_i. dphase*i.n do. y=. ((d,a,i)poly_s) y end.
+)
+shrinkseg=: 1 : '((cos d2r{:m)*({.m)) av ]'
+shrinkpoly=: 2 : 0
+ 'd a dphase'=. m
+ for_i. dphase*i.n do. y=. a gi (d,i) shrinkseg y end.
+)
+mutate=: 2 : 0
+ 'd1 d2 a1 a2'=. m
+ for_i. (n+1)%~i.n do.
+  d=. <.(i*d1)+(1-i)*d2
+  a=. <.(i*a1)+(1-i)*a2
+  y=. 100 av (a gd d av ])^:(sym a) y
+ end.
 )

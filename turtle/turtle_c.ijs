@@ -3,10 +3,10 @@ coinsert'jgl2'
 
 T =: ,:1r2p1 0 1
 d2r=: *&1r180p1
-Tan=: 0{]
-Txy=: 1{]
-Tpe=: 2{]
-
+Tan=: 0{"1]
+Txy=: 1{"1]
+Tpe=: 2{"1]
+sym=: 360&((*%+.)%])
 ap=: 1 : '],(u{:)'
 av=: (Tan,((r.{.)+Txy),Tpe)ap
 gi=: (((Tan+d2r@:[),Txy,Tpe)ap) :. gd
