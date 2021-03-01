@@ -1,15 +1,12 @@
 load'~temp/turtle/turtle_c.ijs'
 
 branch=: 1 : 0
- 'l s'=. m
- if. l>0 do.
-  y=. s av y
-  lb=. (((<:l),4r5*s)branch)45 gi y
-  rb=. (((<:l),3r5*s)branch)45 gd y
-  (0 sp y),(0 sp lb),(0 sp rb)
- else. y end.
+ 'size level'=. m
+ if. level>0 do.
+  sb=. (((1r2*size),<:level)branch)
+  1 sp (-size) av 0 sp sb 90 gd sb 180 gi sb 90 gd size av y
+ else. 1 sp (-size) av 0 sp size av y end.
 )
-face=: 4 : '({:*.y -&Txy x)(0})x'
 chamber=: 1 : 0
  'base s1 s2 a1 a2'=. m
  s1 av a1 gi ({:y),~0 sp s2 av a2 gi base av y
@@ -18,10 +15,10 @@ growth=: 2 : 0
  if. 500>#y do.
   'base s1 s2 a1 a2'=. m
   'rs1 rs2 ra1 ra2'=. n
-  ur=. _5{y=. (m chamber)y
-  base1=. ur|@-&Txy({:y)
-  y=. y,({:y) face ur
-  ((base1,(s1*rs1),(s2*rs2),360|ra1*a1,360|ra2*a2)growth n)y
+  ur=. Txy _5{y=. (m chamber)y
+  base1=. |ur-Txy{:y
+  y=. (d2r inv ur) sh y
+  ((base1,(s1*rs1),(s2*rs2),360|ra1*a1,ra2*a2)growth n)y
  else. y end.
 )
 eqspi=: 2 : 0
@@ -132,3 +129,10 @@ mutate=: 2 : 0
   y=. 100 av (a gd d av ])^:(sym a) y
  end.
 )
+koch=: 1 : 0
+ if. m>0 do.
+  sk=. (<:m)koch
+  sk 60 gi sk 120 gd sk 60 gi sk y
+ else. 10 av y end.
+)
+koch_t=: 1 : '((120*{:m) gi (({.m) koch))^:3'
