@@ -130,9 +130,13 @@ mutate=: 2 : 0
  end.
 )
 koch=: 1 : 0
- if. m>0 do.
+ 'level angle'=. m
+ if. level>0 do.
   sk=. (<:m)koch
-  sk 60 gi sk 120 gd sk 60 gi sk y
+  sk angle gi sk (+:angle) gd sk angle gi sk y
  else. 10 av y end.
 )
-koch_t=: 1 : '((120*{:m) gi (({.m) koch))^:3'
+koch_t=: 1 : 0
+ 'level angle poly'=. m
+ ((360%poly) gi ((level,angle)koch))^:(|poly)
+)

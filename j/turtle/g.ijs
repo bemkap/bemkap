@@ -12,3 +12,10 @@ tree=: 1 : 0
   (0 sp y),(0 sp b1),(0 sp b2),(0 sp b3),0 sp b4
  else. y end.
 )
+horn=: 1 : 0
+ 's0 n'=. m
+ for_i. i.n do. 
+  r=. 1%>:i
+  y=. (s0*r) av 10 roll (360*r) yaw y
+ end.
+)

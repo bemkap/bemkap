@@ -1,5 +1,5 @@
-load'plot gl2 trig'
-coinsert'jgl2'
+load'plot gl2 trig gles'
+coinsert'jgl2 jgles'
 
 T  =: ,:1 0 0 0 1 0 0 0 1 0 0 0 1
 TV =: 9{."1]
@@ -11,6 +11,7 @@ TPE=:      12{"1]
 d2r=: *&1r180p1
 rot=: (cos@d2r@[*0{])+(sin@d2r@[*1{])
 sym=: 360&((*%+.)%])
+mp=: +/ .*
 ap=: 1 : '],(u{:)'
 av=: (TV,((*TH)+TP),TPE)ap
 ju=: (TV,((*TL)+TP),TPE)ap
@@ -19,15 +20,15 @@ sp=: (TV,TP,[)ap
 pitch=: (([ rot TH,:TU),TL,([ rot TU,:-@:TH),TP,TPE)ap
 roll =: (TH,([ rot TL,:TU),([ rot TU,:-@:TL),TP,TPE)ap
 yaw  =: (([ rot TH,:TL),([ rot TL,:-@:TH),TU,TP,TPE)ap
-E =: (=i.3),0 0 _1
+NB. E =: (=i.3),0 0 _1
+E =: 1 0 0 1
 pp=: ((}:@:]+/ .*"1(-{:))~)"_ 1
 pr=: (2&{.*1%{:)"1@:pp
 MXY=: 0 0
 win_grph_paint=: 3 : 0
- try.
-  glrect 0 0 320 320
-  glclip 0 0 320 320
-  gllines&>([:,[:(160 160+}:)"1[:<.E&pp)&.> (1(_1})-.T1PE) <;._2 T1XY
+ glrect 0 0 320 320
+ glclip 0 0 320 320
+ try. gllines <.,320*(%"1>./)(-<./^:2)2{."1((glu_LookAt (}:E);0 0 0;0 0 1)mp(gl_Perspective 30 1 1 10))mp~T1XY,.1
  catch. return. end. 
 )
 win_grph_mbldown=: 3 : 'MXY=: 2{.".sysdata'
@@ -35,12 +36,13 @@ win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
   'dx dy'=. *MXY-2{.D
   MXY=: 2{.D
-  E=: 4 3${:(_1r360p1*+/&.:*:dx,dy) av dy roll dx pitch,:1,~,E
+  E=: (gl_Rotate dx,1 0 0) mp (gl_Rotate dy,0 1 0) mp E
+  NB. E=: 4 3${:(_1r360p1*+/&.:*:dx,dy) av dy roll dx pitch,:1,~,E
   glpaint''
  end.
 )
 ta=: 1 : 0
  T1PE=: TPE T1=. u T
- T1XY=: 320*(%"1(>./-<./))TP T1
+ T1XY=: TP T1
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;pshow;'
 )
