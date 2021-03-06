@@ -28,7 +28,7 @@ MXY=: 0 0
 win_grph_paint=: 3 : 0
  glrect 0 0 320 320
  glclip 0 0 320 320
- try. gllines <.,320*(%"1>./)(-<./^:2)2{."1((glu_LookAt (}:E);0 0 0;0 0 1)mp(gl_Perspective 30 1 1 10))mp~T1XY,.1
+ try. gllines <.,2{."1((gl_Translate 0 64 64)mp(glu_LookAt (}:E),0 0 0 0 0 1)mp(gl_Perspective 30 1 1 10))mp~T1XY,.1 NB. 320*(%"1>./)(-<./^:2)
  catch. return. end. 
 )
 win_grph_mbldown=: 3 : 'MXY=: 2{.".sysdata'
@@ -36,7 +36,7 @@ win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
   'dx dy'=. *MXY-2{.D
   MXY=: 2{.D
-  E=: (gl_Rotate dx,1 0 0) mp (gl_Rotate dy,0 1 0) mp E
+  E=: (gl_Rotate dx,0 0 1) mp E
   NB. E=: 4 3${:(_1r360p1*+/&.:*:dx,dy) av dy roll dx pitch,:1,~,E
   glpaint''
  end.
