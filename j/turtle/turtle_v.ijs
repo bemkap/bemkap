@@ -20,22 +20,26 @@ sp=: (TV,TP,[)ap
 pitch=: (([ rot TH,:TU),TL,([ rot TU,:-@:TH),TP,TPE)ap
 roll =: (TH,([ rot TL,:TU),([ rot TU,:-@:TL),TP,TPE)ap
 yaw  =: (([ rot TH,:TL),([ rot TL,:-@:TH),TU,TP,TPE)ap
-E =: 1 0 0 1
+E =: 0 0 1 1
+UP=: 0 1 0 1
 MXY=: 0 0
+R=: 0 0
+TR=: =i.4
 win_grph_paint=: 3 : 0
  glrect 0 0 320 320
  glclip 0 0 320 320
  try.
-  mvp=. (glu_LookAt (}:E),0 0 0 0 0 1) mp (gl_Translate 160 160 0)
-  gllines <.,2{."1(T1XY,.1) mp mvp
+  mvp=. (glu_LookAt (}:E),0 0 0,(}:UP)) mp (gl_Translate 160 160 0)
+  gllines <.,2{."1(T1XY,.1) mp TR mp (gl_Translate 160 160 0)
  catch. return. end. 
 )
-win_grph_mbldown=: 3 : 'MXY=: 2{.".sysdata'
 win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
-  'dx dy'=. *MXY-2{.D
+  R=: R+5**MXY-2{.D
   MXY=: 2{.D
-  glpaint E=: (gl_Rotate (+:dy),1 0 0) mp (gl_Rotate (+:dx),0 0 1) mp E
+  TR=: (gl_Rotate ({:R),1 0 0) mp (gl_Rotate ({.R),0 1 0)
+  E=: TR mp E
+  glpaint UP=: TR mp UP
  end.
 )
 ta=: 1 : 0
