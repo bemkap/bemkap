@@ -20,15 +20,14 @@ sp=: (TV,TP,[)ap
 pitch=: (([ rot TH,:TU),TL,([ rot TU,:-@:TH),TP,TPE)ap
 roll =: (TH,([ rot TL,:TU),([ rot TU,:-@:TL),TP,TPE)ap
 yaw  =: (([ rot TH,:TL),([ rot TL,:-@:TH),TU,TP,TPE)ap
-NB. E =: (=i.3),0 0 _1
 E =: 1 0 0 1
-pp=: ((}:@:]+/ .*"1(-{:))~)"_ 1
-pr=: (2&{.*1%{:)"1@:pp
 MXY=: 0 0
 win_grph_paint=: 3 : 0
  glrect 0 0 320 320
  glclip 0 0 320 320
- try. gllines <.,2{."1((gl_Translate 0 64 64)mp(glu_LookAt (}:E),0 0 0 0 0 1)mp(gl_Perspective 30 1 1 10))mp~T1XY,.1 NB. 320*(%"1>./)(-<./^:2)
+ try.
+  mvp=. (glu_LookAt (}:E),0 0 0 0 0 1) mp (gl_Translate 160 160 0)
+  gllines <.,2{."1(T1XY,.1) mp mvp
  catch. return. end. 
 )
 win_grph_mbldown=: 3 : 'MXY=: 2{.".sysdata'
@@ -36,9 +35,7 @@ win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
   'dx dy'=. *MXY-2{.D
   MXY=: 2{.D
-  E=: (gl_Rotate dx,0 0 1) mp E
-  NB. E=: 4 3${:(_1r360p1*+/&.:*:dx,dy) av dy roll dx pitch,:1,~,E
-  glpaint''
+  glpaint E=: (gl_Rotate (+:dy),1 0 0) mp (gl_Rotate (+:dx),0 0 1) mp E
  end.
 )
 ta=: 1 : 0
