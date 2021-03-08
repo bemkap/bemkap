@@ -1,7 +1,7 @@
 load'~temp/turtle/turtle_v.ijs'
 
 sphere=: (10 pitch (10 yaw 15 av ])^:36)^:36
-poly=: 1 : '((0{m) pitch ((1{m) roll ((2{m) yaw 45 av ])^:(sym 2{m))^:(sym 1{m))^:(sym 0{m)'
+poly=: 1 : '((0{m) pitch ((1{m) roll ((2{m) yaw 60 av ])^:(sym 2{m))^:(sym 1{m))^:(sym 0{m)'
 tree=: 1 : 0
  if. m>0 do.
   y =. m av y
