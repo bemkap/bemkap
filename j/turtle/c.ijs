@@ -4,6 +4,7 @@ coinsert'jgl2 jgles'
 S=: 80
 Tfa=: 3{"1]
 Txy1=: +.@:Txy
+mp=: +/ .*
 
 N=: 0 5 3 2 1,1 0 2 4 5,2 0 3 4 1,3 0 5 4 2,4 2 3 5 1,:5 0 1 4 3
 C3=: (1 A. 40,Txy1)`(_40,Txy1)`(_40,~Txy1)`(40,Txy1)`(1 A. _40,Txy1)`(40,~Txy1)@.{:
@@ -20,8 +21,8 @@ win_grph_paint=: 3 : 0
  glrect 0 0 320 320
  glclip 0 0 320 320
  try. 
-  gllines"1<.,"2]2{."1 (gl_Translate 160 160 0) mp~ C=: C mp TR
-  gllines <.,2{."1 (gl_Translate 160 160 0) mp~ T1XY=: T1XY mp TR
+  gllines"1<.,"2]2(160 160+{.)"1 C=: C mp TR
+  gllines <.,2(160 160+{.)"1 T1XY=: T1XY mp TR
  catch. return. end. 
 )
 win_grph_mmove=: 3 : 0
