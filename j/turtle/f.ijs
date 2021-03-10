@@ -1,4 +1,4 @@
-load'~temp/turtle/turtle_c.ijs'
+load'~temp/turtle/c.ijs'
 
 branch=: 1 : 0
  'size level'=. m
@@ -95,6 +95,7 @@ glue2=: 2 : 0
   y=. 90 gd size av 0 sp sf 1 sp 90 gd y
  else. size v y end.
 )
+poly=: 1 : '(({.m) av (360%{:m) gi ])^:({:m)'
 duopoly=: 1 : 0
  for_i. i.(*%+.)&(360&((*%+.)%]))/{:"1 m do. for_j. m do.
   y=. ({.j) av (i*{:j) sh y
