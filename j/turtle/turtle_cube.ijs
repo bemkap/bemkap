@@ -1,42 +1,35 @@
-load'~temp/turtle/turtle_c.ijs gles'
+load'~temp/turtle/turtle_2d.ijs gles'
 coinsert'jgl2 jgles'
 
 S=: 80
 Tfa=: 3 4 5 6 7 8 9 10{"1]
 Txy1=: +.@:Txy
 mp=: +/ .*
-perp=: _1 1*|.
-VC=: S*0 0,0 1,1 1,:1 0
+T=: ,:0,(j.~-:S),1,i.8
+VC2=: 2]\(,{.)S*0 0,0 1,1 1,:1 0
 VC3=: 0 0 0,0 0 1,1 0 1,1 0 0,0 1 0,0 1 1,1 1 1,:1 1 0
-I=: 0 1 2 3 4 5 6 7
-U=: 1 5 6 2 0 4 7 3
-D=: 4 0 3 7 5 1 2 6
-R=: 3 2 6 7 0 1 5 4
-L=: 4 5 1 0 7 6 2 3
+LURDI=: 4 5 1 0 7 6 2 3,1 5 6 2 0 4 7 3,3 2 6 7 0 1 5 4,4 0 3 7 5 1 2 6,:0 1 2 3 4 5 6 7
 chk=: 4 : 0
- e=. ({:x)-a=. {.x
- t=. ({:y)-p=. {.y
- mu=. ((perp e) mp a-p)%(perp e) mp t
- la=. ((perp t) mp p-a)%(perp t) mp e
- if. *./(0&<:*.1&>:)mu,la do. t;mu else. a:,a: end.
+ pe=. _1 1*|.e=. ({:x)-a=. {.x
+ pt=. _1 1*|.t=. ({:y)-p=. {.y
+ mu=. (pe mp a-p)%pe mp t
+ la=. (pt mp p-a)%pt mp e
+ if. *./(0&<:*.1&>:)mu,la do. t,mu else. _ _ 0 end.
 )
+switch=: (0,S)&i.{(S,0)&,
 av=: (4 : 0)ap
- x=. <.0.5++.x((r.Tan)+Txy)y
- v=. (Tfa y){~(L,R,D,U,:I){~7 1 5 3 4 i. 3#.(S,0)I.<.x
+ w=. <.0.5++.x((r.Tan)+Txy)y
+ v=. (Tfa y){~LURDI{~i=. (1:i.~0<{:"1)j=. VC2 chk"2 (Txy1 y),:w
  if. -.v-:f=. _8{.y do.
-  't mu'=. (f line v) chk (Txy1 y),:x
-  p=. y(1})~j./(Txy1 y)+t*mu
-  q=. v,~_8}.(j./S|S+x)(1})y
-  p,:q
- else.
-  (j./S|S+x)1}y
- end.
+  't mu'=. (2&{.;{:)i{j
+  p=. (j./(Txy1 y)+t*mu)1}y
+  p,(x*1-mu) av ,:(Tan y),(j./switch"0 w-t*(1-mu)),(Tpe y),v
+ else. (j./S|S+w)1}y end.
 )
 gi=: (((Tan-d2r@:[),Txy,Tpe,Tfa)ap) :. gd
 gd=: (((Tan+d2r@:[),Txy,Tpe,Tfa)ap) :. gi
-line=: VC{~(2]\0 1 2 3 0){~(L,U,R,:D)i.{inv
+line=: VC2{~LURDI i.{inv
 disp=: 4 : '(S*VC3{~0{y)++/x*-/"2 VC3{~(3 0,:1 0){y'
-T=: T,"1]i.8
 MXY=: RO=: 0 0
 TR=: =i.4
 win_grph_paint=: 3 : 0
@@ -55,8 +48,7 @@ win_grph_mmove=: 3 : 0
  end.
 )
 ta=: 1 : 0
- C=: (1 0 0,1 1 0,1 1 1,:1 0 1),(0 0 0,0 0 1,1 0 1,:1 0 0),:(0 1 0,0 1 1,1 1 1,:1 1 0)
- C=: (,{.)"2]1,."2~S*_0.5+(0 0 0,0 1 0,1 1 0,:1 0 0),(0 0 1,0 1 1,1 1 1,:1 0 1),(0 0 0,0 1 0,0 1 1,:0 0 1),C
+ C=: (,{.)"2]1,."2~S*_0.5+6 4 3$,#:0 2 6 4 1 3 7 5 0 2 3 1 4 6 7 5 0 1 5 4 2 3 7 6
  T1XY=: 1,.~(-:S)-~(Txy1 disp"1 Tfa);u&.><T
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;pshow;'
 )

@@ -1,4 +1,4 @@
-load'~temp/turtle/turtle_c.ijs'
+load'~temp/turtle/turtle_2d.ijs'
 T=: 10 av 90 gi 310 av 90 gd T
 OBJ=: ,:0 310 320 10
 int=: (>:2{.])*./@:*.(<:2(}.+{.)])
