@@ -1,7 +1,7 @@
 load'~temp/turtle/turtle_2d.ijs gles'
 coinsert'jgl2 jgles'
 
-S=: 80
+S=: 120
 Tfa=: 3 4 5 6 7 8 9 10{"1]
 Txy1=: +.@:Txy
 mp=: +/ .*
@@ -23,7 +23,7 @@ av=: (4 : 0)ap
  if. -.v-:f=. _8{.y do.
   't mu'=. (2&{.;{:)i{j
   p=. (j./(Txy1 y)+t*mu)1}y
-  p,(x*1-mu) av ,:(Tan y),(j./switch"0 w-t*(1-mu)),(Tpe y),v
+  p,(x*1-mu) av ,:(Tan y),(j./switch"0 <.0.5+w-t*(1-mu)),(Tpe y),v
  else. (j./S|S+w)1}y end.
 )
 gi=: (((Tan-d2r@:[),Txy,Tpe,Tfa)ap) :. gd
