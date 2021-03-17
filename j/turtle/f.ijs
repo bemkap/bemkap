@@ -131,13 +131,13 @@ mutate=: 2 : 0
  end.
 )
 koch=: 1 : 0
- 'level angle'=. m
+ 'size level angle'=. m
  if. level>0 do.
   sk=. (<:m)koch
   sk angle gi sk (+:angle) gd sk angle gi sk y
- else. 10 av y end.
+ else. size av y end.
 )
 koch_t=: 1 : 0
- 'level angle poly'=. m
- ((360%poly) gi ((level,angle)koch))^:(|poly)
+ 'size level angle poly'=. m
+ ((360%poly) gi ((size,level,angle)koch))^:(|poly)
 )
