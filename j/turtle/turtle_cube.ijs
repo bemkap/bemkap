@@ -2,6 +2,10 @@ load'gl2 gles'
 coinsert'jgl2 jgles'
 
 S=: 200
+d2r=: *&1r180p1
+Tan=: 0{"1]
+Txy=: 1{"1]
+Tpe=: 2{"1]
 Tfa=: 3 4 5 6 7 8 9 10{"1]
 Txy1=: +.@:Txy
 mp=: +/ .*
@@ -14,8 +18,9 @@ chk=: 4 : 0
  pt=. _1 1*|.t=. ({:y)-p=. {.y
  mu=. (pe mp a-p)%pe mp t
  la=. (pt mp p-a)%pt mp e
- if. *./(0&<:*.1&>:)mu,la do. t,mu else. _ _ 0 end.
+ if. *./(0&<:*.1&>:)mu,la do. t,mu else. _ _ _1 end.
 )
+ap=: 1 : '],(u{:)'
 switch=: (0,S)&i.{(S,0)&,
 av=: (4 : 0)ap
  w=. <.0.5++.x((r.Tan)+Txy)y
