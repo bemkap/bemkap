@@ -33,7 +33,7 @@ av=: (4 : 0)ap
 )
 gi=: (((Tan-d2r@:[),Txy,Tpe,Tfa)ap) :. gd
 gd=: (((Tan+d2r@:[),Txy,Tpe,Tfa)ap) :. gi
-line=: VC2{~LURDI i.{inv
+sh=: (d2r@:[(0})])ap
 disp=: 4 : '(S*VC3{~0{y)++/x*-/"2 VC3{~(3 0,:1 0){y'
 MXY=: RO=: 0 0
 win_grph_paint=: 3 : 0
@@ -42,17 +42,17 @@ win_grph_paint=: 3 : 0
  try. 
   glrgba 0 0 0 32
   glpen 1
-  gllines"1<.,"2]2(160 160+{.)"1 C=: C mp TR
+  gllines"1<.,"2]2(160 160+{.)"1 C mp TR
   glrgb 0 0 255
   glpen 2
-  gllines <.,2(160 160+{.)"1 T1XY=: T1XY mp TR
+  gllines <.,2(160 160+{.)"1 T1XY mp TR
  catch. return. end. 
 )
 win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
   RO=: 2**MXY-2{.D
   MXY=: 2{.D
-  glpaint TR=: (gl_Rotate (-{:RO),1 0 0) mp (gl_Rotate ({.RO),0 1 0)
+  glpaint TR=: TR mp (gl_Rotate (-{:RO),1 0 0) mp (gl_Rotate ({.RO),0 1 0)
  end.
 )
 NB. win_timer=: 3 : 'if. TICS<#T1XY do. glpaint TICS=: >:TICS else. wd''ptimer 0'' end.'

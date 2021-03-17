@@ -26,10 +26,7 @@ win_grph_paint=: 3 : 0
   gllines&>(1(_1})-.TICS{.T1pe) (<@:,@:<.);._2 TICS{.T1xy
  catch. return. end.
 )
-win_timer=: 3 : 0
- if. TICS<:#T1xy do. glpaint'' else. wd'ptimer 0' end.
- TICS=: >:TICS
-)
+win_timer=: 3 : 'if. TICS<:#T1XY do. glpaint TICS=: >:TICS' else. wd''ptimer 0'' end.'
 ta=: 1 : 0
  TICS=: 0
  b=. -.(0,}.-:"1}:)}."1 T1=.;u&.><T
