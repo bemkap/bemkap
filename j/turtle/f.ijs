@@ -1,4 +1,4 @@
-load'~temp/turtle/turtle_sphere.ijs'
+load'~temp/turtle/turtle_cube.ijs'
 
 branch=: 1 : 0
  'size level'=. m

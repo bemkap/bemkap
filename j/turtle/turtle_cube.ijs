@@ -24,12 +24,12 @@ ap=: 1 : '],(u{:)'
 switch=: (0,S)&i.{(S,0)&,
 av=: (4 : 0)ap
  w=. <.0.5++.x((r.Tan)+Txy)y
- v=. (Tfa y){~LURDI{~i=. (1:i.~0<{:"1)j=. VC2 chk"2 (Txy1 y),:w
- if. -.v-:f=. _8{.y do.
+ if. w-:S|w do. (j./w)1}y else.
+  v=. (Tfa y){~LURDI{~i=. (1:i.~0<:{:"1)j=. VC2 chk"2 (Txy1 y),:w
   't mu'=. (2&{.;{:)i{j
   p=. (j./(Txy1 y)+t*mu)1}y
   p,(x*1-mu) av^:(1>mu) ,:(Tan y),(j./switch"0<.0.5+w-t*(1-mu)),(Tpe y),v
- else. (j./S|S+w)1}y end.
+ end.
 )
 gi=: (((Tan-d2r@:[),Txy,Tpe,Tfa)ap) :. gd
 gd=: (((Tan+d2r@:[),Txy,Tpe,Tfa)ap) :. gi
