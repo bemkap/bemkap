@@ -45,7 +45,7 @@ win_grph_paint=: 3 : 0
   gllines"1<.,"2]2(160 160+{.)"1 C mp TR
   glrgb 0 0 255
   glpen 2
-  gllines <.,2(160 160+{.)"1 T1XY mp TR
+  gllines <.,2(160 160+{.)"1 (TICS{.T1XY) mp TR
  catch. return. end. 
 )
 win_grph_mmove=: 3 : 0
@@ -55,11 +55,11 @@ win_grph_mmove=: 3 : 0
   glpaint TR=: TR mp (gl_Rotate (-{:RO),1 0 0) mp (gl_Rotate ({.RO),0 1 0)
  end.
 )
-NB. win_timer=: 3 : 'if. TICS<#T1XY do. glpaint TICS=: >:TICS else. wd''ptimer 0'' end.'
+win_timer=: 3 : 'if. TICS<#T1XY do. glpaint TICS=: >:TICS else. wd''ptimer 0'' end.'
 ta=: 1 : 0
  TR=: =i.4
- NB. TICS=: 0
+ TICS=: 0
  C=: (,{.)"2]1,."2~S*_0.5+6 4 3$,#:0 2 6 4 1 3 7 5 0 2 3 1 4 6 7 5 0 1 5 4 2 3 7 6
  T1XY=: 1,.~(-:S)-~(Txy1 disp"1 Tfa);u&.><T
- wd 'pc win closeok;minwh 320 320;cc grph isigraph;pshow;'
+ wd 'pc win closeok;minwh 320 320;cc grph isigraph;ptimer ',(":y),';pshow;'
 )
