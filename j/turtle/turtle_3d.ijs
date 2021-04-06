@@ -20,23 +20,25 @@ sp=: (TV,TP,[)ap
 pitch=: (([ rot TH,:TU),TL,([ rot TU,:-@:TH),TP,TPE)ap
 roll =: (TH,([ rot TL,:TU),([ rot TU,:-@:TL),TP,TPE)ap
 yaw  =: (([ rot TH,:TL),([ rot TL,:-@:TH),TU,TP,TPE)ap
-MXY=: R=: 0 0
-TR=: =i.4
+MXY=: RO=: 0 0
 win_grph_paint=: 3 : 0
  glrect 0 0 320 320
  glclip 0 0 320 320
- try. gllines <.,2{."1 (gl_Translate 160 160 0) mp~ T1XY=: T1XY mp TR
- catch. return. end. 
+ glrgb 0 0 255
+ glpen 2
+ gllines <.,2(160 160+{.)"1 (TICS{.T1XY) mp TR
 )
 win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
-  R=: 3**MXY-2{.D
+  RO=: 2**MXY-2{.D
   MXY=: 2{.D
-  glpaint TR=: (gl_Rotate (-{:R),1 0 0) mp (gl_Rotate ({.R),0 1 0)
+  glpaint TR=: TR mp (gl_Rotate (-{:RO),1 0 0) mp (gl_Rotate ({.RO),0 1 0)
  end.
 )
+win_timer=: 3 : 'if. TICS<#T1XY do. glpaint TICS=: >:TICS else. wd''ptimer 0'' end.'
 ta=: 1 : 0
- T1PE=: TPE T1=. u T
- T1XY=: 1,.~TP T1
- wd 'pc win closeok;minwh 320 320;cc grph isigraph;pshow;'
+ TR=: =i.4
+ TICS=: 0
+ T1XY=: 1,.~(#~-.@:(0,}.-:"1}:))TP;u&.><T
+ wd 'pc win closeok;minwh 320 320;cc grph isigraph;ptimer ',(":y),';pshow;'
 )
