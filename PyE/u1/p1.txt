@@ -20,9 +20,9 @@ h1
 a.
 unilateral a izquierda
 b.
-p(e1)=6/18=1/3
-p(e2)=8/18=4/9
-potencia=1-p(e2)=1-4/9=5/9
+a=6/18=1/3
+b=8/18=4/9
+potencia=1-b=1-4/9=5/9
 c.
 el dado esta cargado
 4.
@@ -58,4 +58,20 @@ c.
 b suponiendo B=23/30
 b suponiendo C=23/30
 7.
+no, falta la regla
+8.
 a.
+falso. ejercicio 3.b.
+b.
+falso. error tipo 2 es aceptar la h0 siendo verdadera h1. pero h0 es verdadera
+c.
+verdadero
+d.
+falso. se puede cometer un error
+9.
+b
+10.
+a.
+h0:la caja que se muestra es la a
+h1:la caja que se muestra es la b
+b.

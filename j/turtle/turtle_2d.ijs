@@ -23,14 +23,14 @@ tp=: 3 : 0
 win_grph_paint=: 3 : 0
  try.
   glrect 0 0 320 320
-  gllines&>(1(_1})-.TICS{.T1pe) (<@:,@:<.);._2 TICS{.T1xy
+  gllines&>(1(_1})-.TICS{.T1PE) (<@:,@:<.);._2 TICS{.T1XY
  catch. return. end.
 )
-win_timer=: 3 : 'if. TICS<:#T1XY do. glpaint TICS=: >:TICS' else. wd''ptimer 0'' end.'
+win_timer=: 3 : 'if. TICS<:#T1XY do. glpaint TICS=: >:TICS else. wd''ptimer 0'' end.'
 ta=: 1 : 0
  TICS=: 0
  b=. -.(0,}.-:"1}:)}."1 T1=.;u&.><T
- T1xy=: 10+300((%>./)*"1])(-"1<./)+.b#Txy"1 T1
- T1pe=: b#Tpe"1 T1
+ T1XY=: 10+300((%>./)*"1])(-"1<./)+.b#Txy"1 T1
+ T1PE=: b#Tpe"1 T1
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;ptimer ',(":y),';pshow;'
 )

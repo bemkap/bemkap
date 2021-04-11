@@ -1,0 +1,5 @@
+a.puede terminar en deadlock si cada uno toma un tenedor con la mano derecha y espera que el filosofo de su izquierda suelte el otro
+
+b.un deadlock se puede ver como un ciclo de threads que estan esperando que el siguiente libere un recurso, en este caso un filosofo que suelte un tenedor.
+los filosofos pueden estar esperando tomar el primer tenedor o el segundo. si alguno esta esperando el primero quiere decir que el de al lado tiene los dos, osea que no esta esperando a tomar un tenedor, y no se puede armar el ciclo. la unica forma seria entonces que todos esten esperando a agarrar el segundo tenedor, el de su izquierda.
+si suponemos que el filosofo 0 toma primero el de su izquierda, o este tomo su primer tenedor, o el filosofo 4 tomo el de su derecha, pero no los dos. entonces siempre habra un filosofo que no agarra ningun tenedor. y asi no se puede formar el ciclo, porque por mas que el 4 este esperando el segundo tenedor, y el 3 tambien, y asi, cuando llegue al 1, este va a tener disponible el de la izquierda, ya que el 0 esta recien esperando su primer tenedor.
