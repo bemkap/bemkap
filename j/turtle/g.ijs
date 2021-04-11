@@ -12,19 +12,31 @@ h3d=: 1 : 0 NB. hilbert 3d
 tree=: 1 : 0 NB. 3d tree
  's l a'=. m
  if. l>0 do.
-  st=. ((-:s),(<:l),a)tree
+  st=. ((2r3*s),(<:l),a)tree
   y=. s av y
-  b0=. st a yaw ,:{:y
-  b1=. st (-a) yaw ,:{:y
-  b2=. st a pitch ,:{:y
-  b3=. st (-a) pitch ,:{:y
+  b0=. st  a yaw ,:{:y
+  b1=. st -a yaw ,:{:y
+  b2=. st  a pitch ,:{:y
+  b3=. st -a pitch ,:{:y
   b3,~0 sp b2,~0 sp b1,~0 sp b0,~y
  else. y end.
 )
-
-
-NB. ω:A
-NB. p1:A→[&FL!A]/////’[&FL!A]///////’[&FL!A]
-NB. p2:F→S ///// F
-NB. p3:S→FL
-NB. p4:L→[’’’∧∧{-f+f+f-|-f+f+f}]
+NB. flower?
+d=: 22.5
+L=: 1 : 0
+ ({:y),~d yaw^:(?2) (m av (-d) yaw ])^:2 m av d yaw (2*-d) pitch 0 sp y  
+)
+F=: 1 : 0
+ 's l'=. m
+ if. l>0 do.
+  sf=. ((-:s),<:l)F
+  sf (-5*d) roll (s L) sf y
+ else. s av y end.
+)
+A=: 1 : 0
+ 's l'=. m
+ if. l>0 do.
+  sf=. ((2r3*s),<:l)A
+  (-5*d) roll ({:y),~sf (s L) (m F) d pitch y=. (-7*d) roll ({:y),~sf (s L) (m F) d pitch y=. (-5*d) roll ({:y),~sf (s L) (m F) d pitch y=. (-5*d) roll ({:y),~sf (s L) (m F) d pitch y
+ else. y end.
+)
