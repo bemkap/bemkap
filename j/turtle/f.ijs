@@ -102,3 +102,16 @@ sqr1=: 1 : 0 NB. square fractal pattern 1
   sf^:2 (90 gi sf)^:4 sf y
  else. 10 av y end.
 )
+brush1=: 1 : 0
+ if. m>0 do.
+  sb=. (<:m)brush1
+  sb ({:y),~0 sp sb _25.7 gd y=. sb ({:y),~0 sp sb 25.7 gd y=. sb y
+ else. 10 av y end.
+)
+brush2=: 1 : 0
+ if. m>0 do.
+  sb=. (<:m)brush2
+  ({:y),~0 sp (22.5 sb@:gi ])^:2 sb 22.5 gd y=. 22.5 gd ({:y),~0 sp (22.5 sb@:gd ])^:2 sb 22.5 gi y=. 22.5 gi sb^:2 y
+ else. 10 av y end.
+)
+  

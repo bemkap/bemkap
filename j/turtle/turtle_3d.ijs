@@ -22,11 +22,13 @@ roll =: (TH,([ rot TL,:TU),([ rot TU,:-@:TL),TP,TPE)ap
 yaw  =: (([ rot TH,:TL),([ rot TL,:-@:TH),TU,TP,TPE)ap
 MXY=: RO=: 0 0
 win_grph_paint=: 3 : 0
+ try.
  glrect 0 0 320 320
  glclip 0 0 320 320
  glrgb 0 0 255
  glpen 2
- gllines <.,2(160 160+{.)"1 (TICS{.T1XY) mp TR
+ gllines&>(1(_1})-.TICS{.T1PE) (<@:,@:<.);._2 ] 2 (160 160+{.)"1 (TICS{.T1XY) mp TR
+ catch. return. end.
 )
 win_grph_mmove=: 3 : 0
  if. 4{D=. ".sysdata do. 
@@ -39,6 +41,8 @@ win_timer=: 3 : 'if. TICS<#T1XY do. glpaint TICS=: >:TICS else. wd''ptimer 0'' e
 ta=: 1 : 0
  TR=: =i.4
  TICS=: 0
- T1XY=: 1,.~(#~-.@:(0,}.-:"1}:))TP;u&.><T
+ b=. -.(0,}.-:"1}:) (TP,TPE)"1 T1=. ;u&.><T
+ T1XY=: 1,.~b#TP T1
+ T1PE=: b#TPE T1
  wd 'pc win closeok;minwh 320 320;cc grph isigraph;ptimer ',(":y),';pshow;'
 )
