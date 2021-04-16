@@ -1,0 +1,18 @@
+a. un deadlock se puede dar en el siguiente caso:
+
+agente provee tabaco y papel
+fumador 1 agarra tabaco
+fumador 3 agarra papel
+
+entonces queda:
+ fumador 1 esperando papel
+ fumador 2 esperando fosforos
+ fumador 3 esperando fosforos
+ agente esperando que alguien termine de fumar
+
+produciendose el deadlock
+
+b. soluciones
+
+1. usar un semaforo para cada combinacion de dos elementos. aca se podria hacer pero si fueran mas ingredientes no seria viable
+2. que el agente no espere que alguno termine para proveer
