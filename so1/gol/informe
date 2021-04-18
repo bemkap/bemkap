@@ -1,0 +1,9 @@
+-el algoritmo se adapto para ser ejecutado por n hilos, donde n no puede ser mayor que el numero de celdas del tablero
+-el tablero esta implementado con dos buffers. el algoritmo actualiza uno basandose en las celdas del otro, para simular la actualizacion simultanea
+-al iniciar se divide el tablero en n zonas, que seran asignadas a cada hilo para actualizar el tablero
+-hay un hilo especial que manejara el intercambio de los buffers
+-el intercambio de buffers se realiza con dos barreras de la siguiente manera:
+  todos los hilos calculan su zona y llegan a la primer barrera
+  el hilo especial llega tambien a la primer barrera, que se libera cuando estan todos
+  todos los hilos llegan a la segunda barrera, pero el especial antes intercambia los buffers. esto es para que no se intercambien los buffers antes que todos hayan terminado de calcular, y para que ninguno avance a la siguiente generacion antes del intercambio
+  
