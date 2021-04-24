@@ -1,14 +1,16 @@
-main: main.c board.o game.o barreras.o
-	gcc -g -o main main.c game.o board.o barreras.o -pthread
+OBJ= obj/board.o obj/game.o obj/barreras.o
 
-board.o: board.c board.h
-	gcc -g -o board.o -c board.c
+simulador: src/main.c $(OBJ)
+	gcc -g -o simulador src/main.c $(OBJ) -pthread
 
-game.o: game.c game.h
-	gcc -g -o game.o -c game.c
+obj/board.o: src/board.c src/board.h
+	gcc -g -o obj/board.o -c src/board.c
 
-barreras.o: barreras.c barreras.h
-	gcc -g -o barreras.o -c barreras.c
+obj/game.o: src/game.c src/game.h
+	gcc -g -o obj/game.o -c src/game.c
+
+obj/barreras.o: src/barreras.c src/barreras.h
+	gcc -g -o obj/barreras.o -c src/barreras.c
 
 clean:
-	rm main game.o board.o barreras.o
+	rm simulador $(OBJ)

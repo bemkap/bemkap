@@ -3,13 +3,7 @@
 
 #include"board.h"
 
-/*
- game_t: estructura que representa el juego
-  board: tablero
-  cyc  : cantidad de generaciones
-*/
-
-struct{
+typedef struct{
   board_t*board;
   int cyc;
 }game_t;

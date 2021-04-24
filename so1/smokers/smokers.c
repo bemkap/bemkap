@@ -36,44 +36,33 @@ void agente(void *_args){
   return;
 }
 
-void fumar(int fumador){
+int fumar(int fumador){
   printf("Fumador %d: Puf! Puf! Puf!\n", fumador);
   sleep(1);
+  return 0;
 }
 
 void *fumador1(void *_arg){
   args_t *args = (args_t *) _arg;
   printf("Fumador 1: Hola!\n");
-  for (;;) {
-    sem_wait(&args->tabaco);
-    sem_wait(&args->papel);
-    fumar(1);
-    sem_post(&args->otra_vez);
-  }
+  for (;;)
+    sem_trywait(&args->tabaco)||(sem_trywait(&args->papel)&&!sem_post(&args->tabaco))||fumar(1)||sem_post(&args->otra_vez);
   pthread_exit(0);
 }
 
 void *fumador2(void *_arg){
   args_t *args = (args_t *) _arg;
   printf("Fumador 2: Hola!\n");
-  for (;;) {
-    sem_wait(&args->fosforos);
-    sem_wait(&args->tabaco);
-    fumar(2);
-    sem_post(&args->otra_vez);
-  }
+  for (;;)
+    sem_trywait(&args->fosforos)||(sem_trywait(&args->tabaco)&&!sem_post(&args->fosforos))||fumar(2)||sem_post(&args->otra_vez);
   pthread_exit(0);
 }
 
 void *fumador3(void *_arg){
   args_t *args = (args_t *) _arg;
   printf("Fumador 3: Hola!\n");
-  for (;;) {
-    sem_wait(&args->papel);
-    sem_wait(&args->fosforos);
-    fumar(3);
-    sem_post(&args->otra_vez);
-  }
+  for (;;)
+    sem_trywait(&args->papel)||(sem_trywait(&args->fosforos)&&!sem_post(&args->papel))||fumar(3)||sem_post(&args->otra_vez);
   pthread_exit(0);
 }
 

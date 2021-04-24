@@ -20,7 +20,6 @@ int barrier_wait(barrier_t*barr){
   pthread_mutex_unlock(&barr->m);
   return 0;
 }
-int barrier_destroy(barrier_t*barr){
+void barrier_destroy(barrier_t*barr){
   free(barr);
-  return 0;
 }

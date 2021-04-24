@@ -1,4 +1,5 @@
 #include<stdlib.h>
+#include<stdio.h>
 #include<string.h>
 #include"board.h"
 
@@ -35,11 +36,18 @@ void board_set(board_t*board,unsigned col,unsigned row,char val){
   board->b[1-board->act][(row%board->r)*board->c+(col%board->c)]=val;
 }
 int board_load(board_t*board,char*str){
-  if(NULL!=board&&NULL!=board->b){
-    memcpy(board->b,str,board->c*board->r);
-    return 0;
+  char*line,c;
+  int i,n=0,x,y;
+  for(y=0;NULL!=(line=strtok(str,"\n"));y++){
+    i=x=0;
+    while('\0'!=line[i]){//decodificar rle
+      while('0'<=line[i]&&'9'>=line[i]) n=n*10+line[i++]-'0';
+      c=line[i++];
+      for(;0<n;n--) board_set(board,x++,y,c);
+    }
   }
-  return -1;
+  board_swap(board);//aplicar los cambios
+  return 0;
 }
 void board_show(board_t*board,char*res){
   if(NULL!=board&&NULL!=board->b[board->act])

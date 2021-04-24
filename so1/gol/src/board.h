@@ -3,18 +3,6 @@
 
 #include <stdlib.h>
 
-/*
-board_t: estructura para guardar el tablero
- c  : cantidad de columnas
- r  : cantidad de filas
- b  : los dos buffers que se usaran para guardar las celdas
- act: buffer activo
-
-las funciones get y show actuan sobre el buffer activo.set sobre el buffer secundario.
-la idea es que despues de una generacion se intercambien los buffers,
-asi se puede actualizar el tablero como si fuera simultaneo
-*/
-
 typedef struct{
   size_t c,r,act;
   char*b[2];
