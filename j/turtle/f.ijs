@@ -114,4 +114,10 @@ brush2=: 1 : 0
   ({:y),~0 sp (22.5 sb@:gi ])^:2 sb 22.5 gd y=. 22.5 gd ({:y),~0 sp (22.5 sb@:gd ])^:2 sb 22.5 gi y=. 22.5 gi sb^:2 y
  else. 10 av y end.
 )
-  
+NB. penrose tiling
+pf=: 1 : 'if. m>0 do. y else. 10 av y end.'
+pp=: 1 : 'if. m>0 do. ((<:m)pf) ((<:m)pn) 72 gi ({:y) ,~ 0 sp ((<:m)pf) ((<:m)pn) 144 gd ((<:m)pf) ((<:m)pp) 36 gd y=. ((<:m)pf) ((<:m)pm) 144 gd ((<:m)pf) ((<:m)po) 72 gi y else. y end.'
+po=: 1 : 'if. m>0 do. 36 gi ({:y) ,~ 0 sp ((<:m)pf) ((<:m)pp) 72 gd ((<:m)pf) ((<:m)po) 108 gd y=. ((<:m)pf) ((<:m)pn) 72 gd ((<:m)pf) ((<:m)pm) 36 gi y else. y end.'
+pn=: 1 : 'if. m>0 do. 36 gd ({:y) ,~ 0 sp ((<:m)pf) ((<:m)pn) 72 gi ((<:m)pf) ((<:m)pm) 108 gi y=. ((<:m)pf) ((<:m)pp) 72 gi ((<:m)pf) ((<:m)po) 36 gd y else. y end.'
+pm=: 1 : 'if. m>0 do. 72 gd ({:y) ,~ 0 sp ((<:m)pf) ((<:m)pm) 144 gi ((<:m)pf) ((<:m)po) 36 gi y=. ((<:m)pf) ((<:m)pn) 144 gi ((<:m)pf) ((<:m)pp) 72 gd ((<:m)pf) ((<:m)po) y else. y end.'
+penrose=: 1 : '(72 gd {: ,~ 0 sp (m pn))^:5'

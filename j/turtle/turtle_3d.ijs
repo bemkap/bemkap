@@ -26,7 +26,7 @@ win_grph_paint=: 3 : 0
  glrect 0 0 320 320
  glclip 0 0 320 320
  glrgb 0 0 255
- glpen 1
+ glpen 2
  gllines&>(1(_1})-.TICS{.T1PE) (<@:,@:<.);._2 ] 2 (160 160+{.)"1 (TICS{.T1XY) mp TR
  catch. return. end.
 )
