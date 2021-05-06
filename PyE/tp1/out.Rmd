@@ -1,0 +1,284 @@
+---
+title: "Trabajo práctico 1: Estadística descriptiva"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introducción
+Este trabajo consiste en el análisis descriptivo del sistema EcoBici, un sistema de bicicletas compartidas que funciona hace varios años en la Ciudad de Buenos Aires, y cuenta con 200 estaciones y 1200 rodados.
+
+# Fuente de los datos
+Los datos analizados fueron extraídos de las bases de datos proporcionadas por la Ciudad de Buenos Aires (https://data.buenosaires.gob.ar/dataset/estaciones-bicicletas-publicas).
+Se usarán dos bases de datos:
+
+* **Usuarios**: personas que usan EcoBici
+  + Tamaño de la muestra: 100 elementos
+  + Variables:
+    + id_usuario: identificador único que representa a cada usuario (cualitativa)
+    + genero_usuario: género del usuario (cualitativa)
+    + edad_usuario: edad del usuario (cuantitativa continua)
+* **Recorridos**: datos sobre los viajes
+  + Tamaño de la muestra: 380 elementos
+  + Variables:
+    + id_usuario: identificador correspondiente a la base Usuarios
+    + direccion_estacion_origen: la estación de donde la bicicleta fue sacada expresada como cadena de caracteres (cualitativa)
+    + direccion_estacion_destino: la estación donde la bicicleta fue devuelta expresada como cadena de caracteres (cualitativa)
+    + duracion_recorrido: el tiempo, en segundos, que la bicicleta fue usada (cuantitativa continua)
+    + distancia: la longitud, en metros, de la estación de origen hasta la estación de destino (cuantitativa continua)
+    + dia: el día de la semana que la bicicleta fue usada
+\newpage
+
+# Análisis univariado de Usuarios
+```{r, echo=FALSE}
+library(knitr)
+library(stringr)
+setwd("~/documentos/b/PyE/tp1")
+usuarios<-read.csv("usuarios14.csv",header=T)
+recorridos<-read.csv("recorridos14.csv",header=T)
+LAB<-c("Frec.absoluta","Frec.abs.acumulada","Frec.relativa","Frec.rel.acumulada")
+```
+## Género
+```{r, echo=FALSE}
+TG<-table(usuarios$genero_usuario)
+TG<-cbind(TG,TG/sum(TG))
+TG<-rbind(TG,apply(TG,2,sum))
+attributes(TG)$dimnames[[1]]<-c("Femenino","Masculino","Otro","Total")
+attributes(TG)$dimnames[[2]]<-c("Frec.absoluta","Frec.relativa")
+TG
+```
+Tabla 1: usuarios por género
+\newline
+
+```{r, echo=FALSE}
+MDG<-array(c("Femenino"))
+attributes(MDG)$dimnames[[1]]<-c("Moda")
+MDG
+```
+Medidas descriptivas
+
+```{r, echo=FALSE,fig.align='center'}
+GTG<-table(usuarios$genero_usuario)
+attributes(GTG)$dimnames[[1]]<-c("Femenino","Masculino","Otro")
+barplot(sort(GTG,decreasing=T),col="lightblue",ylim=c(0,60),ylab="Porcentaje",cex.axis=0.8,cex.names=0.8,width=10,xlim=c(0,50),space=0.5)
+box()
+mtext("Gráfica 1: Porcentaje de usuarios por género")
+```
+Se puede observar que la mayoría de los usuarios de la muestra son mujeres, siendo la mitad de los mismos. También es llamativa la cantidad de personas que pertenecen a "Otro", pero quizás esto puede ser porque cuando los usuarios se registran y no especifican género, toma el valor "Otro" por defecto.
+\newpage
+
+## Edad
+```{r, echo=FALSE}
+TE<-table(cut(usuarios$edad_usuario,breaks=seq(20,80,5),right=F))
+TE<-cbind(TE,cumsum(TE),round(TE/sum(TE),2),round(cumsum(TE)/sum(TE),2))
+dimnames(TE)[[2]]<-LAB
+TE
+```
+Tabla 2: usuarios por edad
+
+```{r, echo=FALSE}
+round(summary(usuarios$edad_usuario),2)
+```
+Medidas descriptivas
+
+```{r, echo=FALSE, fig.align='center'}
+boxplot(usuarios$edad_usuario,horizontal=T,xlab="Edad",ylim=c(0,80),col="lightblue")
+mtext("Gráfica 2: Cantidad de usuarios por edad")
+```
+
+Acá se ve una mayor concentración de usuarios entre los 25 y 35 años aproximadamente, siendo la mitad menor a 32 años. El 90% de los usuarios son menores a 50 años, como se ve en la tabla de frecuencias.
+
+El rango va desde los 20 hasta los 77, aunque es posible que las edades mayores a 60 sean producto de errores en el registro de la información. En el gráfico se ve que hay un outlier en el valor máximo, 77 años.
+
+También hubo 3 registros que no tenían edad, y no se tuvieron en cuenta para el análisis.
+
+\newpage
+# Análisis univariado de Recorridos
+## Estación de origen
+```{r,echo=FALSE}
+TTEO<-t(t(table(table(recorridos$direccion_estacion_origen))))
+dimnames(TTEO)[[2]]<-c("Frecuencia")
+TTEO<-rbind(TTEO,sum(TTEO))
+dimnames(TTEO)[[1]][length(TTEO)]<-"Total"
+TTEO
+```
+Tabla 3: Estaciones de origen según cantidad de veces registradas
+```{r,echo=FALSE,fig.align='center'}
+par(cex=0.8)
+plot(table(table(recorridos$direccion_estacion_origen)),xlab="Cantidad de registros",ylab="Cantidad de estaciones",ylim=c(0,50))
+mtext("Gráfica 3: Frecuencia de estaciones según cantidad de registros")
+```
+Dado que estación de origen toma demasiados valores distintos, se eligió agruparlas según la cantidad de veces que fueron registradas. La tabla 3 se entiende como: hubo 46 estaciones que fueron registradas 1 vez, 32 que fueron registradas 2 veces, etc. Se puede ver que la mayoría de las estaciones fueron usadas muy pocas veces según esta muestra.
+
+A continuación se realizará el análisis reduciendo la muestra a las 10 estaciones más concurridas.
+\newpage
+```{r, echo=FALSE}
+TEO<-sort(table(recorridos$direccion_estacion_origen),decreasing=T)[1:10]
+TEO<-cbind(TEO,TEO/sum(TEO))
+dimnames(TEO)[[2]]<-c("Frec. absoluta","Frec. relativa")
+TEO[,2]<-round(TEO[,2]+0.0005,2)
+TEO1<-rbind(TEO,c(sum(TEO[,1]),sum(TEO[,2])))
+dimnames(TEO1)[[1]][length(dimnames(TEO1)[[1]])]<-"Total"
+TEO1
+```
+Tabla 4: Las 10 estaciones de origen más comunes
+```{r, echo=FALSE}
+MDTEO<-array(dimnames(TEO)[[1]][1])
+attributes(MDTEO)$dimnames[[1]]<-c("Moda")
+MDTEO
+```
+Medidas descriptivas
+```{r, echo=FALSE, fig.align='center'}
+par(cex=0.75)
+pie(TEO[,2],init.angle=-45,labels=paste(TEO[,2]*100,"%",str_trunc(dimnames(TEO)[[1]],20)))
+box()
+mtext("Gráfica 4: Porcentajes de las 10 estaciones de origen con más recorridos",cex=1.1)
+```
+Las 10 estaciónes de origen más frecuentes representan aproximadamente el 25% de la muestra, es decir, el primer cuartil. De un total de 380 registros, se redujo a 98. Y la más común es "TTE. GENERAL JUAN DOMINGO PERON".
+
+\newpage
+## Estación de destino
+```{r,echo=FALSE}
+TTED<-t(t(table(table(recorridos$direccion_estacion_destino))))
+dimnames(TTED)[[2]]<-c("Frecuencia")
+TTED<-rbind(TTED,sum(TTED))
+dimnames(TTED)[[1]][length(TTED)]<-"Total"
+TTED
+```
+Tabla 5: Estaciones de destino según cantidad de veces registradas
+```{r,echo=FALSE,fig.align='center'}
+par(cex=0.8)
+plot(table(table(recorridos$direccion_estacion_destino)),xlab="Cantidad de registros",ylab="Cantidad de estaciones",ylim=c(0,50))
+mtext("Gráfica 5: Frecuencia de estaciones según cantidad de registros")
+```
+Se hizo el mismo agrupamiento de datos que en estaciones de origen. Acá también la mayoría de las estaciones registran poca frecuencia.
+\newpage
+```{r, echo=FALSE}
+TED<-sort(table(recorridos$direccion_estacion_destino),decreasing=T)[1:10]
+TED<-cbind(TED,TED/sum(TED))
+dimnames(TED)[[2]]<-c("Frec. absoluta","Frec. relativa")
+TED[,2]<-round(TED[,2],2)
+TED1<-rbind(TED,c(sum(TED[,1]),1.00))
+dimnames(TED1)[[1]][length(dimnames(TED1)[[1]])]<-"Total"
+TED1
+```
+Tabla 6: Las 10 estaciones de destino más comunes
+```{r, echo=FALSE}
+MDTED<-array(dimnames(TED)[[1]][1])
+attributes(MDTED)$dimnames[[1]]<-c("Moda")
+MDTED
+```
+Medidas descriptivas
+```{r, echo=FALSE, fig.align='center'}
+par(cex=0.75)
+pie(TED[,2],init.angle=-45,labels=paste(TED[,2]*100,"%",str_trunc(dimnames(TED)[[1]],20)))
+box()
+mtext("Gráfica 6: Porcentaje de las 10 estaciones de destino con más recorridos",cex=1.1)
+```
+Al igual que con las de origen, se muestran las 10 estaciones de destino más comunes, correspondientes también al primer cuartil. Siendo la más común "Maza y don Bosco".
+
+En este caso después de reducir la muestra quedaron 97 registros.
+
+\newpage
+## Duración
+```{r, echo=FALSE}
+TD<-table(cut(round(recorridos$duracion_recorrido/3600,2),breaks=seq(0,5,0.5),right=F))
+TD<-cbind(TD,cumsum(TD),round(TD/sum(TD),2),round(cumsum(TD)/sum(TD),2))
+dimnames(TD)[[2]]<-LAB
+TD
+```
+Tabla 7: Duración (en horas) de los recorridos
+```{r, echo=FALSE}
+round(summary(recorridos$duracion_recorrido/3600),2)
+```
+Medidas descriptivas
+
+```{r, echo=FALSE, fig.align='center'}
+boxplot(recorridos$duracion_recorrido/3600,horizontal=T,ylim=c(0,5),range=9,col="lightblue",xlab="Tiempo (en horas)")
+mtext("Gráfica 7: Cantidad de recorridos según su duración",cex=1.1)
+```
+Los datos se agruparon en intervalos de media hora para mejor visualización.
+
+Por lo que se ve en el gráfico y en la tabla, la gran mayoría de los viajes (69%) duraron media hora o menos, y casi todos (94%) duraron menos de 1 hora. También se observa que hubo dos de entre 4 y 5 horas, y uno de un poco más de 3 horas, que aparecen como outliers en el gráfico.
+
+La mitad de las personas anduvieron 0.4 horas (24 minutos) o menos, y el total anduvo en promedio 0.49 horas (~30 minutos).
+
+El 10% de los viajes de menor duración son de 10 minutos o menos. Podría ser el caso de estaciones que estan cerca una de la otra, o de usos en la zona que terminaron en lugar de partida.
+
+\newpage
+## Distancia
+```{r, echo=FALSE}
+TDI<-table(cut(recorridos$distancia,breaks=seq(0,10000,1000),right=F,dig.lab=5))
+TDI<-cbind(TDI,cumsum(TDI),round(TDI/sum(TDI),2),round(cumsum(TDI)/sum(TDI),2))
+dimnames(TDI)[[2]]<-LAB
+TDI
+```
+Tabla 8: Distancia (en metros) de los recorridos
+```{r, echo=FALSE}
+summary(recorridos$distancia)
+```
+Medidas descriptivas
+```{r, echo=FALSE, fig.align='center'}
+hist(recorridos$distancia,ylim=c(0,150),xlab="Distancia (en metros)",ylab="Cantidad",col="lightblue",main="")
+box()
+mtext("Gráfica 8: Cantidad de recorridos según su distancia",cex=1.1)
+```
+Las distancias recorridas son proporcionales a las duraciones analizadas antes, que corresponden a viajes cortos. Lo que aparece acá, y que no se ve en el gráfico ni en la tabla, es que casi el 20% de los registros son de 0 metros. La distancia tomada es la de la estación de origen hasta la de destino, lo que da un mínimo de distancia recorrida, y no la distancia efectiva. Por lo que las muestras que registran distancia 0 son de recorridos que empiezan y terminan en la misma estación.
+
+La mitad de los usuarios anduvo 2022 metros, y el promedio fue de 1998 metros.
+\newpage
+
+## Días
+```{r, echo=FALSE}
+TDIA<-sort(table(recorridos$dia),decreasing=T)
+TDIA<-cbind(TDIA,round(TDIA/sum(TDIA),2))
+dimnames(TDIA)[[2]]<-c("Frec.absoluta","Frec.relativa")
+TDIA<-rbind(TDIA,c(sum(TDIA[,1]),1.00))
+dimnames(TDIA)[[1]][length(dimnames(TDIA)[[1]])]<-"Total"
+TDIA
+```
+Tabla 9: Días de los recorridos
+```{r,echo=FALSE}
+MDDIA<-array(dimnames(TDIA)[[1]][1])
+attributes(MDDIA)$dimnames[[1]]<-c("Moda")
+MDDIA
+```
+Medidas descriptivas
+```{r, echo=FALSE, fig.align='center'}
+barplot(sort(table(recorridos$dia),decreasing=T),horiz=T,las=1,xlim=c(0,70),col="lightblue",cex.names=0.8,xlab="Cantidad")
+box()
+mtext("Gráfica 9: Cantidad de recorridos según el día",cex=1.1)
+```
+En los días viernes se ha registrado un mayor uso de bicicletas, pero no varía mucho la cantidad entre todos los días de la semana.
+
+\newpage
+# Análisis bivariado
+## Género y edad
+```{r, echo=FALSE}
+GGET<-table(usuarios$genero_usuario,cut(usuarios$edad_usuario,breaks=seq(20,80,10),right=F))
+GET<-cbind(GGET,apply(GGET,1,sum))
+GET<-rbind(GET,apply(GET,2,sum))
+dimnames(GET)[[1]]<-c("Femenino","Masculino","Otro","Total")
+GET
+```
+Tabla 10: Usuarios por género y edad
+```{r, echo=FALSE, fig.align='center'}
+barplot(GGET,ylim=c(0,20),col=c("lightblue","green","orange"),ylab="Cantidad",xlab="Edad",beside=T,legend.text=c("Femenino","Masculino","Otro"))
+box()
+mtext("Gráfica 10: Cantidad de personas por género y edad",cex=1.1)
+```
+## Duración y distancia
+```{r,echo=FALSE,fig.align='center'}
+plot(recorridos$duracion_recorrido/3600,recorridos$distancia/1000,pch=20,ylab="Distancia (en km)",xlab="Duración (en horas)",xlim=c(0,5),col="blue",xaxt="n")
+axis(1,xaxp=c(0,5,10))
+mtext("Gráfica 11: Distacia recorrida en relación a la duración")
+```
+Se decidió hacer el análisis bivariado de estas dos mediciones para tratar de entender los valores extremos que surgían del análisis univariado.
+
+En el caso de la distancia se podía ver un valor extremo de casi 10km, y acá se nota que la duración de ese recorrido se encuentra entre la media hora y la hora, más o menos a la mitad del intervalo, dando una velocidad aproximada de 13km/h. Se concluye que si bien es un valor alejado de los demás, no se debe a un error porque no es algo imposible que suceda.
+
+Los valores extremos de la duración tampoco se podrían descartar como errores de medición, porque los usuarios pueden tomar las bicicletas, andar todo el tiempo que quieran, y después volver a la misma estación o a una cercana, lo que también explicaría por qué hay tantos recorridos de distancia 0.
