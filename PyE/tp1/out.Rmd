@@ -1,5 +1,7 @@
 ---
-title: "Trabajo práctico 1: Estadística descriptiva"
+title: "Trabajo práctico: Estadística descriptiva"
+subtitle: "Licenciatura en ciencias de la computación, Universidad nacional de Rosario"
+author: Rossi, Martín
 output:
   pdf_document: default
   html_document: default
@@ -25,12 +27,12 @@ Se usarán dos bases de datos:
 * **Recorridos**: datos sobre los viajes
   + Tamaño de la muestra: 380 elementos
   + Variables:
-    + id_usuario: identificador correspondiente a la base Usuarios
+    + id_usuario: identificador correspondiente a la base Usuarios (cualitativa)
     + direccion_estacion_origen: la estación de donde la bicicleta fue sacada expresada como cadena de caracteres (cualitativa)
     + direccion_estacion_destino: la estación donde la bicicleta fue devuelta expresada como cadena de caracteres (cualitativa)
     + duracion_recorrido: el tiempo, en segundos, que la bicicleta fue usada (cuantitativa continua)
     + distancia: la longitud, en metros, de la estación de origen hasta la estación de destino (cuantitativa continua)
-    + dia: el día de la semana que la bicicleta fue usada
+    + dia: el día de la semana que la bicicleta fue usada (cualitativa)
 \newpage
 
 # Análisis univariado de Usuarios
@@ -64,9 +66,9 @@ Medidas descriptivas
 ```{r, echo=FALSE,fig.align='center'}
 GTG<-table(usuarios$genero_usuario)
 attributes(GTG)$dimnames[[1]]<-c("Femenino","Masculino","Otro")
-barplot(sort(GTG,decreasing=T),col="lightblue",ylim=c(0,60),ylab="Porcentaje",cex.axis=0.8,cex.names=0.8,width=10,xlim=c(0,50),space=0.5)
+barplot(sort(GTG,decreasing=T),col="lightblue",ylim=c(0,60),ylab="Porcentaje de usuarios",cex.axis=0.8,cex.names=0.8,width=10,xlim=c(0,50),space=0.5,xlab="Género")
 box()
-mtext("Gráfica 1: Porcentaje de usuarios por género")
+mtext("Gráfica 1: Porcentaje de usuarios de EcoBici\npor género en el año 2020")
 ```
 Se puede observar que la mayoría de los usuarios de la muestra son mujeres, siendo la mitad de los mismos. También es llamativa la cantidad de personas que pertenecen a "Otro", pero quizás esto puede ser porque cuando los usuarios se registran y no especifican género, toma el valor "Otro" por defecto.
 \newpage
@@ -86,8 +88,9 @@ round(summary(usuarios$edad_usuario),2)
 Medidas descriptivas
 
 ```{r, echo=FALSE, fig.align='center'}
-boxplot(usuarios$edad_usuario,horizontal=T,xlab="Edad",ylim=c(0,80),col="lightblue")
-mtext("Gráfica 2: Cantidad de usuarios por edad")
+boxplot(usuarios$edad_usuario,horizontal=T,xlab="Edad",ylim=c(20,80),col="lightblue")
+mtext("Gráfica 2: Cantidad de usuarios de EcoBici\npor edad en el año 2020")
+axis(side=1,at=seq(20,80,5))
 ```
 
 Acá se ve una mayor concentración de usuarios entre los 25 y 35 años aproximadamente, siendo la mitad menor a 32 años. El 90% de los usuarios son menores a 50 años, como se ve en la tabla de frecuencias.
@@ -108,9 +111,8 @@ TTEO
 ```
 Tabla 3: Estaciones de origen según cantidad de veces registradas
 ```{r,echo=FALSE,fig.align='center'}
-par(cex=0.8)
 plot(table(table(recorridos$direccion_estacion_origen)),xlab="Cantidad de registros",ylab="Cantidad de estaciones",ylim=c(0,50))
-mtext("Gráfica 3: Frecuencia de estaciones según cantidad de registros")
+mtext("Gráfica 3: Frecuencia de estaciones de origen\nsegún cantidad de registros en el año 2020")
 ```
 Dado que estación de origen toma demasiados valores distintos, se eligió agruparlas según la cantidad de veces que fueron registradas. La tabla 3 se entiende como: hubo 46 estaciones que fueron registradas 1 vez, 32 que fueron registradas 2 veces, etc. Se puede ver que la mayoría de las estaciones fueron usadas muy pocas veces según esta muestra.
 
@@ -136,9 +138,9 @@ Medidas descriptivas
 par(cex=0.75)
 pie(TEO[,2],init.angle=-45,labels=paste(TEO[,2]*100,"%",str_trunc(dimnames(TEO)[[1]],20)))
 box()
-mtext("Gráfica 4: Porcentajes de las 10 estaciones de origen con más recorridos",cex=1.1)
+mtext("Gráfica 4: Porcentajes de las 10 estaciones de origen de EcoBici\ncon más recorridos en el año 2020",cex=1.1)
 ```
-Las 10 estaciónes de origen más frecuentes representan aproximadamente el 25% de la muestra, es decir, el primer cuartil. De un total de 380 registros, se redujo a 98. Y la más común es "TTE. GENERAL JUAN DOMINGO PERON".
+Las 10 estaciónes de origen más frecuentes representan aproximadamente el 25% de la muestra, es decir, el primer cuartil. De un total de 380 registros, se redujo a 95. Y la más común es "TTE. GENERAL JUAN DOMINGO PERON".
 
 \newpage
 ## Estación de destino
@@ -151,9 +153,8 @@ TTED
 ```
 Tabla 5: Estaciones de destino según cantidad de veces registradas
 ```{r,echo=FALSE,fig.align='center'}
-par(cex=0.8)
 plot(table(table(recorridos$direccion_estacion_destino)),xlab="Cantidad de registros",ylab="Cantidad de estaciones",ylim=c(0,50))
-mtext("Gráfica 5: Frecuencia de estaciones según cantidad de registros")
+mtext("Gráfica 5: Frecuencia de estaciones de destino\nsegún cantidad de registros en el año 2020")
 ```
 Se hizo el mismo agrupamiento de datos que en estaciones de origen. Acá también la mayoría de las estaciones registran poca frecuencia.
 \newpage
@@ -177,7 +178,7 @@ Medidas descriptivas
 par(cex=0.75)
 pie(TED[,2],init.angle=-45,labels=paste(TED[,2]*100,"%",str_trunc(dimnames(TED)[[1]],20)))
 box()
-mtext("Gráfica 6: Porcentaje de las 10 estaciones de destino con más recorridos",cex=1.1)
+mtext("Gráfica 6: Porcentaje de las 10 estaciones de destino de EcoBici\ncon más recorridos en el año 2020",cex=1.1)
 ```
 Al igual que con las de origen, se muestran las 10 estaciones de destino más comunes, correspondientes también al primer cuartil. Siendo la más común "Maza y don Bosco".
 
@@ -198,8 +199,10 @@ round(summary(recorridos$duracion_recorrido/3600),2)
 Medidas descriptivas
 
 ```{r, echo=FALSE, fig.align='center'}
-boxplot(recorridos$duracion_recorrido/3600,horizontal=T,ylim=c(0,5),range=9,col="lightblue",xlab="Tiempo (en horas)")
-mtext("Gráfica 7: Cantidad de recorridos según su duración",cex=1.1)
+boxplot(recorridos$duracion_recorrido/3600,horizontal=T,ylim=c(0,5),range=9,col="lightblue",xlab="Tiempo (en horas)",axes=F)
+mtext("Gráfica 7: Cantidad de recorridos según su\nduración en el año 2020",cex=1.1)
+box()
+axis(side=1,at=seq(0,5,0.5))
 ```
 Los datos se agruparon en intervalos de media hora para mejor visualización.
 
@@ -223,13 +226,14 @@ summary(recorridos$distancia)
 ```
 Medidas descriptivas
 ```{r, echo=FALSE, fig.align='center'}
-hist(recorridos$distancia,ylim=c(0,150),xlab="Distancia (en metros)",ylab="Cantidad",col="lightblue",main="")
+hist(recorridos$distancia,ylim=c(0,150),xlab="Distancia (en metros)",ylab="Cantidad de recorridos",col="lightblue",main="",xlim=c(-500,10500))
 box()
-mtext("Gráfica 8: Cantidad de recorridos según su distancia",cex=1.1)
+lines(seq(-500,10500,1000),c(0,table(cut(recorridos$distancia,breaks=seq(0,10000,1000),right=F,dig.lab=5)),0))
+mtext("Gráfica 8: Cantidad de recorridos según su\ndistancia en el año 2020",cex=1.1)
 ```
 Las distancias recorridas son proporcionales a las duraciones analizadas antes, que corresponden a viajes cortos. Lo que aparece acá, y que no se ve en el gráfico ni en la tabla, es que casi el 20% de los registros son de 0 metros. La distancia tomada es la de la estación de origen hasta la de destino, lo que da un mínimo de distancia recorrida, y no la distancia efectiva. Por lo que las muestras que registran distancia 0 son de recorridos que empiezan y terminan en la misma estación.
 
-La mitad de los usuarios anduvo 2022 metros, y el promedio fue de 1998 metros.
+La mitad de los usuarios anduvo 2022 metros o menos, y el promedio fue de 1998 metros.
 \newpage
 
 ## Días
@@ -249,9 +253,9 @@ MDDIA
 ```
 Medidas descriptivas
 ```{r, echo=FALSE, fig.align='center'}
-barplot(sort(table(recorridos$dia),decreasing=T),horiz=T,las=1,xlim=c(0,70),col="lightblue",cex.names=0.8,xlab="Cantidad")
+barplot(sort(table(recorridos$dia),decreasing=T),horiz=T,las=1,xlim=c(0,70),col="lightblue",cex.names=0.8,xlab="Cantidad de recorridos")
 box()
-mtext("Gráfica 9: Cantidad de recorridos según el día",cex=1.1)
+mtext("Gráfica 9: Cantidad de recorridos según el\ndía de la semana en el año 2020",cex=1.1)
 ```
 En los días viernes se ha registrado un mayor uso de bicicletas, pero no varía mucho la cantidad entre todos los días de la semana.
 
@@ -267,18 +271,23 @@ GET
 ```
 Tabla 10: Usuarios por género y edad
 ```{r, echo=FALSE, fig.align='center'}
-barplot(GGET,ylim=c(0,20),col=c("lightblue","green","orange"),ylab="Cantidad",xlab="Edad",beside=T,legend.text=c("Femenino","Masculino","Otro"))
+barplot(GGET,ylim=c(0,20),col=c("lightblue","green","orange"),ylab="Cantidad de usuarios",xlab="Edad",beside=T,legend.text=c("Femenino","Masculino","Otro"))
 box()
-mtext("Gráfica 10: Cantidad de personas por género y edad",cex=1.1)
+mtext("Gráfica 10: Cantidad de usuarios de EcoBici\npor género y edad en el año 2020",cex=1.1)
 ```
+En cada intervalo de edad se mantiene la proporción de usuarios por género, manteniendose la mayoría por el género "Femenino", después "Otro" y al final "Masculino" Las edades de más de 60 años se ve que pertenecen al género "Otro", lo que da a entender que fueron producto de algún error en la carga de datos.
+
+Edad tiene 3 registros con valor NA, por eso el total es de 97.
+\newpage
+
 ## Duración y distancia
 ```{r,echo=FALSE,fig.align='center'}
 plot(recorridos$duracion_recorrido/3600,recorridos$distancia/1000,pch=20,ylab="Distancia (en km)",xlab="Duración (en horas)",xlim=c(0,5),col="blue",xaxt="n")
 axis(1,xaxp=c(0,5,10))
-mtext("Gráfica 11: Distacia recorrida en relación a la duración")
+mtext("Gráfica 11: Distacia recorrida en relación a la duración\nen el año 2020")
 ```
 Se decidió hacer el análisis bivariado de estas dos mediciones para tratar de entender los valores extremos que surgían del análisis univariado.
 
 En el caso de la distancia se podía ver un valor extremo de casi 10km, y acá se nota que la duración de ese recorrido se encuentra entre la media hora y la hora, más o menos a la mitad del intervalo, dando una velocidad aproximada de 13km/h. Se concluye que si bien es un valor alejado de los demás, no se debe a un error porque no es algo imposible que suceda.
 
-Los valores extremos de la duración tampoco se podrían descartar como errores de medición, porque los usuarios pueden tomar las bicicletas, andar todo el tiempo que quieran, y después volver a la misma estación o a una cercana, lo que también explicaría por qué hay tantos recorridos de distancia 0.
+Los valores extremos de la duración tampoco se podrían descartar como errores de medición, porque aunque el tiempo de uso permitido por EcoBici es hasta 30 minutos, los usuarios pueden tomar las bicicletas, andar todo el tiempo que quieran, y después volver a la misma estación o a una cercana; cobrándose una multa para los que excedan la media hora.
