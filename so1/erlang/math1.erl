@@ -1,12 +1,9 @@
 -module(math1).
--export([start/0,loop/0]).
+-export([factorial/1,min/1]).
 
-start()->
-    spawn(math1,loop,[]).
+factorial(0)->1;
+factorial(N)->N*factorial(N-1).
 
-loop()->
-    receive
-        {From,Message}->
-            From!Message,
-            loop()
-    end.
+min([H])->H;
+min([H|T])->R=min(T),
+            if R<H->R;true->H end.
