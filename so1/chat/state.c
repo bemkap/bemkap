@@ -24,4 +24,5 @@ void tstate_init(tstate*tst,sstate*sst){
 }
 void cstate_init(cstate*cst){
   pthread_mutex_init(&cst->mut,NULL);
+  cst->act=1;
 }

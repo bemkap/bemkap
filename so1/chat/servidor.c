@@ -26,7 +26,7 @@ int quit(tstate*tst){
   //pone en 0 la bandera de activo
   tst->sst->stable[tst->id]=-1;
   tst->act=0;
-  if(0>send(tst->sock,"ok",2,0)) terr("send fallo");
+  if(0>send(tst->sock,"bye",3,0)) terr("send fallo");
   return 0;
 }
 void nickname(tstate*tst){
@@ -62,13 +62,13 @@ void*tmain(void*a){
     }else send(tst->sock,"err",3,0);
     pthread_mutex_unlock(&tst->sst->mut);
   }
-  printf("%s ha ingresado a la sala\n",buffer);
+  printf("%s[%d] ha ingresado\n",buffer,tst->sock);
   //una vez que entra queda esperando mensajes del usuario
   while(test){
     if(0>(nbytes=recv(tst->sock,buffer,BUFMAX,0))) terr("recv fallo");
     buffer[nbytes]='\0';
-    cmd=strtok(buffer," ");
-    printf("[%d]:%s\n",tst->sock,cmd);
+    cmd=strtok(buffer," \n");
+    printf("[%d]:%s\n",tst->sock,cmd);    
     if     (0==strncmp(cmd,"/msg",4)) msg(tst);
     else if(0==strncmp(cmd,"/exit",5)) test=quit(tst);
     else if(0==strncmp(cmd,"/nickname",9)) nickname(tst);

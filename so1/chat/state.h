@@ -7,14 +7,12 @@ typedef struct{
   int*stable,N;
   pthread_mutex_t mut;
 }sstate;
-
 typedef struct{
   int sock,act,id;
   sstate*sst;
 }tstate;
-
 typedef struct{
-  int sock;
+  int sock,act;
   pthread_mutex_t mut;
 }cstate;
 
