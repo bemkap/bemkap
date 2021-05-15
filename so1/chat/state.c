@@ -2,16 +2,18 @@
 #include<pthread.h>
 #include"state.h"
 
-void state_init(state*st,int N){
-  st->stable=malloc(N*sizeof(int));
-  for(int i=0;i<N;i++) st->stable[i]=-1;
-  pthread_mutex_init(&st->mut,NULL);
+void sstate_init(sstate*sst,int N){
+  sst->stable=malloc(N*sizeof(int));
+  for(int i=0;i<N;i++) sst->stable[i]=-1;
+  pthread_mutex_init(&sst->mut,NULL);
 }
-void state_dest(state*st){
+void sstate_dest(sstate*st){
   free(st->stable);
 }
-
-void tstate_init(tstate*tst,state*glst){
+void tstate_init(tstate*tst,sstate*sst){
   tst->act=0;
-  tst->glst=glst;
+  tst->sst=sst;
+}
+void cstate_init(cstate*cst){
+  pthread_mutex_init(&cst->mut,NULL);
 }

@@ -1,22 +1,20 @@
-all: serv cli
+CFLAGS= -Wall -g
+CC= gcc
+OBJ=
+HDR=
 
-serv: serv.o state.o util.o const.h
-	gcc -g -o serv serv.o state.o util.o const.h -pthread
+all: servidor cliente
 
-cli: cli.o state.o util.o const.h
-	gcc -g -o cli cli.o state.o util.o const.h -pthread
+servidor: servidor.o state.o util.o const.h
+	gcc -o servidor servidor.o state.o util.o const.h -pthread
 
-serv.o: serv.c
-	gcc -c -g serv.c
+cliente: cliente.o state.o util.o const.h
+	gcc -o cliente cliente.o state.o util.o const.h -pthread
 
-cli.o: cli.c
-	gcc -c -g cli.c
-
+servidor.o: servidor.c
+cliente.o: cliente.c
 state.o: state.c state.h
-	gcc -c -g state.c
-
 util.o: util.c util.h
-	gcc -c -g util.c
 
 clean:
-	rm -f util.o state.o serv.o cli.o serv cli
+	rm -f servidor.o cliente.o state.o util.o servidor cliente

@@ -6,16 +6,21 @@
 typedef struct{
   int*stable;
   pthread_mutex_t mut;
-}state;
+}sstate;
 
 typedef struct{
   int sock,act;
-  state*glst;
+  sstate*sst;
 }tstate;
 
-void state_init(state*,int);
-void state_dest(state*);
+typedef struct{
+  int sock;
+  pthread_mutex_t mut;
+}cstate;
 
-void tstate_init(tstate*,state*);
+void sstate_init(sstate*,int);
+void sstate_dest(sstate*);
+void tstate_init(tstate*,sstate*);
+void cstate_init(cstate*);
 
 #endif
