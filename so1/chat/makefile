@@ -1,7 +1,5 @@
 CFLAGS= -Wall -g
 CC= gcc
-OBJ=
-HDR=
 
 all: servidor cliente
 

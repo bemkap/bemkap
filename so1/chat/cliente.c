@@ -11,9 +11,8 @@
 
 void*tsend(void*a){
   ssize_t nbytes;
-  char buffer[MSGMAX];
+  char buffer[BUFMAX];
   cstate*st=(cstate*)a;
-  
   for(;;){
     printf("> "); fflush(NULL);
     read(STDIN_FILENO,buffer,MSGMAX);
@@ -27,9 +26,8 @@ void*tsend(void*a){
 }
 void*trecv(void*a){
   ssize_t nbytes;
-  char buffer[MSGMAX];
+  char buffer[BUFMAX];
   cstate*st=(cstate*)a;
-
   for(;;){
     if(0>(nbytes=recv(st->sock,buffer,MSGMAX,0))) terr("recv fallo");
     buffer[nbytes]='\0';
@@ -44,7 +42,6 @@ int main(int argc,char*argv[]){
   char buffer[BUFMAX],nick[NAMMAX];
   ssize_t nbytes;
   cstate st;
-  
   if(argc>2){
     pthread_mutex_init(&st.mut,NULL);
     if(0>(st.sock=socket(AF_INET,SOCK_STREAM,0))) err("socket fallo");

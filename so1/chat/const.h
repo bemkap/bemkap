@@ -5,6 +5,6 @@ const int CLIMAX=100;
 const int MSGMAX=1024;
 const int NAMMAX=32;
 const int CMDMAX=10;
-const int BUFMAX=MSGMAX+NAMMAX+CMDMAX;
+const int BUFMAX=MSGMAX+NAMMAX+CMDMAX+2;
 
 #endif

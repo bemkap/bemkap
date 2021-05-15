@@ -4,12 +4,12 @@
 #include<pthread.h>
 
 typedef struct{
-  int*stable;
+  int*stable,N;
   pthread_mutex_t mut;
 }sstate;
 
 typedef struct{
-  int sock,act;
+  int sock,act,id;
   sstate*sst;
 }tstate;
 
@@ -20,6 +20,8 @@ typedef struct{
 
 void sstate_init(sstate*,int);
 void sstate_dest(sstate*);
+int  sstate_sget(sstate*,const char*);
+void sstate_sset(sstate*,const char*,int);
 void tstate_init(tstate*,sstate*);
 void cstate_init(cstate*);
 
