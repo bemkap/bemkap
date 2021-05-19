@@ -8,3 +8,6 @@ stream: cli_echo_stream.c srv_echo_stream.c crear_socket_nombrado.o
 
 crear_socket_nombrado.o: crear_socket_nombrado.c
 	gcc -c crear_socket_nombrado.c
+	
+clean:
+	rm -f crear_socket_nombrado.o cliente servidor

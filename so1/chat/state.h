@@ -3,17 +3,21 @@
 
 #include<pthread.h>
 
+//estructuras de estados para los threads cliente y servidor
+//estado del servidor 
 typedef struct{
-  int*stable,N;
+  int*stable,N; //tabla de todos los clientes y tamaño total
   pthread_mutex_t mut;
 }sstate;
+//estado del thread
 typedef struct{
-  int sock,act,id;
-  sstate*sst;
+  int sock,act,id; //socket del cliente, actividad e id
+  sstate*sst; //puntero al estado global
 }tstate;
+//estado del cliente
 typedef struct{
-  int sock,act;
-  pthread_mutex_t mut;
+  int sock,act; //socket del servidor y actividad
+  /* pthread_mutex_t mut; */
 }cstate;
 
 void sstate_init(sstate*,int);
