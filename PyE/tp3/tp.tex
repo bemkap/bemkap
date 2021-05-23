@@ -2,7 +2,7 @@
 \usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{multirow}
-\title{\huge{\textbf{Ejercicios unidad 3}}}
+\title{\LARGE \textbf{Trabajo práctico: unidad 3}\\\large Probabilidad y estadística}
 \author{Martín Rossi}
 \date{}
 \begin{document}
@@ -10,79 +10,111 @@
 \textbf{1)}
 Se definen los sucesos:
 
-$T_0=\textrm{``se emite un 0''}$
+$T_0:\textrm{``se emite un 0''}$
 
-$T_1=\textrm{``se emite un 1''}$
+$T_1:\textrm{``se emite un 1''}$
 
-$R_0=\textrm{``se recibe un 0''}$
+$R_0:\textrm{``se recibe un 0''}$
 
-$R_1=\textrm{``se recibe un 1''}$
+$R_1:\textrm{``se recibe un 1''}$
 
-El espacio muestral sería:
+Se tiene que:
 
-$S=\{(T_0,R_0),(T_0,R_1),(T_1,R_0),(T_1,R_1)\}$
+$P(T_0)=0.5$
 
-y el suceso $E=\textrm{``se comete un error en la transmisión"}$:
+$P(T_1)=0.5$
 
-$E=\{(T_0,R_1),(T_1,R_0)\}$
+Entonces se define el suceso $E:\textrm{``se comete un error en la transmisión"}$ como:
 
-entonces $P(E)=\frac{\#E}{\#S}=\frac{2}{4}=\frac{1}{2}$
+$E=(T_0 \cap R_1) \cup (T_1 \cap R_0)$
+
+Y se calcula la probabilidad:
+\begin{align*}
+  P(E)&=P((T_0 \cap R_1) \cup (T_1 \cap R_0))\\
+      &=P(T_0 \cap R_1)+P(T_1 \cap R_0)-P(T_0 \cap R_1 \cap T_1 \cap R_0)\\
+      &=P(T_0 \cap R_1)+P(T_1 \cap R_0)\tag{$T_0$ y $T_1$ excluyentes}\\
+      &=P(T_0|R_1)P(R_1)+P(T_1|R_0)P(R_0)\\
+      &=P(T_0)P(R_1)+P(T_1)P(R_0)\tag{si se asume independencia entre $R$ y $T$}\\
+      &=0.5*P(R_1)+0.5*P(R_0)
+\end{align*}
 
 \textbf{2)}
 Se definen los sucesos:
 
 $I_1: \textrm{"error importante en la primer prueba"}$
 
-$M_1: \textrm{"error menor en la primer prueba"}$
-
-$N_1: \textrm{"ningún error en la primer prueba"}$
-
 $I_2: \textrm{"error importante en la segunda prueba"}$
+
+$M_1: \textrm{"error menor en la primer prueba"}$
 
 $M_2: \textrm{"error menor en la segunda prueba"}$
 
+$N_1: \textrm{"ningún error en la primer prueba"}$
+
 $N_2: \textrm{"ningún error en la segunda prueba"}$
+
+Se tiene que:
 
 $P(I_1)=0.6$
 
 $P(M_1)=0.3$
 
 $P(N_1)=0.1$
-
+\newpage
 \textbf{a)}
-Usando estas probabilidades junto con la formula de probabilidad condicional
+Usando estas probabilidades junto con la fórmula de probabilidad condicional
 
 $P(A|B)=P(A \cap B)/P(B)$ se forma la tabla de intersecciones:\\
 
 \begin{tabular}{r r r r r}
   &&\multicolumn{3}{l}{\textbf{Tipo de error segunda prueba}}\\
   &&Importante&Menor&Ninguno\\
-  \textbf{Tipo de error}&Importante&0.09&0.15&0.06\\
-  \textbf{primera prueba}&Menor&0.06&0.18&0.36\\
+  \textbf{Tipo de error}&Importante&0.18&0.3&0.12\\
+  \textbf{primera prueba}&Menor&0.03&0.09&0.18\\
   &Ninguno&0&0.02&0.08\\
 \end{tabular}\\
 
 \textbf{b)}
 Se puede condicionar la probabilidad por el resultado de la primer prueba.
 
-Como $S=I_1 \cup M_1 \cup N_1$, se calcula $P(I_2)$ con los valores de la tabla:
+Como $I_1,M_1,N_1$ forman una partición de $S$, se calcula $P(I_2)$ con los valores de la tabla:
 \begin{align*}
   P(I_2)&=P(I_2|I_1)P(I_1)+P(I_2|M_1)P(M_1)+P(I_2|N_1)P(N_1)\\
         &=0.3*0.6+0.1*0.3+0*0.1\\
-        &=0.18+0.03+0\\
         &=0.21
 \end{align*}
 
 \textbf{c)}
 \begin{align*}
   P(M_1|I_2)&=P(M_1 \cap I_2)/P(I_2)\\
-            &=0.06/0.21\\
-            &=0.28
+            &=0.03/0.21\\
+            &=0.1429
 \end{align*}
 
 \textbf{d)}
-Los resultados de la primer prueba no son independientes a los de la segunda. Una vez hechas las dos pruebas los resultados de la segunda condicionan los de la primera.
+\begin{align*}
+  P(M_2)&=P(M_2|I_1)P(I_1)+P(M_2|M_1)P(M_1)+P(M_2|N_1)P(N_1)\\
+        &=0.5*0.6+0.3*0.3+0.2*0.1\\
+        &=0.41
+\end{align*}
+\begin{align*}
+  P(N_2)&=P(N_2|I_1)P(I_1)+P(N_2|M_1)P(M_1)+P(N_2|N_1)P(N_1)\\
+        &=0.2*0.6+0.6*0.3+0.8*0.1\\
+        &=0.38
+\end{align*}
 
+\begin{tabular}{r r r r r}
+  &&\multicolumn{3}{l}{\textbf{Tipo de error primera prueba}}\\
+  &&Importante&Menor&Ninguno\\
+  \textbf{Tipo de error}&Importante&0.8571&0.1429&0\\
+  \textbf{segunda prueba}&Menor&0.7317&0.2195&0.0488\\
+  &Ninguno&0.3158&0.4737&0.2105
+\end{tabular}\\
+
+Ningún resultado de la primera es independiente al de la segunda, una vez hechas
+
+las dos pruebas.
+\newpage
 \textbf{3)}
 Se definen los sucesos:
 
@@ -90,7 +122,7 @@ $E: \textrm{``una persona tiene la enfermedad''}$
 
 $A: \textrm{``el test da positivo''}$
 
-tenemos los siguientes datos:
+Tenemos los siguientes datos:
 
 $P(A|E)=0.9$
 
@@ -98,12 +130,14 @@ $P(A|\overline{E})=0.05$
 
 $P(E)=0.12$
 
-se calcula $P(E|A)$:
+$P(\overline{E})=0.88$
+
+Se calcula $P(\overline{E}|A)$:
 
 \begin{align*}
-  P(E|A)&=\frac{P(A|E)P(E)}{P(A)}\\
-        &=\frac{P(A|E)P(E)}{P(A|E)P(E)+P(A|\overline{E})P(\overline{E})}\\
-        &=\frac{0.9*0.12}{0.9*0.12+0.05*0.88}\\
-        &=0.71
+  P(\overline{E}|A)&=\frac{P(A|\overline{E})P(\overline{E})}{P(A)}\tag{Teorema de Bayes}\\
+                   &=\frac{0.05*0.88}{P(A|E)P(E)+P(A|\overline{E})P(\overline{E})}\\
+                   &=\frac{0.05*0.88}{0.9*0.12+0.05*0.88}\\
+                   &=0.2895
 \end{align*}
 \end{document}

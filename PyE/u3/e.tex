@@ -1,0 +1,333 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\title{práctica 3}
+\author{martín rossi}
+\date{}
+\begin{document}
+\maketitle
+\textbf{5.}
+
+\textbf{a.}$A \cup B \cup C$
+
+\textbf{b.}$-(A \cup B \cup C)$
+
+\textbf{c.}$A \cap B \cap C$
+
+\textbf{d.}$(A \cap B) \cup (A \cap C) \cup (B \cap C)$
+
+\textbf{e.}$(A \cap B) \cup (A \cap C) \cup (B \cap C) \cup (A \cap B \cap C)$
+
+\textbf{6.}
+$\#S=2^3=8$
+
+\textbf{a.}$A=\{(V,V,M),(V,M,M),(M,V,M),(M,M,M)\}$
+
+\textbf{b.}$B=\{(V,V,V),(V,V,M),(V,M,V),(V,M,M)\}$
+
+\textbf{c.}$C=\{(M,V,M),(M,M,M),(V,V,V),(V,V,M),(V,M,V),(V,M,M)\}$
+
+\textbf{7.}
+
+\textbf{a.}$S=\{(a,b)|a\leftarrow\{1,2,3,4,5,6\},b\leftarrow\{1,2,3,4,5,6\}\}$
+
+\textbf{b.}
+
+$A=\{(2*a,b)|a\leftarrow\{1,2,3\},b\leftarrow\{1,2,3,4,5,6\}\}$
+
+$B=\{(a,2*b+1)|a\leftarrow\{1,2,3,4,5,6\},b\leftarrow\{0,1,2\}\}$
+
+$C=\{(2*a,2*b)|a\leftarrow\{1,2,3\},b\leftarrow\{1,2,3\}\}$
+
+$D=\{(2*a+1,2*b+1)|a\leftarrow\{0,1,2\},b\leftarrow\{0,1,2\}\}$
+  
+\textbf{8.}
+
+$2/3=P(A \cup B)=P(A)+P(B)-P(A \cap B)=1/4+1/2-P(A \cap B)=3/4-P(A \cap B)$
+
+$P(A \cap B)=3/4-2/3>0$
+
+no son mutualmente excluyentes porque la interseccion no es vacia
+
+\textbf{9.}
+
+$P(A \cup B)=3/4$
+
+$P(-B)=2/3$
+
+$P(A \cap B)=1/4$
+
+$P(B)=1-P(-B)=1-2/3=1/3$
+
+$P(A)=P(A \cup B)-P(B)+P(A \cap B)=3/4-1/3+1/4=2/3$
+
+$P(-A \cap B)=P(B)-P(A \cap B)=1/3-1/4=1/12$
+
+\textbf{10.}
+
+puede pasar
+
+$S=\{1,2,3,4,5,6\}$
+
+$A=\{1,2,3\}$
+
+$B=\{4,5,6\}$
+
+$P(A \cap B)=0$
+
+$P(A)+P(B)=1/2+1/2=1$
+
+\textbf{11.}
+
+\textbf{a.}$P(A)=4/8=1/2$
+
+\textbf{b.}$P(B)=4/8=1/2$
+
+\textbf{c.}$P(C)=6/8=3/4$
+
+\textbf{d.}$P(B)=18/36=1/2$
+
+\textbf{12.}
+
+\textbf{a.}
+
+hay 5 mayores a 31. 4 se pueden elegir de $\binom{5}{4}=5$ formas
+
+hay 8 personas en total. 4 se pueden elegir de $\binom{8}{4}=70$ formas
+
+$P(\textrm{"elegir todos de mas de 31"})=5/70=1/14$
+
+\textbf{b.}
+
+mismo razonamiento
+
+$P(\textrm{"ningun arquitecto"})=\binom{6}{4}/\binom{8}{4}=15/70=3/14$
+
+\textbf{13.}
+
+\textbf{a.}
+
+hay 4 mujeres. se elige el presidente entre 4 y despues los demas cualquiera
+
+$4*7*6*5=840$
+
+de un total de $8*7*6*5=1680$
+
+$P(\textrm{``mujer presidente''})=1/2$
+
+\textbf{b.}
+
+mismo razonamiento. elijo primero al tesorero, que hay 2
+
+$2*7*6*5=420$
+
+$P(\textrm{"tesorero mayor a 50"})=420/1680=1/4$
+
+\textbf{c.}
+
+$2*1*5*4=40$
+
+$P(..)=40/1680=1/42$
+
+\textbf{14.}
+
+$\textrm{total}=5*4*3*2*1=120$
+
+\textbf{a.}
+
+$P(\textrm{"hombres extremo"})=2*1*3*2*1/120=1/10$
+
+\textbf{b.}
+
+$P(\textrm{"alternado"})=3*2*2*1*1/120=1/10$
+
+\textbf{c.}
+
+$P(\textrm{"margarita centro"})=4*3*2*1/120=1/5$
+
+\textbf{d.}
+
+$P(\textrm{"margarita centro y manuel extremo"})=3*2*1/120=1/20$
+
+\textbf{15.}
+
+$\textrm{total}=120$
+
+elijo las dos vocales primero, despues cualquiera: 2*1*3*2*1=12 combinaciones
+
+eso si fuera primera y segunda letra nada mas, pero hay 4 pares contiguos
+\begin{align*}
+  P(\textrm{"dos vocales juntas"})&=(\textrm{combinaciones en un par}*\textrm{cantidad de pares})/120\\
+                                  &=12*4/120=48/120=2/5
+\end{align*}
+
+\textbf{16.}
+
+$\textrm{total}=2^4=16$
+
+\textbf{a.}
+
+$P(\textrm{"al menos una cara"})=1-P(\textrm{"ninguna cara"})=1-1/16=15/16$
+
+\textbf{b.}
+
+$P(\textrm{"a lo sumo tres cruces"})=1-P(\textrm{"cuatro cruces"})=1-1/16=15/16$
+
+\textbf{c.}
+
+$\binom{4}{2}/16=6/16=3/8$
+
+\textbf{17.}
+
+$\#S=6^5=7776$
+
+$G: \textrm{``obtener generala''}$
+
+$P: \textrm{``poker''}$
+
+$G=\{(1,1,1,1,1),(2,2,2,2,2),(3,3,3,3,3),(4,4,4,4,4),(5,5,5,5,5),(6,6,6,6,6)\}$
+
+$P(G)=\#G/\#S=1/1296$
+
+contando la cantidad de poker posibles:
+
+para poker de $1$ fijo los 4 $1s$, hay $\binom{5}{4}=5$ formas de fijarlos, y el otro dado puede ser cualquiera menos otro $1$, 5 posibilidades mas. es decir hay $5*5=25$ formas de hacer poker de 1. multiplicando por posibles numeros de dado queda $5*5*6=150$. $P(P)=150/7776$
+
+\textbf{18.}
+
+4 bolas. 3 blancas y 1 negra
+
+si b0 a b2 son blancas y b3 negra
+
+$S=\{(b0,b1),(b0,b2),(b0,b3),(b1,b2),(b1,b3),(b2,b3)\}$
+
+$E=\{(b0,b1),(b0,b2),(b1,b2)\}$
+
+$P(E)=\#E/\#S=1/2$
+
+\textbf{19.}
+
+\textbf{a.}
+
+A.$(187+413)/1000=3/5$
+
+B.$2/5$
+
+C.$(187+113)/1000=3/10$
+
+D.$7/10$
+
+E.$113/1000$
+
+\textbf{b.}
+
+$113/(113+287)=113/400$
+
+\textbf{20.}
+
+$P(A)=0.2$
+
+$P(B)=0.16$
+
+$P(C)=0.14$
+
+$P(A \cap B)=0.08$
+
+$P(A \cap C)=0.05$
+
+$P(B \cap C)=0.04$
+
+$P(A \cap B \cap C)=0.02$
+
+\textbf{a.}
+\begin{align*}
+  P(\overline{A \cup B \cup C})&=1-P(A \cup B \cup C)\\
+             &=1-(P(A)+P(B)+P(C)-P(A \cap B)-P(A \cap C)-P(B \cap C)+P(A \cap B \cap C))\\
+             &=1-(0.2+0.16+0.14-0.08-0.05-0.04+0.02)\\
+             &=1-0.35\\
+             &=0.65
+\end{align*}
+
+\textbf{b.}
+
+$P(A \cup B \cup C)=0.35$
+
+% c.
+% d.
+\textbf{21.}
+
+para cada suma de 3 dados hay que contar tambien los 6 ordenes posibles, por ejemplo para 126 hay que contar tambien 162,612,621,216 y 261
+ahora la cantidad tiros que suman 10 son 27 y los que suman 9 son 25. no tienen la misma probabilidad de ocurrir
+
+\textbf{22.}
+
+hay 3 reyes, porque 3/0.15=20 es el unico entero entre 1,2,3 y 4 reyes posibles. y 20 cartas en total
+
+20*0.3=6. hay 6 bastos
+
+20*0.6=12. hay 12 que no son bastos ni reyes
+
+\textbf{a.}
+
+hay 12 que no son basto ni rey. sobran 8
+
+de las 8, 3 son reyes y 6 son bastos, lo que suman 9
+
+osea que hay una que es rey y basto. el rey de basto esta entre las cartas
+
+la probabilidad de extraerla es 1/20
+
+\textbf{b.}
+
+20
+
+\textbf{25.}
+
+A: ``falla A''
+
+B: ``falla B''
+
+$P(\overline{A} \cap B)=0.15$
+
+$P(A)=0.2$
+
+$P(A \cap B)=0.15$
+
+\textbf{a.}
+\begin{align*}
+  P(A|B)&=\frac{P(A \cap B)}{P(B)}\\
+        &=\frac{0.15}{P(B)}\\
+        &=\frac{0.15}{0.3}\tag{$0.3=P(B \cap A)+P(B \cap \overline{A})=P(B)$}\\
+        &=0.5
+\end{align*}
+
+\textbf{28.}
+
+$P(A)=0.5$
+
+$P(B)=0.3$
+
+$P(C)=0.2$
+
+$P(E|A)=0.8$
+
+$P(E|B)=0.4$
+
+$P(E|C)=0.1$
+
+\textbf{a.}
+
+$A,B,C$ particion entonces:
+\begin{align*}
+  P(E)&=P(E|A)P(A)+P(E|B)P(B)+P(E|C)P(C)\\
+      &=0.8*0.5+0.4*0.3+0.1*0.2\\
+      &=0.54
+\end{align*}
+
+\textbf{b.}
+\begin{align*}
+  P(A|E)&=\frac{P(E|A)P(A)}{P(E)}\\
+        &=\frac{0.8*0.5}{0.54}\\
+        &=0.7407
+\end{align*}
+\end{document}
