@@ -123,4 +123,28 @@ sin reposicion:
 \end{align*}
 
 en $p=0.2$ alcanza el maximo
+
+\textbf{9.}
+\[Y: \textrm{numero de llantas sacadas hasta que 5 esten bien (pascal)}\]
+\[p=0.8\]
+
+\textbf{a.}
+\[P(Y=8)=\binom{7}{4}*0.8^5*0.2^3=0.09175\]
+
+\textbf{b.}
+\begin{align*}
+  E(Y)&=\sum_{i=5}^{\infty} i*P(Y=i)\\
+      &=\sum_{i=5}^{\infty} i*\binom{i-1}{4}*0.8^5*0.2^{(i-5)}\\
+      &=0.32768*\sum_{i=0}^{\infty} (i+5)*\binom{i+4}{4}*0.2^i\\
+      &=6.25
+\end{align*}
+
+\textbf{10.}
+
+\textbf{a.}
+\[P(X=0)=\frac{e^{-3}*3^0}{0!}=0.0498\]
+
+\textbf{b.}
+\[P(X \le 2)=P(X=0)+P(X=1)+P(X=2)=0.42319\]
+
 \end{document}
