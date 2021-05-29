@@ -168,8 +168,31 @@ en una distribucion poisson $\lambda$ es el promedio o esperanza
 
 \textbf{12.}
 
+\textbf{a.}
+
 como la distribucion esta dada por hora con $\lambda=30$, por dos minutos seria $\lambda=1$
 \[P(X=0)=e^{-1}=0.3679\]
 
+\textbf{b.}
+\[Y: \textrm{cantidad de intervalos sin clientes en 15 experimentos} \sim Bin(15,0.3679)\]
+\[P(Y \le 5)=\sum_{i=0}^5 P(Y=i)=0.5058\]
+
+\textbf{13.}
+
+\[X: \textrm{cantidad de defectos en un rollo de 100 metros}\]
+\[0.4=P(X \ge 1)=1-P(X=0)=1-\frac{e^{-\lambda}*\lambda^0}{0!}=1-e^{-\lambda}\]
+\[0.6=e^{-\lambda} \implies \lambda=-ln(0.6)=0.5108\]
+
+\textbf{a.}
+\[Y: \textrm{cantidad de defectos en 50 metros} \sim Po(\frac{\lambda}{2})\]
+\[P(Y \le 2)=P(Y=0)+P(Y=1)+P(Y=2)=0.9977\]
+
+\textbf{b.}
+\[P(X \ge 1)=0.4\]
+\[Z: \textrm{cantidad de rollos con al menos un defecto en 10 rollos} \sim Bin(10,0.4)\]
+\[P(Z \le 1)=P(Z=0)+P(Z=1)=0.04636\]
+
+\textbf{c.}
+\[E(Z)=\sum_{i=0}^{10} i*P(Z=i)=4\]
 
 \end{document}
