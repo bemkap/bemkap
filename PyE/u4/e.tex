@@ -147,4 +147,29 @@ en $p=0.2$ alcanza el maximo
 \textbf{b.}
 \[P(X \le 2)=P(X=0)+P(X=1)+P(X=2)=0.42319\]
 
+\textbf{c.}
+\[P(X \ge 1)=1-P(X=0)=1-0.0498=0.9502\]
+
+tomando $X: \textrm{numero de moleculas en }\lambda cm^3$
+\[P(X \ge 1)=1-P(X=0)=1-e^{\lambda}>0.99 \implies e^{\lambda}<0.01 \implies \lambda<ln(0.01)\]
+
+
+\textbf{11.}
+\[X: \textrm{numero de grietas en 4 metros}\]
+
+en una distribucion poisson $\lambda$ es el promedio o esperanza
+\begin{align*}
+  P(X \ge 1)=1-P(X=0)&<0.5\\
+  P(X=0)&>0.5\\
+  \frac{e^{\lambda}*3^0}{0!}&>0.5\\
+  \lambda&>ln(0.5)
+\end{align*}
+\[E(\frac{X}{4})=\frac{E(X)}{4}>\frac{ln(0.5)}{4}\]
+
+\textbf{12.}
+
+como la distribucion esta dada por hora con $\lambda=30$, por dos minutos seria $\lambda=1$
+\[P(X=0)=e^{-1}=0.3679\]
+
+
 \end{document}
