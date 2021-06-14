@@ -2,7 +2,7 @@
 -export([dict/1,close/1,room/1,door/2,inside/3]).
 -include("servidor.hrl").
 
-%%actor que funciona de diccionario. cada elemento es {nickname,socket}
+%%actor que funciona de diccionario. cada elemento es {key=nickname,value=socket}
 dict(M)->
     receive
         {add,Nick,Socket,Pid}->case maps:is_key(Nick,M) of
@@ -34,7 +34,7 @@ door(Socket,Dict)->
         {ok,CSocket}->
             %%lo primero que envia el cliente es el nickname
             case gen_tcp:recv(CSocket,0) of
-                {ok,Nick}->Dict!{add,string:trim(Nick),CSocket,self()},
+                {ok,Nick}->Dict!{add,string:trim(Nick),Socket,self()},
                            receive
                                %%el nombre ya existe
                                err->gen_tcp:send(CSocket,?SRVERR),

@@ -1,0 +1,168 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{práctica 5}
+\author{martín rossi}
+\date{}
+\begin{document}
+\maketitle
+
+\textbf{1.}
+
+\textbf{a.}
+\begin{align*}
+  \int_{-1}^0kx^2&=1\\
+  \frac{kx^3}{3}\biggr\rvert^0_{-1}&=1\\
+  \frac{k}{3}&=1\\
+  k&=3
+\end{align*}
+
+\textbf{b.}
+\[E(X)=\int_{-1}^0x3x^2=\int_{-1}^03x^3=-0.75\]
+\[E(X^2)=\int_{-1}^0x^23x^2=\int_{-1}^03x^4=0.6\]
+\[Var(X)=E(X^2)-E(X)^2=0.6-(-0.75)^2=0.0375\]
+
+\textbf{c.}
+\[F(x)=\int_{-1}^x3x^2=x^3+1\]
+
+\textbf{d.}
+\[F(x)=x^3+1=0.5 \implies x^3=-0.5 \implies x=-0.7937\]
+
+\textbf{4.}
+Es la probabilidad de que la funcion de densidad de A sea mayor a 1/3
+
+\[\int_{\frac{1}{3}}^1 4(1-x)^3 dx=\frac{16}{81}\]
+
+\textbf{5.}
+\[f(x)=
+  \begin{cases}
+    \frac{1}{b-a}=\frac{1}{3}&1 \le x \le 4\\
+    0&sino
+  \end{cases}\]
+\[F(x)=
+  \begin{cases}
+    0&x<1\\
+    \frac{x-1}{3}&1 \le x \le 4\\
+    1&x>4
+  \end{cases}\]
+\[P(X>2)=1-F(2)=1-\frac{1}{3}=\frac{2}{3}\]
+\[P(2<X<3)=F(3)-F(2)=\frac{2}{3}-\frac{1}{3}=\frac{1}{3}\]
+\[P(X<1.5)=F(1.5)=\frac{1}{6}\]
+
+\textbf{6.}
+\[f(x)=
+  \begin{cases}
+    \frac{1}{5}&20 \le x \le 25\\
+    0&sino
+  \end{cases}\]
+\[F(x)=
+  \begin{cases}
+    0&x<20\\
+    \frac{x-20}{5}&20 \le x \le 25\\
+    1&x>25
+  \end{cases}\]
+
+\textbf{a.}
+
+$P(X \le 23)=F(23)=\frac{3}{5}$
+
+\textbf{b.}
+
+$E(X)=\frac{b+a}{2}=\frac{45}{4}$
+
+\textbf{7.}
+\[f(x)=
+  \begin{cases}
+    0.01*e^{-0.01x}&x>0\\
+    0&x<0
+  \end{cases}\]
+\[F(x)=
+  \begin{cases}
+    1-e^{-0.01x}&x>0\\
+    0&x<0
+  \end{cases}\]
+\[E(X)=\frac{1}{\alpha}=100\]
+
+\textbf{a.}
+
+$P(X<E(X))=P(X<100)=F(100)=1-e^{-0.01*100}=1-e^{-1}$
+
+\textbf{b.}
+
+$F(X)=0.5 \implies 1-e^{-0.01x}=0.5 \implies e^{-0.01x}=0.5 \implies -0.01x=ln(0.5)$
+
+$x=69.3147$
+
+\textbf{c.}
+
+$P(X>200)=1-F(200)=1-(1-e^{-0.01*200})=e^{-2}$
+
+se define
+
+$Y: \textrm{cantidad de componentes entre 3 que duran mas de 200 horas}, Y \sim Bin(3,e^{-2})$
+\begin{align*}
+  P(Y \ge 2)&=P(Y=2)+P(Y=3)\\
+            &=\binom{3}{2}(e^{-2})^2(1-e^{-2})+(e^{-2})^3\\
+            &=3e^{-4}(1-e^{-2})+e^{-6}\\
+            &=0.0476
+\end{align*}
+
+\textbf{8.}
+
+$X_t: \textrm{numero de accidentes en t dias} \sim Po(\frac{2t}{7})$
+
+$Y: \textrm{dias que pasan entre dos accidentes} \sim Exp(\frac{2}{7})$
+
+\textbf{a.}
+\[P(Y>3)=1-F_Y(3)=1-(1-e^{-\frac{2*3}{7}})=e^{-\frac{6}{7}}\]
+
+\textbf{b.}
+$Z: \textrm{cantidad de dias hasta el tercer accidente} \sim Erl(\frac{2}{7},3)$
+\[P(Z>12)=1-F_z(12)=1-\frac{\gamma(3,12*\frac{2}{7})}{2!}=1-\frac{\gamma(3,\frac{24}{7})}{2!}\]
+
+\textbf{10.}
+\begin{align*}
+  P(-a<Z<a)&=2*P(0<z<a)\tag{Z simetrica alrededor de 0}\\
+           &=2*(F(a)-F(0))\\
+           &=2F(a)-2F(0)\\
+           &=2F(a)-2*0.5\tag{$\mu=0$ es la mediana por Z normal}\\
+           &=2F(a)-1\\
+           &=2P(Z<a)-1
+\end{align*}
+
+\textbf{11.}
+\[Z=\frac{X-500}{50} \sim N(0,1) \implies X=50Z+500\]
+
+\textbf{a.}
+\[P(X>580)=P(50Z+500>580)=P(Z>\frac{8}{5})=1-F_Z(\frac{8}{5})=1-0.9452=0.0548\]
+
+\textbf{b.}
+\[P(X<450)=P(50Z+500<450)=P(Z<-1)=F_Z(-1)=0.1587\]
+
+\textbf{12.}
+\[Z=\frac{X-0.13}{0.005} \sim N(0,1) \implies X=0.005X+0.13\]
+\begin{align*}
+  P(0.12<X<0.14)&=P(\frac{0.12-0.13}{0.005}<Z<\frac{0.14-0.13}{0.005})\\
+                &=2F_Z(2)-1\tag{teorema ejercicio 10}\\
+                &=2*0.9772-1\\
+                &=0.9545
+\end{align*}
+\[Y: \textrm{cantidad de 4 que cumplen con las especificaciones} \sim Bin(4,0.9545)\]
+\[P(Y=4)=0.9545^4=0.8301\]
+
+\textbf{13.}
+
+\textbf{a.}
+\[P_{D_1}(D_1>45)=P_Z(Z>\frac{5}{36})=1-F_Z(\frac{5}{36})=0.4443\]
+\[P_{D_2}(D_2>45)=P_Z(Z>\frac{0}{9})=1-F_Z(0)=1-0.5=0.5\]
+
+Conviene mas el segundo producto
+
+\textbf{b.}
+\[P_{D_1}(D_1>48)=P_Z(Z>\frac{8}{36})=1-F_Z(\frac{8}{36})=1-0.5871=0.4129\]
+\[P_{D_2}(D_2>48)=P_Z(Z>\frac{3}{9})=1-F_Z(\frac{3}{9})=1-0.6293=0.3707\]
+
+Conviene mas el primero
+
+\end{document}

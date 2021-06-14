@@ -1,0 +1,79 @@
+09/6 wikipedia atomic broadcast.
+     paper xavier defago.
+     tipos de fallas de procesos.
+       crash: un proceso termina (por ejemplo con un error) y no vuelve a funcionar más.
+       omision: cuando de omite alguna acción (por ejemplo enviar o recibir mensajes).
+       timing: lo que tarda la acción de un proceso supera el límite de tiempo supuesto por el sistema.
+       bizantine: cualquier otro comportamiento arbitrario, incluso malicioso (no se tendrán en cuenta en este trabajo).
+10/6 git especificación.
+     experimentación código ejemplo.
+       los nodos asumen que hay un secuencializador funcionando.
+       la red es confiable y todos los mensajes llegar a destino tarde o temprano.
+
+       errores o limitaciones                                      soluciones
+       destloop no recibe mensaje fin                              agregar la guarda en el receive para fin.
+       si se termina con dest:stop() no termina el proceso sender  agregar unregister(sender) y la guarda de fin para el proceso.
+       si un nodo es también secuencializador no recibe mensajes   reemplazar en el foreach de secLoop nodes() por [node()|nodes()] porque node() no
+                                                                    pertenece a nodes(), para que se envíe también a sí mismo. en caso que sea nsolamente
+                                                                    secuencializador el mensaje se perderá.
+       si un nodo hace dest:start(Seq) una vez que ya se han       preguntar al sequencializador por que número va para iniciar el sender. se agrega una
+        mandado mensajes en la red, iniciará el proceso dest        guarda en el secuencializador para un mensaje query que devuelve el seqnum.
+        esperando el mensaje número 1, que ya se envió antes, y
+        se va a quedar esperando para siempre
+       si el secuencializador se cae no se informa a los nodos     monitorear el sequencializador y se crashea hacer stop(), aunque se cae toda la red.
+                                                                    se podría asignar el rol de secuencializador a otro nodo, pero se me ocurre que se
+                                                                    podrían perder mensajes, y además habría que mandar a todos los nodos quien es el nuevo
+                                                                    secuencializador y de alguna forma guardar en seqnum, o empezar de nuevo.
+       la red depende del secuencializador                         implementación del algoritmo isis donde se elimina el secuencializador y se decide por
+                                                                    acuerdo de los destinatarios el orden de los mensajes.
+11/6 wikipedia algoritmo isis.
+     encontre otra página con el algoritmo (https://studylib.net/doc/7830646/isis-algorithm-for-total-ordering-of-messages) y me basé en eso también
+      porque el de wikipedia no me quedó muy claro.
+     primero hice una traducción casi literal del algoritmo en la página anterior para probar: una función start que registra un proceso sender que
+      envía los mensajes y recibe las respuestas de los demás nodos.
+     el primer problema que me surgió fue que una vez que el nodo hace broadcast y pide propuestas, ¿cómo puede saber después que recibió las respuestas
+      de todos los demás?. lo que se me ocurrió fue: 1)monitorear todos los nodos de la red. 2)cuando se pide propuestas al hacer broadcast
+      guardar los nodos que hay en la red en una lista. 3)esperar respuesta de los nodos guardados eliminándolos de la lista guardada. 4)si se cae alguno
+      sacarlo también de la lista.
+12/6 cuando un nodo ingresa monitorea a todos los que ya estan en la red, envía un mensaje avisando que entró y que es nuevo para que los demás lo
+      monitoreen a el.
+     pruba con 4 nodos: los 4 hacen broadcast de un mensaje {N,node()} con N incrementándose cada vez, después hacen sleep de entre 0 y 5 segundos
+      y vuelven a hacer broadcast.
+
+     problemas                                                           posibles soluciones
+     cuando termino uno de los nodos a veces los otros dan error en      TODO
+      el send, porque tratan de enviar el mensaje al nodo que ya no
+      existe, pero siempre se envían los mensajes a nodes() con foreach.
+      nodes() se evalúa antes de ejecutar la función en cada item.
+      ¿qué pasa si un nodo crashea mientras se está recorriendo la
+      lista? ¿es posible?.
+     el que hace broadcast al momento de hacerlo se llama a sí mismo     podría en vez de guardar sólo la lista de nodos, tener un map con elementos
+      con la lista nodes() para esperar sus respuestas. el problema es    {id,nodes()} e ir eliminando según el id de la respuesta con las propuestas.
+      que si antes de recibir todas las respuestas hace un broadcast
+      nuevamente, va a volver a llamarse con nodes() sin que se haya
+      acordado el orden de los mensajes, y sin que se hayan hecho
+      los adeliver.
+13/6 ¿cómo se conecta un nuevo nodo a la red?                            para conectarse decidí que cuando hace start/1 se pase por argumento el
+                                                                          nombre de otro nodo que ya pertenezca a la red, entonces hace un ping con
+                                                                          ese y estará conectado con todos.
+     ¿cómo se conecta el primer nodo? ¿cómo sabe un nodo que es          al conectarse el nodo debe conocer a alguno que pertenezca a la red, debe
+      el primero?                                                         ser un nombre conocido, así como una página web, o un servidor de chat. si se
+                                                                          quiere iniciar una nueva red, se usa start/0.
+      
+     con el nombre del nodo sólo se puede conectar dentro de una misma   TODO
+      computadora, ¿qué pasa si quiero una red por lan, o internet? 
+     si un nodo recibe la notificación que otro se cayó, lo elimina de   al recibir la notificación de nodedown, verificar las listas de espera para cada
+      su lista de espera y resulta que era el último, nunca va avisar     id, y si alguna es vacía propagar el mensaje de agreed
+      el número de secuencia acordado.
+
+14/6 ¿cómo pueden fallar los nodos y cómo se responde ante esas fallas?(los tipos de fallas son las del paper).
+       crash: como erlang proporciona la facilidad de monitorear nodos, cuando se cae alguno por error se informa a los demás, y lo que hacen es sacarlos
+        de su lista de espera de respuestas.
+       timing: se asume que el sistema de erlang es confiable, es decir, que siempre que se mande un mensaje llegará tarde o temprano, aunque debería haber
+        un límite de cuan tarde puede llegar un mensaje. para esto se agrega un timeout para recibir mensajes de propuestas después del broadcast, para
+        cada mensaje que envío. pasado el tiempo decido en base a los que ya me llegaron. cuando lleguen las repuestas de los nodos atrasados simplemente
+        se ignorará el mensaje. estos nodos también recibirán el agreed y harán adeliver, aunque como no propusieron número de secuencia tendría que
+        probar si se mantiene el orden.
+       omision: son un tipo especial de falla timing y la forma de manejar ellos incluye a estos.
+       bizantine: no se tienen en cuenta en este trabajo.
+       
