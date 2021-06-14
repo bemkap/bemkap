@@ -1,7 +1,8 @@
 -module(node).
--export([start/0,start/1,stop/0,senderinit/0,senderloop/4,abroadcast/1,adeliver/1]).
+-export([start/0,start/1,stop/0,senderinit/0,senderloop/4,votebox/3,abroadcast/1,adeliver/1]).
 %% -define(DEBUG(STR),io:format(STR)).
 -define(DEBUG(STR),nop).
+-define(TIMEOUT,10000). %%10 segundos
 
 %%inicio del servicio(soy el primero)
 start()->
@@ -29,11 +30,6 @@ adeliver(Queue)->Queue.
 upd(Id,From,SMax,{M,Id,From,_,undeliverable})->{M,Id,From,SMax,deliverable};
 upd(_,_,_,X)->X.
 
-%%función para comprobar si un nodo es el último en mi lista de espera
-lst(_,_,_,[])->false;
-lst(N,S,Id,[N])->lists:foreach(fun(X)->{sender,X}!{agreed,Id,node(),S}end,nodes()),false;
-lst(N,_,_,X)->{true,lists:delete(N,X)}.
-
 %%inicio. mando el aviso de que soy nuevo y arranco y loop principal
 senderinit()->
     lists:foreach(fun(X)->{sender,X}!{im_new,node()},monitor_node(X,true)end,nodes()),
@@ -44,7 +40,7 @@ senderloop(S,Counter,Queue,Responses)->
     receive
         %%intento de broadcast, se envía a nodes() la notificación con identificador de mensaje {M,Counter,node()} único para cada mensaje
         {broadcast,M}->lists:foreach(fun(X)->{sender,X}!{sender_propose,M,Counter,node()}end,nodes()),
-                       senderloop(S,Counter+1,Queue,maps:put(Counter,nodes(),Responses));
+                       senderloop(S,Counter+1,Queue,maps:put(Counter,spawn(?MODULE,votebox,[S,Counter,nodes()]),Responses));
         %%se recibe la primer notificación de que un nodo quiere hacer broadcast. se envía la propuesta S para el mensaje Id(con eso el que hizo
         %%broadcast ya identificará de que mensaje se trata), y quién propone el S(node()).
         %%también se agrega a mi Queue de mensajes para envíar con el átomo undeliverable, porque todavía no se acordó el número de secuencia
@@ -52,10 +48,8 @@ senderloop(S,Counter,Queue,Responses)->
                                     senderloop(S+1,Counter,[{M,Id,From,S,undeliverable}|Queue],Responses);
         %%el que hizo el broadcast recibe la propuesta de otro nodo, lo elimina de su lista de espera para el mensaje Id, y va tomando el máximo de
         %%todos los números recibidos. si es el último le avisa a todos el número de secuencia acordado
-        {others_propose,Id,SO,From}->case lst(From,max(S,SO),Id,maps:get(Id,Responses,[])) of
-                                         false->senderloop(max(S,SO),Counter,Queue,maps:remove(Id,Responses));
-                                         {true,R}->senderloop(max(S,SO),Counter,Queue,maps:put(Id,R,Responses))
-                                     end;
+        {others_propose,Id,SO,From}->case maps:get(Id,Responses,failed) of Pid->Pid!{check_vote,Id,SO,From} end,
+                                     senderloop(S,Counter,Queue,Responses);
         %%se recibe el mensaje de acuerdo para mensaje Id de From con número de secuencia SMax. se ordena mi Queue(por S de menor a mayor, y en caso
         %%de empate primero los undeliverable) y se hace adeliver mientras tenga mensajes con el átomo deliverable en la cabeza del Queue
         {agreed,Id,From,SMax}->S1Queue=lists:reverse(lists:keysort(5,Queue)),%%sort primero undeliverable despues deliverable
@@ -65,9 +59,24 @@ senderloop(S,Counter,Queue,Responses)->
         %%un nodo de cae. se deja de monitorear y se verifica que no sea el único en mi lista de espera para algún mensaje. en caso que lo sea se hace
         %%lo mismo que su hubiera recibido una propuesta pero sin SO
         {nodedown,N}->monitor_node(N,false),
-                      senderloop(S,Counter,Queue,maps:filtermap(fun(Id,X)->lst(N,Id,S,X)end,Responses));
+                      maps:map(fun(Id,Pid)->Pid!{check_vote,Id,0,N}end,Responses),
+                      senderloop(S,Counter,Queue,Responses);
+        %%la votación ha terminado
+        {voting_finished,Id,SMax}->lists:foreach(fun(X)->{sender,X}!{agreed,Id,node(),SMax}end,nodes()),
+                                   senderloop(SMax,Counter,Queue,maps:remove(Id,Responses));
         %%mensaje de nuevo nodo en la red. empieza a monitorearse el nodo.
         {im_new,N}->monitor_node(N,true),senderloop(S,Counter,Queue,Responses);
         %%fin. ok
         die->ok
+    end.
+
+%%loop que recibe votos
+votebox(S,Id,Responses)->
+    receive {check_vote,Id,SO,From}->case lists:delete(From,Responses) of
+                                         []->sender!{voting_finished,Id,max(SO,S)};
+                                         R->votebox(max(SO,S),Id,R)
+                                     end
+    %%si pasan ?TIMEOUT/1000 segundos sin recibir votos, se toma como que los que faltan fallaron
+    %%por omisión, o bien como fallo por timing
+    after ?TIMEOUT->sender!{voting_finished,Id,S}
     end.
