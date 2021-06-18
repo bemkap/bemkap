@@ -85,7 +85,7 @@
      segunda prueba con 4 nodos: igual a la anterior, cierro alguno con control c, lo que sería como un crash, para ver como reaccionan los otros. para
       ver si funciona correctamente veo si dos nodos reciben los mensajes de los otros dos en el mismo orden, asi para cada par. también veo si llegan
       todos los mensajes y ninguno se repite.
-     tercera prueba con 4 nodos: agregé un define SLEEP que se usa para hacer timer:sleep cada vez que se recibe un mensaje, para simular un nodo que
+     tercera prueba con 4 nodos: agregué un define SLEEP que se usa para hacer timer:sleep cada vez que se recibe un mensaje, para simular un nodo que
       falla por timeout u omision, aunque no se puede dar que todos los nodos superen el timeout, porque no va a andar. probé también salir con algún
       nodo y entrar de nuevo, como si fuera alguien que ingresa una vez iniciada la red.
 15/6 cuando se hace el adeliver la acción por defecto es imprimir el     cuando se llama a la función start, se puede pasa por argumento una función
@@ -93,3 +93,17 @@
       mensaje no se puede.                                                start con argumentos: (nodo,handler), (handler), (nodo), (). pero no podía
                                                                           diferenciar las de (handler) y (nodo), así que cambié que cuando es el primero
                                                                           se mande a sí mismo como nodo.
+16/6 el nodo que hace el broadcast no se automanda el mensaje. depende   un nodo cuando manda el mensaje sender_propose o agreed lo manda a
+      el uso que se le de quizás hace falta o no, pero para el ledger     [node()|nodes()] en vez de nodes() solo.
+      que hay que hacer después tendría que recibirlo para que todos     
+      mantengan el mismo estado de los registros.
+     ahora para las pruebas como los nodos reciben los mensajes de sí mismos comparo si todos tienen la misma lista de mensajes en el mismo orden
+     inicio implementación del legder. la idea es armar una red de nodos y hacer broadcast atómico de algo como {append,X} y llamar a deliver con una
+      función que agrege a una lista el elemento X.
+     cuando un nodo ingresa a una red que ya ha intercambiado mensajes  al inicio se pide a los nodos existentes el estado del ledger y se queda con el
+      debe pedir el estado del ledger para mantener una coherencia.      más largo, al ser broadcast atómico sería el ledger completo al momento.
+17/6 ¿qué hace el nodo que ingresa mientras espera las respuestas de    va a esperar a que todos le respondan. la red va a seguir mandando appends, pero
+      los otros?                                                         cuando el nodo haga los adeliver quedarán en el buzón de handler, y se usarán
+                                                                         después
+     ¿cómo sabe el nodo que ingresa que ya le respondieron todos los
+      demás?
