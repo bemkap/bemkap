@@ -1,3 +1,5 @@
+esta fue mi evolución en el trabajo. las notas que fui tomando a medida que lo fui haciendo. traté de poner todos los problemas que me fui encontrando.
+
 09/6 wikipedia atomic broadcast.
      paper xavier defago.
      tipos de fallas de procesos.
@@ -103,7 +105,40 @@
      cuando un nodo ingresa a una red que ya ha intercambiado mensajes  al inicio se pide a los nodos existentes el estado del ledger y se queda con el
       debe pedir el estado del ledger para mantener una coherencia.      más largo, al ser broadcast atómico sería el ledger completo al momento.
 17/6 ¿qué hace el nodo que ingresa mientras espera las respuestas de    va a esperar a que todos le respondan. la red va a seguir mandando appends, pero
-      los otros?                                                         cuando el nodo haga los adeliver quedarán en el buzón de handler, y se usarán
-                                                                         después
-     ¿cómo sabe el nodo que ingresa que ya le respondieron todos los
-      demás?
+      los otros?                                                         cuando el nodo haga los adeliver quedarán en el buzón de sender, y se usarán
+                                                                         después.
+     ¿cómo sabe el nodo que ingresa que ya le respondieron todos los    agregué en el módulo node una función handler para que cuando un nodo falle
+      demás?                                                             se tome una acción por parte del que use el módulo, que en el ledger es la misma
+                                                                         función que la de adeliver, mandárselo al ledgerloop.
+     agregué records para argumentos de handlers, para que tengan valores por defecto, y para los elementos del queue
+18/6 no me llamaba a las funciones handler para los delivers, y probé hasta que me di cuenta que era por un problema con los records de elementos del
+      queue, así que los saqué, dejé handler nada más.
+19/6 tenía varias opciones para implementar la función get: la lista como valor, o que la imprima y no devuelva nada. decidí que devuelva el valor, así
+      puede ser usado para otra cosa si se quiere.
+     a veces los mensajes de broadcast no se mandan a todos los nodos. cuando inicia que hace el ping a un nodo conocido de la red, parece que por un
+      momento nodes() no devuelve a todos los otros, sino a uno solo. si hago `net_adm:ping(Nodo1),nodes().` con Nodo que también está conectado con Nodo2
+      por ejemplo, nodes() me devuelve [Node1] nada más. si después hago de nuevo nodes() de devuelve a los dos. modifiqué start para que no haga ping ahí
+      sino que el nodo nuevo va a tener que estar conectado de antes.
+     ahora se podría dar el siguiente deadlock:
+      -n1 se conecta con ping a la red
+      -antes de hacer start n2 también se conecta
+      -n1 pide a nodes()(incluído n2) el estado actual
+      -n2 hace lo mismo
+      -los dos se quedan esperando la respuesta {ledger,L} y ninguno puede salir de la función ledgerinit
+      para eso agregué la respuesta a get_init en ledgerinit que le devuelve una lista vacía, porque todavía no está completa la mía.
+20/6 en las pruebas a veces no salen impresos todos los append, pero quizás al momento de pedir la lista todavía no se habían hecho efectivos, y el nodo
+      se desconecta. no se me ocurre de que otra manera hacer el test.
+     analizando las propiedades del sistema distribuído en esta implementación:
+      availability: se tiene excepto en el momento en que un nodo ingresa y pide el estado actual del ledger, porque hasta que todos le responden no
+       sigue
+      consistency: no se tiene siempre, como ya se vio en las pruebas a veces puede hacerse un get y no devolver el último append. quizás es porque el
+       append pasa por el broadcast primero, los nodos tienen que llegar al consenso, y después recién se agrega al ledger. en cambio el get manda nomás
+       un mensaje al proceso registrado para que devuelva la lista que tiene en el momento, aunque si tendrá eventual consistency.
+      partition tolerance: en este trabajo se supuso que los mensajes siempre llegan, es decir que erlang me asegura que no se pierden, y los procesos no
+       pueden fallar por omisión. se pueden retrasar, pero si pongo un timeout puede que el voto de un nodo que venga muy atrasado sea descartado y ese
+       voto me afecte la consistencia del sistema. entonces preferí que funcione potencialmente lento pero que funcione bien, haciendo esa suposición sobre
+       erlang.
+21/6 puse en get que se haga un broadcast del mensaje en vez de mandarlo directamente a ledger_sender, así entra en el sistema y será devuelto en
+      el orden correspondiente.
+     cuando un nodo hace stop, termina normalmente pero no avisa a los demás que terminó. lo que provocaba que los otros se queden esperando su respuesta.
+      

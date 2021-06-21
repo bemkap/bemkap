@@ -6,10 +6,19 @@ test()->
     timer:sleep(3000),
     test_run(5).
 
-test_init()->ledger:start('node1@archlinux').
+test_init()->
+    net_adm:ping('node1@archlinux'),
+    timer:sleep(500),
+    ledger:start().
 
-test_run(0)->timer:sleep(5000),ledger:stop();
+test_run(0)->
+    io:format("listo~n"),
+    timer:sleep(5000),
+    L=ledger:get(),
+    io:format("~p~n",[L]),
+    ledger:stop();
 test_run(N)->
+    io:format("append ~p~n",[N]),
     ledger:append(N),
     timer:sleep(100*rand:uniform(10)),
     test_run(N-1).
