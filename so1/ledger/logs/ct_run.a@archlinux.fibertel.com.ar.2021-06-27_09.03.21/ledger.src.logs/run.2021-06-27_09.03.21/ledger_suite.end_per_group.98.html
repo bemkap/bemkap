@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test ledger_SUITE:end_per_group result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Config function: <a href="ledger_suite.src.html#end_per_group-1">ledger_SUITE:end_per_group/2</a> (click for source code)
+
+=== Group properties: [{name,session}]
+
+=== Config value:
+
+    [{watchdog,&lt;0.279.0&gt;},
+     {tc_logfile,"/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.03.21/ledger.src.logs/run.2021-06-27_09.03.21/ledger_suite.end_per_group.98.html"},
+     {tc_group_properties,[{name,session}]},
+     {tc_group_path,[[{suite,ledger_SUITE}]]},
+     {data_dir,"/home/bemkap/documentos/b/so1/ledger/src/ledger_SUITE_data/"},
+     {priv_dir,"/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.03.21/ledger.src.logs/run.2021-06-27_09.03.21/log_private/"}]
+
+=== Current directory is "/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.03.21"
+
+=== Started at 2021-06-27 09:04:01
+
+<br />
+</pre>
+<div class="ct_internal"><pre><b>*** CT 2021-06-27 09:04:01.918 *** Suite Hook</b>
+Call to CTH failed: error:{{noproc,
+                            {gen_server,call,
+                             [cth_log_redirect,
+                              {set_curr_func,
+                               {group,session,end_per_group},
+                               [{tc_group_result,
+                                 [{ok,[{group_result,nodes}]},
+                                  {skipped,[]},
+                                  {failed,[{ledger_SUITE,is_ordered}]}]},
+                                {tc_logfile,
+                                 "/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.03.21/ledger.src.logs/run.2021-06-27_09.03.21/ledger_suite.end_per_group.98.html"},
+                                {tc_group_properties,[{name,session}]},
+                                {tc_group_path,[[{suite,ledger_SUITE}]]},
+                                {data_dir,
+                                 "/home/bemkap/documentos/b/so1/ledger/src/ledger_SUITE_data/"},
+                                {priv_dir,
+                                 "/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.03.21/ledger.src.logs/run.2021-06-27_09.03.21/log_private/"}]}]}},
+                           [{gen_server,call,2,
+                             [{file,"gen_server.erl"},{line,239}]},
+                            {cth_log_redirect,pre_end_per_group,4,
+                             [{file,"cth_log_redirect.erl"},{line,110}]},
+                            {ct_hooks,catch_apply,3,
+                             [{file,"ct_hooks.erl"},{line,491}]},
+                            {ct_hooks,do_call_generic,4,
+                             [{file,"ct_hooks.erl"},{line,247}]},
+                            {ct_hooks,call,4,
+                             [{file,"ct_hooks.erl"},{line,301}]},
+                            {ct_hooks,call,3,
+                             [{file,"ct_hooks.erl"},{line,257}]},
+                            {ct_framework,ct_suite_init,4,
+                             [{file,"ct_framework.erl"},{line,280}]},
+                            {test_server_sup,framework_call,4,
+                             [{file,"test_server_sup.erl"},{line,778}]}]}
+</pre></div>
+<pre>
+
+</pre>
+<div class="ct_error_notify"><pre><b>*** CT Error Notification 2021-06-27 09:04:01.918 ***</b>
+Error detected: "cth_log_redirect:pre_end_per_group/4 CTH call failed"
+
+<a href="#end">Full error description and stacktrace</a>
+</pre></div>
+<pre>
+</pre>
+<div class="ct_internal"><pre><b>*** CT 2021-06-27 09:04:01.918 *** Suite Hook</b>
+Call to CTH failed: error:{{noproc,
+                            {gen_server,call,
+                             [cth_log_redirect,
+                              {set_curr_func,
+                               {group,undefined},
+                               [{tc_status,
+                                 {failed,
+                                  "cth_log_redirect:pre_end_per_group/4 CTH call failed"}},
+                                {tc_group_result,
+                                 [{ok,[{group_result,nodes}]},
+                                  {skipped,[]},
+                                  {failed,[{ledger_SUITE,is_ordered}]}]},
+                                {watchdog,&lt;0.279.0&gt;},
+                                {tc_logfile,
+                                 "/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.03.21/ledger.src.logs/run.2021-06-27_09.03.21/ledger_suite.end_per_group.98.html"},
+                                {tc_group_properties,[{name,session}]},
+                                {tc_group_path,[[{suite,ledger_SUITE}]]},
+                                {data_dir,
+                                 "/home/bemkap/documentos/b/so1/ledger/src/ledger_SUITE_data/"},
+                                {priv_dir,
+                                 "/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.03.21/ledger.src.logs/run.2021-06-27_09.03.21/log_private/"}]}]}},
+                           [{gen_server,call,2,
+                             [{file,"gen_server.erl"},{line,239}]},
+                            {cth_log_redirect,post_end_per_group,5,
+                             [{file,"cth_log_redirect.erl"},{line,114}]},
+                            {ct_hooks,catch_apply,3,
+                             [{file,"ct_hooks.erl"},{line,491}]},
+                            {ct_hooks,do_call_generic,4,
+                             [{file,"ct_hooks.erl"},{line,247}]},
+                            {ct_hooks,call,4,
+                             [{file,"ct_hooks.erl"},{line,301}]},
+                            {ct_hooks,call,3,
+                             [{file,"ct_hooks.erl"},{line,257}]},
+                            {ct_hooks,call,4,
+                             [{file,"ct_hooks.erl"},{line,263}]},
+                            {ct_hooks,end_tc,5,
+                             [{file,"ct_hooks.erl"},{line,171}]}]}
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2021-06-27 09:04:01
+=== Location: {ledger_SUITE,end_per_group}
+=== === Reason: "cth_log_redirect:post_end_per_group/5 CTH call failed"
+=== 
+=== Total execution time of group: 40.277s
+
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2021 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Sun Jun 27 2021 09:04:01<!--/date--><br />
+</div>
+</center>
+</body>
+</html>

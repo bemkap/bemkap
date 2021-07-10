@@ -1,0 +1,265 @@
+---
+title: "Trabajo práctico: Procesos estocásticos"
+subtitle: "Licenciatura en ciencias de la computación, Universidad nacional de Rosario"
+author: Rossi, Martín
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup,include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+library("markovchain")
+library("diagram")
+library("poisson")
+#library("ggplot2")
+```
+\subsection*{1.}
+Se define un suceso A tal que $P(A)=p$
+
+y el proceso {$N_k$: cantidad de ensayos independientes hasta obtener k éxitos consecutivos de A}
+\subsubsection*{a.}
+$p=0.25$
+
+$1<k<5$
+
+10 simulaciones de trayectorias
+```{r,echo=F}
+nk<-function(k,p){
+  i=0
+  n=0
+  while(i<k){
+    if(runif(1)<p){i<-i+1}else{i<-0}
+    n<-n+1
+  }
+  n
+}
+M1a<-cbind(replicate(10,nk(2,0.25)),replicate(10,nk(3,0.25)),replicate(10,nk(4,0.25)))
+dimnames(M1a)[[2]]<-c("k=2","k=3","k=4")
+dimnames(M1a)[[1]]<-seq(1,10)
+M1a
+```
+\newpage
+\subsection*{2.}
+\subsubsection*{a.}
+Simulación de 50 pasos del proceso {$D_n$} con $p=0.85$, asumiendo que se empieza a observar la partícula en el momento 0 y $D_0=0$
+```{r,echo=F}
+M2a<-matrix(c(0,(runif(49)<0.85)*2-1),nrow=5,byrow=T)
+dimnames(M2a)[[2]]<-seq(0,9)
+dimnames(M2a)[[1]]<-c(0,10,20,30,40)
+M2a
+```
+\subsubsection*{b.}
+Se define el proceso {$S_n=D_0+D_1+...+D_n$} que corresponde a la posición de la partícula al momento n.
+
+Una realización de un proceso estocástico es la sucesión de infinitos valores que toman las variables. Se simularán los primeros 100 pasos de la misma con $p=0.85$:
+```{r,echo=F}
+M2b<-matrix(cumsum(c(0,(runif(99)<0.85)*2-1)),nrow=10,byrow=T)
+dimnames(M2b)[[2]]<-seq(0,9)
+dimnames(M2b)[[1]]<-10*seq(0,9)
+M2b
+```
+Se puede deducir que $\lim_{n \to \infty} S_n=\infty$ porque $p>0.5$.
+\newpage
+\subsection*{3.}
+Se define el proceso estocástico {$X_n$} que representa el dinero que tiene el jugador al momento $n$.
+\subsubsection*{a.}
+$k=20, S=50$
+
+Se realizan las simulaciones para $p<0.5(p=0.3)$, $p=0.5$ y $p>0.5(p=0.6)$
+
+```{r,echo=F,fig.align='center'}
+f3a<-function(p,k,S){
+  r<-c(k)
+  repeat{
+    l=r[length(r)]
+    if(l>=S||l<=0){break}
+    if(runif(1)<p){r<-c(r,l+1)}else{r<-c(r,l-1)}
+  }
+  r
+}
+f3al<-f3a(0.3,20,50)
+f3ae<-f3a(0.5,20,50)
+f3ag<-f3a(0.6,20,50)
+plot(f3al,type="l",xlab="Cantidad de apuestas",ylab="Dinero del jugador")
+mtext("Simulación de la evolución del juego con objetivo S=$50,\ndinero inicial k=$20 y probabilidad de victoria p=0.3")
+plot(f3ae,type="l",xlab="Cantidad de apuestas",ylab="Dinero del jugador")
+mtext("Simulación de la evolución del juego con objetivo S=$50,\ndinero inicial k=$20 y probabilidad de victoria p=0.5")
+plot(f3ag,type="l",xlab="Cantidad de apuestas",ylab="Dinero del jugador")
+mtext("Simulación de la evolución del juego con objetivo S=$50,\ndinero inicial k=$20 y probabilidad de victoria p=0.6")
+```
+\newpage
+\subsubsection*{b.}
+Para aproximar la probabilidad de ruina del jugador se simularán 1000 juegos para cada $p$ y se contarán las veces que perdió todo el dinero sobre el total. Los otros parámetros seguirán siendo los mismos, $k=20$ y $S=50$.
+```{r,echo=F}
+f3b<-function(p,k,S){
+  repeat{
+    if(k>=S||k<=0){break}
+    if(runif(1)<p){k<-k+1}else{k<-k-1}
+  }
+  k
+}
+```
+$p=0.3$:
+```{r,echo=F}
+p3bl<-(1000-sum(0<replicate(1000,f3b(0.3,20,50))))/1000
+p3bl
+```
+$p=0.5:$
+```{r,echo=F}
+p3be<-(1000-sum(0<replicate(1000,f3b(0.5,20,50))))/1000
+p3be
+```
+$p=0.6:$
+```{r,echo=F}
+p3bg<-(1000-sum(0<replicate(1000,f3b(0.6,20,50))))/1000
+p3bg
+```
+Lo que significa que cuando $p=0.3$, el jugador llegará a la ruina con probabilidad `r p3bl`, si $p=0.5$ llegará con probabilidad `r p3be`, y con $p=0.6$ con probabilidad `r p3bg`.
+\subsection*{4.}
+```{r,echo=F}
+f4a<-function(A){
+  if(length(A)>1){
+    x<-A[runif(1,1,length(A))]
+    length(A)-1+f4a(A[A<x])+f4a(A[A>x])
+  }else{
+    0
+  }
+}
+```
+\subsubsection*{a.}
+Conjunto usado: $\{12,5,18,6,8,13,16\}$
+
+Simulando el algoritmo 1000 veces y sacando el promedio de comparaciones:
+```{r,echo=F}
+sum(replicate(1000,f4a(c(12,5,18,6,8,13,16))))/1000
+```
+\subsubsection*{b.}
+Defino las variables aleatorias $C_n$: cantidad de comparaciones realizadas por el algoritmo Quick-Sort en una lista de tamaño $n$, con $n\ge 0$.
+
+Sus distribuciones son:
+
+$S(C_0)=\{0\}$, $P(C_0=0)=1$
+
+$S(C_1)=\{0\}$, $P(C_1=0)=1$
+
+$S(C_2)=\{1\}$, $P(C_2=1)=1$
+
+$S(C_n)=\{n-1+C_k+C_l:k+l=n-1\}$, con igual probabilidad para cada combinación de k y l
+
+Calculo las esperanzas hasta $n=7$
+
+$E(C_0)=0*1=0$
+
+$E(C_1)=0*1=0$
+
+$E(C_2)=1*1=1$
+
+$E(C_3)=\frac{2}{3}E(2+C_2+C_0)+\frac{1}{3}E(2+C_1+C_1)=\frac{2}{3}(2+1+0)+\frac{1}{3}(2+0+0)=2+\frac{2}{3}=\frac{8}{3}$
+
+$E(C_4)=\frac{2}{4}E(3+C_1+C_2)+\frac{2}{4}E(3+C_0+C_3)=\frac{1}{2}(3+0+1)+\frac{1}{2}(3+0+\frac{8}{3})=\frac{29}{6}$
+
+$E(C_5)=\frac{2}{5}(4+C_0+C_4)+\frac{2}{5}(4+C_1+C_3)+\frac{1}{5}(4+C_2+C_2)=\frac{2}{5}(4+0+\frac{29}{6})+\frac{2}{5}(4+0+\frac{8}{3})+\frac{1}{5}(4+1+1)=\frac{37}{5}$
+
+$E(C_6)=\frac{2}{6}(5+C_0+C_5)+\frac{2}{6}(5+C_1+C_4)+\frac{2}{6}(5+C_2+C_3)=\frac{1}{3}(5+0+\frac{37}{5})+\frac{1}{3}(5+0+\frac{29}{6})+\frac{1}{3}(5+1+\frac{8}{3})=\frac{103}{10}$
+
+$E(C_7)=\frac{2}{7}(6+C_0+C_6)+\frac{2}{7}(6+C_1+C_5)+\frac{2}{7}(6+C_2+C_4)+\frac{1}{7}(6+C_3+C_3)$
+
+$=\frac{2}{7}(6+0+\frac{103}{10})+\frac{2}{7}(6+0+\frac{37}{5})+\frac{2}{7}(6+1+\frac{29}{6})+\frac{1}{7}(6+\frac{8}{3}+\frac{8}{3})=\frac{472}{35}\approx 13.4857$
+\newpage
+\subsection*{5.}
+\subsubsection*{a.}
+Para modelar el comportamiento de visitas, se considera que el usuario tiene una probabilidad de saltar a una página cualquiera de manera aleatoria por más que no exista un enlace que lleve a ella. Se toma la probabilidad de salto como 0.15 y la de que elija un enlace 0.85, excepto en el estado $g$ que no tiene enlaces. Y para cada acción que tome el usuario tendrá la misma probabilidad de llegar a la otra página entre las posibilidades.
+
+Entonces para calcular la probabilidad en un paso $P(x,y)$ sería:
+
+Si $x\ne g$:
+$P(x,y)=\begin{cases}
+\frac{1}{G(x)}*0.85+\frac{1}{7}*0.15&\textrm{si existe el arco }x \to y\\
+\frac{1}{7}*0.15&\textrm{sino}
+\end{cases}$
+
+$P(g,y)=\frac{1}{7}$, para todo $y$
+
+$E=\{a,b,c,d,e,f,g\}$
+
+La matriz de probabilidad en un paso queda:
+
+$P=\begin{pmatrix}
+\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{25}{56}&\frac{25}{56}&\frac{3}{140}\\
+\frac{32}{105}&\frac{3}{140}&\frac{32}{105}&\frac{3}{140}&\frac{3}{140}&\frac{32}{105}&\frac{3}{140}\\
+\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{25}{56}&\frac{3}{140}&\frac{25}{56}&\frac{3}{140}\\
+\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{61}{70}&\frac{3}{140}\\
+\frac{131}{560}&\frac{3}{140}&\frac{3}{140}&\frac{131}{560}&\frac{3}{140}&\frac{131}{560}&\frac{131}{560}\\
+\frac{25}{56}&\frac{25}{56}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}\\
+\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}
+\end{pmatrix}=\frac{1}{1680}\begin{pmatrix}
+ 36&  36&  36&  36& 750&  750&  36\\
+512&  36& 512&  36&  36&  512&  36\\
+ 36&  36&  36& 750&  36&  750&  36\\
+ 36&  36&  36&  36&  36& 1464&  36\\
+393&  36&  36& 393&  36&  393& 393\\
+750& 750&  36&  36&  36&   36&  36\\
+240& 240& 240& 240& 240&  240& 240
+\end{pmatrix}$
+```{r,echo=F,fig.align='center'}
+M5a<-c(3/140,3/140,3/140,3/140,25/56,25/56,3/140,32/105,3/140,32/105,3/140,3/140,32/105,3/140,3/140,3/140,3/140,25/56,3/140,25/56,3/140,3/140,3/140,3/140,3/140,3/140,61/70,3/140,131/560,3/140,3/140,131/560,3/140,131/560,131/560,25/56,25/56,3/140,3/140,3/140,3/140,3/140,1/7,1/7,1/7,1/7,1/7,1/7,1/7)
+MC5a<-new("markovchain",transitionMatrix=matrix(M5a,byrow=T,nrow=7),states=c("a","b","c","d","e","f","g"))
+```
+Al considerar la posibilidad de salto a cualquier nodo, todo el conjunto es cerrado irreducible y aperiódico.
+\subsubsection*{b.}
+Simulación de 100 pasos partiendo del nodo $a$:
+```{r,echo=F}
+rmarkovchain(MC5a,n=100,t0="a")
+```
+\subsubsection*{c.}
+El rango de cada página es la probabilidad de llegar a ella a largo plazo, o sea, después de $n$ pasos cuando $n\to\infty$. Se calcula la distribución límite $\pi$.
+
+```{r,echo=F}
+steadyStates(MC5a)
+```
+
+Se ve que la página que tiene el mayor rango es la $f$, que es aproximadamente $0.29$, y que también es la que más arcos de entrada tiene.
+\newpage
+
+# 6.
+## a.
+```{r,echo=F,fig.align='center'}
+X6a<-hpp.event.times(3,100)
+X6a<-X6a[X6a<24]
+Y6a<-seq(1,length(X6a))
+plot(X6a,Y6a,type="n",xlab="Hora del día",ylab="Cantidad de aterrizajes",xaxt='n')
+axis(1,at=0:24,labels=paste(seq(2,26)%%24,"hs"),las=3,cex.axis=0.8)
+segments(X6a[-length(X6a)],Y6a[-length(Y6a)],X6a[-1],Y6a[-length(X6a)]) 
+points(X6a[-length(X6a)],Y6a[-length(X6a)],pch='.')
+mtext("Simulación del número de vuelos que recibe un aeropuerto\ncomo un proceso Poisson con con tasa 3 aterrizajes por hora")
+```
+## b.
+```{r,echo=F,fig.align='center'}
+X6b<-hpp.event.times(3,1000)
+hist(X6b[-1]-X6b[-length(X6b)],ylim=c(0,500),xlim=c(0,3),xlab="Intervalo entre llegadas(en horas)",ylab="Frecuencia absoluta",main="",col="lightblue",cex=0.8,cex.axis=0.8)
+box()
+mtext("Histograma de frencuencias de los tiempos entre\naterrizajes de aviones")
+```
+El histograma corresponde a una distribución exponencial, que es el modelo de la variable del tiempo entre arribos en un proceso de Poisson.
+
+# 7.
+## a.
+Para conocer con qué probabilidad serán atacados los puertos al cabo de tres semanas se calcula la matriz de transición en tres pasos y se la multiplica por la distribución inicial, es decir, $\pi_0 P^3$.
+```{r,echo=F}
+M7a<-matrix(c(0,0,0,0,1,0,8/13,3/13,1/13,1/13,1/16,3/16,3/8,1/4,1/8,0,1/11,4/11,5/11,1/11,0,1/8,1/2,1/8,1/4),byrow=T,nrow=5)
+S7a<-c("80","135","139","445","no attack")
+MC7a<-new("markovchain",transitionMatrix=M7a,states=S7a)
+c(0,0,0,0,1)*MC7a^3
+```
+El puerto con más probabilidad de ser atacado (0.3482) es el 139, y el que tiene menor probabilidad (0.0241) es el 80.
+
+## b.
+```{r,echo=F,fig.align='center'}
+S7a[5]<-"no"
+plotmat(round(M7a,2),name=S7a,lwd=1,box.lwd=1,cex.txt=0.65,box.size=0.05,self.cex=0.8,self.shiftx =c(0,0.06,-0.06,-0.06,0.06),curve=0,relsize=0.75,arr.pos=0.25,arr.type="triangle",arr.width=0.15,shadow.size=0)
+```
+Se usa la función $steadyStates$ del paquete $markovchain$ para calcular la distribución límite.
+```{r,echo=F}
+steadyStates(MC7a)
+```

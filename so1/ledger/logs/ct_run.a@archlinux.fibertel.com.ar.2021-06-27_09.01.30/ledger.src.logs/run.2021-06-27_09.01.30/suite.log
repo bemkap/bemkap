@@ -1,0 +1,107 @@
+=== Suite started at 2021-06-27 09:01:30
+=== Starting test, 2 test cases
+=cases         2
+=user          bemkap
+=host          archlinux.fibertel.com.ar
+=hosts         archlinux.fibertel.com.ar 
+=emulator_vsn  12.0
+=emulator      beam
+=otp_release   24
+=started       2021-06-27 09:01:30
+=case          ct_framework:init_per_suite
+=logfile       ct_framework.init_per_suite.html
+=group_props   [{suite,ledger_SUITE}]
+=started       2021-06-27 09:01:30
+=ended         2021-06-27 09:01:30
+=result        ok
+=elapsed       1.0e-6
+=case          ledger_SUITE:init_per_group
+=logfile       ledger_suite.init_per_group.html
+=group_props   [{name,session}]
+=started       2021-06-27 09:01:30
+=ended         2021-06-27 09:01:30
+=result        ok
+=elapsed       1.0e-6
+=case          ledger_SUITE:init_per_group
+=logfile       ledger_suite.init_per_group.2.html
+=group_props   [{name,nodes}]
+=started       2021-06-27 09:01:30
+=ended         2021-06-27 09:01:31
+=result        ok
+=elapsed       0.504584
+=case          ledger_SUITE:node_run
+=logfile       ledger_suite.node_run.html
+=started       2021-06-27 09:01:31
+=ended         2021-06-27 09:01:31
+=result        ok
+=elapsed       3.0e-6
+=case          ledger_SUITE:end_per_group
+=logfile       ledger_suite.end_per_group.html
+=group_props   [{name,nodes}]
+=started       2021-06-27 09:01:31
+=ended         2021-06-27 09:01:31
+=result        ok
+=elapsed       1.0e-5
+=group_time    0.566s
+=case          ledger_SUITE:is_ordered
+=logfile       ledger_suite.is_ordered.html
+=started       2021-06-27 09:01:31
+=ended         2021-06-27 09:01:31
+=result        failed: {badarg,
+                        [{erlang,send,
+                          [node_sender,
+                           {broadcast,
+                            {get,<0.182.0>,'a@archlinux.fibertel.com.ar'}}],
+                          [{error_info,#{module => erl_erts_errors}}]},
+                         {node,abroadcast,1,[{file,"node.erl"},{line,22}]},
+                         {ledger,get,0,[{file,"ledger.erl"},{line,19}]},
+                         {ledger_SUITE,is_ordered,1,
+                          [{file,"ledger_SUITE.erl"},{line,26}]},
+                         {test_server,ts_tc,3,
+                          [{file,"test_server.erl"},{line,1783}]},
+                         {test_server,run_test_case_eval1,6,
+                          [{file,"test_server.erl"},{line,1292}]},
+                         {test_server,run_test_case_eval,9,
+                          [{file,"test_server.erl"},{line,1224}]}]}, [{erlang,
+                                                                       send},
+                                                                      {node,
+                                                                       abroadcast,
+                                                                       22},
+                                                                      {ledger,
+                                                                       get,19},
+                                                                      {ledger_SUITE,
+                                                                       is_ordered,
+                                                                       26},
+                                                                      {test_server,
+                                                                       ts_tc,
+                                                                       1783},
+                                                                      {test_server,
+                                                                       run_test_case_eval1,
+                                                                       1292},
+                                                                      {test_server,
+                                                                       run_test_case_eval,
+                                                                       1224}]
+=== *** FAILED test case 2 of 2 ***
+=case          ledger_SUITE:end_per_group
+=logfile       ledger_suite.end_per_group.34.html
+=group_props   [{name,session}]
+=started       2021-06-27 09:01:31
+=ended         2021-06-27 09:01:31
+=result        ok
+=elapsed       1.0e-6
+=group_time    0.670s
+=case          ct_framework:end_per_suite
+=logfile       ct_framework.end_per_suite.html
+=group_props   [{suite,ledger_SUITE}]
+=started       2021-06-27 09:01:31
+=ended         2021-06-27 09:01:31
+=result        ok
+=elapsed       1.0e-6
+=group_time    0.747s
+=== TEST COMPLETE, 1 ok, 1 failed of 2 test cases
+
+=finished      2021-06-27 09:01:31
+=failed        1
+=successful    1
+=user_skipped  0
+=auto_skipped  0

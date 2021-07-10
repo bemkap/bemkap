@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test ledger_SUITE:is_ordered result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Test case: <a href="ledger_suite.src.html#is_ordered-1">ledger_SUITE:is_ordered/1</a> (click for source code)
+
+=== Config value:
+
+    [{watchdog,&lt;0.167.0&gt;},
+     {tc_logfile,"/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.01.30/ledger.src.logs/run.2021-06-27_09.01.30/ledger_suite.is_ordered.html"},
+     {tc_group_properties,[{name,session}]},
+     {tc_group_path,[[{suite,ledger_SUITE}]]},
+     {data_dir,"/home/bemkap/documentos/b/so1/ledger/src/ledger_SUITE_data/"},
+     {priv_dir,"/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.01.30/ledger.src.logs/run.2021-06-27_09.01.30/log_private/"}]
+
+=== Current directory is "/home/bemkap/documentos/b/so1/ledger/logs/ct_run.a@archlinux.fibertel.com.ar.2021-06-27_09.01.30"
+
+=== Started at 2021-06-27 09:01:31
+
+<br />
+
+</pre>
+<div class="ct_error_notify"><pre><b>*** CT Error Notification 2021-06-27 09:01:31.236 ***</b>
+erlang:send failed
+Reason: {badarg,[{erlang,...},{...}|...]}
+
+<a href="#end">Full error description and stacktrace</a>
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2021-06-27 09:01:31
+=== Location: [{erlang,send},
+ {node,abroadcast,22},
+ {ledger,get,19},
+ {ledger_SUITE,is_ordered,26},
+ {test_server,ts_tc,1783},
+ {test_server,run_test_case_eval1,1292},
+ {test_server,run_test_case_eval,1224}]
+=== === Reason: bad argument
+  in function  erlang:send/2
+     called as erlang:send(node_sender,
+                           {broadcast,
+                               {get,&lt;0.182.0&gt;,'a@archlinux.fibertel.com.ar'}})
+     *** argument 1: invalid destination
+  in call from node:abroadcast/1 (node.erl, line 22)
+  in call from ledger:get/0 (ledger.erl, line 19)
+  in call from ledger_SUITE:is_ordered/1 (ledger_SUITE.erl, line 26)
+  in call from test_server:ts_tc/3 (test_server.erl, line 1783)
+  in call from test_server:run_test_case_eval1/6 (test_server.erl, line 1292)
+  in call from test_server:run_test_case_eval/9 (test_server.erl, line 1224)
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2021 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Sun Jun 27 2021 09:01:31<!--/date--><br />
+</div>
+</center>
+</body>
+</html>
