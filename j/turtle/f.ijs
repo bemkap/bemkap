@@ -1,4 +1,4 @@
-load'~temp/turtle/turtle_2d.ijs'
+load'/turtle_2d.ijs',~1!:43''
 
 branch=: 1 : 0 NB. tree
  'size level an'=. m
