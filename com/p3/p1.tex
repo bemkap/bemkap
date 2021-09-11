@@ -1,0 +1,112 @@
+% Created 2021-09-09 jue 19:23
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{fullpage}
+\date{}
+\title{práctica N1}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={práctica N1},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+\item a.
+\begin{itemize}
+\item punto a punto
+\begin{itemize}
+\item enlace permanente entre dos puntos finales
+\end{itemize}
+\item bus
+\begin{itemize}
+\item cada nodo está conectado a un cable central
+\item todas las transmisiones en la red se realizan por este cable central o "bus"
+\item más barata de implementar pero más dificil de manejar
+\item si falla el bus la red queda dividida en dos
+\end{itemize}
+\item estrella
+\begin{itemize}
+\item cada nodo periférico se conecta a uno central llamado "switch" o "hub"
+\item cliente-servidor
+\item toda la comunicación pasa por el nodo central, que trabaja como repetidor
+\item fácil de diseñar e implementar. simplicidad para agregar nodos
+\item si falla el nodo central falla toda la red
+\item \textbf{estrella extendida}: una estrella central y varias subredes con repetidores
+\item \textbf{estrella distribuída}: varias subredes estrella conectadas cada una con la siguiente (daisy-chain)
+\end{itemize}
+\item anillo
+\begin{itemize}
+\item daisy-chain formando un bucle
+\item los datos viajan sólo en una dirección
+\item el rendimiento es mejor que el de la topología bus cuando hay mucha carga
+\item no hay necesidad de un servidor
+\item cuellos de botella
+\item si un nodo no puede retransmitir la red falla
+\end{itemize}
+\item malla
+\begin{itemize}
+\item \textbf{totalmente conectada}
+\item \textbf{parcialmente conectada}
+\end{itemize}
+\end{itemize}
+b.
+\begin{itemize}
+\item bus: n, cada nodo con el cable central
+\item estrella: n-1, cada nodo con el nodo central
+\item anillo: n, cada uno con el siguiente y el último con el primero
+\item malla: hasta \(\frac{n(n-1)}{2}}\), según sea totalmente o parcialmente conectada
+\end{itemize}
+\item a. si falla una conexión dos nodos no podrán comunicarse directamente, pero si a dos saltos. los demás se comunican sin problemas
+b. un nodo no puede comunicarse con el central
+c. si falla el bus la red se parte en dos
+d. un fallo en cualquier conexión hace que no pueda haber comunicación
+\item la frecuencia más alta es 20KHz, 20000 ciclos por segundo. por el teorema de nyquist el muestreo debe ser de por lo menos 40000 veces por segundo, el doble
+\item \(C\approx 0.332*B*S/N=0.332*1000*24=7968\), casi 8kbit/s
+\item a. bridge o switch. crea dos o más segmentos y si se quiere enviar de un segmento al mismo se corta la comunicación a los demás, alivianando un poco el tráfico
+b. repetidor. sólo se quieren conectar dos dispositivos lejanos
+c. hub. que repita la señal de una red a otra, ya que son pocos dispositivos
+d. bridge o switch. como tienen diferentes estándares, hay que hacer alguna modificación a los datos de capa 1 para que sean entendidos por la otra red
+\item 
+
+\item la C está más cerca de A. el mensaje rts llega al ap B y a C pero no a D, que recién activa el nav cuando recibe el cts de B
+\item a. subcapa control de acceso al medio
+\begin{itemize}
+\item iniciación: intercambio de tramas de control para establecer la disponibilidad de las estaciones. terminación: liberación de los recursos. identificación: saber dónde eviar o de dónde viene una trama
+\item segmentación y agrupación: dividir o agrupar la información según la longitud de las tramas
+\item sincronización octeto caracter: interpretar correctamente los bits. decodificarlos correctamente
+\item delimitación de trama: separar las tramas para que sean entendidas por la otra terminal
+\end{itemize}
+b. subcapa control enlace lógico
+\begin{itemize}
+\item corrección de errores: implementar mecanismos para minimizar los errores que pueden surgir del ruido del medio
+\item control de flujo: necesario para no saturar a un receptor con muchos emisores
+\item recuperación de fallos: procedimientos para detectar situaciones inusuales como pérdida de tramas, tramas duplicadas o fuera de tiempo
+\end{itemize}
+\item DLE-STX-STX-DLE-DLE-ABC-DLE-ETX-DLE-BCD-DLE-STX
+
+DLE-STX empieza la transmisión
+
+DLE-DLE-ABC es DLE-ABC porque se usa un escape DLE
+
+DLE-ETX termina la transmisión
+
+se transmite STX-DLE-ABC
+\end{enumerate}
+\end{document}
