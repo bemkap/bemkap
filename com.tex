@@ -1,0 +1,598 @@
+% Created 2021-09-20 lun 23:40
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{fullpage}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{introduccion}
+\label{sec:orgcfcc485}
+\subsection{hardware}
+\label{sec:org4b83ee0}
+\subsection{sofware de red}
+\label{sec:org6ac81c9}
+\subsubsection{jerarquia de protocolos}
+\label{sec:orgfe5638b}
+\begin{itemize}
+\item organizacion por capas. cada capa tiene una funcion diferenciada e independiente
+\item intercambio de mensajes segun el protocolo de cada capa
+\item en realidad los mensajes bajan hasta la capa inferior (medio fisico), donde se realiza la comunicacion
+\item interfaz bien definida para comunicacion entre capas
+\item arquitectura de red: conjunto de capas y protocolos
+\item pila de protocolos: lista de protocolos usados por una arquitectura
+\end{itemize}
+\subsubsection{aspectos de diseño para cada capa}
+\label{sec:org18cc93a}
+\begin{itemize}
+\item codigos de deteccion (y posible correccion) de errores
+\item enrutamiento: eleccion de una ruta para enviar informacion
+\item distribucion de protocolos en capas
+\item mecanismos para embalar, desembalar y transmitir
+\item escalabilidad
+\item asignacion eficiente de recursos
+\item uso del ancho de banda (multiplexado estadistico, fraccion fija)
+\item control de flujo
+\item confidencialidad, autenticacion e integridad
+\end{itemize}
+\subsubsection{tipos de servicios}
+\label{sec:orgb35e689}
+\begin{enumerate}
+\item orientados a la conexion
+\label{sec:org2ba7b7c}
+\begin{itemize}
+\item se establece la conexion, se usa y se libera
+\item en la mayoria de los casos se preserva el orden
+\item como una linea telefonica
+\end{itemize}
+\item no orientados a la conexion
+\label{sec:org16d505d}
+\begin{itemize}
+\item cada mensaje lleva la direccion de destino completa
+\item cada mensaje es enrutado en forma independiente
+\item como el sistema postal
+\end{itemize}
+\item confiables
+\label{sec:org78d48cd}
+\begin{itemize}
+\item nunca pierden datos
+\item acuse de recibo
+\item introduccion de sobrecarga y retardos
+\end{itemize}
+\item no confiables
+\label{sec:orgc694855}
+\begin{center}
+\begin{tabular}{lll}
+ & confiable & no confiable\\
+conexion & secuencia de mensajes & voz sobre ip\\
+ & flujo de bytes & \\
+no conexion & mensajes de texto & mails\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\subsubsection{relacion entre servicios y protocolos}
+\label{sec:orgc18edd1}
+\begin{itemize}
+\item un servicio se define como un conjunto de primitivas que una capa proporciona a la que esta encima de ella
+\item el servicio define el que pero no el como
+\item protocolo son las reglas de formato y significado de los paquetes o mensajes que se intercambian en la misma capa
+\item servicio se relaciona con las interfaces entre capas
+\item protocolo se relaciona con los paquetes que se envian entre distintas maquinas
+\end{itemize}
+\subsection{modelos de referencia}
+\label{sec:org4632a9a}
+\subsubsection{modelo osi}
+\label{sec:orgf4c69d9}
+\begin{enumerate}
+\item capa fisica
+\label{sec:org3b8470b}
+\begin{itemize}
+\item transmision de bits puros a traves de un canal de transmision
+\item busca que lleguen los mismos bits que salieron
+\item señales electricas para representar un bit
+\item como se establece y se termina una comunicacion
+\end{itemize}
+\item capa de enlace de datos
+\label{sec:orgd5e8763}
+\begin{itemize}
+\item transforma los bits puros en una linea que este libre de errores para la capa de red
+\item divide los datos en tramos
+\item control de transmision para emisores rapidos y receptores lentos
+\end{itemize}
+\item capa de red
+\label{sec:orga9bcddc}
+\begin{itemize}
+\item como se encaminan los paquetes del origen al destino
+\item las rutas se basan en tablas estaticas o dinamicas
+\item manejo de congestion
+\item solucionar problemas para conectar reder heterogeneas
+\end{itemize}
+\item capa de transporte
+\label{sec:orgbd62a72}
+\begin{itemize}
+\item aceptar datos de la capa superior, dividirlos en unidades mas pequeñas, pasar los datos a la capa de red y asegurar que las piezas lleguen al otro extremo
+\item es una verdadera capa de extremo a extremo, a diferencia de las mas bajas
+\end{itemize}
+\item capa de sesion
+\label{sec:org77f34b5}
+\begin{itemize}
+\item control de dialogo
+\item manejo de tokens
+\item sincronizacion
+\end{itemize}
+\item capa de presentacion
+\label{sec:orgdf509eb}
+\begin{itemize}
+\item se enfoca en la sintaxis y la semantica de la informacion transmitida
+\item maneja estructuras abstractas para intercambiar datos entre computadoras con diferentes representaciones de datos
+\end{itemize}
+\item capa de aplicacion
+\label{sec:orgb67022e}
+\begin{itemize}
+\item protocolos que los usuarios necesitan
+\end{itemize}
+\end{enumerate}
+\subsubsection{modelo tcp/ip}
+\label{sec:orgcf05cda}
+\begin{enumerate}
+\item capa de enlace
+\label{sec:org5c05ed1}
+\begin{itemize}
+\item capa sin conexion que opera a traves de distintas redes
+\item describe que enlaces se deben llevar a cabo para cumplir con las necesidades de esta capa
+\end{itemize}
+\item capa de interred
+\label{sec:org52aebbc}
+\begin{itemize}
+\item permite que los host inyecten paquetes en cualquier red y que viajen independientemente a su destino
+\item analogo al sistema de correo
+\item define un formato de paquete y un protocolo oficial llamado ip y uno complementario llamado icmp
+\item el ruteo de paquetes es el principal aspecto, y la congestion
+\end{itemize}
+\item capa de transporte
+\label{sec:org4972ec9}
+\begin{itemize}
+\item permite que entidades en la misma capa mantengan una conversacion
+\item tcp, udp
+\end{itemize}
+\end{enumerate}
+\subsubsection{capa de aplicacion}
+\label{sec:org586d88b}
+\begin{itemize}
+\item reemplaza las capas de presentacion, sesion y aplicacion del modelo osi
+\item telnet, ftp, smtp, dns, http
+\end{itemize}
+\subsubsection{comparacion tcp/ip osi}
+\label{sec:orgdddfaeb}
+\begin{itemize}
+\item osi fue inventado antes que los protocolos, por eso es mas general. pero los diseñadores no sabian que funcionalidades colocar en cada capa
+\item con tcp/ip paso al reves. los protocolos encajaron perfectamente, pero no era util para describir redes que no fueran tcp/ip
+\item osi tiene 7 capas, tcp/ip tiene 4
+\end{itemize}
+\subsubsection{defectos de osi}
+\label{sec:org5a33488}
+\begin{itemize}
+\item mala sicronizacion: para cuando se desarrollaron los protocolos osi, tcp/ip ya se estaba usando lo suficiente como para que los distribuidores no quisieran apoyar otra pila
+\item mala tecnologia: el modelo es muy complejo. las capas de sesion y presentacion estan casi vacias, las de red y enlace llenas. son dificiles de implementar e ineficientes.
+\item malas implementaciones: por su complejidad las primeras implementaciones eran lentas y pesadas. despues mejoraron pero la imagen quedo
+\item malas politicas: osi se asocio con el gobierno estadounidense y tcp/ip con unix
+\end{itemize}
+\subsubsection{defectos de tcp/ip}
+\label{sec:org0da2a29}
+\begin{itemize}
+\item no se diferencian bien los conceptos de servicio, interfaz y protocolo
+\item el modelo no es para nada general
+\item la capa de enlace no es una capa sino una interfaz
+\item no distingue la capa de enlace y la fisica
+\end{itemize}
+\section{capa fisica}
+\label{sec:org80d27c0}
+\subsection{conceptos}
+\label{sec:org444ca46}
+\begin{itemize}
+\item serie de fourier
+\item ancho de banda
+\item banda base, pasa-banda
+\item teorema de nyquist, teorema de shannon
+\item relacion señal ruido S/N
+\end{itemize}
+\subsection{medios de transmision guiados}
+\label{sec:orgf496a9c}
+\subsubsection{medios magneticos}
+\label{sec:org137717c}
+\begin{itemize}
+\item guardar la informacion en una cinta o medio removible y mandarlo fisicamente
+\item \emph{nunca subestime el ancho de banda de una camioneta repleta de cintas que viaje a toda velocidad por la carretera}
+\end{itemize}
+\subsubsection{par trenzado}
+\label{sec:org53087a0}
+\begin{itemize}
+\item dos cables de cobre aislados
+\item trenzados porque en paralelo forman una antena
+\item la señal se transmite como la diferencia de voltaje entre los dos cables
+\item el ruido afecta a los dos cables por igual, el diferencial se mantiene
+\item sistema telefonico
+\item informacion analogica o digital
+\item el ancho de banda depende del grosor de los cables y la distancia. hasta varios mbps
+\item ethernet usa cuatro, uno para cada direccion
+\item hasta cat 6: utp (unshielded twisted pair). cat 7: stp
+\end{itemize}
+\subsubsection{cable coaxial}
+\label{sec:orge0a2195}
+\begin{itemize}
+\item mejor blindaje y mayor ancho de banda que los tp, pero mas caro
+\end{itemize}
+\subsubsection{lineas electricas}
+\label{sec:orgaa2a0de}
+\begin{itemize}
+\item las compañias las han utilizado para comunicacion de baja velocidad
+\item uso en el hogar para controlar dispositivos
+\item dificil porque el cableado de las casas no esta hecho para enviar señales a alta frecuencia
+\end{itemize}
+\subsubsection{fibra optica}
+\label{sec:org80ed464}
+\begin{itemize}
+\item lan, internet y ftth
+\item un pulso de luz indica 1, la ausencia 0
+\item cuando la luz pasa de un medio a otro (silice a aire) se refracta. el grado depende de los indices de refraccion de los medios. y para cualquier angulo mayor a un angulo critico la luz rebota completamente en el silice
+\item fibra multimodal: varios rayos de luz en una fibra
+\item fibra monomodo: un solo rayo de luz por fibra que es mucho mas angosta
+\item tres bandas: 0.85 1.3 y 1.55 micras. anchos de banda de 25000 a 30000 ghz. la primera tiene mas atenuacion
+\item fuentes: led y laser
+\end{itemize}
+\subsection{transmision inalambrica}
+\label{sec:orga8e11df}
+\subsubsection{espectro electromagnetico}
+\label{sec:org793362d}
+\begin{itemize}
+\item los electrones se mueven y crean ondas electromagneticas
+\item las ondas viajan siempre a la velocidad de la luz
+\item \(\lambda f=c\)
+\item espectro directo con salto de frecuencia: transmision dificil de detectar y bloquear. militares, bluetooth, versiones anteriores de 802.11
+\item espectro directo de secuencia directa: multiples señales comparten ancho de banda. cdma, gps, 802.11b
+\item uwb
+\end{itemize}
+\subsubsection{radiotransmision}
+\label{sec:org5766621}
+\begin{itemize}
+\item las ondas de radio son faciles de generar, recorren largas distancias y penetran edificios
+\item son omnidireccionales
+\item las propiedades dependen de la frecuencia. baja frecuencia: cruzan obstaculos pero se reduce la potencia rapidamente. alta frecuencia: viajan en linea recta y rebotan en obstaculos
+\item ondas de alta frecuencia son absorbidas por la lluvia y otros obstaculos
+\item como recorren grandes distancia la interferencia es un problema
+\item estan reguladas por los gobiernos
+\item vlf, lf y mf siguen la curvatura de la tierra. hf van en linea recta y rebotan en la ionosfera, tambien son absorbidas por la tierra
+\end{itemize}
+\subsubsection{transmision por microondas}
+\label{sec:orgdbce5e8}
+\begin{itemize}
+\item relacion S/N alta, pero las antenas deben estar alineadas
+\item microondas no atraviesan bien los edificios
+\item comunicacion telefonica, celulares, television. lo que provoco escasez de espectro
+\end{itemize}
+\subsubsection{transmision infrarroja}
+\label{sec:org40360f9}
+\begin{itemize}
+\item comunicacion de corto alcance
+\item no atraviesan objetos
+\end{itemize}
+\subsubsection{tranmision por ondas de luz}
+\label{sec:org1fcdfe2}
+\begin{itemize}
+\item señalizacion optica mediante laser
+\item gran ancho de banda a bajo costo y seguro. pero muy dificil de apuntar
+\end{itemize}
+\subsection{satelites de comunicacion}
+\label{sec:orgec328f4}
+\begin{itemize}
+\item un satelite es un enorme repetidor de microondas con varios transpondedores. transmite en modo \textbf{tublo doblado}
+\item posicion de los satelites limitadas por el cinturon de van allen
+\end{itemize}
+\subsubsection{satelites geoestacionarios}
+\label{sec:org9db387c}
+\begin{itemize}
+\item satelites que orbitan a la misma velocidad de la que rota la tierra. parecen inmoviles desde el suelo
+\item los primeros tenian un solo haz de luz que iluminaba la tierra, lo que se conoce como huella
+\item actualmente tienen multiples haces que se enfocan en una pequeña area geografica. estos son los haces puntuales
+\item vsat: terminales muy pequeñas que se utilizan para la transmision de tv
+\item los vsat no se pueden comunicar entre ellos por su baja potencia. para ello usan de intermediario potentes estaciones en la tierra
+\item aunque las señales viajen a la velocidad de la luz, dada las distancias tienen mas retardo que las comunicaciones terrestres
+\item los satelites son medios de difusion por naturaleza
+\end{itemize}
+\subsubsection{ventajas de los satelites sobre la fibra optica}
+\label{sec:org52a18d5}
+\begin{itemize}
+\item cuando se requiere un despliegue rapido, ganan los satelites
+\item los satelites pueden enviar a cualquier parte del mundo
+\item un mensaje que envia un satelite lo pueden recibir miles de estaciones al mismo tiempo
+\end{itemize}
+\subsection{modulacion digital y multiplexacion}
+\label{sec:org846fb53}
+\begin{itemize}
+\item modulacion digital: proceso de convertir bits en la señal que los representan
+\item transmision en banda base: la señal ocupa una frecuencia desde 0 hasta un valor maximo que depende de la tasa de señalizacion. comun en cables
+\item transmision pasa-banda: la señal ocupa una banda de frecuencias alrededor de la frecuencia de la señal portadora. comun en inalambrico y optico
+\item multiplexacion: a compartir varias señales por un mismo canal
+\end{itemize}
+\subsubsection{transmision en banda base}
+\label{sec:orgc02bb38}
+\begin{itemize}
+\item NRZ(non-return-to-zero): voltaje positivo para el 1 y uno nulo para el 0
+\item el receptor muestrea a intervalos regulares y convierte de nuevo a bits. la señal no se vera igual a la que se envio por el ruido y el canal
+\item eficiencia del ancho de banda
+\begin{itemize}
+\item con nrz la señal puede alternar entre positivo y negativo hasta cada 2 bits. necesita un ancho de banda B/2hz pasa tasa de B bps
+\item una estategia es usar mas de 2 niveles de señalizacion. por ejemplo 4 voltajes para representar 2 bits a la vez como un simbolo
+\item tasa de bits=tasa de simbolo*bits por simbolo
+\item requiere una potencia mayor en el receptor para diferenciar los niveles
+\end{itemize}
+\item recuperacion del reloj
+\begin{itemize}
+\item el receptor debe saber cuando termina un simbolo y empieza otro
+\item existe un limite en la precision de un reloj para muestrear señales
+\item se podria enviar una señal del reloj por otra linea separada, pero seria mejor que si hubiera otra linea se usara para enviar datos
+\item un truco seria usar xor entre las dos lineas para enviarlas en una sola. esta es la codificacion manchester y se usaba en ethernet clasico. lo malo es que requiere el doble de ancho de banda
+\item una estrategia distinta es codificar los datos para que haya suficientes transiciones en la señal. ya que los problemas suceden en largas suceciones de 0 o 1
+\item nrzi: 1 como una transicion y 0 como no hay transicion. usb usa este metodo. largas sucesiones de 1 no tienen problemas, pero de 0 si
+\item 4b/5b: se asocian grupos de 4 bits a 5 bits segun una tabla fija, de manera que nunca haya tres 0 seguidos. agrega 25\% de sobrecarga. sobran 16 numeros de 5 bits, algunos se usan para control
+\item para asegurar transiciones se puede hacer xor con una secuencia pseudoaleatoria. el receptor decodifica con la misma secuencia. esta debe ser facil de generar
+\item pero la aleatorizacion no garantiza transiciones
+\end{itemize}
+\item señales balanceadas
+\begin{itemize}
+\item señales que tienen misma cantidad de voltajes positivos como negativos
+\item ayuda a proveer transiciones para la recuperacion del reloj
+\item codificacion bipolar: se alterna +1 y -1 voltios para el 1 y 0 voltios para el 0. en redes telefonicas ami
+\item 8b/10b tambien para codigo balanceado
+\end{itemize}
+\end{itemize}
+\subsubsection{transmision pasa-banda}
+\label{sec:org431af33}
+\begin{itemize}
+\item en canales inalambricos no es practico usar rango de frecuencias que empiecen en 0
+\item se puede tomar una señal en banda base que ocupe de 0 a b hz y desplazarla a otra pasa-banda que ocupe de s a s+b hz
+\item se puede modular la amplitud (ask), la frecuencia (fsk) o la fase (psk)
+\item psk puede ser bpsk (binaria) o qpsk (cuadratura)
+\item se pueden combinar y usar mas niveles, comunmente amplitud y fase
+\item diagrama de constelacion: forma de visualizar la modulacion combinada ask y psk. qpsk, qam-16, qam-64
+\item simbolos adyacentes no deben diferir en muchos bits, porque serian mas suceptibles al ruido. para eso se usa codigo gray
+\end{itemize}
+\subsubsection{multiplexacion por division de frecuencia}
+\label{sec:orge4605cc}
+\begin{itemize}
+\item fdm: divide el espectro en bandas. cada usuario tiene posesion exclusiva de la banda
+\item banda de guarda: exceso de banda que mantiene a los canales separados
+\item ofdm: el ancho de banda del canal se divide en muchas subportadoras que envian de manera independiente. cada subportadora esta diseñada para ser 0 en el centro de las adyacentes. 802.11
+\end{itemize}
+\subsubsection{multiplexacion por division de tiempo}
+\label{sec:orgb0664b4}
+\begin{itemize}
+\item tdm: los usuarios toman turnos y usan todo el ancho de banda, se toman los datos y se agregan al flujo agregado
+\item para que funcione debe haber sincronizacion. se puede agregar tiempo de guarda
+\end{itemize}
+\subsubsection{multiplexacion por division de codigo}
+\label{sec:org359769a}
+\begin{itemize}
+\item cdm: forma de comunicacion de espectro diverso. una señal de banda estrecha se dispersa en una mas amplia. cdma
+\item hace la señal mas tolerante a interferencias y permite que señales compartan la misma banda de frecuencia
+\item cdma es extraer la señal deseada mientras lo demas se rechaza como ruido
+\item cada tiempo de bit de divide en m intervalos llamados chips. en general 64 o 128 chips cada bit. a cada estacion se le asigna una secuencia de chip, un codigo de m bits. para transmitir un 1 envia la secuencia de chip, para el 0 la negacion
+\item todas las secuencias de chip son ortogonales por pares
+\item si varias estaciones envian al mismo tiempo se suman
+\end{itemize}
+\section{capa de enlace}
+\label{sec:orgff26d6a}
+\subsection{cuestiones de diseño}
+\label{sec:org9b1ce65}
+\begin{itemize}
+\item funciones: dar a la capa de red una interfaz de servicios bien definida. manejar errores. controlar flujo
+\item toma los datos que obtiene de la capa de red y los encapsula en tramas
+\end{itemize}
+\subsubsection{servicios dados a la capa de red}
+\label{sec:org3278209}
+\begin{itemize}
+\item transferir datos de la maquina de origen a la de destino
+\item 3 servicios razonables
+\begin{itemize}
+\item sin conexion ni confirmacion de recepcion: tasa de error baja. trafico en tiempo real. ethernet
+\item sin conexion con confirmacion: canales no confiables. 802.11 (wifi)
+\item con conexion y confirmacion: cada trama esta enumerada. se garantiza que lleguen solo una vez y en orden. canales largos y no confiables. satelites y red telefonia larga
+\end{itemize}
+\end{itemize}
+\subsubsection{entramado}
+\label{sec:org2d02fd3}
+\begin{itemize}
+\item la capa fisica no garantiza que el flujo de bits este libre de errores
+\item un metodo es dividir el flujo en tramas discretas y agregarles una suma de verificacion
+\item division de tramas
+\begin{itemize}
+\item conteo de bytes: agrega en el encabezado la cantidad de bytes en la trama. si se altera este valor se pierde la sincronia. rara vez se usa solo
+\item bytes bandera con relleno de bytes: cada trama inicia y termina con bytes especiales. si aparece la bandera en los datos se antecede un escape. y si aparece un escape se pone otro escape adelante. simplificacion de ppp
+\item bits bandera con relleno de bits: igual a bytes pero sin la restriccion de 1 byte=8 bits. hdlc. usb. se usan 6 bits en 1 para delimitar. cada vez que se ven 5 bits en 1 se agrega un 0
+\item violaciones de codificacion de la capa fisica: si se usa por ejemplo 4b/5b en la capa fisica se pueden usar los codigos no utilizados para el inicio y fin de trama
+\end{itemize}
+\end{itemize}
+\subsubsection{control de errores}
+\label{sec:orgd19991d}
+\begin{itemize}
+\item asegurar la entrega de datos confiable: retroalimentacion al emisor de lo que esta ocurriendo del otro lado. positiva y negativa
+\item puede desaparecer la trama por completo, o la de retroalimentacion. para eso tambien se usan temporizadores para enviar nuevamente
+\item ahora puede que se reciba la misma trama dos veces. para eso se usan numeros de secuencia
+\end{itemize}
+\subsubsection{control de flujo}
+\label{sec:org0c20393}
+\begin{itemize}
+\item que hacer cuando un emisor envia mas tramas de las que el receptor puede aceptar. ejemplo telefono y sitio web
+\item control de flujo basado en retroalimentacion: el receptor envia cuando puede aceptar mas datos
+\item control de flujo basado en tasa: el protocolo tiene un mecanismo integrado que limita la tasa de envio
+\end{itemize}
+\subsection{deteccion y correccion de errores}
+\label{sec:org5baef3d}
+\begin{itemize}
+\item estategia: incluir redundancia en los datos.
+\item codigo de correccion de errores: para que el receptor pueda deducir que datos se quisieron enviar. fec
+\item codigo de deteccion de errores: para que sepa que hubo un error pero nada mas y solicite retransmision
+\item en fibra optica conviene la deteccion porque es rapido reenviar. en canales inalambricos es mejor correccion
+\item los bits de redundancia tambien pueden llegar mal. asi que nunca se podran manejar todos los errores
+\item los errores en rafaga tienen sus ventajas y desventajas
+\end{itemize}
+\subsection{protocolos de enlace de datos}
+\label{sec:org592bc38}
+\subsubsection{paquetes sobre sonet}
+\label{sec:orga7b1dfe}
+\begin{itemize}
+\item sonet se utiliza sobre canales de fibra optica de area amplia
+\item ppp se usa para diferenciar paquetes ocasionales del flujo continuo en el que se transportan
+\end{itemize}
+\subsubsection{ppp}
+\label{sec:org6949249}
+\begin{itemize}
+\item ppp orientado a bytes, hdlc a bits
+\item metodo de entramado sin ambiguedades, tambien maneja deteccion de errores
+\item protocolo para activar lineas, probarlas, negociar y desactivarlas. lcp
+\item mecanismo para negociar opciones de capa de red independientemente del protocolo de red usado
+\item uso de banderas como delimitacion y bytes de escape
+\item la carga util se mezcla aleatoriamente antes de insertarla en sonet para garantizar mas transiciones que necesita sonet
+\item configuracion enlace ppp
+\begin{itemize}
+\item muerto
+\item establecer (cuando hay conexion en la capa fisica): intercambio de paquetes lcp
+\item autentificar (si lo anterior fue exitoso): se verifican identidades
+\item red: paquetes ncp para configurar la capa de red
+\item abrir: intercambio de datos
+\item terminar
+\end{itemize}
+\end{itemize}
+\section{subcapa control acceso al medio}
+\label{sec:org6f6bb49}
+\begin{itemize}
+\item los enlaces de red pueden ser punto a punto o difusion
+\item subcapa mac es la parte inferior de la de enlace de datos
+\end{itemize}
+\subsection{problema de asignacion de canal}
+\label{sec:org789c291}
+\begin{itemize}
+\item asignar un solo canal de difusion entre varios usuarios competidores
+\end{itemize}
+\subsubsection{asignacion estatica}
+\label{sec:orgbc2ae48}
+\begin{itemize}
+\item dividir la capacidad mediante el uso de multiplexacion. cuando hay una pequeña cantidad de usuarios constantes
+\item si varia el numero de emisores y ese numero es grande se vuelve ineficiente
+\item lo mismo sucede con otras formas estaticas de dividir un canal
+\end{itemize}
+\subsubsection{supuestos para la asignacion dinamica}
+\label{sec:org8dfa9cd}
+\begin{itemize}
+\item trafico independiente: las estaciones son independientes
+\item canal unico: hay un solo canal para todas las comunicaciones
+\item colisiones observables: todas las estaciones pueden detectar colisiones. que seran enviadas luego
+\item tiempo continuo o ranurado: se puede considerar de las dos maneras
+\item deteccion de portadora o sin deteccion: si hay deteccion las estaciones pueden saber si el canal esta en uso. sino mandan y despues determinan si tuvo exito
+\end{itemize}
+\subsection{protocolos de acceso multiple}
+\label{sec:org4904b1b}
+\subsubsection{aloha}
+\label{sec:org9c0e35c}
+\begin{itemize}
+\item aloha puro
+\begin{itemize}
+\item despues de enviar su trama a la computadora central, esta difunde la trama a todas las estaciones. asi el emisor sabe si llego su trama
+\item si la trama fue destruida espera un tiempo aleatorio y manda de nuevo
+\item cada vez que dos tramas intenten ocupar el canal al mismo tiempo habra colision, por mas que sea un solapamiento pequeño
+\end{itemize}
+\item aloha ranurado
+\begin{itemize}
+\item como el metodo puro pero el tiempo se divide en ranuras discretas
+\item sincronizacion por medio de una estacion que emita una señal al comienzo de cada intervalo
+\end{itemize}
+\end{itemize}
+\subsubsection{protocolos de acceso multiple con deteccion de portadora}
+\label{sec:orge59fe04}
+\begin{itemize}
+\item csma persistente-1
+\begin{itemize}
+\item la estacion escucha el canal para ver si alguien esta enviando, sino envia. si ocurre una colision espera y manda de nuevo
+\item el retardo de propagacion tiene un efecto importante en las colisiones. esta posibilidad depende del numero de tramas que quepan, o producto de ancho de banda-retardo
+\item en lan como el retardo es pequeño, no habra muchas colisiones
+\end{itemize}
+\item csma no persistente
+\begin{itemize}
+\item a diferencia del persistente-1 si el canal esta en uso espera un tiempo y repite el proceso. no se queda escuchando constantemente
+\item mejor uso del canal pero mayor retardo
+\end{itemize}
+\item csma persistente-p
+\begin{itemize}
+\item para canales ranurados
+\item si el canal esta inactivo, envia con probabilidad p y espera a la siguiente ranura con probabilidad 1-p
+\end{itemize}
+\item csma con deteccion de colisiones (csma/cd)
+\begin{itemize}
+\item base de la clasica ethernet
+\item el hardware escucha a la vez que envia. si la señal que recibe es distinta a la que envia, esta ocurriendo una colision
+\item periodos alternantes de contencion y transmision con periodos de inactividad que ocurriran cuando todas las estaciones esten en reposo
+\end{itemize}
+\end{itemize}
+\subsection{protocolos libres de colisiones}
+\label{sec:org2119d7c}
+\subsubsection{protocolo de mapa de bits}
+\label{sec:orgc84ca54}
+\begin{itemize}
+\item cada periodo de contencion consiste en n ranuras
+\item las estaciones envian 1 si tienen tramas para enviar en ese periodo pero solo en su ranura correspondiente
+\item luego cuando ya hay conocimiento de quien va a mandar mandan las tramas en orden
+\item protocolos de revervacion
+\end{itemize}
+\subsubsection{paso de token}
+\label{sec:org587eaae}
+\begin{itemize}
+\item pasa un pequeño mensaje llamado token de una estacion a otra en un orden determinado. token ring
+\item solo puede enviar la que tenga el token
+\item cuando la estacion que envio recibe su misma trama la elimina para terminar el ciclo
+\item no hace falta que sea un anillo. token bus
+\end{itemize}
+\subsubsection{conteo descendente binario}
+\label{sec:orge117781}
+\begin{itemize}
+\item anteriores no escalan a redes con miles de estaciones
+\item las estaciones que quieren usar el canal envian su direccion binaria y hacen or de todo lo que reciben
+\item tan pronto como una estacion ve que una posicion de bit de orden alto, cuya direccion es 0, ha sido sobreescrita por un 1, se da por vencida
+\end{itemize}
+\subsection{protocolos de contencion limitada}
+\label{sec:orgbd65272}
+\begin{itemize}
+\item en condicion de carga ligera es preferible contencion
+\item al reves para libres de colision
+\item protocolos de contencion limitada combinan los dos anteriores
+\end{itemize}
+\subsubsection{protocolo de recorrido de arbol adaptable}
+\label{sec:orgc9ca858}
+\begin{itemize}
+\item en la ranura 0 todas las estaciones intentan adquirir el canal. si una lo logra bien y sino se dividen en dos grupos y se va formando un arbol de decision
+\item a mayor carga la busqueda debe iniciar mas abajo en el arbol
+\end{itemize}
+\subsection{protocolos de lan inalambrica}
+\label{sec:org8385e23}
+\end{document}

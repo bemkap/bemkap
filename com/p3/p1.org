@@ -3,61 +3,70 @@
 #+OPTIONS: toc:nil
 #+LATEX_HEADER: \usepackage{fullpage}
 1. 
-   a.
-   + punto a punto
-     * enlace permanente entre dos puntos finales
-   + bus
-     * cada nodo está conectado a un cable central
-     * todas las transmisiones en la red se realizan por este cable central o "bus"
-     * más barata de implementar pero más dificil de manejar
-     * si falla el bus la red queda dividida en dos
-   + estrella
-     * cada nodo periférico se conecta a uno central llamado "switch" o "hub"
-     * cliente-servidor
-     * toda la comunicación pasa por el nodo central, que trabaja como repetidor
-     * fácil de diseñar e implementar. simplicidad para agregar nodos
-     * si falla el nodo central falla toda la red
-     * *estrella extendida*: una estrella central y varias subredes con repetidores
-     * *estrella distribuída*: varias subredes estrella conectadas cada una con la siguiente (daisy-chain)
-   + anillo
-     * daisy-chain formando un bucle
-     * los datos viajan sólo en una dirección
-     * el rendimiento es mejor que el de la topología bus cuando hay mucha carga
-     * no hay necesidad de un servidor
-     * cuellos de botella
-     * si un nodo no puede retransmitir la red falla
-   + malla
-     * *totalmente conectada*
-     * *parcialmente conectada*
-   b.
-   + bus: n, cada nodo con el cable central
-   + estrella: n-1, cada nodo con el nodo central
-   + anillo: n, cada uno con el siguiente y el último con el primero
-   + malla: hasta $\frac{n(n-1)}{2}}$, según sea totalmente o parcialmente conectada
+   1. 
+      + punto a punto
+	* enlace permanente entre dos puntos finales
+      + bus
+        * cada nodo está conectado a un cable central
+        * todas las transmisiones en la red se realizan por este cable central o "bus"
+        * más barata de implementar pero más dificil de manejar
+        * si falla el bus la red queda dividida en dos
+	* cable coaxil
+	* para agregar nodos hay que conectarse al bus central
+      + estrella
+        * cada nodo periférico se conecta a uno central llamado "switch" o "hub"
+	* cliente-servidor
+	* toda la comunicación pasa por el nodo central, que trabaja como repetidor
+	* fácil de diseñar e implementar. simplicidad para agregar nodos
+	* si falla el nodo central falla toda la red
+	* *estrella extendida*: una estrella central y varias subredes con repetidores
+	* *estrella distribuída*: varias subredes estrella conectadas cada una con la siguiente (daisy-chain)
+	* mucho flujo de datos
+	* par trenzado
+      + anillo
+	* daisy-chain formando un bucle
+	* los datos viajan sólo en una dirección
+	* el rendimiento es mejor que el de la topología bus cuando hay mucha carga
+	* no hay necesidad de un servidor
+	* cuellos de botella
+	* si un nodo no puede retransmitir la red falla si es half duplex
+	* fibra óptica
+	* no es sencillo agregar nuevos nodos
+      + malla
+        * *totalmente conectada*
+        * *parcialmente conectada*
+        * mucho flujo de datos y redundancia
+   2. 
+      + bus: 1, cada nodo con el cable central
+      + estrella: n-1, cada nodo con el nodo central
+      + anillo: n, cada uno con el siguiente y el último con el primero
+      + malla: hasta $\frac{n(n-1)}{2}$, según sea totalmente o parcialmente conectada
 2. 
-    a. si falla una conexión dos nodos no podrán comunicarse directamente, pero si a dos saltos. los demás se comunican sin problemas
-    b. un nodo no puede comunicarse con el central
-    c. si falla el bus la red se parte en dos
-    d. un fallo en cualquier conexión hace que no pueda haber comunicación
+   1. si falla una conexión dos nodos no podrán comunicarse directamente, pero si a dos saltos. los demás se comunican sin problemas
+   2. un nodo no puede comunicarse con el central
+   3. si falla el bus la red se parte en dos
+   4. un fallo en cualquier conexión hace que no pueda haber comunicación
 3. la frecuencia más alta es 20KHz, 20000 ciclos por segundo. por el teorema de nyquist el muestreo debe ser de por lo menos 40000 veces por segundo, el doble
 4. $C\approx 0.332*B*S/N=0.332*1000*24=7968$, casi 8kbit/s
 5. 
-    a. bridge o switch. crea dos o más segmentos y si se quiere enviar de un segmento al mismo se corta la comunicación a los demás, alivianando un poco el tráfico
-    b. repetidor. sólo se quieren conectar dos dispositivos lejanos
-    c. hub. que repita la señal de una red a otra, ya que son pocos dispositivos
-    d. bridge o switch. como tienen diferentes estándares, hay que hacer alguna modificación a los datos de capa 1 para que sean entendidos por la otra red
+   1. bridge o switch. crea dos o más segmentos y si se quiere enviar de un segmento al mismo se corta la comunicación a los demás, alivianando un poco el tráfico
+   2. repetidor. sólo se quieren conectar dos dispositivos lejanos
+   3. hub. que repita la señal de una red a otra, ya que son pocos dispositivos
+   4. bridge o switch. como tienen diferentes estándares, hay que hacer alguna modificación a los datos de capa 1 para que sean entendidos por la otra red
 6. 
-7. la C está más cerca de A. el mensaje rts llega al ap B y a C pero no a D, que recién activa el nav cuando recibe el cts de B
+   1. distancia: algunos medios tienen más alcance que otros
+   2. ambiente: condiciones ambientales determinan que medio es más conveniente usar, por ejemplo si es interior o exterior, clima, agua o tierra   
+7. la C está más cerca de A. el mensaje rts llega al B y a C pero no a D, que recién activa el nav cuando recibe el cts de B. D es una estación oculta para A
 8. 
-   a. subcapa control de acceso al medio
-   + iniciación: intercambio de tramas de control para establecer la disponibilidad de las estaciones. terminación: liberación de los recursos. identificación: saber dónde eviar o de dónde viene una trama
-   + segmentación y agrupación: dividir o agrupar la información según la longitud de las tramas
-   + sincronización octeto caracter: interpretar correctamente los bits. decodificarlos correctamente
-   + delimitación de trama: separar las tramas para que sean entendidas por la otra terminal
-   b. subcapa control enlace lógico
-   + corrección de errores: implementar mecanismos para minimizar los errores que pueden surgir del ruido del medio
-   + control de flujo: necesario para no saturar a un receptor con muchos emisores
-   + recuperación de fallos: procedimientos para detectar situaciones inusuales como pérdida de tramas, tramas duplicadas o fuera de tiempo
+   1. subcapa control de acceso al medio
+      + iniciación: intercambio de tramas de control para establecer la disponibilidad de las estaciones. terminación: liberación de los recursos. identificación: saber dónde eviar o de dónde viene una trama
+      + segmentación y agrupación: dividir o agrupar la información según la longitud de las tramas
+      + sincronización octeto caracter: interpretar correctamente los bits. decodificarlos correctamente
+      + delimitación de trama: separar las tramas para que sean entendidas por la otra terminal
+   2. subcapa control enlace lógico
+      + corrección de errores: implementar mecanismos para minimizar los errores que pueden surgir del ruido del medio
+      + control de flujo: necesario para no saturar a un receptor con muchos emisores
+      + recuperación de fallos: procedimientos para detectar situaciones inusuales como pérdida de tramas, tramas duplicadas o fuera de tiempo
 9. DLE-STX-STX-DLE-DLE-ABC-DLE-ETX-DLE-BCD-DLE-STX
 
    DLE-STX empieza la transmisión
@@ -67,3 +76,22 @@
    DLE-ETX termina la transmisión
 
    se transmite STX-DLE-ABC
+10. 
+    1. sin conexión y sin acuse (tipo 1)
+    2. sin conexión y con acuse (tipo 3)
+    3. sin conexión y sin acuse (tipo 1)
+    4. con conexión (tipo 2)
+11. 
+    | capa física(802.11) | --> | capa física(802.3) |
+    | subcapa mac(802.11) |     | subcapa mac(802.3) |
+    | subcapa llc         |     | subcapa llc        |
+    | *notebook*          |     | *pc*               |
+12. 
+    |           | fastbit      | gigabit | fibra    | lan inalambrica |
+    | velocidad | 100mbps      | 1gbps   | infinita | 100mbps         |
+    | medio tx  | par trenzado | fibra   | fibra    | aire            |
+    | estandar  | 802.3        | 802.3   | 802.3    | 802.11          |
+13. el problema sucede cuando en una red la señal de una terminal A no llega a otra terminal B, por lo que los paquetes que envíe A no llegarán a B. se dice que B está oculta para A 
+14. 
+    1. no sería conveniente porque al haber estaciones ocultas no se podría determinar cuando hay colisiones
+    2. 

@@ -1,0 +1,342 @@
+#+LATEX_HEADER: \usepackage{fullpage}
+* introduccion
+** hardware
+** sofware de red
+*** jerarquia de protocolos
+   + organizacion por capas. cada capa tiene una funcion diferenciada e independiente
+   + intercambio de mensajes segun el protocolo de cada capa
+   + en realidad los mensajes bajan hasta la capa inferior (medio fisico), donde se realiza la comunicacion
+   + interfaz bien definida para comunicacion entre capas
+   + arquitectura de red: conjunto de capas y protocolos
+   + pila de protocolos: lista de protocolos usados por una arquitectura
+*** aspectos de diseño para cada capa
+   + codigos de deteccion (y posible correccion) de errores
+   + enrutamiento: eleccion de una ruta para enviar informacion
+   + distribucion de protocolos en capas
+   + mecanismos para embalar, desembalar y transmitir
+   + escalabilidad
+   + asignacion eficiente de recursos
+   + uso del ancho de banda (multiplexado estadistico, fraccion fija)
+   + control de flujo
+   + confidencialidad, autenticacion e integridad
+*** tipos de servicios
+**** orientados a la conexion
+    + se establece la conexion, se usa y se libera
+    + en la mayoria de los casos se preserva el orden
+    + como una linea telefonica
+**** no orientados a la conexion
+    + cada mensaje lleva la direccion de destino completa
+    + cada mensaje es enrutado en forma independiente
+    + como el sistema postal
+**** confiables
+    + nunca pierden datos
+    + acuse de recibo
+    + introduccion de sobrecarga y retardos
+**** no confiables
+|             | confiable             | no confiable |
+| conexion    | secuencia de mensajes | voz sobre ip |
+|             | flujo de bytes        |              |
+| no conexion | mensajes de texto     | mails        |
+*** relacion entre servicios y protocolos
+   + un servicio se define como un conjunto de primitivas que una capa proporciona a la que esta encima de ella
+   + el servicio define el que pero no el como
+   + protocolo son las reglas de formato y significado de los paquetes o mensajes que se intercambian en la misma capa
+   + servicio se relaciona con las interfaces entre capas
+   + protocolo se relaciona con los paquetes que se envian entre distintas maquinas
+** modelos de referencia
+*** modelo osi
+**** capa fisica
+    + transmision de bits puros a traves de un canal de transmision
+    + busca que lleguen los mismos bits que salieron
+    + señales electricas para representar un bit
+    + como se establece y se termina una comunicacion
+**** capa de enlace de datos
+    + transforma los bits puros en una linea que este libre de errores para la capa de red
+    + divide los datos en tramos
+    + control de transmision para emisores rapidos y receptores lentos
+**** capa de red
+    + como se encaminan los paquetes del origen al destino
+    + las rutas se basan en tablas estaticas o dinamicas
+    + manejo de congestion
+    + solucionar problemas para conectar reder heterogeneas
+**** capa de transporte
+    + aceptar datos de la capa superior, dividirlos en unidades mas pequeñas, pasar los datos a la capa de red y asegurar que las piezas lleguen al otro extremo
+    + es una verdadera capa de extremo a extremo, a diferencia de las mas bajas
+**** capa de sesion
+    + control de dialogo
+    + manejo de tokens
+    + sincronizacion
+**** capa de presentacion
+    + se enfoca en la sintaxis y la semantica de la informacion transmitida
+    + maneja estructuras abstractas para intercambiar datos entre computadoras con diferentes representaciones de datos
+**** capa de aplicacion
+    + protocolos que los usuarios necesitan
+*** modelo tcp/ip
+**** capa de enlace
+    + capa sin conexion que opera a traves de distintas redes
+    + describe que enlaces se deben llevar a cabo para cumplir con las necesidades de esta capa
+**** capa de interred
+    + permite que los host inyecten paquetes en cualquier red y que viajen independientemente a su destino
+    + analogo al sistema de correo
+    + define un formato de paquete y un protocolo oficial llamado ip y uno complementario llamado icmp
+    + el ruteo de paquetes es el principal aspecto, y la congestion
+**** capa de transporte
+    + permite que entidades en la misma capa mantengan una conversacion
+    + tcp, udp
+*** capa de aplicacion
+    + reemplaza las capas de presentacion, sesion y aplicacion del modelo osi
+    + telnet, ftp, smtp, dns, http
+*** comparacion tcp/ip osi
+   + osi fue inventado antes que los protocolos, por eso es mas general. pero los diseñadores no sabian que funcionalidades colocar en cada capa
+   + con tcp/ip paso al reves. los protocolos encajaron perfectamente, pero no era util para describir redes que no fueran tcp/ip
+   + osi tiene 7 capas, tcp/ip tiene 4
+*** defectos de osi
+   + mala sicronizacion: para cuando se desarrollaron los protocolos osi, tcp/ip ya se estaba usando lo suficiente como para que los distribuidores no quisieran apoyar otra pila
+   + mala tecnologia: el modelo es muy complejo. las capas de sesion y presentacion estan casi vacias, las de red y enlace llenas. son dificiles de implementar e ineficientes.
+   + malas implementaciones: por su complejidad las primeras implementaciones eran lentas y pesadas. despues mejoraron pero la imagen quedo
+   + malas politicas: osi se asocio con el gobierno estadounidense y tcp/ip con unix
+*** defectos de tcp/ip
+   + no se diferencian bien los conceptos de servicio, interfaz y protocolo
+   + el modelo no es para nada general
+   + la capa de enlace no es una capa sino una interfaz
+   + no distingue la capa de enlace y la fisica
+* capa fisica
+** conceptos
+   + serie de fourier
+   + ancho de banda
+   + banda base, pasa-banda
+   + teorema de nyquist, teorema de shannon
+   + relacion señal ruido S/N
+** medios de transmision guiados
+*** medios magneticos
+    + guardar la informacion en una cinta o medio removible y mandarlo fisicamente
+    + /nunca subestime el ancho de banda de una camioneta repleta de cintas que viaje a toda velocidad por la carretera/
+*** par trenzado
+    + dos cables de cobre aislados
+    + trenzados porque en paralelo forman una antena
+    + la señal se transmite como la diferencia de voltaje entre los dos cables
+    + el ruido afecta a los dos cables por igual, el diferencial se mantiene
+    + sistema telefonico
+    + informacion analogica o digital
+    + el ancho de banda depende del grosor de los cables y la distancia. hasta varios mbps
+    + ethernet usa cuatro, uno para cada direccion
+    + hasta cat 6: utp (unshielded twisted pair). cat 7: stp
+*** cable coaxial
+    + mejor blindaje y mayor ancho de banda que los tp, pero mas caro
+*** lineas electricas
+    + las compañias las han utilizado para comunicacion de baja velocidad
+    + uso en el hogar para controlar dispositivos
+    + dificil porque el cableado de las casas no esta hecho para enviar señales a alta frecuencia
+*** fibra optica
+    + lan, internet y ftth
+    + un pulso de luz indica 1, la ausencia 0
+    + cuando la luz pasa de un medio a otro (silice a aire) se refracta. el grado depende de los indices de refraccion de los medios. y para cualquier angulo mayor a un angulo critico la luz rebota completamente en el silice
+    + fibra multimodal: varios rayos de luz en una fibra
+    + fibra monomodo: un solo rayo de luz por fibra que es mucho mas angosta
+    + tres bandas: 0.85 1.3 y 1.55 micras. anchos de banda de 25000 a 30000 ghz. la primera tiene mas atenuacion
+    + fuentes: led y laser
+** transmision inalambrica
+*** espectro electromagnetico
+    + los electrones se mueven y crean ondas electromagneticas
+    + las ondas viajan siempre a la velocidad de la luz
+    + $\lambda f=c$
+    + espectro directo con salto de frecuencia: transmision dificil de detectar y bloquear. militares, bluetooth, versiones anteriores de 802.11
+    + espectro directo de secuencia directa: multiples señales comparten ancho de banda. cdma, gps, 802.11b
+    + uwb
+*** radiotransmision
+    + las ondas de radio son faciles de generar, recorren largas distancias y penetran edificios
+    + son omnidireccionales
+    + las propiedades dependen de la frecuencia. baja frecuencia: cruzan obstaculos pero se reduce la potencia rapidamente. alta frecuencia: viajan en linea recta y rebotan en obstaculos
+    + ondas de alta frecuencia son absorbidas por la lluvia y otros obstaculos
+    + como recorren grandes distancia la interferencia es un problema
+    + estan reguladas por los gobiernos
+    + vlf, lf y mf siguen la curvatura de la tierra. hf van en linea recta y rebotan en la ionosfera, tambien son absorbidas por la tierra
+*** transmision por microondas
+    + relacion S/N alta, pero las antenas deben estar alineadas
+    + microondas no atraviesan bien los edificios
+    + comunicacion telefonica, celulares, television. lo que provoco escasez de espectro
+*** transmision infrarroja
+    + comunicacion de corto alcance
+    + no atraviesan objetos
+*** tranmision por ondas de luz
+    + señalizacion optica mediante laser
+    + gran ancho de banda a bajo costo y seguro. pero muy dificil de apuntar
+** satelites de comunicacion
+   + un satelite es un enorme repetidor de microondas con varios transpondedores. transmite en modo *tublo doblado*
+   + posicion de los satelites limitadas por el cinturon de van allen
+*** satelites geoestacionarios
+    + satelites que orbitan a la misma velocidad de la que rota la tierra. parecen inmoviles desde el suelo
+    + los primeros tenian un solo haz de luz que iluminaba la tierra, lo que se conoce como huella
+    + actualmente tienen multiples haces que se enfocan en una pequeña area geografica. estos son los haces puntuales
+    + vsat: terminales muy pequeñas que se utilizan para la transmision de tv
+    + los vsat no se pueden comunicar entre ellos por su baja potencia. para ello usan de intermediario potentes estaciones en la tierra
+    + aunque las señales viajen a la velocidad de la luz, dada las distancias tienen mas retardo que las comunicaciones terrestres
+    + los satelites son medios de difusion por naturaleza
+*** ventajas de los satelites sobre la fibra optica
+    + cuando se requiere un despliegue rapido, ganan los satelites
+    + los satelites pueden enviar a cualquier parte del mundo
+    + un mensaje que envia un satelite lo pueden recibir miles de estaciones al mismo tiempo
+** modulacion digital y multiplexacion
+   + modulacion digital: proceso de convertir bits en la señal que los representan
+   + transmision en banda base: la señal ocupa una frecuencia desde 0 hasta un valor maximo que depende de la tasa de señalizacion. comun en cables
+   + transmision pasa-banda: la señal ocupa una banda de frecuencias alrededor de la frecuencia de la señal portadora. comun en inalambrico y optico
+   + multiplexacion: a compartir varias señales por un mismo canal
+*** transmision en banda base
+    + NRZ(non-return-to-zero): voltaje positivo para el 1 y uno nulo para el 0
+    + el receptor muestrea a intervalos regulares y convierte de nuevo a bits. la señal no se vera igual a la que se envio por el ruido y el canal
+    + eficiencia del ancho de banda
+     + con nrz la señal puede alternar entre positivo y negativo hasta cada 2 bits. necesita un ancho de banda B/2hz pasa tasa de B bps
+     + una estategia es usar mas de 2 niveles de señalizacion. por ejemplo 4 voltajes para representar 2 bits a la vez como un simbolo
+     + tasa de bits=tasa de simbolo*bits por simbolo
+     + requiere una potencia mayor en el receptor para diferenciar los niveles
+    + recuperacion del reloj
+     + el receptor debe saber cuando termina un simbolo y empieza otro
+     + existe un limite en la precision de un reloj para muestrear señales
+     + se podria enviar una señal del reloj por otra linea separada, pero seria mejor que si hubiera otra linea se usara para enviar datos
+     + un truco seria usar xor entre las dos lineas para enviarlas en una sola. esta es la codificacion manchester y se usaba en ethernet clasico. lo malo es que requiere el doble de ancho de banda
+     + una estrategia distinta es codificar los datos para que haya suficientes transiciones en la señal. ya que los problemas suceden en largas suceciones de 0 o 1
+     + nrzi: 1 como una transicion y 0 como no hay transicion. usb usa este metodo. largas sucesiones de 1 no tienen problemas, pero de 0 si
+     + 4b/5b: se asocian grupos de 4 bits a 5 bits segun una tabla fija, de manera que nunca haya tres 0 seguidos. agrega 25% de sobrecarga. sobran 16 numeros de 5 bits, algunos se usan para control
+     + para asegurar transiciones se puede hacer xor con una secuencia pseudoaleatoria. el receptor decodifica con la misma secuencia. esta debe ser facil de generar
+     + pero la aleatorizacion no garantiza transiciones
+    + señales balanceadas
+     + señales que tienen misma cantidad de voltajes positivos como negativos
+     + ayuda a proveer transiciones para la recuperacion del reloj
+     + codificacion bipolar: se alterna +1 y -1 voltios para el 1 y 0 voltios para el 0. en redes telefonicas ami
+     + 8b/10b tambien para codigo balanceado
+*** transmision pasa-banda
+    + en canales inalambricos no es practico usar rango de frecuencias que empiecen en 0
+    + se puede tomar una señal en banda base que ocupe de 0 a b hz y desplazarla a otra pasa-banda que ocupe de s a s+b hz
+    + se puede modular la amplitud (ask), la frecuencia (fsk) o la fase (psk)
+    + psk puede ser bpsk (binaria) o qpsk (cuadratura)
+    + se pueden combinar y usar mas niveles, comunmente amplitud y fase
+    + diagrama de constelacion: forma de visualizar la modulacion combinada ask y psk. qpsk, qam-16, qam-64
+    + simbolos adyacentes no deben diferir en muchos bits, porque serian mas suceptibles al ruido. para eso se usa codigo gray
+*** multiplexacion por division de frecuencia
+    + fdm: divide el espectro en bandas. cada usuario tiene posesion exclusiva de la banda
+    + banda de guarda: exceso de banda que mantiene a los canales separados
+    + ofdm: el ancho de banda del canal se divide en muchas subportadoras que envian de manera independiente. cada subportadora esta diseñada para ser 0 en el centro de las adyacentes. 802.11
+*** multiplexacion por division de tiempo
+    + tdm: los usuarios toman turnos y usan todo el ancho de banda, se toman los datos y se agregan al flujo agregado
+    + para que funcione debe haber sincronizacion. se puede agregar tiempo de guarda
+*** multiplexacion por division de codigo
+    + cdm: forma de comunicacion de espectro diverso. una señal de banda estrecha se dispersa en una mas amplia. cdma
+    + hace la señal mas tolerante a interferencias y permite que señales compartan la misma banda de frecuencia
+    + cdma es extraer la señal deseada mientras lo demas se rechaza como ruido
+    + cada tiempo de bit de divide en m intervalos llamados chips. en general 64 o 128 chips cada bit. a cada estacion se le asigna una secuencia de chip, un codigo de m bits. para transmitir un 1 envia la secuencia de chip, para el 0 la negacion
+    + todas las secuencias de chip son ortogonales por pares
+    + si varias estaciones envian al mismo tiempo se suman
+* capa de enlace
+** cuestiones de diseño
+   + funciones: dar a la capa de red una interfaz de servicios bien definida. manejar errores. controlar flujo
+   + toma los datos que obtiene de la capa de red y los encapsula en tramas
+*** servicios dados a la capa de red
+    + transferir datos de la maquina de origen a la de destino
+    + 3 servicios razonables
+     + sin conexion ni confirmacion de recepcion: tasa de error baja. trafico en tiempo real. ethernet
+     + sin conexion con confirmacion: canales no confiables. 802.11 (wifi)
+     + con conexion y confirmacion: cada trama esta enumerada. se garantiza que lleguen solo una vez y en orden. canales largos y no confiables. satelites y red telefonia larga
+*** entramado
+    + la capa fisica no garantiza que el flujo de bits este libre de errores
+    + un metodo es dividir el flujo en tramas discretas y agregarles una suma de verificacion
+    + division de tramas
+     + conteo de bytes: agrega en el encabezado la cantidad de bytes en la trama. si se altera este valor se pierde la sincronia. rara vez se usa solo
+     + bytes bandera con relleno de bytes: cada trama inicia y termina con bytes especiales. si aparece la bandera en los datos se antecede un escape. y si aparece un escape se pone otro escape adelante. simplificacion de ppp
+     + bits bandera con relleno de bits: igual a bytes pero sin la restriccion de 1 byte=8 bits. hdlc. usb. se usan 6 bits en 1 para delimitar. cada vez que se ven 5 bits en 1 se agrega un 0
+     + violaciones de codificacion de la capa fisica: si se usa por ejemplo 4b/5b en la capa fisica se pueden usar los codigos no utilizados para el inicio y fin de trama
+*** control de errores
+    + asegurar la entrega de datos confiable: retroalimentacion al emisor de lo que esta ocurriendo del otro lado. positiva y negativa
+    + puede desaparecer la trama por completo, o la de retroalimentacion. para eso tambien se usan temporizadores para enviar nuevamente
+    + ahora puede que se reciba la misma trama dos veces. para eso se usan numeros de secuencia
+*** control de flujo
+    + que hacer cuando un emisor envia mas tramas de las que el receptor puede aceptar. ejemplo telefono y sitio web
+    + control de flujo basado en retroalimentacion: el receptor envia cuando puede aceptar mas datos
+    + control de flujo basado en tasa: el protocolo tiene un mecanismo integrado que limita la tasa de envio
+** deteccion y correccion de errores
+   + estategia: incluir redundancia en los datos.
+   + codigo de correccion de errores: para que el receptor pueda deducir que datos se quisieron enviar. fec
+   + codigo de deteccion de errores: para que sepa que hubo un error pero nada mas y solicite retransmision
+   + en fibra optica conviene la deteccion porque es rapido reenviar. en canales inalambricos es mejor correccion
+   + los bits de redundancia tambien pueden llegar mal. asi que nunca se podran manejar todos los errores
+   + los errores en rafaga tienen sus ventajas y desventajas
+** protocolos de enlace de datos
+*** paquetes sobre sonet
+    + sonet se utiliza sobre canales de fibra optica de area amplia
+    + ppp se usa para diferenciar paquetes ocasionales del flujo continuo en el que se transportan   
+*** ppp
+     + ppp orientado a bytes, hdlc a bits
+     + metodo de entramado sin ambiguedades, tambien maneja deteccion de errores
+     + protocolo para activar lineas, probarlas, negociar y desactivarlas. lcp
+     + mecanismo para negociar opciones de capa de red independientemente del protocolo de red usado
+     + uso de banderas como delimitacion y bytes de escape
+     + la carga util se mezcla aleatoriamente antes de insertarla en sonet para garantizar mas transiciones que necesita sonet
+     + configuracion enlace ppp
+       + muerto
+       + establecer (cuando hay conexion en la capa fisica): intercambio de paquetes lcp
+       + autentificar (si lo anterior fue exitoso): se verifican identidades
+       + red: paquetes ncp para configurar la capa de red
+       + abrir: intercambio de datos
+       + terminar
+* subcapa control acceso al medio
+  + los enlaces de red pueden ser punto a punto o difusion
+  + subcapa mac es la parte inferior de la de enlace de datos
+** problema de asignacion de canal
+   + asignar un solo canal de difusion entre varios usuarios competidores
+*** asignacion estatica
+    + dividir la capacidad mediante el uso de multiplexacion. cuando hay una pequeña cantidad de usuarios constantes
+    + si varia el numero de emisores y ese numero es grande se vuelve ineficiente
+    + lo mismo sucede con otras formas estaticas de dividir un canal
+*** supuestos para la asignacion dinamica
+    + trafico independiente: las estaciones son independientes
+    + canal unico: hay un solo canal para todas las comunicaciones
+    + colisiones observables: todas las estaciones pueden detectar colisiones. que seran enviadas luego
+    + tiempo continuo o ranurado: se puede considerar de las dos maneras
+    + deteccion de portadora o sin deteccion: si hay deteccion las estaciones pueden saber si el canal esta en uso. sino mandan y despues determinan si tuvo exito
+** protocolos de acceso multiple
+*** aloha
+    + aloha puro
+      + despues de enviar su trama a la computadora central, esta difunde la trama a todas las estaciones. asi el emisor sabe si llego su trama
+      + si la trama fue destruida espera un tiempo aleatorio y manda de nuevo
+      + cada vez que dos tramas intenten ocupar el canal al mismo tiempo habra colision, por mas que sea un solapamiento pequeño
+    + aloha ranurado
+      + como el metodo puro pero el tiempo se divide en ranuras discretas
+      + sincronizacion por medio de una estacion que emita una señal al comienzo de cada intervalo
+*** protocolos de acceso multiple con deteccion de portadora
+    + csma persistente-1
+      + la estacion escucha el canal para ver si alguien esta enviando, sino envia. si ocurre una colision espera y manda de nuevo
+      + el retardo de propagacion tiene un efecto importante en las colisiones. esta posibilidad depende del numero de tramas que quepan, o producto de ancho de banda-retardo
+      + en lan como el retardo es pequeño, no habra muchas colisiones
+    + csma no persistente
+      + a diferencia del persistente-1 si el canal esta en uso espera un tiempo y repite el proceso. no se queda escuchando constantemente
+      + mejor uso del canal pero mayor retardo
+    + csma persistente-p
+      + para canales ranurados
+      + si el canal esta inactivo, envia con probabilidad p y espera a la siguiente ranura con probabilidad 1-p
+    + csma con deteccion de colisiones (csma/cd)
+      + base de la clasica ethernet
+      + el hardware escucha a la vez que envia. si la señal que recibe es distinta a la que envia, esta ocurriendo una colision
+      + periodos alternantes de contencion y transmision con periodos de inactividad que ocurriran cuando todas las estaciones esten en reposo
+** protocolos libres de colisiones
+*** protocolo de mapa de bits
+    + cada periodo de contencion consiste en n ranuras
+    + las estaciones envian 1 si tienen tramas para enviar en ese periodo pero solo en su ranura correspondiente
+    + luego cuando ya hay conocimiento de quien va a mandar mandan las tramas en orden
+    + protocolos de revervacion
+*** paso de token
+    + pasa un pequeño mensaje llamado token de una estacion a otra en un orden determinado. token ring
+    + solo puede enviar la que tenga el token
+    + cuando la estacion que envio recibe su misma trama la elimina para terminar el ciclo
+    + no hace falta que sea un anillo. token bus
+*** conteo descendente binario
+    + anteriores no escalan a redes con miles de estaciones
+    + las estaciones que quieren usar el canal envian su direccion binaria y hacen or de todo lo que reciben
+    + tan pronto como una estacion ve que una posicion de bit de orden alto, cuya direccion es 0, ha sido sobreescrita por un 1, se da por vencida
+** protocolos de contencion limitada
+   + en condicion de carga ligera es preferible contencion
+   + al reves para libres de colision
+   + protocolos de contencion limitada combinan los dos anteriores
+*** protocolo de recorrido de arbol adaptable
+    + en la ranura 0 todas las estaciones intentan adquirir el canal. si una lo logra bien y sino se dividen en dos grupos y se va formando un arbol de decision
+    + a mayor carga la busqueda debe iniciar mas abajo en el arbol
+** protocolos de lan inalambrica
+   
