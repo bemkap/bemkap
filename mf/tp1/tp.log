@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.7.30)  19 SEP 2021 20:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.7.30)  21 SEP 2021 15:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -207,15 +207,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--103
+
+ []
+
 [4] (./tp.aux) ) 
 Here is how much of TeX's memory you used:
- 1942 strings out of 478994
- 26630 string characters out of 5864751
+ 1940 strings out of 478994
+ 26607 string characters out of 5864751
  322830 words of memory out of 5000000
- 19435 multiletter control sequences out of 15000+600000
+ 19433 multiletter control sequences out of 15000+600000
  409424 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,10n,74p,280b,202s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,8n,74p,422b,202s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
 b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/font
@@ -223,7 +233,7 @@ s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on tp.pdf (4 pages, 134254 bytes).
+Output written on tp.pdf (4 pages, 135008 bytes).
 PDF statistics:
  54 PDF objects out of 1000 (max. 8388607)
  35 compressed objects within 1 object stream

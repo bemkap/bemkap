@@ -1,4 +1,4 @@
-% Created 2021-09-15 mié 16:38
+% Created 2021-09-25 sáb 13:11
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -129,7 +129,8 @@ se transmite STX-DLE-ABC
 \item sin conexión y sin acuse (tipo 1)
 \item con conexión (tipo 2)
 \end{enumerate}
-\item \begin{center}
+\item .
+\begin{center}
 \begin{tabular}{lll}
 capa física(802.11) & --> & capa física(802.3)\\
 subcapa mac(802.11) &  & subcapa mac(802.3)\\
@@ -137,7 +138,8 @@ subcapa llc &  & subcapa llc\\
 \textbf{notebook} &  & \textbf{pc}\\
 \end{tabular}
 \end{center}
-\item \begin{center}
+\item .
+\begin{center}
 \begin{tabular}{lllll}
  & fastbit & gigabit & fibra & lan inalambrica\\
 velocidad & 100mbps & 1gbps & infinita & 100mbps\\
@@ -146,6 +148,39 @@ estandar & 802.3 & 802.3 & 802.3 & 802.11\\
 \end{tabular}
 \end{center}
 \item el problema sucede cuando en una red la señal de una terminal A no llega a otra terminal B, por lo que los paquetes que envíe A no llegarán a B. se dice que B está oculta para A
+\item \begin{enumerate}
+\item no sería conveniente porque al haber estaciones ocultas no se podría determinar cuando hay colisiones
+\end{enumerate}
+\item \begin{enumerate}
+\item a y b forman una red, c y d otra
+\item tramas enviadas por un ap
+\item a envía la última trama a b, c quiere empezar a enviar y d prende el nav
+\end{enumerate}
+\item no es posible que un mismo dispositvo sea maestro en dos piconets al mismo tiempo. el código de acceso se deriva de la identidad del maestro, por lo tanto no habría dos piconets, sino que sería una grande
+\item la version 4 disminuyó la latencia de 100ms a 6ms, cambió la topología de piconet a estrella-bus y aumentó la cantidad de esclavos activos de 7 a ilimitado
+\item en la versión clásica hay hasta 7 esclavos activos y la comunicación es síncronos. en ble es al revés
+\item si soporta streaming de audio, a diferencia de los anteriores
 \item 
+
+\item \begin{itemize}
+\item incrementar tasa de datos
+\item reducir retardos
+\item ancho de banda escalable
+\item eficiencia espectral
+\item arquitectura simplificada y con ip
+\item diferentes tipos de usuarios
+\item mejor consumo de energía
+\item velocidad de bajada: 326Mbps con 4x4 antenas, 172Mbs con 2x2
+\item velocidad de subida: 86Mbps
+\end{itemize}
+\item .
+\begin{center}
+\begin{tabular}{lll}
+red troncal epc & ---> & red troncal epc\\
+red acceso e-utran &  & red acceso e-utran\\
+smartphone lte &  & smartphone lte\\
+\end{tabular}
+\end{center}
+\item sí. lte está enteramente basado en el protocolo ip, tanto llamadas de voz como transmisión de datos
 \end{enumerate}
 \end{document}

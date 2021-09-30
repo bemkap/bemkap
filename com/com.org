@@ -58,7 +58,7 @@
     + como se encaminan los paquetes del origen al destino
     + las rutas se basan en tablas estaticas o dinamicas
     + manejo de congestion
-    + solucionar problemas para conectar reder heterogeneas
+    + solucionar problemas para conectar redes heterogeneas
 **** capa de transporte
     + aceptar datos de la capa superior, dividirlos en unidades mas pequeñas, pasar los datos a la capa de red y asegurar que las piezas lleguen al otro extremo
     + es una verdadera capa de extremo a extremo, a diferencia de las mas bajas
@@ -83,7 +83,7 @@
 **** capa de transporte
     + permite que entidades en la misma capa mantengan una conversacion
     + tcp, udp
-*** capa de aplicacion
+**** capa de aplicacion
     + reemplaza las capas de presentacion, sesion y aplicacion del modelo osi
     + telnet, ftp, smtp, dns, http
 *** comparacion tcp/ip osi
@@ -316,27 +316,218 @@
       + base de la clasica ethernet
       + el hardware escucha a la vez que envia. si la señal que recibe es distinta a la que envia, esta ocurriendo una colision
       + periodos alternantes de contencion y transmision con periodos de inactividad que ocurriran cuando todas las estaciones esten en reposo
-** protocolos libres de colisiones
-*** protocolo de mapa de bits
-    + cada periodo de contencion consiste en n ranuras
-    + las estaciones envian 1 si tienen tramas para enviar en ese periodo pero solo en su ranura correspondiente
-    + luego cuando ya hay conocimiento de quien va a mandar mandan las tramas en orden
-    + protocolos de revervacion
-*** paso de token
-    + pasa un pequeño mensaje llamado token de una estacion a otra en un orden determinado. token ring
-    + solo puede enviar la que tenga el token
-    + cuando la estacion que envio recibe su misma trama la elimina para terminar el ciclo
-    + no hace falta que sea un anillo. token bus
-*** conteo descendente binario
-    + anteriores no escalan a redes con miles de estaciones
-    + las estaciones que quieren usar el canal envian su direccion binaria y hacen or de todo lo que reciben
-    + tan pronto como una estacion ve que una posicion de bit de orden alto, cuya direccion es 0, ha sido sobreescrita por un 1, se da por vencida
-** protocolos de contencion limitada
+*** protocolos libres de colisiones
+    + protocolo de mapa de bits
+      + cada periodo de contencion consiste en n ranuras
+      + las estaciones envian 1 si tienen tramas para enviar en ese periodo pero solo en su ranura correspondiente
+      + luego cuando ya hay conocimiento de quien va a mandar mandan las tramas en orden
+      + protocolos de revervacion
+    + paso de token
+      + pasa un pequeño mensaje llamado token de una estacion a otra en un orden determinado. token ring
+      + solo puede enviar la que tenga el token
+      + cuando la estacion que envio recibe su misma trama la elimina para terminar el ciclo
+      + no hace falta que sea un anillo. token bus
+    + conteo descendente binario
+      + anteriores no escalan a redes con miles de estaciones
+      + las estaciones que quieren usar el canal envian su direccion binaria y hacen or de todo lo que reciben
+      + tan pronto como una estacion ve que una posicion de bit de orden alto, cuya direccion es 0, ha sido sobreescrita por un 1, se da por vencida
+*** protocolos de contencion limitada
    + en condicion de carga ligera es preferible contencion
    + al reves para libres de colision
    + protocolos de contencion limitada combinan los dos anteriores
-*** protocolo de recorrido de arbol adaptable
+   + protocolo de recorrido de arbol adaptable
     + en la ranura 0 todas las estaciones intentan adquirir el canal. si una lo logra bien y sino se dividen en dos grupos y se va formando un arbol de decision
     + a mayor carga la busqueda debe iniciar mas abajo en el arbol
-** protocolos de lan inalambrica
-   
+*** protocolos de lan inalambrica
+   + problema de la terminal oculta
+   + problema de la terminal expuesta
+   + maca (acceso multiple con prevencion de colisiones)
+     + el emisor estimula al receptor para que envie una trama corta. las estaciones cercanas tambien escuchan y evitan enviar a la vez
+     + rts/cts
+     + en caso de colision un transmisor espera un tiempo y vuelve a intentar de nuevo
+** ethernet
+   + 802.3
+   + ethernet clasica (visto hasta ahora) y conmutada (switches)
+*** capa fisica de ethernet clasica
+    + un solo cable de donde se conectaban todas las maquinas
+    + ethernet gruesa 500m y 100 maquinas
+    + ethernet delgada 185m y 30 maquinas
+    + longitud maxima por segmento conectada con repetidores
+*** protocolo de subcapa mac para ethernet clasica
+    + multidifusion (a un grupo de estaciones) y difusion (a todas)
+    + direcciones globalmente unicas
+    + el tipo especifica a que proceso darle la trama
+    + campos tipo y longitud en conflicto. despues se usaron los dos: se interpreta segun si es mayor a la maxima longitud
+    + tamaño de trama maximo y minimo. se puede rellenar
+    + csma/cd
+      + tras una colision el tiempo se divide en ranuras discretas de longitud igual a la ida y vuelta para el peor caso del cable
+      + retroceso exponencial binario: despues de la colision n cada estacion espera de 0 a 2^n-1 ranuras para enviar de nuevo
+*** ethernet conmutada
+    + se empezaron a usar hubs en vez de un solo cable
+    + las redes se podian saturar porque los hubs no incrementan la capacidad. de ahi se empezaron a usar los switch
+    + los switches envian tramas solo a los puertos para los que estan destinadas
+    + en un switch cada puerto es su dominio de colision independiente
+    + si el cable es full duplex (comun) no hay colisiones. si es half duplex se usa csma/cd
+    + en un hub las tramas se envian a todos, aumentando la probabilidad de intrusos
+    + un switch puede tener conectado un hub, asi actua como un concentrador
+*** fast ethernet
+    + se mantuvo la ethernet anterior pero mas rapida
+    + se permiten tres medios: par trenzado categoria 3 y 5, fibra optica
+    + casi todos los switches pueden manejar 10mbps (anterior) o 100mbps (fast)
+*** gigabit ethernet
+    + en half duplex se usa csma/cd, en full duplex no
+    + con 1gbps una trama minima que es enviada no llegaria a recorrer el cable antes que termine de enviar, por eso de limito la longitud a 200m
+    + extension de portadora: el hardware agrega datos para hacer la trama de 512 bytes. no hay que hacer cambios de software
+    + rafaga de tramas: el emisor envia una secuencia de tramas concatenadas en una sola transmision. si hay suficientes tramas, es preferible a la extension de portadora
+    + en la actualidad la mayoria de las interfaces ethernet soportan los 3 tipos
+*** 10 gigabit ethernet
+** redes lan inalambricas
+   + medio de comunicacion ondas electromagneticas
+   + tres tipos de redes: wpan, wlan, wwan
+   + modelos basados en pila: osi, tcp/ip, otros
+*** wi-fi o wlan
+    + capa fisica y enlace de osi
+    + 802.11
+    + arquitectura celular: el sistema se subdivide en celdas. cada celda (bss) se controla por una estacion (ap)
+    + la capa fisica
+      + funciones
+        + codificacion/decodificacion de las señales
+        + generacion/remocion de cabeceras
+        + transmision/recepcion de bits
+        + especificaciones del medio de transmision
+      + fhss(espectro disperso con salto de frecuencia): transmision en intervalos de tiempo a frecuencias distintas que el emisor y el receptor conocen. resistente al ruido y mas seguro
+      + dsss(espectro disperso con secuencia directa): transmitir con una secuencia de bits de alta velocidad llamados chips. secuencia de barker
+      + mimo(multiple entrada/multiple salida): aparatos con varias antenas para generar subcanales de transmision
+    + capa de enlace
+      + funciones
+        + capa control acceso al medio
+	  + transmision: ensamblado de datos en tramas con campos de direccionamiento y deteccion de errores
+	  + recepcion: desensamblado de tramas, reconocimiento de direcciones y deteccione de errores
+	  + administra acceso al medio de transmision
+        + capa control de enlace logico
+          + interface a las capas superiores, control de errores y flujo
+      + a diferencia de ethernet para wifi debe haber acuse de recibo
+      + puede darle el problema de que una estacion no llegue a escuchar cuando otra en la misma red este mandando y se produzcan colisiones. estacion oculta
+      + rts/cts
+      + dcf: mecanismo basico de csma/ca. primero se verifica que nadie use el canal. las estaciones retardan aleatoriamente las tramas y luego escuchan para evitar colisiones. a veces usan rts/cts
+      + pcf: tecnica de interrogacion circular desde el ap. servicios de tipo sincrono
+    + funciones de deteccion de portadoras
+      + para deetrminar si el medio se encuentra disponible
+      + dos tipos: de la capa fisica y deteccion de portadoras virtuales(nav)
+    + espaciamiento intertrama: cuatro diferentes espaciamientos para diferentes prioridades
+    + tres tipos de trama: datos, control y gestion
+    + control de enlace logico
+      + direccionamiento de estaciones conectadas al medio y control de flujo
+      + basado en el protocolo hdlc
+      + 3 tipos de servicios: sin conexion y sin reconocimiento, con y sin, sin y con
+*** wpan
+   + dispositivos perifericos
+   + bluetooth, homerf, zigbee, infrarrojo
+   + bluetooth
+     + clase 1, 2 y 3 segun la potencia
+     + piconet
+       + un nodo maestro y hasta 7 nodos esclavos activos. hasta 255 en total
+       + puede haber varias piconets conectadas de un nodo esclavo puente(scatternet)
+       + capa fisica
+	 + sistema de baja potencia. pocos metros
+	 + 79 canales de 1mhz. modulacion desplazamiento de frecuencia
+	 + misma banda que 802.11 pero es mas problable que bluetooth interfiera con 802.11 que al reves
+       + capa banda base
+	 + perecido a la capa mac
+	 + multiplexion por division de tiempo: el maestro transmite en ranuras pares y los esclavos en impares
+	 + dos tipos de enlace
+	   + acl: capa l2cap. mejor esfuerzo
+	   + sco: datos en tiempo real. se asigna una ranura fija a cada direccion. no se retransmiten datos
+       + administrador de enlace
+       + capa adaptacion y control de enlace logico(l2cap)
+	 + acepta paquetes de capa superior y los divide en tramas
+	 + maneja la multiplexion
+	 + se encarga de la calidad de los requerimientos de servicio. establece enlaces, negocia el tamaño de carga util
+   + bluetooth smart(ble)
+     + 40 canales de 2mhz
+     + no es directamente compatible con el anterior. si en modo dual(smart ready)
+     + topologia broadcasting
+       + enviar datos a cualquier dispositivo que este escuchando el medio
+       + envia periodicamente paquetes de anuncio por canales especificos
+     + topologia conexiones
+       + conexion permanente y periodicamente se intercambian datos entre maestro y esclavo
+     + un dispositivo puede ser maestro y esclavo. un maestro puede ser conectado a multiples esclavos. un esclavo a multiples maestros
+     + perfiles genericos: perfil de acceso generico(gap), perfil de atributo generico(gatt)
+     + capa de enlace
+       + varios estados
+	 + espera: no transmite ni recibe. modo ahorro
+	 + anuncio: un esclavo envia paquetes en canales de anuncio. recibe tambien desde un maestro
+	 + exploracion: escucha los paquetes de anuncio que envian los dispositivos
+	 + inicializacion: usado por el maestro antes de iniciar una conexion. escucha hasta que recibe el anuncio de un esclavo deseado y se conecta
+*** sistema de telefonia y comunicaciones moviles
+    + division celular: dividir en zonas pequeñas donde se reutilizan canales disponibles
+    + reutilizacion de frecuencias
+      + se asigna a cada celda un grupo de frecuencias, de modo que no se compartan con celdas vecinas
+      + el grupo de celdas que no comparten canales se llama cluster
+    + modo de funcionamiento
+      + simplex: no se puede transmitir y recibir simultaneamente por enlaces de subida y bajada
+      + duplex: los dos enlaces usan portadoras distintas y se pueden usar a la vez
+    + desde 1g hasta 4g+. 5g sin estandarizar
+    + arquitectura
+      + equipo de usuario: contiene una tarjeta que le permita usar el servicio. se conecta a traves de una interfaz de radio
+      + red de acceso: sustenta la transmision de radio con los usuarios para conectarlos con la red troncal
+      + red troncal: control de acceso, gestion de movilidad, gestion de sesiones de datos, etc
+    + tipos de redes de acceso: gerand/utran(3g) y e-utran(lte)
+    + la red troncal se divide en tres
+      + dominio de circuitos: todas las entidades que dan servicios basados en conmutacion de circuitos. accesible a traves de geran y utran, e-utran no usa
+      + dominio de paquetes: basado en conmutacion de paquetes. dos implementaciones: gprs y epc. gprs fue la primera en contexto de las redes anteriores. epc es la nueva de lte
+      + subsistema ims: provision de servicios ip basados en el protocolo sip. asociada a lo multimedia y utiliza servicios del dominio de paquetes
+    + arquitectura de lte
+      + eps(evolved packet system), enteramente basada en paquetes ip, tanto servicios en tiempo real como transmision de datos
+      + los componentes son: la red e-utran, el dominio de paquetes epc y el sistema ims
+      + contempla el acceso al servicio de redes utran y geran, y otras redes que no pertenecen a la misma familia
+      + la red de acceso se compone de una unica entidad enb, que proporciona conectividad entre usuarios y la red troncal
+      + enb usa tres interfaces: e-utran uu(usuarios-enb), s1(enb-troncal) y x2(enb-enb)
+    + capa fisica
+      + ofdma para enlace descendente y sc-fdma para ascendente
+      + qpsk, 16qam y 64qam descendente, qpsk, 64qam ascendente
+    + interfaz de radio
+      + tres tipos de transferencia: difusion de señalizacion de control, envio de paquetes ip y transferencia de señalizacion de control
+    + ofdma
+      + diversidad multiusuario: la asignacion de subportadoras se realizan dinamicamente
+      + diversidad frecuencial: es posible asignar al usuario subportadoras no contiguas, suficientemente separadas
+      + robustez en la propagacion multicamino: fuerte a la interferencia intersimbolica por la propagacion por multiples caminos
+      + flexibilidad de banda asignada: permite acomodar las velocidades a usuarios segun lo que requieran
+      + granularidad en recursos asignables: para acomodar servicios con diferente calidad
+      + elevada relacion entre potencia media e instantanea
+      + suceptibilidad a errores de frecuencia: cuando hay desplazamientos de frecuencia hay interferencias. se requieren mecanismos de sincronizacion
+    + sc-fdma
+      + variaciones reducidas entre potencia media e instantanea
+      + posibilidad de llevar a cabo de forma sencilla mecanismos de ecualizacion en el dominio de la frecuencia
+      + capacidad de proporcionar asignacion de banda flexible
+** conmutacion de la capa de enlace de datos
+   + lan de lanes con puentes
+*** usos de puentes
+    + universidades y departamentos tienen sus propias redes lan separadas, pero tambien requieren comunicarse entre ellas
+    + la organizacion puede estar separada geograficamente
+    + dividir una sola red lan en varias para alivianar la carga
+    + dos algoritmos para que los puentes sean transparentes
+*** puentes de aprendizaje
+    + cada puerto del switch define un dominio de colision
+    + si una estacion se quiere comunicar con otra dentro del mismo segmento el switch debe descartar las tramas porque no es necesario reenviarlas
+    + mediante una tabla hash los switches saben a que segmento pertenecen las estaciones
+    + cuando llega una trama al puente se fija la hora y actualiza el puerto si cambio. por si se modificaran las topologias
+    + si no conoce por cual puerto enviar una trama. se envia a todos excepto por el que vino
+    + *conmutacion al vuelo*: es posible empezar a reenviar ni bien se lea la cabezera de una trama, que contiene la direccion
+*** puentes con arbol de expansion
+    + enlaces redundantes. si se corta uno la red no se dividira en dos. pero crea ciclos en la topologia
+    + los puentes ejecutan un algoritmo distribuido para construir el arbol
+    + incluyen la distancia desde la raiz para recordar la ruta mas corta. desactivan los puertos que no formen parte de esa ruta
+*** redes lan virtuales
+    + agrupar a los usuarios en diferentes lan para reflejar la estructura de la organizacion
+    + seguridad: por ejemplo separar servidores de computadoras de uso publico
+    + carga: algunas lan se usan mucho mas que otras
+    + trafico de difusion
+    + las redes vlan se basan en switches diseñados para este proposito. el administrador decide cuantas vlan habra y como se llamaran
+    + tablas de configuracion en los puentes. que vlan se puede acceder por un puerto
+    + estandar 802.1q
+      + se cambio el encabezado de ethernet. tiene una nueva etiqueta vlan
+      + los campos de vlan no los deben ver los usuarios, solo puntes y conmutadores
+      + cuando una trama llega al primer switch con soporte para vlan agrega los campos y el ultimo los elimina
+* capa de red
+  

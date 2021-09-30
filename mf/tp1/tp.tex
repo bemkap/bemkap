@@ -13,9 +13,9 @@
 \subsubsection*{a)}
 \includegraphics[width=320px]{1184a}
 
-En el punto $x=10in$, la velocidad es aproximadamente $v=56in/s$. Se traza la pendiente en ese punto y se obtiene el segmento que va desde $(0,26)$ hasta $(25,100)$. El vector correspondiente a la pendiente sería $(25,74)$, y su vector normal $(74,-25)$.
+En el punto $x=10in$, la velocidad es aproximadamente $v=56in/s$. Se traza la pendiente en ese punto y se obtiene el segmento que va desde $(0,26)$ hasta $(25,100)$. El gráfico no usa la misma escala para el eje $x$ e $y$, la pendiente no tendrá ese ángulo pero estos dos puntos siguen siendo los mismos. El vector correspondiente a la pendiente sería $(25,74)$, y su vector normal $(74,-25)$.
 
-Como el eje $x$ tiene una escala distinta al eje $y$, se aproxima la intersección de la normal con el $x$ analíticamente. Este punto es $(C,0)$ tal que $(10,56)+\alpha(74,-25)=(C,0)$
+Ahora se busca el punto punto $(C,0)$ tal que $(10,56)+\alpha(74,-25)=(C,0)$
 
 $56+\alpha*-25=0 \implies \alpha=56/25=2.24$
 
@@ -47,11 +47,11 @@ Para llegar lo más rápido posible el tren deberá ir a su rapidez máxima de $
 
 Como parte del reposo deberá ir aumentando su velocidad hasta llegar al máximo. Para eso tiene que acelerar, pero esa aceleración no puede variar más de $0.8ft/s^2$ por segundo.
 
-Entonces la aceleración va a ir subiendo hasta cierto punto, y después va a bajar hasta 0 dejando al tren en la velocidad máxima. El tren recorre una distancia en velocidad máxima y después para frenarlo hace el proceso inverso al principio.
+Entonces la aceleración va a ir subiendo hasta cierto punto, y después va a bajar hasta 0 dejando al tren en la velocidad máxima. El tren recorre una distancia en velocidad máxima y después para frenarlo hace el proceso inverso.
 
 \includegraphics[width=\linewidth]{1180a}
 
-Se busca el valor de $x$ con la siguiente ecuación, porque el área debajo de la función de aceleración es la velocidad.
+El área bajo la curva de aceleración es igual a la velocidad, y como se sabe la velocidad máxima se busca el tiempo con la siguiente ecuación:
 \begin{align*}
   0.8+1.6+2.4+3.2+4x+3.2+2.4+1.6+0.8&=\frac{88}{3}\\
   0.8(20+5x)&=\frac{88}{3}\\
@@ -93,14 +93,13 @@ $C_B=(2\pi*6694871)m\approx 42065115m$\\
 
 El satélite A tarda $\frac{41256173}{7784.94}\approx 5300s$ en dar una vuelta. B $\frac{42065115}{7710.41}\approx 5456s$
 
-Entonces en rapidez angular A va a $\frac{360}{5300}=\frac{18}{265} grados/s$ y B a $\frac{360}{5456}=\frac{45}{682} grados/s$
+Entonces las velocidad angular son $\omega_A=\frac{360}{5300}=\frac{18}{265} grado/s$ y $\omega_B=\frac{360}{5456}=\frac{45}{682} grado/s$\\
 
-Hay que buscar $t$ tal que $\frac{18}{265}t($mod $360)=\frac{45}{682}t($mod $360)$
-\begin{align*}
-  \frac{18}{265}t(\textrm{mod }360)&=\frac{45}{682}t(\textrm{mod }360)\\
-  \frac{351}{18730}t(\textrm{mod }360)&=0\\
-  t&=\frac{7229200}{39}
-\end{align*}
+Hay que buscar el mínimo $t$ tal que $\frac{18}{265}t=\frac{45}{682}t$ pero módulo 360 para ver en qué ángulo se vuelven a encontrar.
+
+$\frac{18}{265}t=\frac{45}{682}t\iff\frac{351}{18730}t=0$
+
+Es decir que $\frac{351}{18730}t$ es múltiplo de 360. Por lo tanto $t=\frac{7229200}{39}$.\\
 
 Hasta que se vuelvan a alinear van a tardar $\frac{7229200}{39}\approx 185364.10s=51.49h$
 \end{document}
