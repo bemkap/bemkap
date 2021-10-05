@@ -435,9 +435,8 @@
        + capa banda base
 	 + perecido a la capa mac
 	 + multiplexion por division de tiempo: el maestro transmite en ranuras pares y los esclavos en impares
-	 + dos tipos de enlace
-	   + acl: capa l2cap. mejor esfuerzo
-	   + sco: datos en tiempo real. se asigna una ranura fija a cada direccion. no se retransmiten datos
+         + enlace acl: capa l2cap. mejor esfuerzo
+         + enlace sco: datos en tiempo real. se asigna una ranura fija a cada direccion. no se retransmiten datos
        + administrador de enlace
        + capa adaptacion y control de enlace logico(l2cap)
 	 + acepta paquetes de capa superior y los divide en tramas
@@ -530,4 +529,101 @@
       + los campos de vlan no los deben ver los usuarios, solo puntes y conmutadores
       + cuando una trama llega al primer switch con soporte para vlan agrega los campos y el ultimo los elimina
 * capa de red
-  
+** aspecto de diseño
+*** conmutacion de paquetes de almacenamiento y reenvio
+*** servicios proporcionados a la capa de transporte
+    + independientes de la tecnologia del enrutador
+    + la capa de transporte debe estar aislada del tipo, cantidad y topologia de enrutadores
+    + plan de numeracion uniforme para las direcciones disponibles
+*** implementacion del servicio sin conexion
+    + los paquetes se transmiten por separado y se enrutan de manera independiente
+    + datagramas
+    + ip
+*** implementacion del servicio orientado a la conexion
+    + evitar la necesidad de elegir una nueva ruta para cada paquete enviado. cuando se establece una conexion se guarda la ruta
+    + mpls: usa vez que se establece el circuito virtual los enrutadores intermedios asignan identificadores diferentes para origenes diferentes para diferenciarlos en una misma ruta
+** algoritmos de enrutamiento
+   + un enrutador tiene dos procesos internos: uno maneja cada paquete conforme llega y busca en la tabla de ruteo la linea de salida. el otro es llenar y actualizar las tablas de ruteo, y ahi es donde entra el algoritmo de ruteo
+   + muchas redes intentan reducir el numero de saltos que debe dar un paquete
+   + no adaptativos: no basan sus decisiones en mediciones de trafico y topologia actuales. las rutas se elijen de antemano. enrutamiento estatico
+   + adaptativos: no no adaptativos. enrutamiento dinamico
+*** principio de optimizacion
+    + si una ruta es optima para i->j->k, tambien es optima para j->k
+    + arbol sumidero: el conjunto de rutas optimas
+*** algoritmo de la ruta mas corta
+    + ver la red como un grafo y buscar el camino mas corto
+    + corto puede ser el numero de saltos, distancia geografica, u otras metricas
+*** inundacion
+    + tecnica local. el enrutador envia por todas las lineas excepto por la que vino el paquete
+    + gran cantidad de duplicados
+    + numero maximo de saltos en la cabecera
+    + numero de secuencia en paquetes para no enviarlos dos veces
+    + no es practico para la mayoria de envios. pero tienen usos importantes como la difusion, porque asegura que todas las estaciones reciban el paquete
+    + es en extremo robusta
+    + requiere poca configuracion
+    + siempre encuentra la ruta mas corta, sin contar el congestionamiento que provoca el algoritmo
+*** enrutamiento por vector de distancia
+    + cada enrutador mantiene un vector (una tabla) con la mejor ruta para cada destino. esta tabla se va actualizando
+    + cada T ms cada enrutador manda a sus vecinos su tabla
+    + problema del conteo al infinito: la convergencia llega a la respuesta correcta, pero lo hace lentamente
+*** enrutamiento por estados de enlace
+    + las variantes is-is y ospf son usadas en la actualidad en internet
+    + descrubrir a sus vecinos
+      + cuando un enrutador se pone en funcionamiento envia paquetes por todas las lineas que son respondidos con informacion de los vecinos
+** ipv4
+   + conmutacion de paquetes
+   + servicio sin conexion   
+*** objetivos
+    + funcion de ruteo
+    + transparencia en la red de redes
+    + reglas de entrega de paquetes no confiable
+    + unidad basica: datagrama
+*** clases de direcciones
+    + a: r.h.h.h. 1.0.0.0 a 126.0.0.0
+    + b: r.r.h.h. 128.0.0.0 a 191.255.0.0
+    + c: r.r.r.h. 192.0.0.0 a 223.255.255.0
+    + d: multicast address. 224.0.0.0 a 239.255.255.255
+    + e: reservado. 240.0.0.0 a 255.255.255.255
+    + el primer octeto se da por el corrimiento del ultimo 1 de izquierda a derecha (0, 10, 110, 1110, 11110)
+*** packet switching
+    + el paquete se divide en el origen en unidades manejables: datagramas
+    + los datagramas viajan al destino
+    + se ensamblan en el destino para lograr el mensaje original
+    + los paquetes se dividen segun los requisitos de cada punto intermedio (cada router)
+*** ruteo
+    + proceso de seleccion del camino de un paquete
+    + entrega directa: transmision entre hosts de una misma red ip. no necesita del router. se encapsula el datagrama en una trama y se envia directamente
+    + entrega indirecta: los hosts se encuentran en redes separadas. se envia el datagrama a un ruteador de su red ip encapsulandolo en una trama
+    + se compara el netid del transmisor con el de destino. si son iguales es entrega directa
+    + sino usan las tablas de ruteo que indican por cada posible ip el siguiente salto que debe tomar en la ruta hasta el destino
+    + las tablas tambien se usan para entrega directa
+*** direcciones privadas
+    + las ipv4 no alcanzan para todos los dispositivos del mundo
+    + cada red interna usa un conjunto de ip privadas que se repiten en cada red que no sale a internet
+    + por dentro la red se maneja con esas ip privadas, y desde afuera se ve una sola ip
+*** subredes ip
+    + cuando se usan bits de la parte de host para crear subredes
+** icmp: internet control message protocol
+   + ip falla cuando el destino se desconecta de la red, cuando pasa el timeout para la respuesta o cuando router intermediarios estan muy congestionados
+   + icmp es requerido por ip y debe ser incluido en una implementacion del protocolo
+   + reporta errores, no corrige. aunque sugiere accioner a tomar
+*** funciones
+    + error: un nodo que reconoce un error de transmision genera un paquete icmp. este se reporta a la fuente original, que es la que esta en la cabecera del paquete. no puede avisar a los routers intermedios. ni el origen saber que router tuvo el problema
+    + control: herramientas de diagnostico de la red (ping, traceroute)
+    + trama { ip { icmp {} } }
+*** tipos
+    + 8/0 ping: solicitud eco/respuesta
+    + 3 destination unreachable: cuando no puede entregar/direccionar un datagrama
+    + 4 source quench: congestionamiento
+    + 5 route change request: usado por el router directamente conectado host fuente para cambio de ruta
+    + 11 time exceeded
+    + 13/14: timestamp para sincronizacion, calculo de viaje redondo, etc
+    + 17/18: solicitud/respuesta de mascara
+** arp: address resolution protocol
+   + se usa para obtener direcciones mac, tanto para el ultimo paso (host destino) como para intermedios (routers)
+   + el pedido es broadcast, la respuesta es unicast
+   + el transmisor incluye su mac e ip para que los host actualicen
+   + trama { arp {} }
+   + dos partes: transforma direcciones ip en direcciones fisicas. responde pedidos de otras maquinas
+   + se mantiene una tabla con direcciones guardadas, que se actualizan cada cierto tiempo
+   + por que se usa un broadcast que alcanza al destino para despues enviar un mensaje al mismo destino?: los mensajes broadcast son mas costosos porque cada maquina debe procesar el mensaje
