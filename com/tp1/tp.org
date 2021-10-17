@@ -1,0 +1,86 @@
+#+TITLE: trábajo práctico ipv6
+#+AUTHOR: martín rossi
+#+DATE:
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage{fullpage}
+1. 
+   c.
+   [[./1c.png]]
+   Primero se ve la interfaz loopback (lo) con direcciones 127.0.0.1 y ::1 para IPv4 e IPv6.
+
+   Después se ve otra interfaz wlp3s0, que tiene dirección IPv6 fe80::e29d:31ff:fe14:38d4 con el prefijo fe80 que indica una dirección link local, o sea que es válida sólo para el enlace local. Su dirección MAC es e0:9d:31:14:38:d4.
+    
+   d.
+   [[./1d.png]]
+   
+   e.
+   Acá hice un ping con un celular conectado al mismo router que la computadora pero con IPv4.
+   
+   [[./1ea.png]]
+   [[./1eb.png]]
+   
+   Se pueden ver los paquetes ICMP en rojo de los ping request y reply entre 192.168.0.37 y 192.168.0.201. La información adicional que se muestra es el id del mensaje ping, el número de secuencia y el time to live (ttl).
+   
+   f.
+   [[./1f.png]]
+   Se puede ver que la cabecera del paquete tiene los campos
+   + versión: 0110 (6)
+   + trafic class: 0x00
+   + flow label: 0x00000
+   + payload length: 154
+   + next header: 17 (UDP)
+   + hop limit: 1
+   + source address
+   + destination address
+     
+   g.
+   [[./1g.png]]
+
+   Cuando se conecta un nodo nuevo se intercambian mensajes de descubrimiento de vecinos. Los mensajes son:
+   + *Neighbor Solicitation:* tipo 135. Se usa para determinar direcciones MAC de los vecinos.
+   [[./1ga.png]]
+   + *Multicast Listener Report Message:* tipo 143. Es para descubrir nodos que deseen recibir paquetes multicast.
+   [[./1gb.png]]
+   + *Router Solicitation:* tipo 133. Cuando un nodo nuevo se conecta pide al router que se anuncie para informar a los nodos.
+   [[./1gc.png]]
+
+2. 
+    Tarea 2.
+
+    b.
+    
+    Las 4 interfaces tienen IPv6 habilitado
+    | *Dispositivo* |         | *Dirección IP local*     | *Dirección IP global*           |
+    |---------------+---------+--------------------------+---------------------------------|
+    | *Router0*     | *Fa0/0* | FE80::202:4AFF:FE35:6301 | 2001:DB8:1:0:202:4AFF:FE35:6301 |
+    |               | *Fa0/1* | FE80::202:4AFF:FE35:6302 | 2001:DB8:2:0:202:4AFF:FE35:6302 |
+    |---------------+---------+--------------------------+---------------------------------|
+    | *Router1*     | *Fa0/0* | FE80::2D0:BCFF:FE88:ED01 | 2001:DB8:3:0:2D0:BCFF:FE88:ED01 |
+    |               | *Fa0/1* | FE80::2D0:BCFF:FE88:ED02 | 2001:DB8:2:0:2D0:BCFF:FE88:ED02 |
+
+    Router0:
+    [[./router0.png]]
+
+    Router1:
+    [[./router1.png]]
+
+   1. Una dirección IPv6 tiene 128 bits.
+   2. El prefijo es 2001:DB8:1::/64 y la ID de la interface es 202:4AFF:FE35:6301
+   3. La MAC es 0002.4A35.6301. El ID de la interface se forma dividiendo la MAC en dos partes de 24 bits y agregando en el medio FFFE. Éste es el formato EUI-64.
+
+   c.
+
+   Router0:
+   [[./r0route.png]]
+
+   Router1:
+   [[./r1route.png]]
+
+   d.
+
+   [[./ping.png]]
+
+   Tarea 3.
+
+   
+    

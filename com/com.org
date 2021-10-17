@@ -572,12 +572,24 @@
       + cuando un enrutador se pone en funcionamiento envia paquetes por todas las lineas que son respondidos con informacion de los vecinos
 ** ipv4
    + conmutacion de paquetes
-   + servicio sin conexion   
+   + servicio sin conexion
 *** objetivos
     + funcion de ruteo
     + transparencia en la red de redes
     + reglas de entrega de paquetes no confiable
     + unidad basica: datagrama
+*** formato
+    + tamaño variable por posibilidad de incluir opciones
+    + campo type of service para informar como debe ser tratado el paquete
+*** fragmentacion
+    + los datagramas pueden pasar por redes de mayor o menor mtu
+    + cada router intermedio fragmenta los datos de acuerdo con el mtu de salida
+    + los fragmentos son reensamblados una vez que llegan a destino
+    + la fragmentacion se controla con campos en la cabecera
+*** otros campos
+    + ttl (time to live): cuanto tiempo en segundos un paquete puede estar en la red. si llega a 0 se envia un mensaje icmp de error al origen
+    + protocol: indica el protocolo de nivel superior que fue usado
+    + options: no estan incluidos en todos los datagramas
 *** clases de direcciones
     + a: r.h.h.h. 1.0.0.0 a 126.0.0.0
     + b: r.r.h.h. 128.0.0.0 a 191.255.0.0
@@ -627,3 +639,25 @@
    + dos partes: transforma direcciones ip en direcciones fisicas. responde pedidos de otras maquinas
    + se mantiene una tabla con direcciones guardadas, que se actualizan cada cierto tiempo
    + por que se usa un broadcast que alcanza al destino para despues enviar un mensaje al mismo destino?: los mensajes broadcast son mas costosos porque cada maquina debe procesar el mensaje
+** ipv6
+   + necesidad de mas direcciones porque las ipv4 no alcanzaban
+   + cabecera base simple, tamaño fijo, menos campos
+   + tamaño de direcciones de 128 bits
+*** tipos de direcciones
+    + unicast global
+      + como las publicas de ipv4
+      + ruteables en internet
+      + prefijo 2000::/3
+      + rango desde 2000::/3 hasta 3000::/3
+    + unicast link local
+      + alcance solo para enlace
+      + no son ruteables
+      + prefijo fe80::/64
+    + unicast unique local
+      + solo validas dentro de una organizacion. como las privadas de ipv4
+      + no son ruteables en internet
+      + prefijo fc00::/7
+    + anycast
+    + multicast
+      + prefijo ff00::/8
+
