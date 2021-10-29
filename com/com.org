@@ -570,6 +570,54 @@
     + las variantes is-is y ospf son usadas en la actualidad en internet
     + descrubrir a sus vecinos
       + cuando un enrutador se pone en funcionamiento envia paquetes por todas las lineas que son respondidos con informacion de los vecinos
+*** enrutamiento jerarquico
+*** enrutamiento por difusion
+*** enrutamiento multidifusion
+*** enrutamiento anycast
+*** enrutamiento para hosts moviles
+*** enrutamiento para redes ad hoc
+** algoritmos de control de congestion
+   + las capas de red y transposte manejan la congestion
+   + el control de congestion lo hace la red como conjunto. control de flujo se hace entre un emisor y receptor en particular
+*** metodos para control de congestion
+    + la presencia de congestion significa que la carga es mayor que los recursos
+    + la manera mas basica es contruir una red que coincida con el trafico que transmita
+    + aprovisionamiento: enrutadores y enlaces que se utilicen mucho son los que se actualizan primero
+    + enrutamiento conciente de trafico: las rutas se pueden ajustar segun patrones de trafico
+    + cuando no es posible aumentar la capacidad hay que reducir la carga, como rechazar nuevas conexiones (control de admision)
+    + reconocer cuando empieza la congestion: para eso se monitorean la carga promedio, retardo de encolamiento y perdida de paquetes
+    + como avisar a las fuentes: debe haber retroalimentacion. hay que ajustar la escala de tiempo con cuidado
+    + si falla todo hay que empezar a descartar paquetes
+*** enrutamiento conciente de trafico
+*** control de admision
+    + usada en redes de circuitos virtuales
+    + no agregar conexiones a menos que no lleve a congestion de la red
+    + como saber cuando una conexion generara congestion?
+    + describir tasa de transmision de una forma simple pero significativa es dificil
+    + leaky bucket o token bucket: vincula la tasa promedio y el tamaño de la rafaga instantanea de trafico
+    + se puede usar el comportamiento pasado para estimar el numero de circuitos que admite una red
+*** regulacion de trafico
+    + la red aspira a operar justo antes de que empiece la congestion
+    + los enrutadores deben determinar cuando se acerca. se puede usar enlaces de salida, *bufer de paquetes en cola*, numero de paquetes que se pierden
+    + tambien deben entregar una retroalimentacion a los que generan congestion
+    + paquetes reguladores: se avisa al origen que su paquete provoca congestion, con un bit en el encabezado. el emisor puede esperar un poco y reenviar
+    + notificacion explicita de congestion (ecn): el enrutador reenvia paquetes congestionados con el encabezado modificado. cualquiera que lo recibe sabe el estado de la red y actua
+    + contrapresion de salto por salto: los paquetes reguladores surten efecto en todos los puntos intermedios
+*** desprendimiento de carga
+    + cual paquete tirar depende de la aplicacion
+    + un desprendimiento mas inteligente requiere cooperacion de los emisores. por ejemplo paquetes que mandan informacion de enrutamiento
+    + las aplicaciones pueden marcar que tan importante son los paquetes
+** calidad de servicio
+   + exceso de aprovisionamiento: contruir una red con la suficiente capacidad para el trafico que maneje. mas costoso. a veces no se puede predecir los cambios en la cantidad de trafico
+   + cuatro aspectos para asegurar la calidad de servicio:
+     + lo que las aplicaciones necesitan de la red
+     + como regular el trafico que entra en la red
+     + como reservar recursos en los enrutadores para garantizar el desempeño
+     + si la red puede aceptar mas trafico de forma segura
+*** requerimientos de la aplicacion
+    + parametros que caracterizan las necesidades de cada flujo: ancho de banda, retardo, variacion de retardo, perdida
+*** modelado de trafico
+    + 
 ** ipv4
    + conmutacion de paquetes
    + servicio sin conexion
@@ -660,4 +708,53 @@
     + anycast
     + multicast
       + prefijo ff00::/8
-
+* capa de aplicacion
+** dns
+   + traducir de nombre a direccion ip
+   + tambien puede hace al reves
+   + el recurso se convierte en critico. hay que tener mas de un servidor por si falla. servidores primarios, secundarios, etc
+   + necesidad de delegar la administracion de los registros por el aumento de la cantidad
+*** conceptos e implementacion
+    + dominios y delegacion
+      + estructura de arbol. la raiz, /top level domains/ (TLD), los nombres de dominio y puede seguir
+      + TLD puede ser gTLD (generic): .com .edu .net o ccTLD (country code): .ar .us .es
+    + autoridad y delegacion
+      + la autoridad de la raiz la tiene la ICANN
+      + gTLD los administra la ICANN y son delegados a registradores acreditados
+      + ccTLD son delegados a los paises
+      + cada nivel inferior puede delegar tambien
+      + lo que esta mas a la izquierda es el host. www por convencion
+      + el dueño puede delegar de la manera que quiera todo lo que esta a la izquierda de su dominio
+    + componentes
+      + un dns tiene tres partes: datos que describen el dominio, uno o mas progamas Name Server, un resolver
+      + los datos se definen en RR (resource recods), organizados en archivos de texto llamados archivos de zona
+      + el programa NS responde los pedidos de hosts locales o remotos
+      + el resolver esta en cada host y traduce cada peticion del usuario en una o mas peticiones al servidor por tcp o udp
+    + zonas y archivos de zonas
+      + describen el dominio y sub-dominios
+      + datos que describen propiedades generales del tope de la zona (soa record)
+      + datos autoritativos para todos los nodos o host de la zona (a, aaaa)
+      + informacion global para la zona (registros de mail mx, servidores de nombres NS)
+      + en caso de delegacion a sub-dominio el nombre del servidor responsable (NS)
+      + registros glue para cada sub-dominio
+    + consultas
+      + recursivas: se recibe una respuesta completa. no son obligatorias
+      + iterativas: se puede recibir una respuesta o una referencia de quien preguntar. son obligatorias
+      + inversas: obsoletas
+    + consultas recursivas
+      + da una respuesta o un error
+      + se negocia con un bit en el header de la consulta
+      + el resolver en representacion del cliente busca a traves del dns la respuesta
+    + consultas iterativas
+      + en vez de encargarse el resolver de buscar la respuesta si no la tiene, le devuelve al cliente una referencia de a quien puede preguntar
+      + son mas rapidas, dan mas control al cliente, son mejores para sacar diagnosticos
+    + actualizaciones de zonas: zone transfer (axfr) o incremental zone transfer (ixfr)
+    + axfr
+      + los esclavos toman la informacion del maestro, el intervalo es determinado en el registro soa
+      + se pide el registro soa, si el numero de serial es mayor al que tiene se inicia la transferencia
+      + udp puerto 53
+    + ixfr
+      + permite la actualizacion de registros en vez de la zona entera
+      + el proceso es igual a axfr
+      + tcp puerto 53
+    + notify: el maestro tambien puede notificar a los esclavos antes del tiempo de actualizacion
