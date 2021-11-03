@@ -707,7 +707,58 @@
       + prefijo fc00::/7
     + anycast
     + multicast
-      + prefijo ff00::/8
+      + prefijo ff0[1|2|5|14]::/8, [nodo local,link local,site local,global]
+      + identificador de grupo: [1|2], [todos los nodos,todos los routers]
+*** protocolos ipv6
+    + neighbor discovery (ND)
+      + para encontrar otros nodos en la misma subred
+      + se activa cuando la interfaz ipv6 se activa. no puede dejar de funcionar
+    + router discovery (RD)
+      + lo usan los routers para anunciarse en la subred
+      + los routers no responden RD
+    + duplicate address detection (DAD)
+      + cuando se encuentra una direccion duplicada en una interfaz, se deshabilita hasta que se resuelve el problema
+    + icmpv6
+    + dhcpv6
+* capa de transporte
+  + las computadoras ejecutar muchos procesos a la vez, que serian los ultimos destinatarios de los mensajes enviados a traves de una red
+  + en vez de eso cada proceso puede acceder a puntos abstractos de destino llamados puertos
+  + los puertos se manejan de manera sincrona y con buffers
+  + ahora los mensajes deben tener direccion ip de destino y puerto. tambien puerto de origen para las respuestas
+*** user data protocol (udp)
+    + cada datagrama udp posee direccion ip y puerto de origen y de destino
+    + sin conexion, sin acuses de recibo, no se ordenan los mensajes y tampoco se usa retroalimentacion para control de flujo
+    + todo lo que no tiene udp lo deberia dar la aplicacion
+    + para el calculo del checksum se usa un pseudoheader, que incluye la direccion ip no presente en el datagrama udp
+    + ip para diferenciar hosts, udp para diferenciar destinos dentro de un host
+    + para generar el pseudoheader el origen debe conocer el ip destino, por lo que debe haber averiguado antes donde mandar. esta interaccion entre udp e ip viola la filosofia de separacion del modelo de capas
+    + la multiplexacion y demultiplexacion se maneja con el sistema de puertos. las aplicaciones piden al sistema operativo un puerto
+    + cuando udp recibe un datagrama, se fija que el puerto este en uso, sino lo descarta y manda un icmp
+    + dos formas de asignar puertos: una autoridad central los elije y las aplicaciones usan segun esta eleccion /well-known ports/. otra forma es la dinamica, donde cada vez que una aplicacion necesita un puerto el software de red le asigna una, despues para conocer que puerto fue usado las otras computadoras consultan
+*** reliable stream transport service (tcp)
+    + el programador no tiene que preocuparse por la confiabilidad de la red si el protocolo lo hace
+    + propiedades
+      + los datos se piensan como un flujo de bytes. al receptor le llegan exactamente los mensajes enviados por el transmisor
+      + conexion de circuito virtual. antes de la transferencia las dos aplicaciones se comunican para establecer los detalles de la conexion. durante la transferencia tambien hay intercambio de mensajes de exito o error
+      + para hacer la transmision mas eficiente antes de enviar se acumulan datos hasta llenar un datagrama de cierto tamaño. tambien provee un servicio push
+      + los datos enviados no tienen estructura
+      + conexiones full duplex
+    + reconocimiento positivo y retransmision. el receptor envia un ack cada vez que le llegan datos. el emisor lleva cuenta de los paquetes enviados y si no recibe respuesta reenvia
+    + numero de secuencia a cada paquete para evitar duplicados. tambien son reenviados con el ack
+    + ventana semoviente (deslizante)
+      + problema: el emisor no hace nada mientras espera el ack
+      + mantener una ventana de mensajes: se envian una cantidad de mensajes determinado por el tamaño de la ventana
+      + estos mensajes al principio no estan reconicidos (no se recibio el ack)
+      + cuando se recibe el ack para el primer paquete la ventana se mueve
+      + el emisor tambien mantiene una ventana
+    + tcp especifica el formato que los datos deben tener, los menajes de reconocimiento y el procedimiento que dos computadoras deben seguir para una comunicacion confiable
+    + usa puertos igual que udp, aunque mas complejos porque un solo puerto no corresponde a un solo objeto
+    + tcp usa la conexion como abstraccion y no los puertos. una conexion se identifica por un par de extremos
+    + se definen los extremos como un par (host,puerto) por lo que varios host pueden compartir el mismo puerto
+    + antes de iniciar la comunicacion, un host debe indicar al sistema operativo que esta abierto a aceptar conexiones (/passive open/). se le asigna un numero de puerto, generando uno de los extremos
+    + un host que se quiere comunicar debe requerirlo tambien mediante el sistema operativo
+    + los dos modulos tcp se intercambian datos para establecer y verificar la conexion
+    + 
 * capa de aplicacion
 ** dns
    + traducir de nombre a direccion ip
@@ -758,3 +809,46 @@
       + el proceso es igual a axfr
       + tcp puerto 53
     + notify: el maestro tambien puede notificar a los esclavos antes del tiempo de actualizacion
+    + actualizaciones dinamicas
+      + la forma clasica de actualizar es manualmente cambiar los registros y reiniciar el servicio para que propague los cambios
+      + cuando el sistema es grande puede traer problemas
+      + dos soluciones: permitir actualizaciones de una aplicacion externa o tomar los datos de una base de datos que se pueda modificar dinamicamente
+*** mapeo inverso
+    + usado por sistemas de mail
+    + diseñadores de dns usan el nombre de dominio especial in-addr.arpa o ip6.arpa
+    + las direcciones ip son divididas en bloques para varias regiones del mundo. cada una puede subdividirse, delegando la autoridad para el mapeo
+    + para los archivos de zona se invierte la direccion y se agrega in-addr.arpa. despues se listan lost hosts y los nombres completos terminados en punto
+    + TODO
+*** tipos de dns
+    + maestro (primario)
+      + define uno o mas archivos de zona donde es autoritativo. la zona fue delegada con un registro NS
+      + un maestro de zona toma los datos de una fuente local, un esclavo de una fuente externa (usualmente un maestro)
+      + el maestro puede notificar a los esclavos sobre cambios en el archivo de zona
+      + puede estar oculto, alguno de los esclavos puede no saber de su existencia
+    + esclavo (secundario)
+      + toma sus datos por transferencia
+      + responde como autoritativo de la zona que le corresponde
+      + no es posible saber si el resultado de una consulta vino de un maestro o esclavo
+      + puede haber cualquier cantidad de esclavos en una zona
+    + un esclavo tambien puede ser maestro
+      + puede ser usado si un maestro esta oculto, por cuestiones de seguridad para aislar un servidor (tomalo con pinza)
+    + resolver o servidores cache
+      + obtiene los datos de otro servidor y guarda la respuesta para consultas posteriores
+      + si devuelve un dato que trajo del maestro responde como autoritativo, si es de cache como no-autoritativo
+      + dos configuraciones habituales: un servidor maestro o esclavo para alguna zona y como resolver para las demas consultas. un servidor solo como resolver (proxy/forwarding server)
+    + servidores forwarding
+      + simplemente pasan consultas a otros servidores y guardan las respuestas en cache
+      + util por si el servidor remoto es lento
+      + puede ser parte de un servidor dividido para seguridad
+    + servidor oculto (/stealth/)
+      + no aparece definido publicamente en ningun registro NS del dominio
+      + por ejemplo una organizacion necesita un dns publico para acceder a servicios de mail, ftp, y no quiere que el exterior vea sus hosts internos
+      + el servidor publico muestra solo los servicios publicos y no acepta transferencias del oculto
+    + servidor solo autoritativo
+      + el termino se usa para describir un servidor que responde como autoritativo y no hace cache
+      + configuraciones usuales: servidor externo de un oculto, servidores de alto rendimiento
+    + split horizon
+      + devuelven distintas respuestas segun la direccion de origen, o alguna otra caracteristica
+      + segun posicion geografica: para devolver direcciones que esten mas cerca
+      + si ciertas direcciones tienen mas privilegios se les puede devolver una respuesta especial que al resto, pero las consultas siempre son con el mismo nombre de dominio
+      + equilibrio de carga

@@ -1,0 +1,124 @@
+#+TITLE: práctica N2
+#+DATE:
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+LATEX_HEADER: \usepackage{fullpage}
+* 2.
+** direcciones
+#+BEGIN_SRC zone
+  r1-1		200.13.147.33
+  a		200.13.147.34
+  b		200.13.147.35
+  c		200.13.147.36
+  mx.acme.ar	200.13.147.59
+  ns1.acme.ar	200.13.147.60
+
+  r1-2		200.13.147.65
+  d		200.13.147.66
+  e		200.13.147.67
+  ns2.cs.acme.ar	200.13.147.90
+
+  r1-3		200.13.147.97
+  f		200.13.147.98
+  g		200.13.147.99
+  mx.cs.acme.ar	200.13.147.113
+#+END_SRC
+** named.conf
+*** named.ns1.conf
+#+BEGIN_SRC zone
+  options{
+  directory "/var/cache/bind";
+  notify yes;
+  allow-transfer {none;};
+  };
+
+  zone "acme.ar"{
+  type master;
+  file "/etc/bind/db.acme.ar";
+  allow-query {any;};
+  allow-transfer {200.13.147.90;};
+  };
+
+  zone "cs.acme.ar"{
+  type master;
+  file "/etc/bind/db.cs.acme.ar";
+  allow-query {any;};
+  allow-transfer {200.13.147.90;};
+  };
+
+  zone "147.13.200.in-addr.arpa."{
+  type master;
+  file "/etc/bind/rev.192";
+  allow-transfer {localnets;};
+  };
+#+END_SRC
+*** named.ns2.conf:
+#+BEGIN_SRC zone
+options{
+	directory "/var/cache/bind";
+}
+
+zone "acme.ar"{
+     type slave;
+     file "db.acme.ar";
+     allow-query {any;};
+     allow-transfer {none;};
+}
+
+zone "cs.acme.ar"{
+     type slave;
+     file "db.cs.acme.ar";
+     allow-query {any;};
+     allow-transfer {none;};
+}
+#+END_SRC
+*** db.acme.ar
+#+BEGIN_SRC zone
+  $TTL	7200
+  @	SOA	ns1	hostmaster.acme.ar.(
+  2021110100	;serial
+  1d		;refresh
+  1h		;retry
+  1w		;expire
+  2h0		;neg.ttl
+  )
+  IN	NS	ns1
+  IN	NS	ns2.cs
+  MX	10 mx
+  MX	20 mx.cs
+
+  cs    NS	ns2.cs.acme.ar.
+  NS	ns1
+
+  ns2.cs.acme.ar.	A	200.13.147.90
+  r1-1		A	200.13.147.33
+  r1			CNAME	r1-1
+  a		A	200.13.147.34
+  b		A	200.13.147.35
+  c		A	200.13.147.36
+  mx.acme.ar.	A	200.13.147.59
+  ns1.acme.ar.	A	200.13.147.60
+  r1-2		A	200.13.147.65
+  d		A	200.13.147.66
+  e		A	200.13.147.67
+  r1-3		A	200.13.147.97
+  f		A	200.13.147.98
+  g		A	200.13.147.99
+#+END_SRC
+*** db.cs.acme.ar
+#+BEGIN_SRC zone
+  $TTL	7200
+	@	SOA	ns1.acme.ar	hostmaster.acme.ar(
+	2021110100	;serial
+	1d		;refresh
+	1h		;retry
+	1w		;expire
+	2h0		;neg.ttl
+	)
+    IN		NS	ns1.acme.ar.
+    IN		NS	ns2
+
+  mx		A	200.13.147.113
+  ns2		A	200.13.147.90
+#+END_SRC
+

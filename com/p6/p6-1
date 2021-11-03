@@ -1,0 +1,73 @@
+named.conf:
+
+acl slaves {192.168.23.2;192.168.24.3;};
+
+zone "fceia.unr.ar"{
+     type master;
+     file "/etc/bind/db.fceia";
+     allow-query {any;};
+     allow-transfer {slaves;};
+};
+
+zone "0.168.192.in-addr.arpa."{
+     type master;
+     file "/etc/bind/rev.192";
+     allow-transfer {localnets;};
+};
+
+db.fceia.unr.ar: (zona directa)
+
+$TTL	7200
+
+@	SOA	pc12	hostmaster.fceia.unr.ar.(
+     			2021110100	;serial
+			1d		;refresh
+			1h		;retry
+			1w		;expire
+			2h0		;neg.ttl
+		)
+	IN	NS	pc12
+	IN	NS	ns1.edu.ar.
+		MX	10 pc12
+
+pc1		A	192.168.0.101
+pc2		A	192.168.0.102
+pc3		A	192.168.0.103
+pc4		A	192.168.0.104
+pc5		A	192.168.0.105
+pc6		A	192.168.0.106
+pc7		A	192.168.0.107
+pc8		A	192.168.0.108
+pc9		A	192.168.0.109
+pc10		A	192.168.0.110
+pc11		A	192.168.0.111
+pc12		A	192.168.0.112
+www		CNAME	pc11
+
+db.192.rev: (zona inversa)
+
+$TTL	7200
+$ORIGIN	0.168.192.in-addr.arpa.
+
+@	SOA	pc12.fceia.unr.ar.	hostmaster.fceia.unr.ar.(
+     					2021110100	;serial
+					1d		;refresh
+					1h		;retry
+					1w		;expire
+					2h0		;neg.ttl
+		)
+	IN	NS	pc12.fceia.unr.ar.
+	IN	NS	ns1.edu.ar.
+
+101	IN	PTR	pc1.fceia.unr.ar.
+102	IN	PTR	pc2.fceia.unr.ar.
+103	IN	PTR	pc3.fceia.unr.ar.
+104	IN	PTR	pc4.fceia.unr.ar.
+105	IN	PTR	pc5.fceia.unr.ar.
+106	IN	PTR	pc6.fceia.unr.ar.
+107	IN	PTR	pc7.fceia.unr.ar.
+108	IN	PTR	pc8.fceia.unr.ar.
+109	IN	PTR	pc9.fceia.unr.ar.
+110	IN	PTR	pc10.fceia.unr.ar.
+111	IN	PTR	pc11.fceia.unr.ar.
+112	IN	PTR	pc12.fceia.unr.ar.
