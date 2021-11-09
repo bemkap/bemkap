@@ -1,0 +1,19 @@
+$TTL	1D
+$ORIGIN	rubikia.com.
+@	IN	SOA	dns	hostmaster(
+				2021110400;
+				5h;
+				3h;
+				2h;
+				2h;
+				)
+
+	IN	NS	dns
+	IN	NS	ns_backup
+	IN	MX	10 mails
+
+dns		IN	A	192.168.7.18
+mails		IN	CNAME	dns
+www		IN	A	192.168.7.181
+ddi		IN	NS	dns2.ddi
+dns2.ddi	IN	A	192.168.7.180

@@ -758,7 +758,20 @@
     + antes de iniciar la comunicacion, un host debe indicar al sistema operativo que esta abierto a aceptar conexiones (/passive open/). se le asigna un numero de puerto, generando uno de los extremos
     + un host que se quiere comunicar debe requerirlo tambien mediante el sistema operativo
     + los dos modulos tcp se intercambian datos para establecer y verificar la conexion
-    + 
+    + tcp divide los datos en segmentos, que usualmente se transmite en un solo datagrama ip
+    + la ventana semoviente tambien sirve para el control de flujo, permitiendo al receptor esperar hasta que tenga espacio
+    + la ventana opera a nivel de octeto, no de segmento
+    + tcp permite variacion en el tamaño de la ventana en el tiempo. cada ack lleva tambien el tamaño del buffer, por lo que se puede ir acomodando el tamaño de la ventana
+    + los datos pueden ser marcados como urgentes, en caso de que se necesite que el receptor los procese apenas los reciba, por ejemplo interrupciones
+    + el checksum se calcula como en udp sobre un pseudoheader
+    + los ack especifican el numero de secuencia del octeto que se espera recibir (esquema acumulativo)
+    + retransmision y timeout
+      + cuando se envia un paquete, se prende un temporizador hasta recibir respuesta. si termina el tiempo se retransmite
+      + tcp monitorea cada conexion para deducir los temporizadores, ya que pueden variar bastante. tcp esta hecho para comunicacion en internet
+      + se registra el tiempo que tarda desde que se envia un paquete hasta que se rebice el ack (tiempo en redondo). y se va ajustando segun una formula con el viejo rtt y el nuevo
+    + para evadir congestion, tcp usa dos tecnicas
+      + multiplicative decrease: el tamaño de la ventana es el minimo del enviado en el ack y un tamaño de ventana de congestion. los dos inician iguales. cuando se pierde un segmento se reduce la ventana de congestion a la mitad
+      + slow-start: cuando la congestion se alivia. por cada ack se aumenta el tamaño de segmento en 1. lo que no quiere decir que sea lento porque se por cada ack que se devuelve por cada segmento
 * capa de aplicacion
 ** dns
    + traducir de nombre a direccion ip
