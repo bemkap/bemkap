@@ -1,4 +1,4 @@
-% Created 2021-11-06 sáb 14:39
+% Created 2021-11-27 sáb 18:04
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -29,13 +29,100 @@
 \tableofcontents
 
 \section{introduccion}
-\label{sec:org147b920}
+\label{sec:org01f7c18}
+\begin{itemize}
+\item internet surge de las investigaciones de la \emph{advanced research projects agency} (ARPA), que incluye los estandares de redes y de como se comunican las computadoras
+\item los protocolos proveen la sintaxis y semantica de las comunicaciones, y permite separarla del hardware subyacente
+\item aplicaciones mas populares de internet: \emph{world wide web}, mail, transmision de archivos, acceso remoto
+\item dos tipos de servicios: sin y con conexion
+\end{itemize}
 \subsection{hardware}
-\label{sec:orgc4a7e32}
+\label{sec:org747b895}
+\begin{itemize}
+\item dos tipos de tecnologia: broadcast y punto a punto
+\item unicasting: punto a punto con un solo emisor y receptor
+\item broadcast permite enviar a todos mediante un codigo especial en el campo de direccion
+\item multicast: algunos sistemas permiten enviar a un conjunto de receptores
+\item segun la escala: red de area personal, de area local, metropolitana y amplia
+\item interred: conexion de dos o mas redes (internet)
+\end{itemize}
+\subsubsection{redes de area personal}
+\label{sec:org15d582c}
+\begin{itemize}
+\item comunicacion dentro del rango de una persona, como una computadora con perifericos
+\item bluetooth, rfid
+\end{itemize}
+\subsubsection{redes de area local}
+\label{sec:org08002cc}
+\begin{itemize}
+\item redes de propiedad privada que operan dentro de un edificio
+\item todos se conectan a un \emph{access point} (AP) para comunicarse
+\item cable de cobre, fibra optica
+\item ieee 802.3 ethernet
+\item vlan: dividir virtualmente una lan en varias
+\item colisiones ethernet clasica: se envia cuando el canal esta inactivo. si hay colision, se espera un tiempo aleatorio y se prueba de nuevo
+\item la asignacion del canal puede ser estatica, por ejemplo division por tiempo, o dinamica. la mayoria usa dinamica
+\item para asignacion dinamica se puede manejar de forma centralizada o no
+\item ethernet original
+\begin{itemize}
+\item la ethernet original usaba cable coaxial
+\item la conexion entre una computadora y el cable requiere un hardware especial llamado transreceptor
+\item la otra parte era un adaptador que iba conectado a la computadora
+\end{itemize}
+\item thin-wire ethernet
+\begin{itemize}
+\item la original usaba componentes caros y dificiles de instalar
+\item se creo un nuevo cable mas fino y mas barato
+\item cubria menor distancia y no era tan resistente a interferencias
+\item conexion directa con los hosts, y posibilidad de conectar computadoras directamente
+\end{itemize}
+\item ethernet de par trenzado
+\begin{itemize}
+\item con este tipo de cable no hace falta usar cables protegidos
+\item mas baratos
+\item cada host se conecta a un hub central que distribuye la señal
+\end{itemize}
+\item fast ethernet: aumento de la velocidad de transmision con mejores cables
+\item 10/100 ethernet: puede operar a 10 o 100 mbps adaptandose en cada caso
+\item gigabit ethernet
+\item propiedades de ethernet
+\begin{itemize}
+\item tecnologia de bus compartido
+\item semantica de envio con el mejor esfuerzo
+\item el control de acceso es distribuido porque no hay una autoridad central
+\item esquema de acceso: csma/cd
+\end{itemize}
+\item deteccion de colisiones y recuperacion
+\begin{itemize}
+\item cuando se detecta una colision se espera un tiempo y se envia de nuevo
+\item el tiempo es aleatorio y el rango se va duplicando cada vez que se detectan colisiones consecutivas
+\end{itemize}
+\item direcciones
+\begin{itemize}
+\item direcciones de 48 bits
+\item \emph{media access address} (mac)
+\item unicast, multicast o broadcast
+\end{itemize}
+\end{itemize}
+\subsubsection{redes de area metropolitana}
+\label{sec:org61e5f7f}
+\begin{itemize}
+\item cubren toda una ciudad
+\item redes de television por cable
+\item wimax
+\end{itemize}
+\subsubsection{redes de a area amplia}
+\label{sec:org28a8c16}
+\begin{itemize}
+\item pais o continente
+\item empresa con sucursales repartidas en distintas ciudades
+\end{itemize}
+\subsubsection{ethernet}
+\label{sec:org931bf86}
 \subsection{sofware de red}
-\label{sec:orga11e0bb}
+\label{sec:orgadaefd2}
 \subsubsection{jerarquia de protocolos}
-\label{sec:org73e2175}
+\label{sec:org27aa5b3}
 \begin{itemize}
 \item organizacion por capas. cada capa tiene una funcion diferenciada e independiente
 \item intercambio de mensajes segun el protocolo de cada capa
@@ -45,7 +132,7 @@
 \item pila de protocolos: lista de protocolos usados por una arquitectura
 \end{itemize}
 \subsubsection{aspectos de diseño para cada capa}
-\label{sec:orgbf3d301}
+\label{sec:org3f984c5}
 \begin{itemize}
 \item codigos de deteccion (y posible correccion) de errores
 \item enrutamiento: eleccion de una ruta para enviar informacion
@@ -58,31 +145,31 @@
 \item confidencialidad, autenticacion e integridad
 \end{itemize}
 \subsubsection{tipos de servicios}
-\label{sec:org2f6444b}
+\label{sec:orgd3aea98}
 \begin{enumerate}
 \item orientados a la conexion
-\label{sec:org57b03bb}
+\label{sec:orge3a4969}
 \begin{itemize}
 \item se establece la conexion, se usa y se libera
 \item en la mayoria de los casos se preserva el orden
 \item como una linea telefonica
 \end{itemize}
 \item no orientados a la conexion
-\label{sec:org7e914d3}
+\label{sec:org04d7438}
 \begin{itemize}
 \item cada mensaje lleva la direccion de destino completa
 \item cada mensaje es enrutado en forma independiente
 \item como el sistema postal
 \end{itemize}
 \item confiables
-\label{sec:org9668329}
+\label{sec:org8eb6bb7}
 \begin{itemize}
 \item nunca pierden datos
 \item acuse de recibo
 \item introduccion de sobrecarga y retardos
 \end{itemize}
 \item no confiables
-\label{sec:org23c9b10}
+\label{sec:org005c569}
 \begin{center}
 \begin{tabular}{lll}
  & confiable & no confiable\\
@@ -93,7 +180,7 @@ no conexion & mensajes de texto & mails\\
 \end{center}
 \end{enumerate}
 \subsubsection{relacion entre servicios y protocolos}
-\label{sec:orgb29a915}
+\label{sec:orgd260946}
 \begin{itemize}
 \item un servicio se define como un conjunto de primitivas que una capa proporciona a la que esta encima de ella
 \item el servicio define el que pero no el como
@@ -102,12 +189,12 @@ no conexion & mensajes de texto & mails\\
 \item protocolo se relaciona con los paquetes que se envian entre distintas maquinas
 \end{itemize}
 \subsection{modelos de referencia}
-\label{sec:org900a948}
+\label{sec:org549f383}
 \subsubsection{modelo osi}
-\label{sec:org01a222f}
+\label{sec:orgf9a0aed}
 \begin{enumerate}
 \item capa fisica
-\label{sec:orgaf16714}
+\label{sec:org31d0577}
 \begin{itemize}
 \item transmision de bits puros a traves de un canal de transmision
 \item busca que lleguen los mismos bits que salieron
@@ -115,14 +202,14 @@ no conexion & mensajes de texto & mails\\
 \item como se establece y se termina una comunicacion
 \end{itemize}
 \item capa de enlace de datos
-\label{sec:orge6aa6ab}
+\label{sec:org4e51ed2}
 \begin{itemize}
 \item transforma los bits puros en una linea que este libre de errores para la capa de red
 \item divide los datos en tramos
 \item control de transmision para emisores rapidos y receptores lentos
 \end{itemize}
 \item capa de red
-\label{sec:orge89c1d7}
+\label{sec:orgcdfcae5}
 \begin{itemize}
 \item como se encaminan los paquetes del origen al destino
 \item las rutas se basan en tablas estaticas o dinamicas
@@ -130,41 +217,41 @@ no conexion & mensajes de texto & mails\\
 \item solucionar problemas para conectar redes heterogeneas
 \end{itemize}
 \item capa de transporte
-\label{sec:org10daac3}
+\label{sec:orgbbf58ba}
 \begin{itemize}
 \item aceptar datos de la capa superior, dividirlos en unidades mas pequeñas, pasar los datos a la capa de red y asegurar que las piezas lleguen al otro extremo
 \item es una verdadera capa de extremo a extremo, a diferencia de las mas bajas
 \end{itemize}
 \item capa de sesion
-\label{sec:orgf9d0941}
+\label{sec:org4085501}
 \begin{itemize}
 \item control de dialogo
 \item manejo de tokens
 \item sincronizacion
 \end{itemize}
 \item capa de presentacion
-\label{sec:org2cceebd}
+\label{sec:org191e31b}
 \begin{itemize}
 \item se enfoca en la sintaxis y la semantica de la informacion transmitida
 \item maneja estructuras abstractas para intercambiar datos entre computadoras con diferentes representaciones de datos
 \end{itemize}
 \item capa de aplicacion
-\label{sec:org2a718a7}
+\label{sec:org41185a3}
 \begin{itemize}
 \item protocolos que los usuarios necesitan
 \end{itemize}
 \end{enumerate}
 \subsubsection{modelo tcp/ip}
-\label{sec:org03acbeb}
+\label{sec:orgf9815c2}
 \begin{enumerate}
 \item capa de enlace
-\label{sec:org6a0b332}
+\label{sec:orgbd4e76f}
 \begin{itemize}
 \item capa sin conexion que opera a traves de distintas redes
 \item describe que enlaces se deben llevar a cabo para cumplir con las necesidades de esta capa
 \end{itemize}
 \item capa de interred
-\label{sec:org0e9c50f}
+\label{sec:orgb3c08b2}
 \begin{itemize}
 \item permite que los host inyecten paquetes en cualquier red y que viajen independientemente a su destino
 \item analogo al sistema de correo
@@ -172,27 +259,27 @@ no conexion & mensajes de texto & mails\\
 \item el ruteo de paquetes es el principal aspecto, y la congestion
 \end{itemize}
 \item capa de transporte
-\label{sec:org45910da}
+\label{sec:org0e1d556}
 \begin{itemize}
 \item permite que entidades en la misma capa mantengan una conversacion
 \item tcp, udp
 \end{itemize}
 \item capa de aplicacion
-\label{sec:org1209c04}
+\label{sec:org99f13f5}
 \begin{itemize}
 \item reemplaza las capas de presentacion, sesion y aplicacion del modelo osi
 \item telnet, ftp, smtp, dns, http
 \end{itemize}
 \end{enumerate}
 \subsubsection{comparacion tcp/ip osi}
-\label{sec:org0ee7b8f}
+\label{sec:org7527b0f}
 \begin{itemize}
 \item osi fue inventado antes que los protocolos, por eso es mas general. pero los diseñadores no sabian que funcionalidades colocar en cada capa
 \item con tcp/ip paso al reves. los protocolos encajaron perfectamente, pero no era util para describir redes que no fueran tcp/ip
 \item osi tiene 7 capas, tcp/ip tiene 4
 \end{itemize}
 \subsubsection{defectos de osi}
-\label{sec:org8c627f0}
+\label{sec:orge84c43b}
 \begin{itemize}
 \item mala sicronizacion: para cuando se desarrollaron los protocolos osi, tcp/ip ya se estaba usando lo suficiente como para que los distribuidores no quisieran apoyar otra pila
 \item mala tecnologia: el modelo es muy complejo. las capas de sesion y presentacion estan casi vacias, las de red y enlace llenas. son dificiles de implementar e ineficientes.
@@ -200,7 +287,7 @@ no conexion & mensajes de texto & mails\\
 \item malas politicas: osi se asocio con el gobierno estadounidense y tcp/ip con unix
 \end{itemize}
 \subsubsection{defectos de tcp/ip}
-\label{sec:orgcee287c}
+\label{sec:org2d874b0}
 \begin{itemize}
 \item no se diferencian bien los conceptos de servicio, interfaz y protocolo
 \item el modelo no es para nada general
@@ -208,26 +295,26 @@ no conexion & mensajes de texto & mails\\
 \item no distingue la capa de enlace y la fisica
 \end{itemize}
 \section{capa fisica}
-\label{sec:orga446ff1}
+\label{sec:orgf26566b}
 \subsection{conceptos}
-\label{sec:org0b2ffd4}
+\label{sec:orge8813a4}
 \begin{itemize}
 \item serie de fourier
 \item ancho de banda
-\item banda base, pasa-banda
-\item teorema de nyquist, teorema de shannon
-\item relacion señal ruido S/N
+\item banda base: desde 0 hasta una frecuencia maxima, pasa-banda: se desplazan para ocupar un rango mas alto
+\item teorema de nyquist: tasa de datos maxima de un canal sin ruido. tasa de muestreo
+\item teorema de shannon: tasa de datos maxima incluyendo la relacion señal ruido S/N
 \end{itemize}
 \subsection{medios de transmision guiados}
-\label{sec:orge4d0087}
+\label{sec:orgd223ec9}
 \subsubsection{medios magneticos}
-\label{sec:org627441b}
+\label{sec:org79478c4}
 \begin{itemize}
 \item guardar la informacion en una cinta o medio removible y mandarlo fisicamente
 \item \emph{nunca subestime el ancho de banda de una camioneta repleta de cintas que viaje a toda velocidad por la carretera}
 \end{itemize}
 \subsubsection{par trenzado}
-\label{sec:org06b85be}
+\label{sec:orge2d0ffe}
 \begin{itemize}
 \item dos cables de cobre aislados
 \item trenzados porque en paralelo forman una antena
@@ -240,19 +327,19 @@ no conexion & mensajes de texto & mails\\
 \item hasta cat 6: utp (unshielded twisted pair). cat 7: stp
 \end{itemize}
 \subsubsection{cable coaxial}
-\label{sec:org0c2cefc}
+\label{sec:org845d05d}
 \begin{itemize}
 \item mejor blindaje y mayor ancho de banda que los tp, pero mas caro
 \end{itemize}
 \subsubsection{lineas electricas}
-\label{sec:orgaad6012}
+\label{sec:org93d7424}
 \begin{itemize}
 \item las compañias las han utilizado para comunicacion de baja velocidad
 \item uso en el hogar para controlar dispositivos
 \item dificil porque el cableado de las casas no esta hecho para enviar señales a alta frecuencia
 \end{itemize}
 \subsubsection{fibra optica}
-\label{sec:org3966491}
+\label{sec:orgaf19d62}
 \begin{itemize}
 \item lan, internet y ftth
 \item un pulso de luz indica 1, la ausencia 0
@@ -263,19 +350,19 @@ no conexion & mensajes de texto & mails\\
 \item fuentes: led y laser
 \end{itemize}
 \subsection{transmision inalambrica}
-\label{sec:orgdb6826f}
+\label{sec:orgc2644c8}
 \subsubsection{espectro electromagnetico}
-\label{sec:org00571c4}
+\label{sec:org78a8530}
 \begin{itemize}
 \item los electrones se mueven y crean ondas electromagneticas
 \item las ondas viajan siempre a la velocidad de la luz
-\item \(\lambda f=c\)
+\item \(\lambda f=c\) relacion entre frecuencia \(f\), longitud de onda \(\lambda\) y velocidad de la luz \(c\)
 \item espectro directo con salto de frecuencia: transmision dificil de detectar y bloquear. militares, bluetooth, versiones anteriores de 802.11
-\item espectro directo de secuencia directa: multiples señales comparten ancho de banda. cdma, gps, 802.11b
-\item uwb
+\item espectro disperso de secuencia directa: multiples señales comparten ancho de banda. cdma (barker codes), gps, 802.11b
+\item uwb (banda ultra ancha)
 \end{itemize}
 \subsubsection{radiotransmision}
-\label{sec:orge56b7b5}
+\label{sec:org97ee0e9}
 \begin{itemize}
 \item las ondas de radio son faciles de generar, recorren largas distancias y penetran edificios
 \item son omnidireccionales
@@ -286,32 +373,32 @@ no conexion & mensajes de texto & mails\\
 \item vlf, lf y mf siguen la curvatura de la tierra. hf van en linea recta y rebotan en la ionosfera, tambien son absorbidas por la tierra
 \end{itemize}
 \subsubsection{transmision por microondas}
-\label{sec:orgc7f7fcb}
+\label{sec:org75850b8}
 \begin{itemize}
 \item relacion S/N alta, pero las antenas deben estar alineadas
 \item microondas no atraviesan bien los edificios
 \item comunicacion telefonica, celulares, television. lo que provoco escasez de espectro
 \end{itemize}
 \subsubsection{transmision infrarroja}
-\label{sec:org3e85517}
+\label{sec:org8e64743}
 \begin{itemize}
 \item comunicacion de corto alcance
 \item no atraviesan objetos
 \end{itemize}
 \subsubsection{tranmision por ondas de luz}
-\label{sec:org3e47c73}
+\label{sec:org307957d}
 \begin{itemize}
 \item señalizacion optica mediante laser
 \item gran ancho de banda a bajo costo y seguro. pero muy dificil de apuntar
 \end{itemize}
 \subsection{satelites de comunicacion}
-\label{sec:org42d93f8}
+\label{sec:orge432ce7}
 \begin{itemize}
 \item un satelite es un enorme repetidor de microondas con varios transpondedores. transmite en modo \textbf{tublo doblado}
 \item posicion de los satelites limitadas por el cinturon de van allen
 \end{itemize}
 \subsubsection{satelites geoestacionarios}
-\label{sec:orgee4cde1}
+\label{sec:org5a05e34}
 \begin{itemize}
 \item satelites que orbitan a la misma velocidad de la que rota la tierra. parecen inmoviles desde el suelo
 \item los primeros tenian un solo haz de luz que iluminaba la tierra, lo que se conoce como huella
@@ -322,14 +409,14 @@ no conexion & mensajes de texto & mails\\
 \item los satelites son medios de difusion por naturaleza
 \end{itemize}
 \subsubsection{ventajas de los satelites sobre la fibra optica}
-\label{sec:orge828b37}
+\label{sec:orga51a7b7}
 \begin{itemize}
 \item cuando se requiere un despliegue rapido, ganan los satelites
 \item los satelites pueden enviar a cualquier parte del mundo
 \item un mensaje que envia un satelite lo pueden recibir miles de estaciones al mismo tiempo
 \end{itemize}
 \subsection{modulacion digital y multiplexacion}
-\label{sec:org2c4866a}
+\label{sec:orgde71af9}
 \begin{itemize}
 \item modulacion digital: proceso de convertir bits en la señal que los representan
 \item transmision en banda base: la señal ocupa una frecuencia desde 0 hasta un valor maximo que depende de la tasa de señalizacion. comun en cables
@@ -337,7 +424,7 @@ no conexion & mensajes de texto & mails\\
 \item multiplexacion: a compartir varias señales por un mismo canal
 \end{itemize}
 \subsubsection{transmision en banda base}
-\label{sec:org4d6e527}
+\label{sec:orgb208ab3}
 \begin{itemize}
 \item NRZ(non-return-to-zero): voltaje positivo para el 1 y uno nulo para el 0
 \item el receptor muestrea a intervalos regulares y convierte de nuevo a bits. la señal no se vera igual a la que se envio por el ruido y el canal
@@ -369,7 +456,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{transmision pasa-banda}
-\label{sec:orgd2ad55e}
+\label{sec:orgb5f4ab8}
 \begin{itemize}
 \item en canales inalambricos no es practico usar rango de frecuencias que empiecen en 0
 \item se puede tomar una señal en banda base que ocupe de 0 a b hz y desplazarla a otra pasa-banda que ocupe de s a s+b hz
@@ -380,20 +467,20 @@ no conexion & mensajes de texto & mails\\
 \item simbolos adyacentes no deben diferir en muchos bits, porque serian mas suceptibles al ruido. para eso se usa codigo gray
 \end{itemize}
 \subsubsection{multiplexacion por division de frecuencia}
-\label{sec:orgb6d930b}
+\label{sec:orgc56e047}
 \begin{itemize}
 \item fdm: divide el espectro en bandas. cada usuario tiene posesion exclusiva de la banda
 \item banda de guarda: exceso de banda que mantiene a los canales separados
 \item ofdm: el ancho de banda del canal se divide en muchas subportadoras que envian de manera independiente. cada subportadora esta diseñada para ser 0 en el centro de las adyacentes. 802.11
 \end{itemize}
 \subsubsection{multiplexacion por division de tiempo}
-\label{sec:org23856f0}
+\label{sec:org9e7704d}
 \begin{itemize}
 \item tdm: los usuarios toman turnos y usan todo el ancho de banda, se toman los datos y se agregan al flujo agregado
 \item para que funcione debe haber sincronizacion. se puede agregar tiempo de guarda
 \end{itemize}
 \subsubsection{multiplexacion por division de codigo}
-\label{sec:org4e0302a}
+\label{sec:orgce834ea}
 \begin{itemize}
 \item cdm: forma de comunicacion de espectro diverso. una señal de banda estrecha se dispersa en una mas amplia. cdma
 \item hace la señal mas tolerante a interferencias y permite que señales compartan la misma banda de frecuencia
@@ -403,15 +490,15 @@ no conexion & mensajes de texto & mails\\
 \item si varias estaciones envian al mismo tiempo se suman
 \end{itemize}
 \section{capa de enlace}
-\label{sec:org568ec9a}
+\label{sec:org1760504}
 \subsection{cuestiones de diseño}
-\label{sec:orgad76322}
+\label{sec:org015a8a6}
 \begin{itemize}
 \item funciones: dar a la capa de red una interfaz de servicios bien definida. manejar errores. controlar flujo
 \item toma los datos que obtiene de la capa de red y los encapsula en tramas
 \end{itemize}
 \subsubsection{servicios dados a la capa de red}
-\label{sec:orgc4107f5}
+\label{sec:orge4f7798}
 \begin{itemize}
 \item transferir datos de la maquina de origen a la de destino
 \item 3 servicios razonables
@@ -422,7 +509,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{entramado}
-\label{sec:org0236c58}
+\label{sec:orgcff6359}
 \begin{itemize}
 \item la capa fisica no garantiza que el flujo de bits este libre de errores
 \item un metodo es dividir el flujo en tramas discretas y agregarles una suma de verificacion
@@ -435,21 +522,21 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{control de errores}
-\label{sec:orgab2aa71}
+\label{sec:orgb210758}
 \begin{itemize}
 \item asegurar la entrega de datos confiable: retroalimentacion al emisor de lo que esta ocurriendo del otro lado. positiva y negativa
 \item puede desaparecer la trama por completo, o la de retroalimentacion. para eso tambien se usan temporizadores para enviar nuevamente
 \item ahora puede que se reciba la misma trama dos veces. para eso se usan numeros de secuencia
 \end{itemize}
 \subsubsection{control de flujo}
-\label{sec:org5342bee}
+\label{sec:org5e15bb1}
 \begin{itemize}
 \item que hacer cuando un emisor envia mas tramas de las que el receptor puede aceptar. ejemplo telefono y sitio web
 \item control de flujo basado en retroalimentacion: el receptor envia cuando puede aceptar mas datos
 \item control de flujo basado en tasa: el protocolo tiene un mecanismo integrado que limita la tasa de envio
 \end{itemize}
 \subsection{deteccion y correccion de errores}
-\label{sec:orgf287fe1}
+\label{sec:org0900ad7}
 \begin{itemize}
 \item estategia: incluir redundancia en los datos.
 \item codigo de correccion de errores: para que el receptor pueda deducir que datos se quisieron enviar. fec
@@ -459,15 +546,15 @@ no conexion & mensajes de texto & mails\\
 \item los errores en rafaga tienen sus ventajas y desventajas
 \end{itemize}
 \subsection{protocolos de enlace de datos}
-\label{sec:org3da9649}
+\label{sec:org1bdf758}
 \subsubsection{paquetes sobre sonet}
-\label{sec:org7718370}
+\label{sec:org8e4259c}
 \begin{itemize}
 \item sonet se utiliza sobre canales de fibra optica de area amplia
 \item ppp se usa para diferenciar paquetes ocasionales del flujo continuo en el que se transportan
 \end{itemize}
 \subsubsection{ppp}
-\label{sec:org7ec41c0}
+\label{sec:orgf37904f}
 \begin{itemize}
 \item ppp orientado a bytes, hdlc a bits
 \item metodo de entramado sin ambiguedades, tambien maneja deteccion de errores
@@ -486,25 +573,25 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \section{subcapa control acceso al medio}
-\label{sec:org1cc878a}
+\label{sec:org8aeb9f6}
 \begin{itemize}
 \item los enlaces de red pueden ser punto a punto o difusion
 \item subcapa mac es la parte inferior de la de enlace de datos
 \end{itemize}
 \subsection{problema de asignacion de canal}
-\label{sec:org114a6db}
+\label{sec:org1ec52be}
 \begin{itemize}
 \item asignar un solo canal de difusion entre varios usuarios competidores
 \end{itemize}
 \subsubsection{asignacion estatica}
-\label{sec:org8ab8d3c}
+\label{sec:org6d1bfc1}
 \begin{itemize}
 \item dividir la capacidad mediante el uso de multiplexacion. cuando hay una pequeña cantidad de usuarios constantes
 \item si varia el numero de emisores y ese numero es grande se vuelve ineficiente
 \item lo mismo sucede con otras formas estaticas de dividir un canal
 \end{itemize}
 \subsubsection{supuestos para la asignacion dinamica}
-\label{sec:org7ad5271}
+\label{sec:org43ab3c4}
 \begin{itemize}
 \item trafico independiente: las estaciones son independientes
 \item canal unico: hay un solo canal para todas las comunicaciones
@@ -513,9 +600,9 @@ no conexion & mensajes de texto & mails\\
 \item deteccion de portadora o sin deteccion: si hay deteccion las estaciones pueden saber si el canal esta en uso. sino mandan y despues determinan si tuvo exito
 \end{itemize}
 \subsection{protocolos de acceso multiple}
-\label{sec:org5203423}
+\label{sec:orgf6c6080}
 \subsubsection{aloha}
-\label{sec:org1fb7d7a}
+\label{sec:orgffac22d}
 \begin{itemize}
 \item aloha puro
 \begin{itemize}
@@ -530,7 +617,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{protocolos de acceso multiple con deteccion de portadora}
-\label{sec:orgcafde60}
+\label{sec:org9b87556}
 \begin{itemize}
 \item csma persistente-1
 \begin{itemize}
@@ -556,7 +643,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{protocolos libres de colisiones}
-\label{sec:org58bc1e8}
+\label{sec:org460e870}
 \begin{itemize}
 \item protocolo de mapa de bits
 \begin{itemize}
@@ -580,7 +667,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{protocolos de contencion limitada}
-\label{sec:orgb131528}
+\label{sec:orgc950698}
 \begin{itemize}
 \item en condicion de carga ligera es preferible contencion
 \item al reves para libres de colision
@@ -592,7 +679,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{protocolos de lan inalambrica}
-\label{sec:org833ee7f}
+\label{sec:org9edb53f}
 \begin{itemize}
 \item problema de la terminal oculta
 \item problema de la terminal expuesta
@@ -604,13 +691,13 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsection{ethernet}
-\label{sec:orgf31d1da}
+\label{sec:orgff0e19a}
 \begin{itemize}
 \item 802.3
 \item ethernet clasica (visto hasta ahora) y conmutada (switches)
 \end{itemize}
 \subsubsection{capa fisica de ethernet clasica}
-\label{sec:orgb329568}
+\label{sec:org050bae4}
 \begin{itemize}
 \item un solo cable de donde se conectaban todas las maquinas
 \item ethernet gruesa 500m y 100 maquinas
@@ -618,7 +705,7 @@ no conexion & mensajes de texto & mails\\
 \item longitud maxima por segmento conectada con repetidores
 \end{itemize}
 \subsubsection{protocolo de subcapa mac para ethernet clasica}
-\label{sec:orge4531cc}
+\label{sec:org5174a55}
 \begin{itemize}
 \item multidifusion (a un grupo de estaciones) y difusion (a todas)
 \item direcciones globalmente unicas
@@ -632,7 +719,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{ethernet conmutada}
-\label{sec:orge676d81}
+\label{sec:orgabb7bf9}
 \begin{itemize}
 \item se empezaron a usar hubs en vez de un solo cable
 \item las redes se podian saturar porque los hubs no incrementan la capacidad. de ahi se empezaron a usar los switch
@@ -643,14 +730,14 @@ no conexion & mensajes de texto & mails\\
 \item un switch puede tener conectado un hub, asi actua como un concentrador
 \end{itemize}
 \subsubsection{fast ethernet}
-\label{sec:orga8520dc}
+\label{sec:org7211650}
 \begin{itemize}
 \item se mantuvo la ethernet anterior pero mas rapida
 \item se permiten tres medios: par trenzado categoria 3 y 5, fibra optica
 \item casi todos los switches pueden manejar 10mbps (anterior) o 100mbps (fast)
 \end{itemize}
 \subsubsection{gigabit ethernet}
-\label{sec:org884a886}
+\label{sec:orgb0588e7}
 \begin{itemize}
 \item en half duplex se usa csma/cd, en full duplex no
 \item con 1gbps una trama minima que es enviada no llegaria a recorrer el cable antes que termine de enviar, por eso de limito la longitud a 200m
@@ -659,16 +746,16 @@ no conexion & mensajes de texto & mails\\
 \item en la actualidad la mayoria de las interfaces ethernet soportan los 3 tipos
 \end{itemize}
 \subsubsection{10 gigabit ethernet}
-\label{sec:org57b0721}
+\label{sec:org5238216}
 \subsection{redes lan inalambricas}
-\label{sec:orgd42978a}
+\label{sec:orgfccb798}
 \begin{itemize}
 \item medio de comunicacion ondas electromagneticas
 \item tres tipos de redes: wpan, wlan, wwan
 \item modelos basados en pila: osi, tcp/ip, otros
 \end{itemize}
 \subsubsection{wi-fi o wlan}
-\label{sec:org8375c72}
+\label{sec:org5a6229f}
 \begin{itemize}
 \item capa fisica y enlace de osi
 \item 802.11
@@ -722,7 +809,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{wpan}
-\label{sec:org388464b}
+\label{sec:orgcff6c53}
 \begin{itemize}
 \item dispositivos perifericos
 \item bluetooth, homerf, zigbee, infrarrojo
@@ -783,7 +870,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{sistema de telefonia y comunicaciones moviles}
-\label{sec:org35e6de2}
+\label{sec:org317ead4}
 \begin{itemize}
 \item division celular: dividir en zonas pequeñas donde se reutilizan canales disponibles
 \item reutilizacion de frecuencias
@@ -845,12 +932,12 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsection{conmutacion de la capa de enlace de datos}
-\label{sec:orgc611736}
+\label{sec:orgf1b2b94}
 \begin{itemize}
 \item lan de lanes con puentes
 \end{itemize}
 \subsubsection{usos de puentes}
-\label{sec:org4cf9e9a}
+\label{sec:org329a182}
 \begin{itemize}
 \item universidades y departamentos tienen sus propias redes lan separadas, pero tambien requieren comunicarse entre ellas
 \item la organizacion puede estar separada geograficamente
@@ -858,7 +945,7 @@ no conexion & mensajes de texto & mails\\
 \item dos algoritmos para que los puentes sean transparentes
 \end{itemize}
 \subsubsection{puentes de aprendizaje}
-\label{sec:org2f256d7}
+\label{sec:orge459dc9}
 \begin{itemize}
 \item cada puerto del switch define un dominio de colision
 \item si una estacion se quiere comunicar con otra dentro del mismo segmento el switch debe descartar las tramas porque no es necesario reenviarlas
@@ -868,14 +955,14 @@ no conexion & mensajes de texto & mails\\
 \item \textbf{conmutacion al vuelo}: es posible empezar a reenviar ni bien se lea la cabezera de una trama, que contiene la direccion
 \end{itemize}
 \subsubsection{puentes con arbol de expansion}
-\label{sec:orge7651e2}
+\label{sec:org239e592}
 \begin{itemize}
 \item enlaces redundantes. si se corta uno la red no se dividira en dos. pero crea ciclos en la topologia
 \item los puentes ejecutan un algoritmo distribuido para construir el arbol
 \item incluyen la distancia desde la raiz para recordar la ruta mas corta. desactivan los puertos que no formen parte de esa ruta
 \end{itemize}
 \subsubsection{redes lan virtuales}
-\label{sec:orgb2606dd}
+\label{sec:org1e29d5b}
 \begin{itemize}
 \item agrupar a los usuarios en diferentes lan para reflejar la estructura de la organizacion
 \item seguridad: por ejemplo separar servidores de computadoras de uso publico
@@ -891,33 +978,33 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \section{capa de red}
-\label{sec:orgf4d9268}
+\label{sec:org5704a57}
 \subsection{aspecto de diseño}
-\label{sec:org21b4fff}
+\label{sec:org4ea84c7}
 \subsubsection{conmutacion de paquetes de almacenamiento y reenvio}
-\label{sec:org0ed0bab}
+\label{sec:org050d3f2}
 \subsubsection{servicios proporcionados a la capa de transporte}
-\label{sec:orge1b6908}
+\label{sec:org17b8999}
 \begin{itemize}
 \item independientes de la tecnologia del enrutador
 \item la capa de transporte debe estar aislada del tipo, cantidad y topologia de enrutadores
 \item plan de numeracion uniforme para las direcciones disponibles
 \end{itemize}
 \subsubsection{implementacion del servicio sin conexion}
-\label{sec:org4eb2879}
+\label{sec:org7201bba}
 \begin{itemize}
 \item los paquetes se transmiten por separado y se enrutan de manera independiente
 \item datagramas
 \item ip
 \end{itemize}
 \subsubsection{implementacion del servicio orientado a la conexion}
-\label{sec:org69c6d1b}
+\label{sec:orgcd59c08}
 \begin{itemize}
 \item evitar la necesidad de elegir una nueva ruta para cada paquete enviado. cuando se establece una conexion se guarda la ruta
 \item mpls: usa vez que se establece el circuito virtual los enrutadores intermedios asignan identificadores diferentes para origenes diferentes para diferenciarlos en una misma ruta
 \end{itemize}
 \subsection{algoritmos de enrutamiento}
-\label{sec:orgc52428c}
+\label{sec:org5b88332}
 \begin{itemize}
 \item un enrutador tiene dos procesos internos: uno maneja cada paquete conforme llega y busca en la tabla de ruteo la linea de salida. el otro es llenar y actualizar las tablas de ruteo, y ahi es donde entra el algoritmo de ruteo
 \item muchas redes intentan reducir el numero de saltos que debe dar un paquete
@@ -925,19 +1012,19 @@ no conexion & mensajes de texto & mails\\
 \item adaptativos: no no adaptativos. enrutamiento dinamico
 \end{itemize}
 \subsubsection{principio de optimizacion}
-\label{sec:org28ce5f0}
+\label{sec:org0929cee}
 \begin{itemize}
 \item si una ruta es optima para i->j->k, tambien es optima para j->k
 \item arbol sumidero: el conjunto de rutas optimas
 \end{itemize}
 \subsubsection{algoritmo de la ruta mas corta}
-\label{sec:org90128d4}
+\label{sec:org91b5931}
 \begin{itemize}
 \item ver la red como un grafo y buscar el camino mas corto
 \item corto puede ser el numero de saltos, distancia geografica, u otras metricas
 \end{itemize}
 \subsubsection{inundacion}
-\label{sec:org33ea1d4}
+\label{sec:org1467808}
 \begin{itemize}
 \item tecnica local. el enrutador envia por todas las lineas excepto por la que vino el paquete
 \item gran cantidad de duplicados
@@ -949,14 +1036,14 @@ no conexion & mensajes de texto & mails\\
 \item siempre encuentra la ruta mas corta, sin contar el congestionamiento que provoca el algoritmo
 \end{itemize}
 \subsubsection{enrutamiento por vector de distancia}
-\label{sec:org431e364}
+\label{sec:org5582d7c}
 \begin{itemize}
 \item cada enrutador mantiene un vector (una tabla) con la mejor ruta para cada destino. esta tabla se va actualizando
 \item cada T ms cada enrutador manda a sus vecinos su tabla
 \item problema del conteo al infinito: la convergencia llega a la respuesta correcta, pero lo hace lentamente
 \end{itemize}
 \subsubsection{enrutamiento por estados de enlace}
-\label{sec:orga628f52}
+\label{sec:org38d31e7}
 \begin{itemize}
 \item las variantes is-is y ospf son usadas en la actualidad en internet
 \item descrubrir a sus vecinos
@@ -965,25 +1052,25 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{enrutamiento jerarquico}
-\label{sec:orgf07cf51}
+\label{sec:org34b2509}
 \subsubsection{enrutamiento por difusion}
-\label{sec:org8f53bb0}
+\label{sec:orga9ae36a}
 \subsubsection{enrutamiento multidifusion}
-\label{sec:org1d34b82}
+\label{sec:org6ed1c4a}
 \subsubsection{enrutamiento anycast}
-\label{sec:org1b89216}
+\label{sec:org85e88b3}
 \subsubsection{enrutamiento para hosts moviles}
-\label{sec:org1689516}
+\label{sec:orgdd95a34}
 \subsubsection{enrutamiento para redes ad hoc}
-\label{sec:org5c9f436}
+\label{sec:orgd6c0df5}
 \subsection{algoritmos de control de congestion}
-\label{sec:org9979b36}
+\label{sec:orgd01859e}
 \begin{itemize}
 \item las capas de red y transposte manejan la congestion
 \item el control de congestion lo hace la red como conjunto. control de flujo se hace entre un emisor y receptor en particular
 \end{itemize}
 \subsubsection{metodos para control de congestion}
-\label{sec:org91d889c}
+\label{sec:org11d364b}
 \begin{itemize}
 \item la presencia de congestion significa que la carga es mayor que los recursos
 \item la manera mas basica es contruir una red que coincida con el trafico que transmita
@@ -995,9 +1082,9 @@ no conexion & mensajes de texto & mails\\
 \item si falla todo hay que empezar a descartar paquetes
 \end{itemize}
 \subsubsection{enrutamiento conciente de trafico}
-\label{sec:org0ff6fe0}
+\label{sec:org6198b3c}
 \subsubsection{control de admision}
-\label{sec:org633b939}
+\label{sec:org0b83e10}
 \begin{itemize}
 \item usada en redes de circuitos virtuales
 \item no agregar conexiones a menos que no lleve a congestion de la red
@@ -1007,7 +1094,7 @@ no conexion & mensajes de texto & mails\\
 \item se puede usar el comportamiento pasado para estimar el numero de circuitos que admite una red
 \end{itemize}
 \subsubsection{regulacion de trafico}
-\label{sec:orgb0e3373}
+\label{sec:orgc6e217a}
 \begin{itemize}
 \item la red aspira a operar justo antes de que empiece la congestion
 \item los enrutadores deben determinar cuando se acerca. se puede usar enlaces de salida, \textbf{bufer de paquetes en cola}, numero de paquetes que se pierden
@@ -1017,14 +1104,14 @@ no conexion & mensajes de texto & mails\\
 \item contrapresion de salto por salto: los paquetes reguladores surten efecto en todos los puntos intermedios
 \end{itemize}
 \subsubsection{desprendimiento de carga}
-\label{sec:org4fd8b87}
+\label{sec:org47ea309}
 \begin{itemize}
 \item cual paquete tirar depende de la aplicacion
 \item un desprendimiento mas inteligente requiere cooperacion de los emisores. por ejemplo paquetes que mandan informacion de enrutamiento
 \item las aplicaciones pueden marcar que tan importante son los paquetes
 \end{itemize}
 \subsection{calidad de servicio}
-\label{sec:org6fbc9a1}
+\label{sec:org5d90847}
 \begin{itemize}
 \item exceso de aprovisionamiento: contruir una red con la suficiente capacidad para el trafico que maneje. mas costoso. a veces no se puede predecir los cambios en la cantidad de trafico
 \item cuatro aspectos para asegurar la calidad de servicio:
@@ -1036,23 +1123,23 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{requerimientos de la aplicacion}
-\label{sec:org6c25f99}
+\label{sec:orgbd1d684}
 \begin{itemize}
 \item parametros que caracterizan las necesidades de cada flujo: ancho de banda, retardo, variacion de retardo, perdida
 \end{itemize}
 \subsubsection{modelado de trafico}
-\label{sec:org4c168f9}
+\label{sec:orgc650760}
 \begin{itemize}
 \item 
 \end{itemize}
 \subsection{ipv4}
-\label{sec:org08be54a}
+\label{sec:org07ea4c5}
 \begin{itemize}
 \item conmutacion de paquetes
 \item servicio sin conexion
 \end{itemize}
 \subsubsection{objetivos}
-\label{sec:org0f999fe}
+\label{sec:org2f64484}
 \begin{itemize}
 \item funcion de ruteo
 \item transparencia en la red de redes
@@ -1060,13 +1147,13 @@ no conexion & mensajes de texto & mails\\
 \item unidad basica: datagrama
 \end{itemize}
 \subsubsection{formato}
-\label{sec:org1268fb8}
+\label{sec:org8abebc4}
 \begin{itemize}
 \item tamaño variable por posibilidad de incluir opciones
 \item campo type of service para informar como debe ser tratado el paquete
 \end{itemize}
 \subsubsection{fragmentacion}
-\label{sec:org90eb9f6}
+\label{sec:org0ed33dc}
 \begin{itemize}
 \item los datagramas pueden pasar por redes de mayor o menor mtu
 \item cada router intermedio fragmenta los datos de acuerdo con el mtu de salida
@@ -1074,14 +1161,14 @@ no conexion & mensajes de texto & mails\\
 \item la fragmentacion se controla con campos en la cabecera
 \end{itemize}
 \subsubsection{otros campos}
-\label{sec:org9cf0143}
+\label{sec:org978eea3}
 \begin{itemize}
 \item ttl (time to live): cuanto tiempo en segundos un paquete puede estar en la red. si llega a 0 se envia un mensaje icmp de error al origen
 \item protocol: indica el protocolo de nivel superior que fue usado
 \item options: no estan incluidos en todos los datagramas
 \end{itemize}
 \subsubsection{clases de direcciones}
-\label{sec:org3312f7d}
+\label{sec:org091c054}
 \begin{itemize}
 \item a: r.h.h.h. 1.0.0.0 a 126.0.0.0
 \item b: r.r.h.h. 128.0.0.0 a 191.255.0.0
@@ -1091,7 +1178,7 @@ no conexion & mensajes de texto & mails\\
 \item el primer octeto se da por el corrimiento del ultimo 1 de izquierda a derecha (0, 10, 110, 1110, 11110)
 \end{itemize}
 \subsubsection{packet switching}
-\label{sec:org68c4b67}
+\label{sec:org8695e6c}
 \begin{itemize}
 \item el paquete se divide en el origen en unidades manejables: datagramas
 \item los datagramas viajan al destino
@@ -1099,7 +1186,7 @@ no conexion & mensajes de texto & mails\\
 \item los paquetes se dividen segun los requisitos de cada punto intermedio (cada router)
 \end{itemize}
 \subsubsection{ruteo}
-\label{sec:org3478034}
+\label{sec:org028e346}
 \begin{itemize}
 \item proceso de seleccion del camino de un paquete
 \item entrega directa: transmision entre hosts de una misma red ip. no necesita del router. se encapsula el datagrama en una trama y se envia directamente
@@ -1109,33 +1196,33 @@ no conexion & mensajes de texto & mails\\
 \item las tablas tambien se usan para entrega directa
 \end{itemize}
 \subsubsection{direcciones privadas}
-\label{sec:orga10c89d}
+\label{sec:org6e2d00b}
 \begin{itemize}
 \item las ipv4 no alcanzan para todos los dispositivos del mundo
 \item cada red interna usa un conjunto de ip privadas que se repiten en cada red que no sale a internet
 \item por dentro la red se maneja con esas ip privadas, y desde afuera se ve una sola ip
 \end{itemize}
 \subsubsection{subredes ip}
-\label{sec:org5173fd1}
+\label{sec:orgdd772cf}
 \begin{itemize}
 \item cuando se usan bits de la parte de host para crear subredes
 \end{itemize}
 \subsection{icmp: internet control message protocol}
-\label{sec:org6e2358d}
+\label{sec:orgf119fed}
 \begin{itemize}
 \item ip falla cuando el destino se desconecta de la red, cuando pasa el timeout para la respuesta o cuando router intermediarios estan muy congestionados
 \item icmp es requerido por ip y debe ser incluido en una implementacion del protocolo
 \item reporta errores, no corrige. aunque sugiere accioner a tomar
 \end{itemize}
 \subsubsection{funciones}
-\label{sec:org941c596}
+\label{sec:orgee0215f}
 \begin{itemize}
 \item error: un nodo que reconoce un error de transmision genera un paquete icmp. este se reporta a la fuente original, que es la que esta en la cabecera del paquete. no puede avisar a los routers intermedios. ni el origen saber que router tuvo el problema
 \item control: herramientas de diagnostico de la red (ping, traceroute)
 \item trama \{ ip \{ icmp \{\} \} \}
 \end{itemize}
 \subsubsection{tipos}
-\label{sec:org206aa59}
+\label{sec:orgf1e8900}
 \begin{itemize}
 \item 8/0 ping: solicitud eco/respuesta
 \item 3 destination unreachable: cuando no puede entregar/direccionar un datagrama
@@ -1146,7 +1233,7 @@ no conexion & mensajes de texto & mails\\
 \item 17/18: solicitud/respuesta de mascara
 \end{itemize}
 \subsection{arp: address resolution protocol}
-\label{sec:orge14110c}
+\label{sec:orgbb77312}
 \begin{itemize}
 \item se usa para obtener direcciones mac, tanto para el ultimo paso (host destino) como para intermedios (routers)
 \item el pedido es broadcast, la respuesta es unicast
@@ -1157,14 +1244,14 @@ no conexion & mensajes de texto & mails\\
 \item por que se usa un broadcast que alcanza al destino para despues enviar un mensaje al mismo destino?: los mensajes broadcast son mas costosos porque cada maquina debe procesar el mensaje
 \end{itemize}
 \subsection{ipv6}
-\label{sec:org2d6bfce}
+\label{sec:orgaa9ea12}
 \begin{itemize}
 \item necesidad de mas direcciones porque las ipv4 no alcanzaban
 \item cabecera base simple, tamaño fijo, menos campos
 \item tamaño de direcciones de 128 bits
 \end{itemize}
 \subsubsection{tipos de direcciones}
-\label{sec:org46dbabb}
+\label{sec:org8104564}
 \begin{itemize}
 \item unicast global
 \begin{itemize}
@@ -1193,7 +1280,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{protocolos ipv6}
-\label{sec:org867466f}
+\label{sec:orge86a9bd}
 \begin{itemize}
 \item neighbor discovery (ND)
 \begin{itemize}
@@ -1213,7 +1300,7 @@ no conexion & mensajes de texto & mails\\
 \item dhcpv6
 \end{itemize}
 \section{capa de transporte}
-\label{sec:org904395f}
+\label{sec:orga8eb300}
 \begin{itemize}
 \item las computadoras ejecutar muchos procesos a la vez, que serian los ultimos destinatarios de los mensajes enviados a traves de una red
 \item en vez de eso cada proceso puede acceder a puntos abstractos de destino llamados puertos
@@ -1221,7 +1308,7 @@ no conexion & mensajes de texto & mails\\
 \item ahora los mensajes deben tener direccion ip de destino y puerto. tambien puerto de origen para las respuestas
 \end{itemize}
 \subsubsection{user data protocol (udp)}
-\label{sec:orgba1cbae}
+\label{sec:org72e453f}
 \begin{itemize}
 \item cada datagrama udp posee direccion ip y puerto de origen y de destino
 \item sin conexion, sin acuses de recibo, no se ordenan los mensajes y tampoco se usa retroalimentacion para control de flujo
@@ -1234,7 +1321,7 @@ no conexion & mensajes de texto & mails\\
 \item dos formas de asignar puertos: una autoridad central los elije y las aplicaciones usan segun esta eleccion \emph{well-known ports}. otra forma es la dinamica, donde cada vez que una aplicacion necesita un puerto el software de red le asigna una, despues para conocer que puerto fue usado las otras computadoras consultan
 \end{itemize}
 \subsubsection{reliable stream transport service (tcp)}
-\label{sec:org312d0ec}
+\label{sec:orga94a155}
 \begin{itemize}
 \item el programador no tiene que preocuparse por la confiabilidad de la red si el protocolo lo hace
 \item propiedades
@@ -1280,11 +1367,59 @@ no conexion & mensajes de texto & mails\\
 \item multiplicative decrease: el tamaño de la ventana es el minimo del enviado en el ack y un tamaño de ventana de congestion. los dos inician iguales. cuando se pierde un segmento se reduce la ventana de congestion a la mitad
 \item slow-start: cuando la congestion se alivia. por cada ack se aumenta el tamaño de segmento en 1. lo que no quiere decir que sea lento porque se por cada ack que se devuelve por cada segmento
 \end{itemize}
+\item congestion
+\begin{itemize}
+\item el modelo de capas no deja que haya comunicacion entre distintas capas
+\item por ejemplo tcp puede llegar a reenviar paquetes creyendo que se perdieron cuando solo van lento en capas inferiores
+\item la transmision se maneja con colas, por lo tanto se busca optimizar su uso
+\item una politica es que si la cola esta llena cuando llega un datagrama lo descarta
+\item como los datagramas son multiplexados, es mas probable que se descarte 1 de n host que n de un solo host (sincronizacion global)
+\end{itemize}
+\item random early dicard (red)
+\begin{itemize}
+\item tecnica utilizada para evitar la sincronizacion global
+\item se mantienen dos marcas en la cola: \emph{tmin} y \emph{tmax}
+\item si la cola tiene menos de \emph{tmin} datagramas agregarlo
+\item si tiene mas de \emph{tmax} descartarlo
+\item si tiene entre \emph{tmin} y \emph{tmax} descartarlo con una probabilidad \emph{p}
+\end{itemize}
+\item estableciendo una conexion tcp
+\begin{itemize}
+\item \emph{three-way handshake}: envia SYN (seq=x) -> recibe SYN, envia SYN (seq=y) y ACK (seq=x+1) -> rebice SYN+ACK, envia ACK (seq=y+1) -> recibe ACK
+\item una vez establecida la conexion, la informacion puede fluir en cualquier direccion, no hay maestro ni esclavo
+\end{itemize}
+\item numeros de secuencia iniciales
+\begin{itemize}
+\item los dos extremos elijen numeros de secuencia al azar al hacer el \emph{twh}. no pueden ser siempre los mismos
+\item siempre los ack siguen la convencion de enviar el numero de secuencia del siguiente octeto esperado
+\end{itemize}
+\item cerrando una conexion tcp
+\begin{itemize}
+\item \emph{twh} modificado
+\item como es full duplex, cualquiera de los dos puede terminar independientemente del otro
+\item cuando termina de enviar, un host espera el ack para cerrar su mitad de la conexion enviando un fin
+\item despues deja de enviar informacion, pero puede seguir recibiendo y enviando paquetes ack
+\end{itemize}
+\item se puede resetear la conexion mediante el paquete rst
+\item forzando en envio
+\begin{itemize}
+\item tcp acumula octetos para mandar los segmentos completos y asi hacer mas eficiente la comunicacion
+\item esto puede interferir con ciertas aplicaciones, por ejemplo mandar caracteres que se presionan por teclado que necesitan verse de forma inmediata
+\item tcp provee una operacion push que obliga a enviar aunque el buffer no este lleno
+\item se prende el bit psh para que la aplicacion tambien lo reciba al toque
+\end{itemize}
+\item sindrome de ventana tonta
+\begin{itemize}
+\item cuando el receptor es mucho mas lento que el emisor
+\item caso extremo: el emisor envia muchos datos que llenan el buffer del receptor. el receptor manda con el ack el tamaño disponible que es 1 octeto. el emisor sigue enviando de a un octeto pero tiene que pasar por todas las capas inferiores, lo que es muy ineficiente
+\item para evitar esto se evita enviar pequeñas cantidades de datos por segmento, asi como tambien devolver tamaños disponibles pequeños
+\item AQUI ESTOY
+\end{itemize}
 \end{itemize}
 \section{capa de aplicacion}
-\label{sec:org46142a1}
+\label{sec:orga8cd42f}
 \subsection{dns}
-\label{sec:org9dee915}
+\label{sec:org5ce89ee}
 \begin{itemize}
 \item traducir de nombre a direccion ip
 \item tambien puede hace al reves
@@ -1292,7 +1427,7 @@ no conexion & mensajes de texto & mails\\
 \item necesidad de delegar la administracion de los registros por el aumento de la cantidad
 \end{itemize}
 \subsubsection{conceptos e implementacion}
-\label{sec:org16cc1e4}
+\label{sec:org8bf40c4}
 \begin{itemize}
 \item dominios y delegacion
 \begin{itemize}
@@ -1363,7 +1498,7 @@ no conexion & mensajes de texto & mails\\
 \end{itemize}
 \end{itemize}
 \subsubsection{mapeo inverso}
-\label{sec:orgf17b6bd}
+\label{sec:org8cb3ffb}
 \begin{itemize}
 \item usado por sistemas de mail
 \item diseñadores de dns usan el nombre de dominio especial in-addr.arpa o ip6.arpa
@@ -1372,7 +1507,7 @@ no conexion & mensajes de texto & mails\\
 \item TODO
 \end{itemize}
 \subsubsection{tipos de dns}
-\label{sec:orge2a53d2}
+\label{sec:org7d6d160}
 \begin{itemize}
 \item maestro (primario)
 \begin{itemize}
@@ -1422,5 +1557,12 @@ no conexion & mensajes de texto & mails\\
 \item si ciertas direcciones tienen mas privilegios se les puede devolver una respuesta especial que al resto, pero las consultas siempre son con el mismo nombre de dominio
 \item equilibrio de carga
 \end{itemize}
+\end{itemize}
+\subsection{firewall}
+\label{sec:orgb052e53}
+\subsubsection{iptables}
+\label{sec:org9d16455}
+\begin{itemize}
+\item 
 \end{itemize}
 \end{document}

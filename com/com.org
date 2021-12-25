@@ -1,6 +1,64 @@
 #+LATEX_HEADER: \usepackage{fullpage}
 * introduccion
+  + internet surge de las investigaciones de la /advanced research projects agency/ (ARPA), que incluye los estandares de redes y de como se comunican las computadoras
+  + los protocolos proveen la sintaxis y semantica de las comunicaciones, y permite separarla del hardware subyacente
+  + aplicaciones mas populares de internet: /world wide web/, mail, transmision de archivos, acceso remoto
+  + dos tipos de servicios: sin y con conexion
 ** hardware
+   + dos tipos de tecnologia: broadcast y punto a punto
+   + unicasting: punto a punto con un solo emisor y receptor
+   + broadcast permite enviar a todos mediante un codigo especial en el campo de direccion
+   + multicast: algunos sistemas permiten enviar a un conjunto de receptores
+   + segun la escala: red de area personal, de area local, metropolitana y amplia
+   + interred: conexion de dos o mas redes (internet)
+*** redes de area personal
+    + comunicacion dentro del rango de una persona, como una computadora con perifericos
+    + bluetooth, rfid
+*** redes de area local
+    + redes de propiedad privada que operan dentro de un edificio
+    + todos se conectan a un /access point/ (AP) para comunicarse
+    + cable de cobre, fibra optica
+    + ieee 802.3 ethernet
+    + vlan: dividir virtualmente una lan en varias
+    + colisiones ethernet clasica: se envia cuando el canal esta inactivo. si hay colision, se espera un tiempo aleatorio y se prueba de nuevo
+    + la asignacion del canal puede ser estatica, por ejemplo division por tiempo, o dinamica. la mayoria usa dinamica
+    + para asignacion dinamica se puede manejar de forma centralizada o no
+    + ethernet original
+      + la ethernet original usaba cable coaxial
+      + la conexion entre una computadora y el cable requiere un hardware especial llamado transreceptor
+      + la otra parte era un adaptador que iba conectado a la computadora
+    + thin-wire ethernet
+      + la original usaba componentes caros y dificiles de instalar
+      + se creo un nuevo cable mas fino y mas barato
+      + cubria menor distancia y no era tan resistente a interferencias
+      + conexion directa con los hosts, y posibilidad de conectar computadoras directamente
+    + ethernet de par trenzado
+      + con este tipo de cable no hace falta usar cables protegidos
+      + mas baratos
+      + cada host se conecta a un hub central que distribuye la señal
+    + fast ethernet: aumento de la velocidad de transmision con mejores cables
+    + 10/100 ethernet: puede operar a 10 o 100 mbps adaptandose en cada caso
+    + gigabit ethernet
+    + propiedades de ethernet
+      + tecnologia de bus compartido
+      + semantica de envio con el mejor esfuerzo
+      + el control de acceso es distribuido porque no hay una autoridad central
+      + esquema de acceso: csma/cd
+    + deteccion de colisiones y recuperacion
+      + cuando se detecta una colision se espera un tiempo y se envia de nuevo
+      + el tiempo es aleatorio y el rango se va duplicando cada vez que se detectan colisiones consecutivas
+    + direcciones
+      + direcciones de 48 bits
+      + /media access address/ (mac)
+      + unicast, multicast o broadcast
+*** redes de area metropolitana
+    + cubren toda una ciudad
+    + redes de television por cable
+    + wimax
+*** redes de a area amplia
+    + pais o continente
+    + empresa con sucursales repartidas en distintas ciudades
+*** ethernet
 ** sofware de red
 *** jerarquia de protocolos
    + organizacion por capas. cada capa tiene una funcion diferenciada e independiente
@@ -104,9 +162,9 @@
 ** conceptos
    + serie de fourier
    + ancho de banda
-   + banda base, pasa-banda
-   + teorema de nyquist, teorema de shannon
-   + relacion señal ruido S/N
+   + banda base: desde 0 hasta una frecuencia maxima, pasa-banda: se desplazan para ocupar un rango mas alto
+   + teorema de nyquist: tasa de datos maxima de un canal sin ruido. tasa de muestreo
+   + teorema de shannon: tasa de datos maxima incluyendo la relacion señal ruido S/N
 ** medios de transmision guiados
 *** medios magneticos
     + guardar la informacion en una cinta o medio removible y mandarlo fisicamente
@@ -139,10 +197,10 @@
 *** espectro electromagnetico
     + los electrones se mueven y crean ondas electromagneticas
     + las ondas viajan siempre a la velocidad de la luz
-    + $\lambda f=c$
+    + $\lambda f=c$ relacion entre frecuencia $f$, longitud de onda $\lambda$ y velocidad de la luz $c$
     + espectro directo con salto de frecuencia: transmision dificil de detectar y bloquear. militares, bluetooth, versiones anteriores de 802.11
-    + espectro directo de secuencia directa: multiples señales comparten ancho de banda. cdma, gps, 802.11b
-    + uwb
+    + espectro disperso de secuencia directa: multiples señales comparten ancho de banda. cdma (barker codes), gps, 802.11b
+    + uwb (banda ultra ancha)
 *** radiotransmision
     + las ondas de radio son faciles de generar, recorren largas distancias y penetran edificios
     + son omnidireccionales
@@ -772,6 +830,40 @@
     + para evadir congestion, tcp usa dos tecnicas
       + multiplicative decrease: el tamaño de la ventana es el minimo del enviado en el ack y un tamaño de ventana de congestion. los dos inician iguales. cuando se pierde un segmento se reduce la ventana de congestion a la mitad
       + slow-start: cuando la congestion se alivia. por cada ack se aumenta el tamaño de segmento en 1. lo que no quiere decir que sea lento porque se por cada ack que se devuelve por cada segmento
+    + congestion
+      + el modelo de capas no deja que haya comunicacion entre distintas capas
+      + por ejemplo tcp puede llegar a reenviar paquetes creyendo que se perdieron cuando solo van lento en capas inferiores
+      + la transmision se maneja con colas, por lo tanto se busca optimizar su uso
+      + una politica es que si la cola esta llena cuando llega un datagrama lo descarta
+      + como los datagramas son multiplexados, es mas probable que se descarte 1 de n host que n de un solo host (sincronizacion global)
+    + random early dicard (red)
+      + tecnica utilizada para evitar la sincronizacion global
+      + se mantienen dos marcas en la cola: /tmin/ y /tmax/
+      + si la cola tiene menos de /tmin/ datagramas agregarlo
+      + si tiene mas de /tmax/ descartarlo
+      + si tiene entre /tmin/ y /tmax/ descartarlo con una probabilidad /p/
+    + estableciendo una conexion tcp
+      + /three-way handshake/: envia SYN (seq=x) -> recibe SYN, envia SYN (seq=y) y ACK (seq=x+1) -> rebice SYN+ACK, envia ACK (seq=y+1) -> recibe ACK
+      + una vez establecida la conexion, la informacion puede fluir en cualquier direccion, no hay maestro ni esclavo
+    + numeros de secuencia iniciales
+      + los dos extremos elijen numeros de secuencia al azar al hacer el /twh/. no pueden ser siempre los mismos
+      + siempre los ack siguen la convencion de enviar el numero de secuencia del siguiente octeto esperado
+    + cerrando una conexion tcp
+      + /twh/ modificado
+      + como es full duplex, cualquiera de los dos puede terminar independientemente del otro
+      + cuando termina de enviar, un host espera el ack para cerrar su mitad de la conexion enviando un fin
+      + despues deja de enviar informacion, pero puede seguir recibiendo y enviando paquetes ack
+    + se puede resetear la conexion mediante el paquete rst
+    + forzando en envio
+      + tcp acumula octetos para mandar los segmentos completos y asi hacer mas eficiente la comunicacion
+      + esto puede interferir con ciertas aplicaciones, por ejemplo mandar caracteres que se presionan por teclado que necesitan verse de forma inmediata
+      + tcp provee una operacion push que obliga a enviar aunque el buffer no este lleno
+      + se prende el bit psh para que la aplicacion tambien lo reciba al toque
+    + sindrome de ventana tonta
+      + cuando el receptor es mucho mas lento que el emisor
+      + caso extremo: el emisor envia muchos datos que llenan el buffer del receptor. el receptor manda con el ack el tamaño disponible que es 1 octeto. el emisor sigue enviando de a un octeto pero tiene que pasar por todas las capas inferiores, lo que es muy ineficiente
+      + para evitar esto se evita enviar pequeñas cantidades de datos por segmento, asi como tambien devolver tamaños disponibles pequeños
+      + AQUI ESTOY
 * capa de aplicacion
 ** dns
    + traducir de nombre a direccion ip
@@ -865,3 +957,6 @@
       + segun posicion geografica: para devolver direcciones que esten mas cerca
       + si ciertas direcciones tienen mas privilegios se les puede devolver una respuesta especial que al resto, pero las consultas siempre son con el mismo nombre de dominio
       + equilibrio de carga
+** firewall
+*** iptables
+    + 
