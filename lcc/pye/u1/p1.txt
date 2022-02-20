@@ -1,0 +1,77 @@
+1.
+a.
+h0:la aspirina no ayuda
+h1:la aspirina ayuda
+b.
+h0:el nuevo material no extiende la vida
+h1:el nuevo material extiende la vida
+unilateral por derecha
+c.
+h0:a=50%
+h1:a~50%
+bilateral
+2.
+a.
+h0:ph=pm
+h1:ph~pm
+b.
+h1
+3.
+a.
+unilateral a izquierda
+b.
+a=6/18=1/3
+b=8/18=4/9
+potencia=1-b=1-4/9=5/9
+c.
+el dado esta cargado
+4.
+a.
+unilateral a derecha
+b.
+de $2 a derecha
+c.
+de $-1 a derecha
+d.
+mayor
+e.
+de $2.6 a derecha en grafico h0
+de $2.6 a izquierda en grafico h1
+de $2.6 a derecha en grafico h1
+si, porque es mas extremo que 2.6. en ese caso rechazaria h0
+5.
+a.
+unilateral a derecha
+b.
+a:x>=4.8
+b:x< 4.8
+c.
+p:x>=4.7
+d.
+no, porque segun la regla deberia ser mayor o igual a 4.8
+6.
+a.
+a=2/30=1/15
+b.
+p=3/30=1/10
+c.
+b suponiendo B=23/30
+b suponiendo C=23/30
+7.
+no, falta la regla
+8.
+a.
+falso. ejercicio 3.b.
+b.
+falso. error tipo 2 es aceptar la h0 siendo verdadera h1. pero h0 es verdadera
+c.
+verdadero
+d.
+falso. se puede cometer un error
+9.
+b
+10.
+a.
+h0:la caja que se muestra es la a
+h1:la caja que se muestra es la b
+b.

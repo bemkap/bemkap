@@ -1,0 +1,20 @@
+barreras.h:
+ implementa las barreras descriptas en la practica
+
+board.h:
+ el tablero se implementa con dos buffers, uno activo y uno secundario
+ las variables del struct board_t son cantidad de columnas(c), de filas(r), y tablero activo(act)
+ cada tablero se guarda en un arreglo de una dimension, poniendo una fila despues de otra
+ las funciones init devuelven 0 si hay error, sino la cantidad de celdas del tablero
+ board_show escribe las filas en *res al final de cada una le agrega '\n' y '\0' al final de *res. por lo que el tamaño de *res debe ser (columnas+1)*filas+1
+ board_get devuelve los valores del buffer activo, mientras que set cambia los valores del buffer secundario. esto se hace para simular la actualizacion simultanea
+ agrege la funcion board_swap que intercambia los buffers, es la funcion que "aplica" los cambios
+ 
+game.h:
+ para decodificar los numeros de rle se usa que si n=d1d2...dk (n tiene k digitos), n=((d1*10+d2)*10+...)*10+dk
+ al iniciar se divide el tablero en n zonas contiguas en memoria para los threads
+ hay un hilo especial que manejara el intercambio de los buffers
+ el intercambio de buffers se realiza con dos barreras de la siguiente manera:
+   1.todos los hilos calculan su zona y llegan a la primer barrera
+   2.el hilo especial llega tambien a la primer barrera, que se libera cuando estan todos
+   3.todos los hilos llegan a la segunda barrera, pero el especial antes intercambia los buffers. esto es para que no se intercambien los buffers antes que todos hayan terminado de calcular, y para que ninguno avance a la siguiente generacion antes del intercambio

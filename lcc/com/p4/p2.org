@@ -1,0 +1,83 @@
+#+TITLE: práctica N3
+#+DATE:
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage{fullpage}
+1. 
+   + la cabecera de ipv6 tiene menos campos, es más simple
+   + las direcciones de ipv6 son de 128 bits, las de ipv4 de 32
+   + renombramiento de varios campos
+   + tamaño de la cabecera de ipv6 es fijo (40 bytes), a diferencia del de ipv4
+2. 
+    se usan para enviar opciones adicionales, que se insertan sólo si son necesarias
+
+    como la cabecera base es fija, se implementan las opciones fuera de ésta para optimizar la lectura de los paquetes
+
+    se indican por el campo de la cabecera base /next header/, y el tamaño va en un campo en la cabecera de extensión
+3. 
+   1. 
+       el host fuente envía los paquetes considerando su propio mtu de 1600
+
+       los paquetes llegan al primer router, y ve que la salida tiene un mtu menor, de 1400, entonces envía un icmp de error al comienzo para que se baje el mtu a 1400
+
+       de nuevo se envían los paquetes pero fragmentados a 1400
+
+       pasan el primer router, pero cuando llegan al segundo pasa lo mismo, el mtu es inferior, entonces se envía otra vez un icmp de error a la fuente pidiendo que reduzca el tamaño de fragmentación
+
+       el host fuente manda ahora con mtu 1300, y esta vez llega a destino porque la última salida del último router tiene un mtu mayor a 1300. los paquetes llegan a destino
+   2. la fragmentación se realiza en la máquina host, a diferencia de ipv4 que la realiza cada router
+4. 
+   1. 
+       FF01:0000:0000:0000:0000:0000:0000:0001
+
+       FF01::1
+   2. 
+	2001:0000:1234:0000:0000:C1C0:ABCD:0876
+
+	2001:0:1234::C1C0:ABCD:0876
+
+	2001::1234:0:0:C1C0:ABCD:0876
+5. 
+   + unicast global
+     + globalmente ruteables. son las equivalentes a las ip públicas de ipv4
+     + rango de 2000 a 3fff
+     + formato:
+       |   3 |                    45 |        16 |           64 |
+       | 001 | global routing prefix | subnet id | interface id |
+   + unicast link-local
+     + sólo válidas en el enlace local donde la interfaz está conectada
+     + usadas para tareas administrativas, por ejemplo descubrimiento de vecinos
+     + no se rutean
+     + formato:
+       |   16 | 48 |           64 |
+       | fe80 |  0 | interface id |
+   + unicast unique-local
+     + ruteos internos dentro de un conjunto de enlaces
+     + interconexión de redes sin conflictos, puede haber comunicación sin internet
+     + no son ruteables en internet global
+     + formato:
+       |      7 | 1 |                   40 |        16 |           64 |
+       | fc00/7 | L | identificador global | subnet id | interface id |
+     + L=1: prefijo asignado local o L=0: prefijo asignado por la iana
+6. 
+   1. 2001:db8:0:8:: a 2001:db8:0:f:ffff:ffff:ffff:ffff
+   2. 2001:0:0:ad00:: a 2001:0:0:adff:ffff:ffff:ffff:ffff
+7. NO HAY QUE HACERLO
+8. HAY QUE HACERLO. NO SE COMO
+9. 
+   1. .
+      | R1 | 2001:db8:1234:1::/48 |
+      | R2 | 2001:db8:1234:2::/48 |
+      | R3 | 2001:db8:1234:3::/48 |
+      | A  | 2001:db8:1234:1::1   |
+      | B  | 2001:db8:1234:1::2   |
+      | C  | 2001:db8:1234:1::3   |
+      | D  | 2001:db8:1234:2::1   |
+      | E  | 2001:db8:1234:2::2   |
+      | F  | 2001:db8:1234:3::1   |
+      | G  | 2001:db8:1234:3::2   |
+   2. .
+      | A | fe80::1234 |
+      | B | fe80::2345 |
+      | C | fe80::3456 |
+      
+   

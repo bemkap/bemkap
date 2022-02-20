@@ -1,0 +1,147 @@
+esta fue mi evolución en el trabajo. las notas que fui tomando a medida que lo fui haciendo. traté de poner todos los problemas que me fui encontrando.
+
+09/6 wikipedia atomic broadcast.
+     paper xavier defago.
+     tipos de fallas de procesos.
+       crash: un proceso termina (por ejemplo con un error) y no vuelve a funcionar más.
+       omision: cuando de omite alguna acción (por ejemplo enviar o recibir mensajes).
+       timing: lo que tarda la acción de un proceso supera el límite de tiempo supuesto por el sistema.
+       bizantine: cualquier otro comportamiento arbitrario, incluso malicioso (no se tendrán en cuenta en este trabajo).
+10/6 git especificación.
+     experimentación código ejemplo.
+       los nodos asumen que hay un secuencializador funcionando.
+       la red es confiable y todos los mensajes llegar a destino tarde o temprano.
+
+       ERRORES O LIMITACIONES                                      SOLUCIONES
+       destloop no recibe mensaje fin                              agregar la guarda en el receive para fin.
+       si se termina con dest:stop() no termina el proceso sender  agregar unregister(sender) y la guarda de fin para el proceso.
+       si un nodo es también secuencializador no recibe mensajes   reemplazar en el foreach de secLoop nodes() por [node()|nodes()] porque node() no
+                                                                    pertenece a nodes(), para que se envíe también a sí mismo. en caso que sea solamente
+                                                                    secuencializador el mensaje se perderá.
+       si un nodo hace dest:start(Seq) una vez que ya se han       preguntar al sequencializador por que número va para iniciar el sender. se agrega una
+        mandado mensajes en la red, iniciará el proceso dest        guarda en el secuencializador para un mensaje query que devuelve el seqnum.
+        esperando el mensaje número 1, que ya se envió antes, y
+        se va a quedar esperando para siempre
+       si el secuencializador se cae no se informa a los nodos     monitorear el sequencializador y se crashea hacer stop(), aunque se cae toda la red.
+                                                                    se podría asignar el rol de secuencializador a otro nodo, pero se me ocurre que se
+                                                                    podrían perder mensajes, y además habría que mandar a todos los nodos quien es el nuevo
+                                                                    secuencializador y de alguna forma guardar en seqnum, o empezar de nuevo.
+       la red depende del secuencializador                         implementación del algoritmo isis donde se elimina el secuencializador y se decide por
+                                                                    acuerdo de los destinatarios el orden de los mensajes.
+11/6 wikipedia algoritmo isis.
+     encontre otra página con el algoritmo (https://studylib.net/doc/7830646/isis-algorithm-for-total-ordering-of-messages) y me basé en eso también
+      porque el de wikipedia no me quedó muy claro.
+     primero hice una traducción casi literal del algoritmo en la página anterior para probar: una función start que registra un proceso sender que
+      envía los mensajes y recibe las respuestas de los demás nodos. cuando quiere hacer el broadcast manda un mensaje a los demás avisándolo. los
+      otros le responden con su número de secuencia, y también se guarda en un queue de mensajes pero todavía sin poder hacer deliver de ellos. los
+      números se van recibiendo, y se va tomando el máximo. cuando se termina se manda el número de secuencia acordado a todos, para que modifiquen
+      el queue y manden los mensajes que ya son "mandables".      
+     el primer problema que me surgió fue que una vez que el nodo hace broadcast y pide propuestas, ¿cómo puede saber después que recibió las respuestas
+      de todos los demás?. lo que se me ocurrió fue: 1)monitorear todos los nodos de la red. 2)cuando se pide propuestas al hacer broadcast
+      guardar los nodos que hay en la red en una lista. 3)esperar respuesta de los nodos guardados eliminándolos de la lista guardada. 4)si se cae alguno
+      sacarlo también de la lista.
+12/6 cuando un nodo ingresa monitorea a todos los que ya estan en la red, envía un mensaje avisando que entró y que es nuevo para que los demás lo
+      monitoreen a el.
+     prueba con 4 nodos: los 4 hacen broadcast de un mensaje {N,node()} con N incrementándose cada vez, después hacen sleep de entre 0 y 5 segundos
+      y vuelven a hacer broadcast.
+
+     PROBLEMAS                                                           POSIBLES SOLUCIONES
+     cuando termino uno de los nodos a veces los otros dan error en      después de las modificaciones posteriores se arregló
+      el send, porque tratan de enviar el mensaje al nodo que ya no
+      existe, pero siempre se envían los mensajes a nodes() con foreach.
+      nodes() se evalúa antes de ejecutar la función en cada item.
+      ¿qué pasa si un nodo crashea mientras se está recorriendo la
+      lista? ¿es posible?.
+     el que hace broadcast al momento de hacerlo se llama a sí mismo     podría en vez de guardar sólo la lista de nodos, tener un map con elementos
+      con la lista nodes() para esperar sus respuestas. el problema es    {id,nodes()} e ir eliminando según el id de la respuesta con las propuestas.
+      que si antes de recibir todas las respuestas hace un broadcast
+      nuevamente, va a volver a llamarse con nodes() sin que se haya
+      acordado el orden de los mensajes, y sin que se hayan hecho
+      los adeliver.
+13/6 ¿cómo se conecta un nuevo nodo a la red?                            para conectarse decidí que cuando hace start/1 se pase por argumento el
+                                                                          nombre de otro nodo que ya pertenezca a la red, entonces hace un ping con
+                                                                          ese y estará conectado con todos.
+     ¿cómo se conecta el primer nodo? ¿cómo sabe un nodo que es          al conectarse el nodo debe conocer a alguno que pertenezca a la red, debe
+      el primero?                                                         ser un nombre conocido, así como una página web, o un servidor de chat. si se
+                                                                          quiere iniciar una nueva red, se usa start/0.
+      
+     con el nombre del nodo sólo se puede conectar dentro de una misma   TODO
+      computadora, ¿qué pasa si quiero una red por lan, o internet? 
+     si un nodo recibe la notificación que otro se cayó, lo elimina de   al recibir la notificación de nodedown, verificar las listas de espera para cada
+      su lista de espera y resulta que era el último, nunca va avisar     id, y si alguna es vacía propagar el mensaje de agreed
+      el número de secuencia acordado.
+
+14/6 nodo falla por "crash"                                              como erlang proporciona la facilidad de monitorear nodos, cuando se cae
+                                                                          alguno por error se informa a los demás, y lo que hacen es sacarlos
+                                                                          de su lista de espera de respuestas.
+     nodo falla por "timing"                                             se asume que el sistema de erlang es confiable, es decir, que siempre que se
+                                                                          mande un mensaje llegará tarde o temprano, aunque debería haber un límite de
+                                                                          cuan tarde puede llegar un mensaje. para esto se agrega un timeout para recibir
+                                                                          mensajes de propuestas después del broadcast, para cada mensaje que envío.
+                                                                          pasado el tiempo decido en base a los que ya me llegaron. cuando lleguen
+                                                                          las repuestas de los nodos atrasados simplementese ignorará el mensaje. estos
+                                                                          nodos también recibirán el agreed y harán adeliver, aunque como no propusieron
+                                                                          número de secuencia tendría que probar si se mantiene el orden.
+     nodo falla por "omision"                                            son un tipo especial de falla timing y la forma de manejar ellos incluye a estos.
+     nodo falla por "bizantine"                                          no se tienen en cuenta en este trabajo.
+     segunda prueba con 4 nodos: igual a la anterior, cierro alguno con control c, lo que sería como un crash, para ver como reaccionan los otros. para
+      ver si funciona correctamente veo si dos nodos reciben los mensajes de los otros dos en el mismo orden, asi para cada par. también veo si llegan
+      todos los mensajes y ninguno se repite.
+     tercera prueba con 4 nodos: agregué un define SLEEP que se usa para hacer timer:sleep cada vez que se recibe un mensaje, para simular un nodo que
+      falla por timeout u omision, aunque no se puede dar que todos los nodos superen el timeout, porque no va a andar. probé también salir con algún
+      nodo y entrar de nuevo, como si fuera alguien que ingresa una vez iniciada la red.
+15/6 cuando se hace el adeliver la acción por defecto es imprimir el     cuando se llama a la función start, se puede pasa por argumento una función
+      mensaje por pantalla, pero si se quiere hacer otra cosa con el      que tome un parámetro(mensaje) y realice una acción. ahora tengo funciones
+      mensaje no se puede.                                                start con argumentos: (nodo,handler), (handler), (nodo), (). pero no podía
+                                                                          diferenciar las de (handler) y (nodo), así que cambié que cuando es el primero
+                                                                          se mande a sí mismo como nodo.
+16/6 el nodo que hace el broadcast no se automanda el mensaje. depende   un nodo cuando manda el mensaje sender_propose o agreed lo manda a
+      el uso que se le de quizás hace falta o no, pero para el ledger     [node()|nodes()] en vez de nodes() solo.
+      que hay que hacer después tendría que recibirlo para que todos     
+      mantengan el mismo estado de los registros.
+     ahora para las pruebas como los nodos reciben los mensajes de sí mismos comparo si todos tienen la misma lista de mensajes en el mismo orden
+     inicio implementación del legder. la idea es armar una red de nodos y hacer broadcast atómico de algo como {append,X} y llamar a deliver con una
+      función que agrege a una lista el elemento X.
+     cuando un nodo ingresa a una red que ya ha intercambiado mensajes  al inicio se pide a los nodos existentes el estado del ledger y se queda con el
+      debe pedir el estado del ledger para mantener una coherencia.      más largo, al ser broadcast atómico sería el ledger completo al momento.
+17/6 ¿qué hace el nodo que ingresa mientras espera las respuestas de    va a esperar a que todos le respondan. la red va a seguir mandando appends, pero
+      los otros?                                                         cuando el nodo haga los adeliver quedarán en el buzón de sender, y se usarán
+                                                                         después.
+     ¿cómo sabe el nodo que ingresa que ya le respondieron todos los    agregué en el módulo node una función handler para que cuando un nodo falle
+      demás?                                                             se tome una acción por parte del que use el módulo, que en el ledger es la misma
+                                                                         función que la de adeliver, mandárselo al ledgerloop.
+     agregué records para argumentos de handlers, para que tengan valores por defecto, y para los elementos del queue
+18/6 no me llamaba a las funciones handler para los delivers, y probé hasta que me di cuenta que era por un problema con los records de elementos del
+      queue, así que los saqué, dejé handler nada más.
+19/6 tenía varias opciones para implementar la función get: la lista como valor, o que la imprima y no devuelva nada. decidí que devuelva el valor, así
+      puede ser usado para otra cosa si se quiere.
+     a veces los mensajes de broadcast no se mandan a todos los nodos. cuando inicia que hace el ping a un nodo conocido de la red, parece que por un
+      momento nodes() no devuelve a todos los otros, sino a uno solo. si hago `net_adm:ping(Nodo1),nodes().` con Nodo que también está conectado con Nodo2
+      por ejemplo, nodes() me devuelve [Node1] nada más. si después hago de nuevo nodes() de devuelve a los dos. modifiqué start para que no haga ping ahí
+      sino que el nodo nuevo va a tener que estar conectado de antes.
+     ahora se podría dar el siguiente deadlock:
+      -n1 se conecta con ping a la red
+      -antes de hacer start n2 también se conecta
+      -n1 pide a nodes()(incluído n2) el estado actual
+      -n2 hace lo mismo
+      -los dos se quedan esperando la respuesta {ledger,L} y ninguno puede salir de la función ledgerinit
+      para eso agregué la respuesta a get_init en ledgerinit que le devuelve una lista vacía, porque todavía no está completa la mía.
+20/6 en las pruebas a veces no salen impresos todos los append, pero quizás al momento de pedir la lista todavía no se habían hecho efectivos, y el nodo
+      se desconecta.
+     analizando las propiedades del sistema distribuído en esta implementación:
+      availability: se tiene excepto en el momento en que un nodo ingresa y pide el estado actual del ledger, porque hasta que todos le responden no
+       sigue
+      consistency: no se tiene siempre, como ya se vio en las pruebas a veces puede hacerse un get y no devolver el último append. quizás es porque el
+       append pasa por el broadcast primero, los nodos tienen que llegar al consenso, y después recién se agrega al ledger. en cambio el get manda nomás
+       un mensaje al proceso registrado para que devuelva la lista que tiene en el momento, aunque si tendrá eventual consistency.
+      partition tolerance: en este trabajo se supuso que los mensajes siempre llegan, es decir que erlang me asegura que no se pierden, y los procesos no
+       pueden fallar por omisión. se pueden retrasar, pero si pongo un timeout puede que el voto de un nodo que venga muy atrasado sea descartado y ese
+       voto me afecte la consistencia del sistema. entonces preferí que funcione potencialmente lento pero que funcione bien, haciendo esa suposición sobre
+       erlang.
+21/6 puse en get que se haga un broadcast del mensaje en vez de mandarlo directamente a ledger_sender, así entra en el sistema y será devuelto en
+      el orden correspondiente.
+     cuando un nodo hace stop, termina normalmente pero no avisa a los demás que terminó. lo que provocaba que los otros se queden esperando su respuesta.       agregué en la respuesta a die, que avise a los demás nodos con {nodedown,N}
+22/6 cuando un nodo se desconecta, que manda el mensaje {nodedown,N} lo elimino exiplicitamente con disconnect_node porque a veces me quedaba por un
+      momento en nodes().
+     agregué la condición de desempate para números de secuencias iguales por el nombre del nodo.
+     

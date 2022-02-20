@@ -1,0 +1,14 @@
+$TTL	1D
+$ORIGIN	music.com.
+@	IN	SOA	ns1	hostmaster(
+				2021110300;
+				1d;
+				1h;
+				1w;
+				2h;
+				)
+	IN	NS	ns1
+	IN 	NS	ns2
+
+ns1	IN	A	192.168.235.1
+ns2	IN	A	192.168.235.2

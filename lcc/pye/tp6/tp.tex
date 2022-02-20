@@ -1,0 +1,186 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{diagbox}
+\title{\LARGE \textbf{Trabajo práctico: unidad 6}\\\large Probabilidad y estadística}
+\author{Martín Rossi}
+\date{}
+\begin{document}
+\maketitle
+\subsection*{1.}
+$X_i: \textrm{'beneficio obtenido en la apuesta i' para } i=1...50 \textrm{ con distribuciones:}$
+
+$P_{X_i}(5c)=0.1$
+
+$P_{X_i}(-c)=0.9$\\
+
+Entonces para $i=1...50$:
+
+$E(X_i)=5c*0.1+(-c)*0.9=-0.4c$
+
+$E(X_i^2)=(5c)^2*0.1+(-c)^2*0.9=25c^2*0.1+c^2*0.9=3.4c^2$
+
+$V(X_i)=E(X_i^2)-E(X_i)^2=3.4c^2-(-0.4c)^2=3.4c^2-0.16c^2=3.24c^2$\\
+
+Ahora defino la variable aleatoria:
+
+$S=X_1+X_2+...+X_{50}$
+
+Lo que hay que calcular es $P(S \ge 0)$.
+
+Como las $X_i$ son independientes y con varianzas finitas, por el teorema central del límite S es aproximadamente normal y sus parámetros son:
+
+$\mu=E(X_1)+E(X_2)+...+E(X_{50})=50*(-0.4c)=-20c$
+
+$\sigma=\sqrt{V(X_1)+V(X_2)+...+V(X_{50})}=\sqrt{50*3.24c^2}=12.7279c$\\
+
+Si defino $Z=\frac{S-\mu}{\sigma}=\frac{S+20c}{12.7279c}, Z \sim N(0,1)$
+\begin{align*}
+  P(S \ge 0)&=P(\frac{S+20c}{12.7279c}\ge\frac{0+20c}{12.7279c})\\
+            &=P(Z\ge 1.5714)\\
+            &=1-P(Z<1.5714)\\
+            &\approx 1-0.9418\\
+            &=0.0582
+\end{align*}
+
+Por lo tanto la probabilidad de que después de 50 apuestas no se pierda dinero es aproximadamente 5.82\%.
+\newpage
+\subsection*{2.}
+$R: \textrm{'longitud del recipiente en cm'}, R \sim N(\mu=65,\sigma=0.5)$
+
+$A: \textrm{'longitud de un bloque tipo A en cm'}, E(A)=1.95, SD(A)=0.01$
+
+$B: \textrm{'longitud de un bloque tipo B en cm'}, E(B)=0.83, SD(B)=0.02$\\
+
+Y defino las variables aleatorias:
+
+$S_A=A+A+...+A$ (20 veces)
+
+$S_B=B+B+...+B$ (30 veces)
+
+Por el teorema central del límite, como $S_A$ y $S_B$ son suma de variables aleatorias independientes con varianzas finitas, las dos tienen aproximadamente una distribución normal y sus parámetros son:
+
+$E(S_A)=20*E(A)=20*1.95=39$
+
+$SD(S_A)=+\sqrt{20*0.01^2}=0.0447$\\
+
+$E(S_B)=30*E(B)=30*0.83=24.9$
+
+$SD(S_B)=+\sqrt{30*0.02^2}=0.1095$\\
+
+Ahora defino las nuevas variables aleatorias:
+
+$S=S_A+S_B$
+
+$X=S-R$\\
+
+Como S es suma de variables aleatorias independientes con distribución aproximadamente normal, por la propiedad reproductiva de la distribución normal S también es aproximadamente normal con parámetros:
+
+$E(S)=39+24.9=63.9$
+
+$SD(S)=+\sqrt{0.0447^2+0.1095^2}=0.1183$\\
+
+X es una resta de variables aleatorias normales independientes, X también lo es y sus parámetros son:
+
+$E(X)=63.9-65=-1.1$
+
+$SD(X)=\sqrt{0.1183^2+0.5^2}=\sqrt{0.014+0.25}=0.5138$
+
+Lo que hay que calcular es $P(S\le R)\iff P(S-R\le 0) \iff P(X\le 0)$.\\
+
+Si ahora defino $Z=\frac{X+1.1}{0.5138}, Z \sim N(0,1)$.
+\begin{align*}
+  P_X(X\le 0)&=P_X(\frac{X+1.1}{0.5138}\le\frac{1.1}{0.5138})\\
+             &=P_Z(Z\le 2.1409)\tag{Por la probabilidad de sucesos equivalentes}\\
+             &\approx 0.9838
+\end{align*}
+
+El ensamble entrará en el recipiente con una probabilidad de aproximadamente 98.38\%.
+\newpage
+\subsection*{3.}
+\subsubsection*{a.}
+\begin{tabular}{|r|r|r|r|r|}
+  \hline
+  \diagbox{X}{Y}&0&1&2&$P_x(x)$\\\hline
+  0&0.25&0.35&0.1&0.7\\\hline
+  1&0.15&0.05&0.1&0.3\\\hline
+  $P_y(y)$&0.4&0.4&0.2&1\\\hline
+\end{tabular}\\
+
+$\mathbf{P_y(Y=2)=0.2}$\\
+
+$\mathbf{P(X=1,Y=0)=0.15}$\\
+
+$0.3=E(X)=0*P_x(X=0)+1*P_x(X=1)=P_x(X=1)\iff \mathbf{P_x(X=1)=0.3}$\\
+
+$1=P_x(X=0)+P_x(X=1)=P_x(X=0)+0.3\iff \mathbf{P_x(X=0)=0.7}$\\
+
+$0.8=E(Y)=0*P_y(Y=0)+1*P_y(Y=1)+2*P_y(Y=2)=P_y(Y=1)+2*0.2\iff$
+
+$\mathbf{P_y(Y=1)=0.4}$\\
+
+$1=P_y(Y=0)+P_y(Y=1)+P_y(Y=2)=P_y(Y=0)+0.4+0.2\iff \mathbf{P_y(Y=0)=0.4}$\\
+
+$0.5=P(Y=1|X=0)=\frac{P(Y=1,X=0)}{P_x(X=0)}\iff \mathbf{P(Y=1,X=0)=0.5*0.7=0.35}$\\
+
+$0.4=P_y(Y=1)=P(X=0,Y=1)+P(X=1,Y=1)=0.35+P(X=1,Y=1)\iff \mathbf{P(X=1,Y=1)=0.05}$\\
+
+$0.4=P_y(Y=0)=P(X=0,Y=0)+P(X=1,Y=0)=P(X=0,Y=0)+0.15\iff \mathbf{P(X=0,Y=0)=0.25}$\\
+
+$0.7=P_x(X=0)=P(X=0,Y=0)+P(X=0,Y=1)+P(X=0,Y=2)=0.25+0.35+P(X=0,Y=2)\iff \mathbf{P(X=0,Y=2)=0.1}$\\
+
+$0.3=P_x(X=1)=P(X=1,Y=0)+P(X=1,Y=1)+P(X=1,Y=2)=0.15+0.05+P(X=0,Y=2)\iff \mathbf{P(X=0,Y=2)=0.1}$\\
+
+Verificación de las varianzas:\\
+
+$0.21=V(X)=E(X^2)-E(X)^2=0.3-0.3^2=0.21$\\
+
+$0.56=V(Y)=E(Y^2)-E(Y)^2=(0.4+4*0.2)-0.8^2=0.56$
+\newpage
+\subsubsection*{b.}
+Para ver si las variables son independientes se comprueba $P(X=x,Y=y)=P_x(x)P_y(y),\forall x,y$:\\
+
+$P(X=0,Y=0)=0.25$
+
+$P_x(0)P_y(0)=0.4*0.7=0.28$
+
+Por lo tanto las variables no son independientes.\\
+\begin{align*}
+  \rho&=\frac{Cov(X,Y)}{\sqrt{V(X)V(Y)}}\\
+      &=\frac{\sum_{(x,y)\in S}P(x,y)(x-0.3)(y-0.8)}{0.3429}\tag{1}\\
+      &=\frac{0.01}{0.3429}\\
+      &=0.02916
+\end{align*}
+
+(1)$Cov(X,Y)=\sum_{(x,y)\in S}P(x,y)(x-E(X))(y-E(Y))$ para variables discretas.
+\subsubsection*{c.}
+$P(Y=2|X=0)=\frac{P(Y=2,X=0)}{P_x(X=0)}=\frac{0.1}{0.7}=0.1429$
+
+Dado que no hay defectos de tipo D1 en una pieza, hay un 14.29\% de probabilidades de que haya 2 defectos de tipo D2 en la misma.
+\subsubsection*{d.}
+$C: \textrm{'costo de reparación en una pieza'}$
+
+$C=3*X+4*Y$
+\begin{align*}
+  E(C)&=E(3*X+4*Y)\\
+      &=3*E(X)+4*E(Y)\tag{Esperanza de combinación lineal}\\
+      &=3*0.3+4*0.8\\
+      &=4.1
+\end{align*}
+\begin{align*}
+  E(C^2)&=E((3*X+4*Y)^2)\\
+        &=E(9*X^2+24*X*Y+16*Y^2)\\
+        &=9*E(X^2)+24*E(X*Y)+16*E(Y^2)\tag{Linealidad de la esperanza}\\
+        &=9*0.3+24*E(X*Y)+16*0.8\tag{Apartado \textbf{a.}}\\
+        &=15.5+24*(Cov(X,Y)+E(X)*E(Y))\tag{Definción de covarianza}\\
+        &=15.5+24*(0.01+0.3*0.8)\tag{$Cov(X,Y)=0.01$, apartado \textbf{b.}}\\
+        &=21.5
+\end{align*}
+\begin{align*}
+  V(C)&=E(C^2)-E(C)^2\\
+      &=21.5-4.1^2\\
+      &=4.69
+\end{align*}
+\end{document}

@@ -1,0 +1,13 @@
+$TTL	1D
+$ORIGIN	greenday.music.com.
+@	IN	SOA	ns	hostmaster(
+				2021110300;
+				1d;
+				1h;
+				1w;
+				2h;
+				)
+	IN	NS	ns
+	IN	NS	ns1.music.com.
+
+ns	IN	A	192.168.235.160

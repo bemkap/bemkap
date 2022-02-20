@@ -1,0 +1,119 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\title{\LARGE \textbf{Trabajo práctico: unidad 5}\\\large Probabilidad y estadística}
+\author{Martín Rossi}
+\date{}
+\begin{document}
+\maketitle
+\subsection*{1.}
+
+$X: \textrm{tiempo de vida en años del marcapasos}$
+
+$X \sim exp(\alpha)$
+
+$E(X)=16$\\
+
+Se sabe que si $X \sim exp(\alpha)$, entonces $E(X)=\frac{1}{\alpha}$, por lo tanto $E(X)=16=\frac{1}{\alpha}\implies \alpha=\frac{1}{16}$
+
+$X \sim exp(\frac{1}{16})$\\
+
+- ¿Cuál es la probabilidad de que a una persona a la que se le ha implantado este marcapasos se le deba reimplantar otro antes de 20 años?\\
+
+$P(X<20)=F(20)=1-e^{-\frac{1}{16}*20} \approx 0.7135$
+
+La probabilidad es de 71.35\% aproximadamente\\
+
+- Si el marcapasos lleva funcionando correctamente 5 años en un paciente, ¿cuál es la probabilidad de que haya que cambiarlo antes de 25 años?\\
+\begin{align*}
+  P(X<25|X>5)&=\frac{P(X<25,X>5)}{P(X>5)}\tag{definición probabilidad condicional}\\
+             &=\frac{F(25)-F(5)}{1-F(5)}\\
+             &=\frac{1-e^{-\frac{1}{16}*25}-(1-e^{-\frac{1}{16}*5})}{1-(1-e^{-\frac{1}{16}*5})}\tag{$X \sim exp(\frac{1}{16})$}\\
+             % &=\frac{-e^{-\frac{1}{16}*25}+e^{-\frac{1}{16}*5}}{e^{-\frac{1}{16}*5}}\\
+             % &=-e^{-\frac{20}{16}}+1\\
+             &\approx 0.7135
+\end{align*}
+
+La probabilidad es de 71.35\% aproximadamente
+\newpage
+\subsection*{2.}
+
+$X: \textrm{duración en horas de un láser semiconductor a potencia constante}$\\
+
+Se tiene el dato
+
+$X \sim N(\mu=7000,\sigma=600)$\\
+
+Si defino una nueva variable $Z=\frac{X-\mu}{\sigma}=\frac{X-7000}{600}$ entonces
+
+$Z \sim N(0,1)$
+\subsubsection*{a.} ¿Cuál es la probabilidad de que el láser falle antes de 5.000 horas?
+\begin{align*}
+  P_X(X<5000)&=P_X(\frac{X-7000}{600}<\frac{5000-7000}{600})\\
+           &=P_Z(Z<-\frac{10}{3})\tag{Probabilidad de sucesos equivalentes}\\
+           &=F_Z(-\frac{10}{3})\\
+           &=0.0004\tag{Tabla de distribución normal estandarizada}
+\end{align*}
+
+La probabilidad de que falle antes de las 5000 horas es 0.04\%
+\subsubsection*{b.} ¿Cuál es la duración en horas excedida por el 95\% de los láseres?\\
+
+Lo que hay que buscar es $x$ tal que:
+
+$P_X(X>x)=0.95 \iff P_X(X\le x)=0.05 \iff F_X(x)=0.05$\\
+
+Para ello primero se busca el valor $z$ tal que $F_Z(z)=0.05$
+
+En la tabla están los valores para 0.0495 y 0.0505, que son -1.65 y -1.64 respectivamente, por eso se tomará el valor $z=-1.645$ para el cual $F_Z(z)\approx 0.05$\\
+
+Entonces usando la probabilidad de sucesos equivalentes con $Z=H(X)=\frac{X-7000}{600}$
+\[0.05 \approx F_Z(-1.645)=F_X(-1.645*600+7000)=F_X(6013)\]
+
+La duración excedida por el 95\% es de 6013 horas aproximadamente
+\newpage
+\subsubsection*{c.} Si se hace uso de tres láseres en un producto y se supone que fallan de manera independiente. ¿Cuál es la probabilidad de que tres sigan funcionando después de 7.000 horas?\\
+
+Se calcula la probabilidad de que uno funcione más de 7000 horas
+\begin{align*}
+  P_X(X>7000)&=1-P_X(X\le 7000)\\
+             &=1-0.5\tag{1}\\
+             &=0.5
+\end{align*}
+(1) es 0.5 porque la distribución normal tiene media (y mediana) $\mu=7000$, y la mediana es el valor $m$ tal que P($X\le m$)=0.5\\
+
+Como los sucesos son independientes la probabilidad de que los 3 sigan funcionando es el producto de las probabilidades de cada uno, o sea, $0.5^3=0.125$
+\subsection*{3.}
+$T_c: \textrm{temperatura en grados centígrados a la que está expuesta una computadora en el campo}$
+
+$T_c \sim U[15,21]$
+\[f_{T_c}(x)=\begin{cases}
+    \frac{1}{21-15}=\frac{1}{6}&15\le x\le 21\\
+    0&sino
+  \end{cases}
+\]
+
+$T_f: \textrm{temperatura en grados fahrenheit a la que está expuesta una computadora en el campo}$
+
+$T_f=\frac{9}{5}T_c+32$\\
+
+$T_f$ es obtenida a partir de una función de variable aleatoria $H$ sobre $T_c$ ($T_f=H(T_c)$), donde $H(X)=\frac{9}{5}X+32\implies H^{-1}(X)=\frac{5}{9}(X-32)$
+\begin{align*}
+  F_{T_f}(x)&=P_{T_f}(T_f \le x)\\
+            &=P_{T_c}(\frac{9}{5}T_c+32\le x)\tag{Probabilidad de sucesos equivalentes}\\
+            &=P_{T_c}(T_c \le \frac{5}{9}(x-32))\\
+            &=F_{T_c}(\frac{5}{9}(x-32))\\
+            &=\begin{cases}
+              0&x<59\\
+              \frac{\frac{5}{9}(x-32)-15}{6}&59\le x\le\frac{349}{5}\tag{$15\le \frac{5}{9}(x-32)\le 21\implies 59\le x\le\frac{349}{5}$}\\
+              1&\frac{349}{5}<x
+              \end{cases}
+\end{align*}
+La función de densidad de probabilidad $f_{T_f}$ es la derivada de $F_{T_f}$:
+\[f_{T_f}(x)=\begin{cases}
+    \frac{5}{54}&59\le x\le\frac{349}{5}\\
+    0&sino
+  \end{cases}
+\]
+\end{document}

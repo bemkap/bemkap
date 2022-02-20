@@ -1,0 +1,12 @@
+ejemplo de deadlock:
+
+agente provee tabaco y papel
+fumador 1 agarra tabaco
+fumador 3 agarra papel
+
+en ese caso quedarian todos esperando
+
+fumador 1 esperando papel
+fumador 2 esperando fosforos
+fumador 3 esperando fosforos
+agente esperando que alguno termine de fumar

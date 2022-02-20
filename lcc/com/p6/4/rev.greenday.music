@@ -1,0 +1,14 @@
+$TTL	7200
+$ORIGIN	128/235.168.192.in-addr.arpa.
+
+@	IN	SOA	ns1.music.com.	hostmaster.greenday.music.com.(
+					2021110300;
+					1d;
+					1h;
+					1w;
+					2h;
+					)
+	IN	NS	ns.greenday.music.com.
+	IN	NS	ns1.music.com.
+
+160	IN	PTR	ns.greenday.music.com.

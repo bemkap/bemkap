@@ -1,0 +1,120 @@
+#+TITLE: práctica N1
+#+DATE:
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage{fullpage}
+1. 
+   1. 
+      + punto a punto
+	* enlace permanente entre dos puntos finales
+      + bus
+        * cada nodo está conectado a un cable central
+        * todas las transmisiones en la red se realizan por este cable central o "bus"
+        * más barata de implementar pero más dificil de manejar
+        * si falla el bus la red queda dividida en dos
+	* cable coaxil
+	* para agregar nodos hay que conectarse al bus central
+      + estrella
+        * cada nodo periférico se conecta a uno central llamado "switch" o "hub"
+	* cliente-servidor
+	* toda la comunicación pasa por el nodo central, que trabaja como repetidor
+	* fácil de diseñar e implementar. simplicidad para agregar nodos
+	* si falla el nodo central falla toda la red
+	* *estrella extendida*: una estrella central y varias subredes con repetidores
+	* *estrella distribuída*: varias subredes estrella conectadas cada una con la siguiente (daisy-chain)
+	* mucho flujo de datos
+	* par trenzado
+      + anillo
+	* daisy-chain formando un bucle
+	* los datos viajan sólo en una dirección
+	* el rendimiento es mejor que el de la topología bus cuando hay mucha carga
+	* no hay necesidad de un servidor
+	* cuellos de botella
+	* si un nodo no puede retransmitir la red falla si es half duplex
+	* fibra óptica
+	* no es sencillo agregar nuevos nodos
+      + malla
+        * *totalmente conectada*
+        * *parcialmente conectada*
+        * mucho flujo de datos y redundancia
+   2. 
+      + bus: 1, cada nodo con el cable central
+      + estrella: n-1, cada nodo con el nodo central
+      + anillo: n, cada uno con el siguiente y el último con el primero
+      + malla: hasta $\frac{n(n-1)}{2}$, según sea totalmente o parcialmente conectada
+2. 
+   1. si falla una conexión dos nodos no podrán comunicarse directamente, pero si a dos saltos. los demás se comunican sin problemas
+   2. un nodo no puede comunicarse con el central
+   3. si falla el bus la red se parte en dos
+   4. un fallo en cualquier conexión hace que no pueda haber comunicación
+3. la frecuencia más alta es 20KHz, 20000 ciclos por segundo. por el teorema de nyquist el muestreo debe ser de por lo menos 40000 veces por segundo, el doble
+4. $C\approx 0.332*B*S/N=0.332*1000*24=7968$, casi 8kbit/s
+5. 
+   1. bridge o switch. crea dos o más segmentos y si se quiere enviar de un segmento al mismo se corta la comunicación a los demás, alivianando un poco el tráfico
+   2. repetidor. sólo se quieren conectar dos dispositivos lejanos
+   3. hub. que repita la señal de una red a otra, ya que son pocos dispositivos
+   4. bridge o switch. como tienen diferentes estándares, hay que hacer alguna modificación a los datos de capa 1 para que sean entendidos por la otra red
+6. 
+   1. distancia: algunos medios tienen más alcance que otros
+   2. ambiente: condiciones ambientales determinan que medio es más conveniente usar, por ejemplo si es interior o exterior, clima, agua o tierra   
+7. la C está más cerca de A. el mensaje rts llega al B y a C pero no a D, que recién activa el nav cuando recibe el cts de B. D es una estación oculta para A
+8. 
+   1. subcapa control de acceso al medio
+      + iniciación: intercambio de tramas de control para establecer la disponibilidad de las estaciones. terminación: liberación de los recursos. identificación: saber dónde eviar o de dónde viene una trama
+      + segmentación y agrupación: dividir o agrupar la información según la longitud de las tramas
+      + sincronización octeto caracter: interpretar correctamente los bits. decodificarlos correctamente
+      + delimitación de trama: separar las tramas para que sean entendidas por la otra terminal
+   2. subcapa control enlace lógico
+      + corrección de errores: implementar mecanismos para minimizar los errores que pueden surgir del ruido del medio
+      + control de flujo: necesario para no saturar a un receptor con muchos emisores
+      + recuperación de fallos: procedimientos para detectar situaciones inusuales como pérdida de tramas, tramas duplicadas o fuera de tiempo
+9. DLE-STX-STX-DLE-DLE-ABC-DLE-ETX-DLE-BCD-DLE-STX
+
+   DLE-STX empieza la transmisión
+
+   DLE-DLE-ABC es DLE-ABC porque se usa un escape DLE
+
+   DLE-ETX termina la transmisión
+
+   se transmite STX-DLE-ABC
+10. 
+    1. sin conexión y sin acuse (tipo 1)
+    2. sin conexión y con acuse (tipo 3)
+    3. sin conexión y sin acuse (tipo 1)
+    4. con conexión (tipo 2)
+11. .
+    | capa física(802.11) | --> | capa física(802.3) |
+    | subcapa mac(802.11) |     | subcapa mac(802.3) |
+    | subcapa llc         |     | subcapa llc        |
+    | *notebook*          |     | *pc*               |
+12. .
+    |           | fastbit      | gigabit | fibra    | lan inalambrica |
+    | velocidad | 100mbps      | 1gbps   | infinita | 100mbps         |
+    | medio tx  | par trenzado | fibra   | fibra    | aire            |
+    | estandar  | 802.3        | 802.3   | 802.3    | 802.11          |
+13. el problema sucede cuando en una red la señal de una terminal A no llega a otra terminal B, por lo que los paquetes que envíe A no llegarán a B. se dice que B está oculta para A 
+14. 
+    1. no sería conveniente porque al haber estaciones ocultas no se podría determinar cuando hay colisiones
+15. 
+    1. a y b forman una red, c y d otra
+    2. tramas enviadas por un ap
+    3. a envía la última trama a b, c quiere empezar a enviar y d prende el nav
+16. no es posible que un mismo dispositvo sea maestro en dos piconets al mismo tiempo. el código de acceso se deriva de la identidad del maestro, por lo tanto no habría dos piconets, sino que sería una grande
+17. la version 4 disminuyó la latencia de 100ms a 6ms, cambió la topología de piconet a estrella-bus y aumentó la cantidad de esclavos activos de 7 a ilimitado
+18. en la versión clásica hay hasta 7 esclavos activos y la comunicación es síncronos. en ble es al revés
+19. si soporta streaming de audio, a diferencia de los anteriores
+20. 
+21. 
+    + incrementar tasa de datos
+    + reducir retardos
+    + ancho de banda escalable
+    + eficiencia espectral
+    + arquitectura simplificada y con ip
+    + diferentes tipos de usuarios
+    + mejor consumo de energía
+    + velocidad de bajada: 326Mbps con 4x4 antenas, 172Mbs con 2x2
+    + velocidad de subida: 86Mbps
+22. .
+    | red troncal epc    | ---> | red troncal epc    |
+    | red acceso e-utran |      | red acceso e-utran |
+    | smartphone lte     |      | smartphone lte     |
+23. sí. lte está enteramente basado en el protocolo ip, tanto llamadas de voz como transmisión de datos

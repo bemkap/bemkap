@@ -1,0 +1,5 @@
+
+#distancia
+
+#
+#stem(recorridos$distancia)

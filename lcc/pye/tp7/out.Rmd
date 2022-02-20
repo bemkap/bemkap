@@ -1,0 +1,423 @@
+---
+title: "Trabajo práctico: Procesos estocásticos"
+subtitle: "Licenciatura en ciencias de la computación, Universidad nacional de Rosario"
+author: Rossi, Martín
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup,include=F}
+knitr::opts_chunk$set(echo=TRUE)
+library("markovchain")
+library("diagram")
+library("poisson")
+```
+# 1.
+Se define un suceso A tal que $P(A)=p$
+
+y el proceso {$N_k$: cantidad de ensayos independientes hasta obtener k éxitos consecutivos de A}
+
+$\Omega=\{\omega:\omega=(\omega_1,\omega_2,...),\omega_i\in\{E,F\},i\in\mathbb{N}\}$, o sea, todas las combinaciones posibles de éxitos y fallos.
+
+$T=\mathbb{N}$ (valores que puede tomar $k$ en $N_k$)
+
+$E=\mathbb{N}$ (valores que puede tomar $N_k(\omega)$)
+
+## a.
+
+Se simularán 10 trayectorias del proceso, para ello se fijan $\omega_i$ para $i=0..9$ y se calculan los $N_2(\omega_i),N_3(\omega_i)$ y $N_4(\omega_i)$, $i=0..9$.
+
+$p=0.25$
+
+```{r,echo=F}
+wk<-function(k,p){
+  i<-0
+  n<-c(-1)
+  while(i<k){
+    n<-c(n,runif(1)<p)
+    if(n[length(n)]){i<-i+1}else{i<-0}
+  }
+  n[-1]
+}
+nk<-function(k,w){
+  i<-0
+  n<-1
+  while(i<k){
+    if(w[n]){i<-i+1}else{i<-0}
+    n<-n+1
+  }
+  n-1
+}
+wn<-replicate(10,runif(2000))<0.25
+M1a<-cbind(apply(wn,2,function(x)nk(2,x)),apply(wn,2,function(x)nk(3,x)),apply(wn,2,function(x)nk(4,x)))
+dimnames(M1a)[[2]]<-c("N2","N3","N4")
+dimnames(M1a)[[1]]<-paste("w",seq(0,9),sep="")
+M1a
+```
+
+## b.
+
+Se aproxima $E(N_k)$ como el promedio de las 10 trayectorias:
+```{r,echo=F}
+apply(M1a,2,sum)/10
+```
+\newpage
+# 2.
+
+## a.
+
+Simulación de 50 pasos del proceso {$D_n=2I_n-1$} donde ${I_n}$ es un proceso de Bernoulli con $p=0.85$. Se empieza a observar la partícula en un momento dado que corresponderá con $D_0$ del proceso.
+```{r,echo=F}
+M2a<-matrix((runif(50)<0.85)*2-1,nrow=5,byrow=T)
+dimnames(M2a)[[2]]<-seq(0,9)
+dimnames(M2a)[[1]]<-c(0,10,20,30,40)
+M2a
+```
+
+## b.
+
+Se define el proceso {$S_n=D_0+D_1+...+D_n$} que corresponde a la posición de la partícula al momento $n$.
+
+Una realización de un proceso estocástico es la sucesión de infinitos valores que toman las variables. Se simularán los primeros 100 pasos de la misma con $p=0.85$.
+```{r,echo=F}
+M2b<-matrix(cumsum((runif(100)<0.85)*2-1),nrow=10,byrow=T)
+dimnames(M2b)[[2]]<-seq(0,9)
+dimnames(M2b)[[1]]<-10*seq(0,9)
+M2b
+```
+Se puede deducir que $\lim_{n \to \infty} S_n=\infty$ porque $p>0.5$.
+\newpage
+
+# 3.
+
+Se define el proceso de Bernoulli {$I_n$} con $p$ como la probabilidad de ganar el juego. Como en el ejercicio anterior $2I_i-1$ es $1$ o $-1$, lo que puede representar la ganancia del jugador en la jugada $i$. Entonces se puede definir el proceso estocástico {$X_n=k+\sum_{i=0}^n 2I_i-1$} que representa el dinero que tiene el jugador al momento $n$, con estado inicial $X_0=k$.
+
+## a.
+
+Se realizan las simulaciones para $p<0.5(p=0.46)$, $p=0.5$ y $p>0.5(p=0.58)$, todas con dinero inicial $k=20$ y objetivo $S=40$.
+
+```{r,echo=F}
+f3a<-function(p,k,S){
+  r<-c(k)
+  repeat{
+    l=r[length(r)]
+    if(l>=S||l<=0){break}
+    if(runif(1)<p){r<-c(r,l+1)}else{r<-c(r,l-1)}
+  }
+  r
+}
+f3al<-f3a(0.46,20,40)
+f3ae<-f3a(0.5,20,40)
+f3ag<-f3a(0.58,20,40)
+plot(f3al,type="l",xlab="Cantidad de apuestas",ylab="Dinero del jugador",cex.lab=0.8,cex.axis=0.8,xlim=c(0,ceiling(length(f3al)/50)*50))
+mtext("Simulación de la evolución del juego con objetivo S=$40,\ndinero inicial k=$20 y probabilidad de victoria p=0.46",cex=0.8)
+mtext(sprintf("El jugador finaliza con $%d en %d apuestas. Habiendo tenido $%d como máximo y $%d como mínimo.",f3al[length(f3al)],length(f3al),max(f3al),min(f3al)),side=1,line=4,cex=0.75)
+plot(f3ae,type="l",xlab="Cantidad de apuestas",ylab="Dinero del jugador",cex.lab=0.8,cex.axis=0.8,xlim=c(0,ceiling(length(f3ae)/200)*200))
+mtext("Simulación de la evolución del juego con objetivo S=$40,\ndinero inicial k=$20 y probabilidad de victoria p=0.5",cex=0.8)
+mtext(sprintf("El jugador finaliza con $%d en %d apuestas. Habiendo tenido $%d como máximo y $%d como mínimo.",f3ae[length(f3ae)],length(f3ae),max(f3ae),min(f3ae)),side=1,line=4,cex=0.75)
+```
+\vfill
+```{r,echo=F}
+plot(f3ag,type="l",xlab="Cantidad de apuestas",ylab="Dinero del jugador",cex.lab=0.8,cex.axis=0.8,xlim=c(0,ceiling(length(f3ag)/20)*20))
+mtext("Simulación de la evolución del juego con objetivo S=$40,\ndinero inicial k=$20 y probabilidad de victoria p=0.58",cex=0.8)
+mtext(sprintf("El jugador finaliza con $%d en %d apuestas. Habiendo tenido $%d como máximo y $%d como mínimo.",f3ag[length(f3ag)],length(f3ag),max(f3ag),min(f3ag)),side=1,line=4,cex=0.75)
+```
+\newpage
+
+## b.
+
+Para aproximar la probabilidad de ruina del jugador se simularán 1000 trayectorias para cada $p$ y se contarán las veces que perdió todo el dinero sobre el total. Los otros parámetros seguirán siendo los mismos, $k=20$ y $S=40$.
+```{r,echo=F}
+f3b<-function(p,k,S){
+  repeat{
+    if(k>=S||k<=0){break}
+    if(runif(1)<p){k<-k+1}else{k<-k-1}
+  }
+  k
+}
+```
+$p=0.46$:
+```{r,echo=F}
+p3bl<-(1000-sum(0<replicate(1000,f3b(0.46,20,40))))/1000
+p3bl
+```
+$p=0.5$:
+```{r,echo=F}
+p3be<-(1000-sum(0<replicate(1000,f3b(0.5,20,40))))/1000
+p3be
+```
+$p=0.58$:
+```{r,echo=F}
+p3bg<-(1000-sum(0<replicate(1000,f3b(0.58,20,40))))/1000
+p3bg
+```
+Lo que significa que cuando $p=0.46$, el jugador llegará a la ruina con probabilidad `r p3bl`, si $p=0.5$ llegará con probabilidad `r p3be`, y con $p=0.58$ con probabilidad `r p3bg`.
+
+Calculando las probabilidades analiticamente:
+
+El proceso {$X_n$} se puede ver como una cadena de Markov, ya que tiene el conjunto de instantes de observación infinito numerable, espacio de estados discreto y cumple con la propiedad markoviana, porque el dinero que tenga el apostador en un momento $n$ sólo dependerá del $n-1$, y no de como llegó a ese $n-1$.
+
+Para $S=40$
+
+$E=\{0..40\}$
+
+$P=\begin{pmatrix}
+1&0&0&0&0&...&0&0&0\\
+q&0&p&0&0&...&0&0&0\\
+0&q&0&p&0&...&0&0&0\\
+0&0&q&0&p&...&0&0&0\\
+\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots&\vdots\\
+0&0&0&0&0&...&q&0&p\\
+0&0&0&0&0&...&0&0&1
+\end{pmatrix}$
+
+La cadena tiene dos estados absorventes, $0$ y $40$, por lo que los dos forman por separado conjuntos cerrados. Los demás estados son todos transitorios. Por lo tanto no va a existir una única distribución estacionaria, pero se sabe que la matriz $P^\infty$ tendrá la siguiente forma:
+
+$P=\begin{pmatrix}
+a_0&0&...&0&b_0\\
+a_1&0&...&0&b_1\\
+\vdots&\vdots&\vdots&\vdots&\vdots\\
+a_{40}&0&...&0&b_{40}
+\end{pmatrix}$
+
+Con cada $a_i$ como la probabilidad de ruina comenzando con \$$i$, y $b_i=1-a_i$ la probabilidad de llegar al objetivo.
+
+Se aproximará con $R$, elevando la matriz de transición a una potencia alta, y mirando la primera y última columna de la fila que corresponde a dinero inicial \$20.
+
+
+```{r,echo=F}
+f3b2<-function(p,n){
+  r<-rbind(0,cbind(diag(1-p,nrow=n-2,ncol=n-2),0,0)+cbind(0,0,diag(p,nrow=n-2,ncol=n-2)),0)
+  r[1,1]<-1
+  r[n,n]<-1
+  r
+}
+id3b<-function(i)c(rep(0,i),1,rep(0,40-i))
+MC3bl<-new("markovchain",transitionMatrix=f3b2(0.46,41))^10000
+MC3be<-new("markovchain",transitionMatrix=f3b2(0.5,41))^10000
+MC3bg<-new("markovchain",transitionMatrix=f3b2(0.58,41))^10000
+M3b<-cbind(round((MC3bl^100000)[21,1],2),round((MC3bl^100000)[21,41],2))
+M3b<-rbind(M3b,cbind(round((MC3be^100000)[21,1],2),round((MC3be^100000)[21,41],2)))
+M3b<-rbind(M3b,cbind(round((MC3bg^100000)[21,1],2),round((MC3bg^100000)[21,41],2)))
+dimnames(M3b)[[2]]<-c("a20","b20")
+dimnames(M3b)[[1]]<-c("p=0.46","p=0.5","p=0.58")
+M3b
+```
+\newpage
+
+# 4.
+
+## a.
+
+Simulando el algoritmo 3000 veces en una lista de 7 elementos y sacando el promedio de comparaciones (se muestra la función porque servirá para la demostración posterior):
+```{r,echo=T}
+f4a<-function(A){
+  if(length(A)>1){
+    x<-A[runif(1,1,length(A))]
+    length(A)-1+f4a(A[A<x])+f4a(A[A>x])
+  }else{
+    0
+  }
+}
+sum(replicate(3000,f4a(sample(seq(1,7)))))/3000
+```
+
+## b.
+
+Defino las variables aleatorias $C_n$: cantidad de comparaciones realizadas por el algoritmo Quick-Sort en una lista de tamaño $n$, con $n\ge 0$.
+
+Las esperanzas de $C_0$ y $C_1$ son triviales porque pueden tomar un solo valor.
+
+$E(C_0)=0$ y $E(C_1)=0$
+
+Si se define la nueva variable aleatoria $D$: posición del elemento que será usado como pivote, se puede condicionar la esperanza $E(C_n)$ por $D$ y usar el teorema $E(X)=E(E(X|Y))$.
+
+$E(C_n)=\sum_{d=0}^nE(C_n|D=d)P(D=d)$
+
+Como cada elemento tiene la misma probabilidad de ser elegido como pivote, y hay $n$ elementos posibles:
+
+$E(C_n|D=d)P(D=d)=E(C_n|D=d)\frac{1}{n}$
+
+Pero si se sabe que el d-ésimo elemento es pivote, por la definición de la función $C_n$ es:
+
+$C_n=n-1+C_d+C_{n-1-d}$
+
+Por lo que la esperanza será:
+
+$E(C_n|D=d)=E(n-1+C_d+C_{n-1-d})$
+
+porque el elemento $d$ se compara con todos los otros, es decir, $n-1$ comparaciones, y después se suman las comparaciones de las dos sublistas. Por lo tanto la esperanza quedaría:
+
+$E(C_n)=\sum_{d=1}^nE(n-1+C_d+C_{n-1-d})\frac{1}{n}=\frac{1}{n}\sum_{k+l=n-1}E(n-1+C_k+C_l)=n-1+\frac{1}{n}\sum_{k+l=n-1}E(C_k)+E(C_l)$
+
+Calculando con R las esperanzas:
+```{r,echo=F}
+e4b<-function(n){
+  r<-c(0,0)
+  for(i in seq(3,n+1)){r<-c(r,sum(r+rev(r))/(i-1)+i-2)}
+  r
+}
+r4b<-matrix(round(e4b(7),4),ncol=8,nrow=1)
+dimnames(r4b)[[2]]<-paste("C",seq(0,7),sep="")
+dimnames(r4b)[[1]]<-c("E(Cn)")
+r4b
+```
+\newpage
+
+# 5.
+
+## a.
+
+Para modelar el comportamiento de visitas, se considera que el usuario tiene una probabilidad de saltar a una página cualquiera de manera aleatoria por más que no exista un enlace que lleve a ella. Se toma la probabilidad de salto como 0.15 y la de que elija un enlace 0.85, excepto en el estado $g$ que no tiene enlaces. Y para cada acción que tome el usuario tendrá la misma probabilidad de llegar a la otra página entre las posibilidades.
+
+Entonces para calcular la probabilidad en un paso $P(x,y)$ sería:
+
+Si $x\ne g$:
+$P(x,y)=\begin{cases}
+\frac{1}{G(x)}*0.85+\frac{1}{7}*0.15&\textrm{si existe el arco }x \to y\\
+\frac{1}{7}*0.15&\textrm{sino}
+\end{cases}$
+
+$P(g,y)=\frac{1}{7}$, para todo $y$
+
+$E=\{a,b,c,d,e,f,g\}$
+
+La matriz de probabilidad en un paso queda:
+
+$P=\begin{pmatrix}
+\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{25}{56}&\frac{25}{56}&\frac{3}{140}\\
+\frac{32}{105}&\frac{3}{140}&\frac{32}{105}&\frac{3}{140}&\frac{3}{140}&\frac{32}{105}&\frac{3}{140}\\
+\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{25}{56}&\frac{3}{140}&\frac{25}{56}&\frac{3}{140}\\
+\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{61}{70}&\frac{3}{140}\\
+\frac{131}{560}&\frac{3}{140}&\frac{3}{140}&\frac{131}{560}&\frac{3}{140}&\frac{131}{560}&\frac{131}{560}\\
+\frac{25}{56}&\frac{25}{56}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}&\frac{3}{140}\\
+\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}&\frac{1}{7}
+\end{pmatrix}=\frac{1}{1680}\begin{pmatrix}
+ 36&  36&  36&  36& 750&  750&  36\\
+512&  36& 512&  36&  36&  512&  36\\
+ 36&  36&  36& 750&  36&  750&  36\\
+ 36&  36&  36&  36&  36& 1464&  36\\
+393&  36&  36& 393&  36&  393& 393\\
+750& 750&  36&  36&  36&   36&  36\\
+240& 240& 240& 240& 240&  240& 240
+\end{pmatrix}$
+```{r,echo=F}
+M5a<-c(3/140,3/140,3/140,3/140,25/56,25/56,3/140,32/105,3/140,32/105,3/140,3/140,32/105,3/140,3/140,3/140,3/140,25/56,3/140,25/56,3/140,3/140,3/140,3/140,3/140,3/140,61/70,3/140,131/560,3/140,3/140,131/560,3/140,131/560,131/560,25/56,25/56,3/140,3/140,3/140,3/140,3/140,1/7,1/7,1/7,1/7,1/7,1/7,1/7)
+MC5a<-new("markovchain",transitionMatrix=matrix(M5a,byrow=T,nrow=7),states=c("a","b","c","d","e","f","g"))
+```
+Al considerar la posibilidad de salto a cualquier nodo, todo el conjunto es cerrado irreducible y aperiódico.
+
+## b.
+
+Se usa la función $rmarkovchain$ del paquete $markovchain$ para simular 100 pasos de la cadena partiendo del nodo $a$:
+```{r,echo=F}
+c("a",rmarkovchain(MC5a,n=100,t0="a"))
+```
+
+## c.
+
+El rango de cada página es la probabilidad de llegar a ella a largo plazo, o sea, después de $n$ pasos cuando $n\to\infty$. Se calcula la distribución límite $\pi_\infty$ con la función $steadyStates$.
+
+```{r,echo=F}
+steadyStates(MC5a)
+```
+
+Se ve que la página que tiene el mayor rango es la $f$, que es aproximadamente $0.29$, y que también es la que más arcos de entrada tiene.
+\newpage
+
+# 6.
+
+## a.
+
+Se utiliza la función $hpp.event.times$ del paquete $poisson$ para simular el comportamiento del proceso.
+
+```{r,echo=F}
+X6a<-hpp.event.times(3,100)
+X6a<-X6a[X6a<24]
+Y6a<-seq(1,length(X6a))
+plot(X6a,Y6a,type="n",xlab="Hora del día",ylab="Cantidad de aterrizajes",xaxt='n',cex.lab=0.8,cex.axis=0.8)
+axis(1,at=0:24,labels=paste(seq(2,26)%%24,"hs"),las=3,cex.axis=0.8)
+segments(X6a[-length(X6a)],Y6a[-length(Y6a)],X6a[-1],Y6a[-length(X6a)])
+points(X6a[-length(X6a)],Y6a[-length(X6a)],pch='.')
+mtext("Simulación del número de vuelos que recibe un aeropuerto\ncomo un proceso Poisson con tasa 3 aterrizajes por hora",cex=0.8)
+```
+\newpage
+
+## b.
+
+Se simulan 1000 arribos del proceso de Poisson, y se calcula el tiempo entre observaciones.
+
+```{r,echo=F}
+X6b<-hpp.event.times(3,1000)
+hist(X6b[-1]-X6b[-length(X6b)],ylim=c(0,600),xlim=c(0,3),xlab="Intervalo entre llegadas(en horas)",ylab="Cantidad de aterrizajes",main="",col="lightblue",cex=0.8,cex.axis=0.8,cex.lab=0.8)
+box()
+mtext("Histograma de frencuencias de los tiempos entre aterrizajes de aviones",cex=0.8)
+```
+
+El histograma corresponde a una distribución exponencial, que es el modelo de la variable del tiempo entre arribos en un proceso de Poisson.
+
+\newpage
+
+
+# 7.
+
+## a.
+
+Para conocer con qué probabilidad serán atacados los puertos al cabo de tres semanas se calcula la matriz de transición en tres pasos y se la multiplica por la distribución inicial, es decir, $\pi_0 P^3$.
+```{r,echo=F}
+M7a<-matrix(c(0,0,0,0,1,0,8/13,3/13,1/13,1/13,1/16,3/16,3/8,1/4,1/8,0,1/11,4/11,5/11,1/11,0,1/8,1/2,1/8,1/4),byrow=T,nrow=5)
+S7a<-c("80","135","139","445","no attack")
+MC7a<-new("markovchain",transitionMatrix=M7a,states=S7a)
+round(c(0,0,0,0,1)*MC7a^3,4)
+```
+El puerto con más probabilidad de ser atacado (0.3482) es el 139, y el que tiene menor probabilidad (0.0241) es el 80.
+
+## b.
+
+```{r,echo=F,fig.align='center'}
+S7a[5]<-"no"
+plotmat(round(t(M7a),2),name=S7a,lwd=1,box.lwd=1,cex.txt=0.65,box.size=0.05,self.cex=0.8,self.shiftx =c(0,0.06,-0.06,-0.06,0.06),curve=0,relsize=0.75,arr.pos=0.25,arr.type="triangle",arr.width=0.15,shadow.size=0)
+box()
+mtext("Grafo de probabilidades de número de puerto atacado\nsegún el anterior",cex=0.8)
+```
+Para encontrar la distribución límite se busca la solución al sistema de ecuaciones:
+
+$\begin{cases}
+\pi P=\pi\\
+\sum_{i\in E}\pi(i)=1
+\end{cases}$
+
+Como la matriz es irreducible, hay un único conjunto cerrado. Por lo tanto si existe la distribución será única para toda la cadena.
+
+$\pi P=\pi\iff\pi(P-I)=0\iff (P-I)^T\pi^T=0^T$
+
+De este sistema se quita la última ecuación y se agrega la correspondiente a la condición $\sum_{i\in E}\pi(i)=1$. El sistema a resolver queda:
+
+$\begin{pmatrix}
+-1&0&\frac{1}{16}&0&0\\
+0&-\frac{5}{13}&\frac{3}{16}&\frac{1}{11}&\frac{1}{8}\\
+0&\frac{3}{13}&-\frac{5}{8}&\frac{4}{11}&\frac{1}{2}\\
+0&\frac{1}{13}&\frac{1}{4}&-\frac{6}{11}&\frac{1}{8}\\
+1&1&1&1&1
+\end{pmatrix}\begin{pmatrix}
+\pi(0)\\
+\pi(1)\\
+\pi(2)\\
+\pi(3)\\
+\pi(4)\\
+\end{pmatrix}
+=\begin{pmatrix}0&0&0&0&1\end{pmatrix}$
+
+\newpage
+
+Se usa la función $solve$ para resolverlo:
+
+```{r,echo=T}
+round(solve(rbind((t(M7a)-diag(5))[1:4,],c(1,1,1,1,1)),c(0,0,0,0,1)),4)
+```
+
+Verificando con la función $steadyStates$ del paquete $markovchain$:
+```{r,echo=T}
+round(steadyStates(MC7a),4)
+```

@@ -1,0 +1,77 @@
+=== Suite started at 2021-06-27 09:03:21
+=== Starting test, 2 test cases
+=cases         2
+=user          bemkap
+=host          archlinux.fibertel.com.ar
+=hosts         archlinux.fibertel.com.ar 
+=emulator_vsn  12.0
+=emulator      beam
+=otp_release   24
+=started       2021-06-27 09:03:21
+=case          ct_framework:init_per_suite
+=logfile       ct_framework.init_per_suite.html
+=group_props   [{suite,ledger_SUITE}]
+=started       2021-06-27 09:03:21
+=ended         2021-06-27 09:03:21
+=result        ok
+=elapsed       1.0e-6
+=case          ledger_SUITE:init_per_group
+=logfile       ledger_suite.init_per_group.html
+=group_props   [{name,session}]
+=started       2021-06-27 09:03:21
+=ended         2021-06-27 09:03:21
+=result        ok
+=elapsed       1.0e-6
+=case          ledger_SUITE:init_per_group
+=logfile       ledger_suite.init_per_group.66.html
+=group_props   [{name,nodes}]
+=started       2021-06-27 09:03:21
+=ended         2021-06-27 09:03:22
+=result        ok
+=elapsed       0.500719
+=case          ledger_SUITE:node_run
+=logfile       ledger_suite.node_run.html
+=started       2021-06-27 09:03:22
+=ended         2021-06-27 09:03:22
+=result        ok
+=elapsed       3.0e-6
+=case          ledger_SUITE:end_per_group
+=logfile       ledger_suite.end_per_group.html
+=group_props   [{name,nodes}]
+=started       2021-06-27 09:03:22
+=ended         2021-06-27 09:03:22
+=result        ok
+=elapsed       1.0e-6
+=group_time    0.559s
+=case          ledger_SUITE:is_ordered
+=logfile       ledger_suite.is_ordered.html
+=started       2021-06-27 09:03:22
+=ended         2021-06-27 09:04:01
+=result        failed: "cth_log_redirect:post_end_per_testcase/5 CTH call failed", [{ledger_SUITE,
+                                                                                     is_ordered}]
+=== *** FAILED test case 2 of 2 ***
+=case          ledger_SUITE:end_per_group
+=logfile       ledger_suite.end_per_group.98.html
+=group_props   [{name,session}]
+=started       2021-06-27 09:04:01
+=ended         2021-06-27 09:04:01
+=result        failed: "cth_log_redirect:post_end_per_group/5 CTH call failed", [{ledger_SUITE,
+                                                                                  end_per_group}]
+=== *** FAILED {ledger_SUITE,end_per_group} ***
+=group_time    40.277s
+=case          ct_framework:end_per_suite
+=logfile       ct_framework.end_per_suite.html
+=group_props   [{suite,ledger_SUITE}]
+=started       2021-06-27 09:04:01
+=ended         2021-06-27 09:04:01
+=result        failed: "cth_log_redirect:post_end_per_suite/4 CTH call failed", [{ct_framework,
+                                                                                  end_per_suite}]
+=== *** FAILED {ct_framework,end_per_suite} ***
+=group_time    40.357s
+=== TEST COMPLETE, 1 ok, 1 failed of 2 test cases
+
+=finished      2021-06-27 09:04:01
+=failed        1
+=successful    1
+=user_skipped  0
+=auto_skipped  0

@@ -1,0 +1,13 @@
+$TTL	7200
+@	SOA	ns1.acme.ar	hostmaster.acme.ar(
+				2021110100	;serial
+				1d		;refresh
+				1h		;retry
+				1w		;expire
+				2h0		;neg.ttl
+				)
+    	IN	NS	ns1.acme.ar.
+    	IN	NS	ns2
+
+mx		A	200.13.147.113
+ns2		A	200.13.147.90

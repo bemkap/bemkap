@@ -1,0 +1,132 @@
+% Created 2021-09-22 mié 22:23
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{fullpage}
+\date{}
+\title{práctica N2}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={práctica N2},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+\item .
+\begin{center}
+\begin{tabular}{llll}
+clase & rango & máscara de subred & direcciones privadas\\
+a & 1.0.0.0 a 126.0.0.0 & 255.0.0.0(/8) & 10.0.0.0 a 10.255.255.255\\
+b & 128.0.0.0 a 191.255.0.0 & 255.255.0.0(/16) & 172.16.0.0 a 172.31.255.255\\
+c & 192.0.0.0 a 223.255.255.255 & 255.255.255.0(/24) & 192.168.0.0 a 192.168.255.255\\
+d & 224.0.0.0 a 239.255.255.255 & - & -\\
+e & 240.0.0.0 a 255.255.255.255 & - & -\\
+\end{tabular}
+\end{center}
+\item .
+\begin{center}
+\begin{tabular}{lrrrllrrr}
+clase & c & b & a & e & d & c & b & a\\
+red & 220.200.23 & 148.17 & 33 & - & - & 192.68.12 & 177.100 & 95\\
+host & 1 & 9.1 & 15.4.13 & - & - & 8 & 18.4 & 250.91.99\\
+máscara & /24 & /16 & /8 & /4 & /4 & /24 & /16 & /8\\
+\end{tabular}
+\end{center}
+\item \begin{itemize}
+\item 174.56.7.0 es clase b
+\item máscara 255.255.0.0 (/16)
+\item necesito 1020 subredes, uso 10 bits=1024 subredes
+\item me quedan 6 bits para host. 64-2=62. me alcanza para 60 hosts
+\item la máscara es /26
+\end{itemize}
+\item \begin{itemize}
+\item 210.66.56.0 es clase c
+\item máscara 255.255.255.0 (/24)
+\item necesito 6 subredes, uso 3 bits=8 subredes
+\item me quedan 5 bits para host. 32-2=30. me alcanza justo para 30 hosts
+\item la máscara es /27
+\end{itemize}
+\item \begin{itemize}
+\item 193.52.57.0 clase c
+\item para 8 sucursales, uso 3 bits=8 subredes
+\item máscara: /27
+\item 0 a 2\textsuperscript{5}=32, 32-2=30 hosts cada una: de 00001 a 11110
+\item 193.52.57.01111111=193.52.57.127
+\end{itemize}
+\item \begin{enumerate}
+\item \begin{itemize}
+\item A se fija si B pertenece a su misma subred comparando con la máscara de subred
+\item como ve que B es de la misma subred no hay necesidad de mandar al router. pueden pasar dos cosas
+\begin{itemize}
+\item que tenga guardada la mac de B en la tabla arp. en ese caso simplemente envía a la dirección guardada
+\item que no lo tenga. en tal caso envía un paquete arp (broadcast) pidiendo la mac de B. éste le responde y luego A se puede comunicar finalmente
+\end{itemize}
+\end{itemize}
+\item \begin{itemize}
+\item A se fija si C pertenece a su misma subred comparando con la máscara de subred
+\item acá ve que no pertenecen a la misma subred. entonces manda el paquete a la puerta de enlace (router R1)
+\item R1 se fija en su tabla de ruteo si la subred es de entrega directa o indirecta, y ve que es indirecta. debe envíar el paquete por el enlace eth2 hasta R3
+\item R3 mira que si el ip está para entrega directa. se fija si tiene la mac guardada en la tabla arp. si no la tiene manda un paquete arp pidiendo la mac como en el anterior. sino manda directo el paquete
+\end{itemize}
+\end{enumerate}
+\item \begin{enumerate}
+\item \begin{enumerate}
+\item \begin{itemize}
+\item internet->R:200.13.147.4
+\item R->Red 2:200.13.147.1
+\item D:200.13.147.2
+\item E:200.13.147.3
+\item \ldots{}
+\end{itemize}
+\item .
+\begin{center}
+\begin{tabular}{lll}
+R2 & /24 & directa\\
+R3 & /24 & directa\\
+R1 & /24 & directa\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\item \begin{enumerate}
+\item \begin{itemize}
+\item internet->R:200.13.147.00000000/26
+\item R->Red 1:200.13.147.01000000( 64)/26
+\item R->Red 2:200.13.147.10000000(128)/26
+\item R->Red 3:200.13.147.11000000(192)/26
+\item A: 200.13.147.01000001( 65)
+\item B: 200.13.147.01000010( 66)
+\item C: 200.13.147.01000011( 67)
+\item D: 200.13.147.10000001(129)
+\item E: 200.13.147.10000010(130)
+\item F: 200.13.147.11000001(193)
+\item G: 200.13.147.11000010(194)
+\end{itemize}
+\item .
+\begin{center}
+\begin{tabular}{rll}
+200.13.147.0 & /26 & da\\
+200.13.147.64 & /26 & da\\
+200.13.147.128 & /26 & da\\
+200.13.147.192 & /26 & da\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{document}
