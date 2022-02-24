@@ -1,3 +1,0 @@
--define(SRVOK,"srv:ok").
--define(SRVERR,"srv:err").
--define(SRVBYE,"srv:bye").
