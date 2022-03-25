@@ -1,4 +1,4 @@
-load'~/doc/b/V/v.ijs'
++/\0,0.33(3 9 15 20})25#1
 andr barb biro dime elib elsa ferr inst itur maip mart pavo pell romj sues suip urqu evel
  400  110  220  110  220  110  700  440  220  220  440  330  110  110  110  220  110  220
 adri alve bere biag biro cerr evel ferr ines inst ital itur pavo pera sues vazq yrig
@@ -23,7 +23,7 @@ ands biro dime elia elib ferr guti inst mart patr pavo sues suip urqu vivi yami
  110  110  330  150  330  580  330  110  110  330  220  330  220  220  220  150
 ands bere biag biro dime guti inst itur itus papa sole sues urqu vane vivi yami yola pero sand
  110  100  120  240  330  120  330  220  220  400  110  110  110  220  220  200  110  360  110
-adri andr biro ceci clar dori elia ferr inst kare pavo sand vang urqu vivi zapa silw elib dime
+adri andr biro ceci clar dora elia ferr inst kare pavo sand vang urqu vivi zapa silw elib dime
  110  450  100  250  110  240  400  360  330  120  300  110  200  600  330  110  130  110  100
 andr cerr dime duro inst itur pero sole urqu vivi pera biag kare vanf sues ands
  600  300  340  120  110  110  400  350  240  440  150  120  120  120  110  110
@@ -33,5 +33,9 @@ sues itur dime
  110  110  110
 yola inst dime suip mart rosb ferr falu bust ands pavo cerr moni
  330  220  120  110  110  220  270  120  220  220  110  150  120
-dime duro elia elib ferr inst itur itus pavo pero silw vang vivi yola
- 220  120  110  440  110  110  220  110  220  110  130  120  100  220
+dime duro elia elib ferr inst itur itus pavo pero silw vang vivi yola sues ands cerr andr
+ 220  120  110  440  240  110  220  110  330  110  130  120  100  220  220  120  150  170
+adri andr ands pera dime dora elia elsa inst itur sues suip vivi ferr pavo mate 
+ 220  160  220  220  120  120  260  220  110  330  330  330  110  370  110  120
+barb cerr clar dime elia elib elsa ferr inst itus fiam pavo sues vang
+ 110  150  110  230  110  330  220  110  110  220  120  220  220  100

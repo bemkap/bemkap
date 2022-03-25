@@ -1,12 +1,13 @@
-F=: }.'b'fread'/mar',~jcwdpath''
+F=: 'b'fread'mar'
 v=: 110
 
-cls=: F{~  +:i.-:#F
+prop=: ".&>{.F
+
+cls=: F{~  +:i.-:#F=: }.F
 pag=: F{~>:+:i.-:#F
 
 dia=: +/@:".&>pag
-ord=: ,./_8]\\:~(;;:&.>cls)(+&.>//.,.~.@:[)<"0;".&.>pag
+ord=: ,./_10]\\:~(;;:&.>cls)(+&.>//.,.~.@:[)<"0;".&.>pag
 
-prop=: +/\0,0.33(3 9 15 21})26#1
 prom=: prop(+/@:]%({~#))dia
 proj=: prom*{:prop
