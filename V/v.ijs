@@ -1,4 +1,4 @@
-F=: 'b'fread'mar'
+F=: 'b'fread'abr'
 v=: 110
 
 prop=: ".&>{.F
