@@ -1,7 +1,7 @@
 load'media/imagekit'
 
 IMG=: '~temp/img.png'
-TILE=: 2 2
+TILE=: 4 4
 
 SYM=: 1
 tail=: }.`( 1&|.)@.SYM
