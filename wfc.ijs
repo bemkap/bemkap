@@ -1,11 +1,11 @@
 load'media/imagekit'
 
 IMG=: '~temp/img.png'
-TILE=: 4 4
+TILE=: 2 2
 
 SYM=: 1
 tail=: }.`( 1&|.)@.SYM
-liat=: }:`(_1&|.)@.SYM
+liat=: }:`]@.SYM
 
 Pi=: ($P)$(i.~~.),P=: (,:~TILE) <;._3 rgb_to_i read_image jpath IMG
 UP=: ~.&.>(~.@:,@:tail/:~(tail</.&,liat))Pi
