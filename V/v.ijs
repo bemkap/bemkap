@@ -1,6 +1,6 @@
-F=: 'b'fread'abr'
+F=: 'b'fread'may'
 CL=: 'b'fread'CL'
-V=: 110
+V=: 120
 prop=: ".&>{.F
 cls=: F{~+:i.-:#F=: }.F
 pag=: ".&.>F{~>:+:i.-:#F
