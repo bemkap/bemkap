@@ -1,0 +1,40 @@
+     a b c 0 1 2 3 4 5 6 7 8 9 10
+3  _ x x x x   x x x
+3  0         x x x           x  x
+3  1           x x           x  x
+3  2             x           x  x
+3  3                         x  x
+3  4                 x   x x
+3  5                   x x x
+3  6                     x x
+3  7 x x x
+3  8
+3  9 
+3 10 x x x
+2  _ x x           x
+2  0         x x x           x  x
+2  1
+2  2           x x           x  x
+2  3                         x  x
+2  4                 x   x x
+2  5                   x x x
+2  6                     x x
+2  7 x x
+2  8
+2  9
+2 10 x x
+
+ a carta1
+ b carta2
+ c carta3
+ 0 envido1
+ 1 envido2
+ 2 real
+ 3 falta
+ 4 truco
+ 5 retruco
+ 6 vale4
+ 7 sitruco
+ 8 notruco
+ 9 sienvido
+10 noenvido
