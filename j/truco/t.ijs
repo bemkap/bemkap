@@ -3,8 +3,6 @@ ST=: 0 0 3 3 0 NB. j_juega j_canta cartas1 cartas2 ultimo
 
 A =: cutLF(0 : 0)
 tira carta 1
-tira carta 2
-tira carta 3
 canta envido
 canta envido envido
 canta real envido
