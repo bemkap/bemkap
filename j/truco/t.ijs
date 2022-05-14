@@ -1,5 +1,5 @@
 D =: ".'m'fread'D'
-ST=: 0 0 3 3 0 NB. jugador cartas1 cartas2 ultimo
+ST=: 0 0 3 3 0 NB. j_juega j_canta cartas1 cartas2 ultimo
 
 A =: cutLF(0 : 0)
 tira carta 1
@@ -24,4 +24,8 @@ play=: 3 : 0
  if. 3>o=. ({~?@#)o do. (-.jj),(-.jj),(a-jj=0),(b-jj=1),o
  elseif. 10>o do. jj,(-.jc),a,b,o
  elseif. 1 do. jj,jj,a,b,o end.
+)
+comment=: 3 : 0
+ 'jj jc a b u'=. y
+ (":-.jc),' ',A{::~u
 )
