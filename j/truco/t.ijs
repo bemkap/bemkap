@@ -2,7 +2,7 @@ D=: ".&.>'b'fread'D'
 T=: 1(<"1;(3&{.(,"1 0)3&}.)&.>D)}2 2 13 13$0
 M=: 0 1(0 0 9;1 0 9)}1 0(0 0 11;0 0 12)}2 2 13 2$0
 
-ST=: 0 3 3 0 0 0 NB. turno n1 n2 envido truco ultimo
+ST=: 0 0 3 3 0 0 0 NB. turno_canta turno_tira n1 n2 envido truco ultimo
 
 A =: cutLF(0 : 0)
 -
@@ -23,9 +23,9 @@ no quiere el envido
 mov=: T({~?@:#)@:I.@:({~<)]
 mod=: 2&{.+M&({~<)
 nex=: (3 : 0) :: ]
- r=. (mod,mov)3}.y
- c=. (1 2{y)-(1={:r)({.y)}0 0
- if. +./0>c do. y return. end.
- (-.{.y),c,r
+ assert. +./0<2 3{y
+ r=. (mod,mov)4}.y
+ c=. (2 3{y)-(1={:r)({.y)}0 0
+ (-.0{y),(-.^:(1={:r)1{y),c,r
 )
-com=: A{::~{:
+com=: 3 : '''jugador '',(":y{~0 1{~1={:y),'' '',A{::~{:y'
