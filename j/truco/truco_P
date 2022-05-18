@@ -1,0 +1,61 @@
+0  0 juega
+1  0 mata
+2  0 envido
+3  0 envido envido
+4  0 real
+5  0 falta
+6  0 truco
+7  0 retruco
+8  0 vale 4
+9  0 quiero
+a  0 no quiero
+b  1 juega
+c  1 mata
+d  1 envido
+e  1 envido envido
+f  1 real
+g  1 falta
+h  1 truco
+i  1 retruco
+j  1 vale 4
+k  1 quiero
+l  1 no quiero
+
+0 b 0 c b 0
+0 b 0 c b 1
+0 b 0 c b 6 i 8 k 0
+0 b 0 c b 6 i 8	k 1
+0 b 0 c b 6 i 8 l
+0 b 0 c b 6 i 9	0
+0 b 0 c b 6 i 9	1
+0 b 0 c b 6 i a
+0 b 0 c b 6 k 0
+0 b 0 c b 6 k 1
+0 b 0 c b 6 l
+0 b 0 c	h 7 j 9 b 0
+0 b 0 c h 7 j 9	b 1
+0 b 0 c h 7 j a
+0 b 0 c h 7 k b 0
+0 b 0 c h 7 k b	1
+0 b 0 c h 7 l
+0 b 0 c h 9 b 0
+0 b 0 c h 9 b 1
+0 b 0 c h 9 b 7 j 9 0
+0 b 0 c h 9 b 7	j 9 1
+0 b 0 c h 9 b 7	j a
+0 b 0 c	h 9 b 7	k 0
+0 b 0 c h 9 b 7	k 1
+0 b 0 c h 9 b 7	l
+0 b 0 c h a
+
+0 b 0 h
+0 b h
+0 c
+0 d
+0 f
+0 g
+0 h
+2
+4
+5
+6
