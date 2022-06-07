@@ -1,0 +1,44 @@
+señales electromagneticas
+ viajan a la velocidad de la luz por el aire
+ señal electrica acompañada por una magnetica igual y ortogonal, para que llegue mas lejos
+ espectro electromagnetico: ondas de radio, microondas, luz visible, rayos x y gamma
+ frecuencias publicas (wifi 2.4 y 5) y privadas
+ propagacion
+  siguen la curvatura de la tierra y recorren largas distancias (hasta 2 mhz)
+  linea de vista o por rebote en la troposfera y la tierra (entre 30 mhz y 30ghz)
+  se reflejan en la ionosfera (entre 300khz y 300mhz)
+  pasan la ionosfera y se usan para los satelites (entre 2ghz y 50ghz)
+ señales de alta frecuencia se limitan en potencia para que no interfieran entre si, por ejemplo wifi
+ señal portadora: señal por la que se va a transmitir el mensaje
+ señal moduladora: es la que lleva el mensaje en si
+ moduacion: transformacion que se hace con la portadora y la moduladora para codificar el mensaje en una nueva señal
+ ventaja de fm sobre am: la interferencia afecta menos a la frecuencia que a la amplitud
+wifi
+ varios elementos: usuarios, access point, switch, servidor, internet (sistema de distribucion)
+ conmutacion de paquetes (tramas)
+ extended service set(bss): varios access point pueden tener el mismo nombre, como pasa con la red celular
+ modelo 802.11
+  capa fisica y parte de la capa de enlace
+  informacion de modulacion y demodulacion que se transfiere por el medio, el aire
+  capa enlace: subcapa mac: confidencialidad, fragmentacion, acuse de recibo, acceso al medio
+  acces point maneja varios estandares, 802.11 y ethernet por ejemplo
+ capa fisica
+  codifica y decodifica
+  generacion de cabecera
+  saber como es el medio
+  transmision recepcion de bits
+ fhss: espectro disperso por salto de frecuencia
+  el ancho de banda se divide en slots
+  se genera una secuencia que determina que slot estara disponible en cada momento
+  cada momento seria cada usuario, al que le corresponde determinado slot y usa todo el ancho de banda disponible
+ dsss: espectro disperso con secuencia directa
+  genera un patron de bits redundantes (chip) para cada bit que forma la señal
+  la secuencia de bits se conoce como secuencia de barker
+  la secuencia de barker se combina con los datos de entrada con un xor
+  la de barker tiene un tiempo mas corto para generar la redundancia que da resistencia a errores
+  el receptor hace el xor de nuevo para decodificar
+ mimo: multiple entrada multiple salida
+  varios transmisores y varios receptores para transmitir mas datos al mismo tiempo
+  mejora la relacion señal a ruido
+ por mas que varios dispositivos trabajen en la misma frecuencia, si lo hacen en distintos canales no hay interferencia
+ que esten en el mismo canal es poco probable

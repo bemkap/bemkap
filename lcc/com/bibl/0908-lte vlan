@@ -1,0 +1,26 @@
+sistema movil
+ celdas hexagonales que dan covertura a una pequeña zona
+ cada celda trabaja en determinados canales predefinidos
+ cluster: conjunto de antenas que cubren todas los canales disponibles. se hace para reducir interferencia
+ canales distintos para subida y bajada. asimetricos. distinta modulacion
+ si me muevo automaticamente se va cambiando de celda a la que estoy conectado
+ 1g analogico.2g digital circuito.2.5g modo paquete.3g banda ancha.4g alta velocidad baja lantencia
+ lte
+  arquitectura con ip
+  transmision por paquete.mimo.red plana.ofdma(misma wifi).modulacion y codificacion adaptativa
+  equipo de usuario.red de acceso(seria como el access point).red troncal
+  3 tipos de redes de acceso.e-utran utran geran
+vlan
+ los routes siempre tuvieron tablas de control de acceso, quien se puede comunicar con quien
+ dividir logicamente varias redes segun la estructura de una organizacion
+ se requiere un switch administrable para crear las redes virtuales
+ primero se podian dividir los puertos del switch para cada red virtual, pero entre switches se requieren mas cables
+ despues se mejoro esto con troncales
+ 802.1q agrega un identificador de vlan en la trama y un tag
+ las terminales envian como siempre, el switch es el encargado de reconocer a que vlan pertenece la trama
+ las tramas tambien llegan como siempre a las terminales
+ tipos de configuracion de puerto
+  access: 1 vlan, sin tag. serian las terminales que no conocen de vlans
+  trunk: 1 o mas vlans, con tag
+  nativa o por omision: sin tag. si viene por un switch una sin tag que asuma que pertenece a una determinada vlan
+  hibrido: algunas vlan con tag y algunas sin

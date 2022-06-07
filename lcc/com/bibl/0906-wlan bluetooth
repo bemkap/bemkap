@@ -1,0 +1,36 @@
+wifi
+ para comunicarse los host se asocian a una red con ssid
+ la estacion envia periodicamente señales (beacon) para mostrar que sigue viva y para que la descubran
+ un dispositivo puede terer varias mac
+ cuando se conecta un dispositivo hay una transmision de autenticacion al principio
+ si dos dispositivos envian al mismo tiempo y estan en el mismo canal, se produce una colision y al ap le llegan las dos señales mezcladas
+ estacion oculta, estacion expuesta
+ rts/cts. varios temporizadores: sifs(alta prioridad), pifs, difs(tiempo minimo), eifs(cuanto espero para creer que hubo error)
+ tramas rts tienen la duracion para activacion del nav
+wpan
+ bluetooth
+  802.15
+  capa radio fisica.banda base.enlace.middleware.aplicacion
+  conexion maestro esclavo. topologia piconet
+  capa radio
+   comunicacion bidireccional
+   79 canales. 2.4ghz
+   modulacion fhss
+   dispositivos clase 1 2 3 segun la distancia
+   es poco probable que wifi interfiera en bluetooth porque el ancho es 22mhz y de bluetooth de 1mhz
+  capa banda base
+   maestro define ranuras. en las pares transmite y en impares recibe
+   las tramas tienen 1 3 o 5 ranuras
+   enlaces asincrono no orientado a la conexion(transferencia de datos sin requisitos temporales)
+   enlaces sincrono orientado a la conexion(comunicacion de voz)
+   antes de bluetooth 4 se podian tener 7 dispositivos activos y 255 inactivos
+ bluetooth smart o ble (version 4)
+  modulacion afhss. parecida a la anterior pero adaptativa. mayor resistencia interferencias y multiples trayectorias
+  40 canales de 2mhz. 3 canales fijos para control
+  incompatible con el anterior. salio uno con modo dual que acepta los dos (smartready)
+  topologia broadcasting. transmisor receptor se agrega a maestro esclavo del anterior
+  perfiles para diferentes funcionalidades (protocolos)
+   acceso generico(gap): capa de control superior de ble y obligatorio. descubrimiento, establecer y gestionar conexiones, seguridad
+   atributo generico(gatt): transmision de datos
+  capa de enlace
+   4 tipos de estados: espera, anuncio, exploracion, inicializacion

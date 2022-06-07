@@ -1,0 +1,22 @@
+cada capa toma los datos de la inferior y agrega mas
+ip, icmp protocolo red
+ipv4
+ transparencia en las redes: la arquitectura que hay debajo no debe importar para conectarse a la red
+ unidad basica: paquete o datagrama
+ el software realiza el ruteo
+ el protocolo es no confiable
+ header con longitud variable.primeros datos obligatorios y opciones
+ mas dificil de parsear por variable.mas flexible
+ tipos de direcciones
+  clase a 0     1-3        1.0.0.0 a 126.0.0.0(0.0.0.0,127.0.0.0 reservados)
+  clase b 10    2-2        128.0.0.0 a 191.255.0.0
+  clase c 110   3-1        192.0.0.0 a 223.255.255.255
+  clase d 1110  multicast  224.0.0.0 a 239.255.255.255
+  clase e 11110 revervado  240.0.0.0 a 255.255.255.255
+ direcciones especiales
+  0 net 0 host:este anfitrion.permitido solo para el arranque
+  0 net:anfitrion en esta red
+  0 host:identifica una red
+  1 net.1 host:difusion limitada.red local
+  1 host:difusion a una red
+  127.0.0.1:loopback
