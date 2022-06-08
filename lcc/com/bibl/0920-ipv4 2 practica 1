@@ -1,0 +1,13 @@
+el router fragmenta los datos antes de enviarlos. se hace para interfaces que tienen menos capacidad
+los datagramas pueden llegar desordenados. se envian los datos necesarios para reensamblarlos
+tipos de ruteo
+ entrega directa: el host pertenece a la misma red. la comunicacion no necesitaria router
+ entrega indirecta: diferentes redes ip. se determina por cual interfaz se envian los datos
+el router compara el netid del destino(la mascara de subred) con su propia netid, y sin son iguales es entrega directa
+las tablas de ruteo se usan para entrega indirecta, para saber por donde tiene que mandar
+la cantidad de posibles direcciones ip no alcanzan. se resolvio de varias maneras
+ ips privadas
+  rangos reservados para cada clase de direccion
+  la funcion nat del router traduce las direcciones
+ subredes
+  se toman bits del host para la subred (mascara de subred)
