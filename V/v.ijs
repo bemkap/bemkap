@@ -12,3 +12,4 @@ proy=: prom*{:prop
 
 summary=: ('~V  ',:' D '),.":dia,:~<.0.5+dia%V
 summary=: summary,'','   prom  ~prov   proy  total        prop',:(({:prop)(],'/',[)&(5j2&":)prop({~#)dia),~' ',~7":<.prom,(prom%V),proy,+/dia
+smoutput summary
