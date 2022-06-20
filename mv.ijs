@@ -4,12 +4,13 @@ rn=: 3 : 0
  <"1(,'-',":)&>/"1 n/:i
 )
 slash=: ,&'/'^:('/'~:{:)
+expand=: (".@:>@:{:#{.)@:(' '&splitstring)
 
 exit^:(5>#ARGV)1
 
 'NAMES FROM TO'=: 2}.ARGV
 OLD=: 1 dir '*.jp*g',~slash FROM
-NEW=: ((slash TO),'.jpg',~])&.>rn 'b' fread NAMES
+NEW=: ((slash TO),'.jpg',~])&.>rn;expand&.>'b' fread NAMES
 
 exit^:(OLD~:&#NEW)2
 
