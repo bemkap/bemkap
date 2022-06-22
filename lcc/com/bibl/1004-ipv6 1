@@ -3,3 +3,23 @@ datagrama mas eficiente. base+extensiones. en ipv4 el datagrama era tamaño vari
 mas direcciones. 2^128
 fragmentacion en origen y destino. primero se acuerda el tamaño y despues se fragmenta, a diferencia de ipv4 que se iba viendo en el camino
 cabeceras de extension para opciones
+ventajas
+ escalable en numero de opciones
+ procesamiento eficiente
+ distribucion de complejidad. se puede elegir donde se procesan las cabeceras (todos los routers, solo destino)
+compactacion de direcciones
+alcance
+ link local. solo en la subred. no se rutean
+ unicast local address. como las privadas de ipv4
+ globales. ruteables en internet
+el alcance se diferencian por los prefijos
+tipos de direcciones
+ unicast. a un solo nodo
+ anycast. a un grupo de nodos, pero que llegue a alguno
+ multicast. a un grupo de nodos, pero que llegue a todos
+cada tipo se divide segun el alcance
+ unicast global. prefijo 001. entre 2000 y 3fff
+ unicast link local. prefijo fe80
+ unicast unique local. prefijo fc00/7 el ultimo bit puede variar. ruteos internos en un conjunto de lanes
+ anycast. igual a las unicast con interface id en 0
+ multicast. prefijo ff+flag(4)+scope(4)+grupox
