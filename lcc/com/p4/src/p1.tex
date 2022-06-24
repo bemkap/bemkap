@@ -1,16 +1,14 @@
-% Created 2021-09-22 mié 22:23
+% Created 2022-06-24 vie 15:08
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
-\usepackage{grffile}
 \usepackage{longtable}
 \usepackage{wrapfig}
 \usepackage{rotating}
 \usepackage[normalem]{ulem}
 \usepackage{amsmath}
-\usepackage{textcomp}
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
@@ -22,7 +20,7 @@
  pdftitle={práctica N2},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
  pdflang={English}}
 \begin{document}
 
@@ -127,6 +125,28 @@ R1 & /24 & directa\\
 \end{tabular}
 \end{center}
 \end{enumerate}
+\end{enumerate}
+\item \begin{enumerate}
+\item \begin{itemize}
+\item ip 199.199.20.6
+\item red1 y red5. 50 hosts utiles. 2\textsuperscript{6}=64-2-2=60>=50. 6 bits para host
+\item red2, red3 y red4. 28 hosts utiles. 2\textsuperscript{5}=32-2-2=28>=28. 5 bits para host
+\end{itemize}
+\item \begin{itemize}
+\item red1 199.199.20.00  000000 -> 199.199.20.0/26
+\item red2 199.199.20.110 00000  -> 199.199.20.192/27
+\item red3 199.199.20.111 00000  -> 199.199.20.224/27
+\item red4 199.199.20.10  000000 -> 199.199.20.128/26
+\item red5 199.199.20.01  000000 -> 199.199.20.64/26
+\item red1->router1 199.199.20.1
+\item red2->router1 199.199.20.193
+\item red2->router2 199.199.20.194
+\item red3->router2 199.199.20.225
+\item red3->router3 199.199.20.226
+\item red1->router3 199.199.20.2
+\item red4->router3 199.199.20.129
+\item red5->router3 199.199.20.65
+\end{itemize}
 \end{enumerate}
 \end{enumerate}
 \end{document}
