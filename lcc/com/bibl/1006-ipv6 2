@@ -1,0 +1,33 @@
+icmp
+ para ipv6 tiene mas funcionalidades que en ipv4
+ se agrega como cabecera de extension
+ gestion de grupos multicast
+ descubrimiento de vecinos
+ movilidad ipv6
+ descubrimiento de path mtu
+descubrimiento de vecinos
+ determinar la mac de los nodos
+ encontrar routers vecinos
+ autoconfiguracion de direcciones
+multicast solicited node
+ ff02::1:ff y los ultimos 24 bits de la interfaz
+descubrimiento de vecinos nd
+ como arp en ipv4
+ en lugar de broadcast usa las multicast solicited node
+autoconfiguracion
+ stateful. servidor que entrega una direccion
+ stateless. se genera la ip a partir de la informacion de la red
+ 1.se genera una direccion link local fe80::/64+iid
+ 2.la direccion pasa a formar parte de los grupos multicast solicited node y all node
+ 3.se verifica la unicidad de la direccion
+ 4.direccion ok.se envia el mensaje router solicitation al grupo multicast
+ 5.los routers responden con router advertisement
+path mtu discovery
+ la fragmentacion en ipv6 se realiza en el origen
+ se envian primero paquetes icmp por todo el camino para acordar mtu
+calidad de servicio
+ dos campos: traffic class y flow label
+ modelos
+  best effort: no provee calidad, todos los paqutes iguales
+  integrated services: reserva de recursos. no es escalable
+  differentiated services: marcado de paquetes segun qos. dominios con distintos niveles de calidad
