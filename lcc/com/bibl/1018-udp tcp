@@ -1,0 +1,8 @@
+capa de transporte ahora usa puertos ademas de direccion ip
+udp encabezado simple
+el checksum se calcula sobre un pseudocabecera que incluye direcciones ip que no son de esa capa pero bueno
+tcp
+ orientacion de flujo. paquetes llegan ordenados como salen
+ circuito virtual. una vez que se establece el circuito no se tiene que especificar cada vez la direccion destino
+ transferencia con memoria buffer
+ 
