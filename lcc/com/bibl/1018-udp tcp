@@ -5,4 +5,25 @@ tcp
  orientacion de flujo. paquetes llegan ordenados como salen
  circuito virtual. una vez que se establece el circuito no se tiene que especificar cada vez la direccion destino
  transferencia con memoria buffer
+ circuito full duplex. para acuses de recibo
+ confiabilidad
+  por cada paquete se debe recibir un ack como acuse de recibo
+  el emisor tiene un temporizador, que no debe ser ni muy largo ni muy corto
+  esperar a que se reciba el ack para enviar el siguiente no es eficiente
+  ventana deslizante
+   se mandan varios paquetes sin esperar los ack de los anteriores. la cantidad depende del tiempo estimado para el retorno del primer ack
+   tres punteros. uno donde empieza la ventana(a), donde termina(z) y hasta donde transmiti hasta ahora(p)
+   a medida de que voy recibiendo ack muevo los punteros a y z
+   si me falta algun ack en el medio la ventana no se corre y no sigo transmitiendo
+   los bytes se agrupan en segmentos que se envian juntos
+   el receptor manda en los ack el tamaño de ventana que puede manejar (control de flujo)
+ extremos de conexion se determinan por el par (direccion,puerto)
+ saludo de tres etapas
+  se envia un syn con un numero de secuencia aleatorio x en un rango que no se puede repetir en un intervalo de tiempo
+  el receptor toma nota del x y manda un syn+ack con su numero y esperando el mensaje x+1
+  el primero envia otro ack esperando el y+1
+ cierre de conexion
+  se envia un paquete fin con numero de secuencia x
+  el receptor devuelve un ack con x+1
+ cabecera mas compleja que tcp. para tipo de paquete, datos de ventana
  
