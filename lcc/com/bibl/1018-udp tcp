@@ -26,4 +26,20 @@ tcp
   se envia un paquete fin con numero de secuencia x
   el receptor devuelve un ack con x+1
  cabecera mas compleja que tcp. para tipo de paquete, datos de ventana
- 
+ rst para resetear conexion
+ psh para forzar el envio de datos inmediatamente, para que no sean guardados en el buffer
+ urg para que los datos pasen por encima de los datos enviados antes
+ tiempo de vida de los paquetes variables para conexiones de distintas velocidades
+ primera opcion
+  rtt=(a*old)+((1-a)*new) y terminacion=b*rtt
+  para retransmitir paquetes no es eficiente
+ algoritmo de kam
+ congestionamiento
+  se achica el tamaño de ventana. allowed_window=min(received_advertisement,congestion_window) (disminucion multiplicativa)
+  cuando ya no hay congestion se va aumentando de a poco de nuevo el tamaño (arranque lento)
+  cuando se inicia una congestion tambien se usa el arranque lento
+ sindrome de ventana tonta
+  cuando un transmisor tiene mucha mas velocidad que el receptor, se va reduciendo mucho el tamaño de ventana
+  se puede llegar al extremo en que la cabecera sea mas grande que los datos que se envian por segmento
+  una solucion es que el receptor no envia tamaños de ventana muy chicos, envia 0 hasta tener mas lugar en el buffer
+  algoritmo de nagle para cuando lo provoca el transmisor
