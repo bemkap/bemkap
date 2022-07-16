@@ -6,7 +6,7 @@ cls=: F{~+:i.-:#F=: }.F
 pag=: ".&.>F{~>:+:i.-:#F
 MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
 dia=: +/"1 MAT
-ord=: |:_8]\(\:~CL,&.>5&":"0&.>)+/MAT
+top=: |:_8]\(\:~CL,&.>5&":"0&.>)+/MAT
 prom=: prop(+/@:]%({~#))dia
 proy=: prom*{:prop
 
