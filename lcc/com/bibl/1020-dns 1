@@ -1,0 +1,48 @@
+dns: domain name system
+sistema para convertir nombres en ips y viceversa
+despues se fue agregando otra informacion
+actualmente almacena miles de millones de nombres
+problemas: como buscar rapido, carga de servidores, administracion actualizacion edicion
+hay copias redundantes de los datos para mas seguridad
+los servidores tienen una jerarquia que divide la carga y organiza los datos
+por esta jerarquia es que se hace delegacion de los pedidos y de la administracion
+jerarquia
+ servidores root (.)
+ top level domains (tld): genericos (com,edu,net,org,etc), o de paises (us,ca,etc)
+ cualquier cantidad de dominios y subdominios
+partes del sistema dns
+ datos de zonas: el servidor puede soportar varios dominios, que estan descriptos en archivos de zona
+ servidores de nombre: lee la configuracion de la zona de la que es responsable que define sus funciones y responde a las consultas locales o remotas
+ librerias resolver: es el que convierte una consulta de un dominio en una o varias consultas dns usando udp o tcp
+tipos de consultas
+ recursiva
+  siempre se devuelve la respuesta o error de que no existe el dominio
+  su implementacion no es requerida
+  el servidor primero mira en su cache. si no esta el registro manda la consulta a un servidor root
+  el root despues delega la consulta segun el dominio
+  la consulta seguira hasta llegar al servidor que contenga el nombre en un registro de zona
+  se da el camino inverso hasta el host que mando la consulta inicial
+ iterativa
+  devuelve la respuesta o sino una referencia de a que otro servidor preguntar
+  es requerida
+ inversa
+  cuando se quiere saber el nombre de dominio a partir de un registro
+  obsoletas
+actualizacion de zonas
+ dos tipos: zone transfer (axfr), o incremental zone transfer (ixfr)
+ axfr
+  los esclavos piden el archivo de zona al maestro
+  el tiempo se define en la configuracion
+  si el serial number es mayor al que tiene se reemplazan los datos
+ ixfr
+  transferir todos los datos es ineficiente, mas si lo que se cambio fue un solo registro
+  primero se manda para ver si tanto el esclavo como el maestro soportan el ixfr
+ notify
+  el maestro puede avisar que un registro puede haber cambiado, para eso envia a los esclavos la notificacion
+  los esclavos comparan el serial number igual que con ixfr y axfr
+actualizaciones dinamicas
+ la forma tradicional de actualizar es cambiar los registros y reiniciar el servidor, lo que puede tardar bastante
+ hay dos formas de actualizar dinamicamente
+  en tiempo de ejecucion desde un programa externo
+  tomar los datos del dns de una base de datos, que puede ser editada en cualquier momento
+  
