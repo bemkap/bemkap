@@ -1,4 +1,4 @@
-F=: 'b'fread'jul'
+F=: 'b'fread'ago'
 CL=: 'b'fread'CL'
 V=: 130
 prop=: ".&>{.F
