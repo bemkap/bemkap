@@ -1,8 +1,8 @@
 F=: 'b'fread'ago'
-CL=: 'b'fread'CL'
 V=: 130
 prop=: ".&>{.F
 cls=: F{~+:i.-:#F=: }.F
+CL=: /:~~.;;:&.>cls
 pag=: ".&.>F{~>:+:i.-:#F
 MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
 dia=: +/"1 MAT
