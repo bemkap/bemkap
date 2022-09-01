@@ -1,4 +1,4 @@
-F=: 'b'fread'ago'
+F=: 'b'fread'sep'
 V=: 150
 prop=: ".&>{.F
 cls=: F{~+:i.-:#F=: }.F
