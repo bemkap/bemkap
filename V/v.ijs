@@ -1,6 +1,6 @@
-F=: 'b'fread'sep'
+F=: 'b'fread'ago'
 V=: {.CFG=: ".&>{.F
-prop=: +/\0,0.33(}.}:CFG)}1#~{:CFG
+prop=: +/\0,0.5(}.}:CFG)}1#~{:CFG
 cls=: F{~+:i.-:#F=: }.F
 CL=: /:~~.;;:&.>cls
 pag=: ".&.>F{~>:+:i.-:#F
