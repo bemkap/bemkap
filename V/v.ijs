@@ -8,7 +8,7 @@ pag=: ".&.>1({"1)_2]\F
 MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
 dia=: +/"1 MAT
 top=: |:_8]\(\:~CL,&.>6&":"0&.>)+/MAT
-prom=: prop(](+/%#)@:%({.~#))dia
+prom=: prop(]%&(+/)({.~#))dia
 proy=: prom*+/prop
 
 summary=: ('~V  ',:' D '),.":dia,:~<.0.5+dia%V
@@ -16,6 +16,6 @@ summary=: summary,'','   prom  ~prov   proy  total        prop',:((+/prop)(],'/'
 smoutput summary
 
 G=: 'b'&fread&.>MES=: ;:'feb mar abr may jun jul ago'
-SUMA=: +/&.>;&.>".&.>L:1(1({"1)_2]\}.)&.>G
+SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
 PREC=: {.@:".&.>{.&>G
-hist=: PREC(,5&":)&>~MES(,8&":)&.>SUMA
+hist=: (SUMA<.@%&.>PREC)(,5&":)&>~PREC(,5&":)&.>~MES(,8&":)&.>SUMA
