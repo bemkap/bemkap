@@ -1,7 +1,7 @@
 F=: 'b'fread'oct'
 G=: 'b'&fread&.>MES=: ;:'feb mar abr may jun jul ago sep oct'
 V=: {.CFG=: ".&>{.F
-prop=: 0.33(}.}:CFG)}1#~{:CFG
+prop=: 0.25(}.}:CFG)}1#~{:CFG
 cls=: 0({"1)_2]\F=: }.F
 CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
 gpag=: 0({"1)_2]\]
