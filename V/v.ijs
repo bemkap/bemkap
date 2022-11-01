@@ -1,5 +1,5 @@
-F=: 'b'fread'oct'
-G=: 'b'&fread&.>MES=: ;:'feb mar abr may jun jul ago sep oct'
+F=: 'b'fread'nov'
+G=: 'b'&fread&.>MES=: ;:'feb mar abr may jun jul ago sep oct nov'
 V=: {.CFG=: ".&>{.F
 prop=: 0.25(}.}:CFG)}1#~{:CFG
 cls=: 0({"1)_2]\F=: }.F
@@ -12,6 +12,7 @@ dia=: +/"1 MAT
 top=: |:tab(\:~CL,&.>6&":"0&.>)+/MAT
 prom=: prop(]%&(+/)({.~#))dia
 proy=: prom*+/prop
+hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 
 summary=: ('~V  ',:' D '),.":dia,:~<.0.5+dia%V
 summary=: summary,'','   prom  ~prov   proy  total        prop',:((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia),~' ',~7":<.prom,(prom%V),proy,+/dia
