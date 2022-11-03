@@ -1,20 +1,19 @@
-require'data/jd'
+HEIGHT=: 1
 WINDOW=: 0 : 0
 pc win1 closeok;
 bin h;
-
-cc  tabl0 table 1 2;
-set tabl0 hdr codigo cantidad;
-set tabl0 colwidth 256 128;
-set tabl0 protect 1 1;
-
+cc  tabl table 1 5;
+set tabl hdr codigo cantidad producto p_unitario p_total;
+set tabl colwidth 256 128 384 128 128;
+set tabl type 0 0 0 0 0;
+set tabl data 0 0 "def" "ghi" "jkf";
+set tabl protect 0 0 1 1 1;
 pshow;
 )
-wd WINDOW
-
-A=: 0 : 0
-cc  tabl1 table 1 3;
-set tabl1 hdr producto precio_unitario precio_total;
-set tabl1 colwidth 384 128 128;
-set tabl1 protect 1 1 1;
+win1_tabl_change=: 3 : 0
+if. (1,~<:HEIGHT)-:".tabl_cell do. 
+ wd'set tabl shape ',(":HEIGHT=: >:HEIGHT),' 5'
+ wd'set tabl protect ',":,(HEIGHT,5)$0 0 1 1 1
+end.
 )
+wd WINDOW
