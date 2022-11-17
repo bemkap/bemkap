@@ -1,4 +1,0 @@
-prod_codi
-prod_nomb
-prod_prov
-prod_prec

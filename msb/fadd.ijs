@@ -1,10 +1,4 @@
-load'data/jd'
-jdadmin'fiam'
-
 FADD=: 0 : 0
-fontdef Monospace 14;
-pc fadd closeok;pn "MSB";
-pmove _1 _1 800 600;
 bin vs;
 bin hsv;
 cc provlabe static; cn "Proveedores";
@@ -22,15 +16,11 @@ bin zszs;
 set prodnomb inputmask AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;
 set prodcodi inputmask 9999999999999999999999999999999999999999;
 set prodprov inputmask 999;
-
-pshow;
 )
 
-fadd_prodbutt_button=: 3 : 0
+main_prodbutt_button=: 3 : 0
  if. 40>#prodcodi do. wd'mb info mb_ok "" "longitud del codigo menor a 40"' return. end.
  if.  0=#prodnomb do. wd'mb info mb_ok "" "sin nombre de producto"' return. end.
  if.  0=#prodprov do. wd'mb info mb_ok "" "sin proveedor"' return. end.
  jd'insert prod';'prod_codi';(".prodcodi);'prod_nomb';prodnomb;'prod_prov';prodprov;'prod_prec';0
 )
-
-wd FADD
