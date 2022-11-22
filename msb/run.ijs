@@ -1,4 +1,4 @@
-load'data/jd ',;DIRECTORY&,&.>'fcob.ijs ';'fcue.ijs ';'fprod.ijs '
+load'data/jd ',;DIRECTORY&,&.>'fcob.ijs ';'fcue.ijs ';'fprod.ijs ';'falt.ijs '
 jdadmin'fiam'
 
 MAIN=: 3 : 0
@@ -7,18 +7,20 @@ MAIN=: 3 : 0
  wd'cc opes tab'
  wd'tabnew COBRO'
  wd FCOB
- fcob_init''
  wd'tabnew CUENTAS'
  wd FCUE
- fcue_init''
  wd'tabnew PRODUCTOS'
  wd FPRO
+ wd'tabnew ALTAS'
+ wd FALT
  wd'tabend'
  wd'pshow fullscreen'
+ fcob_init''
+ fcue_init''
+ falt_init''
 )
 
 main_resize=: 3 : 0
- main_fcob_tb_cobr_change''
  main_fcue_tb_cuen_change''
  main_tb_prod_change''
 )

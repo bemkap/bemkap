@@ -37,4 +37,8 @@ main_fcue_bt_nuev_button=: 3 : 0
 )
 
 main_fcue_bt_entr_button=: 3 : 0
+ if. 1=#1!:0 jpath fn=. ({.~ 1+0 i:~ ' '&=)DIRECTORY,'CUENTAS/',fcue_cl_cuen do.
+  fcue_tx_entr ,~&". }:fread fn
+ end.
+)
  
