@@ -17,12 +17,23 @@ MAIN=: 3 : 0
  wd'pshow fullscreen'
  fcob_init''
  fcue_init''
+ fpro_init''
  falt_init''
 )
+
+NB. debug
+NB. main_default=: 3 : '1' NB.smoutput wdq'
 
 main_resize=: 3 : 0
  main_fcue_tb_cuen_change''
  main_tb_prod_change''
+)
+
+main_opes_select=: 3 : 0
+ select. ".opes_select
+  case. 0 do. fcob_focus''
+  case. 2 do. fpro_focus''
+ end.
 )
 
 MAIN''
