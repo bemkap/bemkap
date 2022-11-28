@@ -1,4 +1,5 @@
 FPRO=: 0 : 0
+tabnew PRODUCTOS;
 cc fpro_tb_prod table 1 5;
 set fpro_tb_prod hdr codigo nombre marca costo porcentaje;
 cc fpro_tx_prod edit;
