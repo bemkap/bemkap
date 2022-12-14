@@ -1,5 +1,6 @@
-F=: 'b'fread'dic'
-G=: 'b'&fread&.>MES=: ;:'feb mar abr may jun jul ago sep oct nov dic'
+DIR=: '/home/bemkap/doc/b/V/'
+F=: 'b'fread DIR,'dic'
+G=: 'b'&fread&.>DIR&,&.>MES=: ;:'feb mar abr may jun jul ago sep oct nov dic'
 V=: {.CFG=: ".&>{.F
 prop=: 0.25(}.}:CFG)}1#~{:CFG
 cls=: 0({"1)_2]\F=: }.F
@@ -16,7 +17,6 @@ hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 
 summary=: ('~V  ',:' D '),.":dia,:~<.0.5+dia%V
 summary=: summary,'','   prom  ~prov   proy  total        prop',:((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia),~' ',~7":<.prom,(prom%V),proy,+/dia
-smoutput summary
 
 SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
 PREC=: {.@:".&.>{.&>G
