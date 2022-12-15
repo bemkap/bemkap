@@ -1,6 +1,8 @@
 DIR=: '/home/bemkap/doc/b/V/'
 MES=: ;:'feb mar abr may jun jul ago sep oct nov dic'
+G=: 'b'&fread&.>DIR&,&.>MES
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
+hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 
 FORM=: 0 : 0
  pc main closeok;
@@ -20,8 +22,6 @@ FORM=: 0 : 0
 
 main_meses_button=: 3 : 0
  F=: 'b'fread DIR,meses
- G=: 'b'&fread&.>DIR&,&.>MES
- wd'set reg text ',,LF,.~>G{::~MES i. <meses
  V=: {.CFG=: ".&>{.F
  prop=: 0.25(}.}:CFG)}1#~{:CFG
  cls=: 0({"1)_2]\F=: }.F
@@ -34,7 +34,6 @@ main_meses_button=: 3 : 0
  top=: |:tab(\:~CL,&.>6&":"0&.>)+/MAT
  prom=: prop(]%&(+/)({.~#))dia
  proy=: prom*+/prop
- hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
  
  summary=: ('~V  ',:' D '),.":dia,:~<.0.5+dia%V
  summary=: summary,'','   prom  ~prov   proy  total        prop',:((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia),~' ',~7":<.prom,(prom%V),proy,+/dia
@@ -43,13 +42,19 @@ main_meses_button=: 3 : 0
  PREC=: {.@:".&.>{.&>G
 
  hist=: (SUMA<.@%&.>PREC)(,5&":)&>~PREC(,5&":)&.>~MES(,8&":)&.>SUMA
+ wd'set reg text ',;,&LF&.>(":CFG);F
  wd'set summary text ',,LF,.~summary
  wd'set tops text ',,LF,.~>,&.>/"1 top,&.><'   '
  wd'set history text ',,LF,.~hist
  wd'set clientes text ',,LF,.~>,&.>/"1 (_7]\ CL),&.><'   '
 )
 
+main_save_button=: 3 : 0
+ reg fwrite DIR,meses
+ main_meses_button''
+)
+
 wd FORM
 wd'set meses items ',boxtoitem MES
 wd'set meses select ',":<:#MES
-main_meses_button''
+main_meses_button meses=: >{:MES
