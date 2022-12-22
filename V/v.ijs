@@ -1,8 +1,8 @@
 DIR=: '/home/bemkap/doc/b/V/'
-F=: 'b'fread DIR,'dic'
-G=: 'b'&fread&.>DIR&,&.>MES=: ;:'feb mar abr may jun jul ago sep oct nov dic'
-V=: {.CFG=: ".&>{.F
-prop=: 0.25(}.}:CFG)}1#~{:CFG
+F=: 'b'fread DIR,'1222'
+G=: 'b'&fread&.>DIR&,&.>MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222'
+'V CFG'=: ({.;}.)".&>{.F
+prop=: (#~*)0 1 0.25{~CFG
 cls=: 0({"1)_2]\F=: }.F
 tab=: _10]\]
 CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
