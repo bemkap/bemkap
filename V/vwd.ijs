@@ -7,6 +7,7 @@ COL=: '#000000';'#ffffff';'#ffff00'
 
 FORM=: 0 : 0
  pc main closeok;
+ ide hide;
  fontdef Terminus 14;
  bin vhv;
  cc meses listbox;
