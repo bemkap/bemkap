@@ -1,3 +1,5 @@
+load'gl2'
+coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
 MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222'
 G=: 'b'&fread&.>DIR&,&.>MES
@@ -6,8 +8,8 @@ hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 COL=: '#000000';'#ffffff';'#ffff00'
 
 FORM=: 0 : 0
- pc main closeok;
  ide hide;
+ pc main closeok;
  fontdef Terminus 14;
  bin vhv;
  cc meses listbox;
@@ -15,6 +17,7 @@ FORM=: 0 : 0
  bin h; cc new button; cc nomb edit; bin zz;
  minwh 1600 1;cc reg editm;
  bin zh;
+ maxwh 350 200; cc grph isidraw;
  minwh 1 140; cc summary static center sunken; set summary text "";
  maxwh 270 200; cc cal table 7 7;
  bin zhh;
@@ -57,6 +60,13 @@ main_meses_button=: 3 : 0
  wd'set cal block 1 6 0 6'
  wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
+ glclear''
+ glrgb 59 66 82
+ glbrush''
+ glrect 0 0 350 200
+ X=. 20+<.330((%*i.@:])#)Y=. <.180*(%>./)dia
+ gllines ,X,.200-Y
+ glpaint''
 )
 
 main_save_button=: 3 : 0
