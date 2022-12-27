@@ -56,7 +56,7 @@ main_meses_button=: 3 : 0
  wd'set history text ',,LF,.~hist
  wd'set clientes data ',boxtoitem ,_8]\CL
  wd'set cal block'
- wd'set cal data ',boxtoitem 49{.,CAL=: }.}:_3<\"1{.>calendar|.0 2000+100#.inv".meses
+ wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".meses
  wd'set cal block 1 6 0 6'
  wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
