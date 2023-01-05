@@ -1,6 +1,6 @@
 DIR=: '/home/bemkap/doc/b/V/'
-F=: 'b'fread DIR,'1222'
-G=: 'b'&fread&.>DIR&,&.>MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222'
+F=: 'b'fread DIR,'0123'
+G=: 'b'&fread&.>DIR&,&.>MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123'
 'V CFG'=: ({.;}.)".&>{.F
 prop=: (#~*)0 1 0.25{~CFG
 cls=: 0({"1)_2]\F=: }.F
