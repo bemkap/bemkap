@@ -74,6 +74,12 @@ main_save_button=: 3 : 0
  main_meses_button''
 )
 
+main_new_button=: 3 : 0
+ (":200,1#~".&>({~(<'   ')&~:i:1:),2}._3<\"1{.>calendar|.0 2000+100#.inv".nomb) fwrite DIR,nomb
+ main_meses_button''
+)
+ 
+
 main_cal_mbldbl=: 3 : 0
  i=. <:".wd'get cal cell ',":cal
  CFG=: (3|>:i{CFG)(i})CFG
