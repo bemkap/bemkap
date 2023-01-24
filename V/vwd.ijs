@@ -51,10 +51,12 @@ main_meses_button=: 3 : 0
 
  hist=: (SUMA<.@%&.>PREC)(,5&":)&>~PREC(,5&":)&.>~MES(,8&":)&.>SUMA
  wd'set reg text ',;,&LF&.>F
+ wd'set reg scroll max'
  wd'set summary text ',,LF,.~summary
  wd'set tops data ',boxtoitem ,top
  wd'set history text ',,LF,.~hist
  wd'set clientes data ',boxtoitem ,_8]\CL
+ wd'set clientes protect 1'
  wd'set cal block'
  wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".meses
  wd'set cal block 1 6 0 6'
@@ -78,7 +80,6 @@ main_new_button=: 3 : 0
  (":200,1#~".&>({~(<'   ')&~:i:1:),2}._3<\"1{.>calendar|.0 2000+100#.inv".nomb) fwrite DIR,nomb
  main_meses_button''
 )
- 
 
 main_cal_mbldbl=: 3 : 0
  i=. <:".wd'get cal cell ',":cal
@@ -86,6 +87,12 @@ main_cal_mbldbl=: 3 : 0
  wd'set cal block 1 6 0 6'
  wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
+)
+
+main_clientes_mbldbl=: 3 : 0
+ wd'set reg text ',reg,' ',~wd'get clientes cell ',":clientes
+ wd'set reg scroll max'
+ wd'set clientes protect 1'
 )
 
 wd FORM
