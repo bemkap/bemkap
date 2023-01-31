@@ -17,7 +17,7 @@ FORM=: 0 : 0
  minwh 1600 1;cc reg editm;
  bin zh;
  maxwh 350 200; cc grph isidraw;
- minwh 1 140; cc summary static center sunken; set summary text "";
+ minwh 1 140; cc summary static center sunken; set summary font Terminus 12; set summary text "";
  maxwh 270 200; cc cal table 7 7;
  bin zhh;
  minwh 1 256; cc history static center sunken; set history text "";
