@@ -1,7 +1,7 @@
 load'gl2'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
-MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123'
+MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 COL=: '#000000';'#ffffff';'#ffff00'
