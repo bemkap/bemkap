@@ -1,4 +1,4 @@
-load'gl2'
+load'gl2 plot'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
 MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223'
@@ -21,7 +21,7 @@ FORM=: 0 : 0
  maxwh 270 200; cc cal table 7 7;
  bin zhh;
  minwh 1 256; cc history static center sunken; set history text "";
- maxwh 380 283; cc clientes table 10 8; set clientes colwidth 30; set clientes rowheight 42;
+ maxwh 380 283; cc clientes table 9 8; set clientes colwidth 30; set clientes rowheight 42;
  bin z;
  maxwh 860 283; cc tops table 10 8;
  pshow;
@@ -48,6 +48,8 @@ main_meses_button=: 3 : 0
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
+ NB. DAYP=: (~.t)/:~dia+//.~t=.(t{.~>:#dia)#s=. 7|(weekday (1,~|.0 2000+100#.inv".meses))+i.>:(#dia)i.~+/\t=. 0<CFG
+ DAYP=: (~.t)/:~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".meses))+i.>:(#dia)i.~+/\t=. 0<CFG
 
  hist=: (SUMA<.@%&.>PREC)(,5&":)&>~PREC(,5&":)&.>~MES(,8&":)&.>SUMA
  wd'set reg text ',;,&LF&.>F
@@ -55,7 +57,7 @@ main_meses_button=: 3 : 0
  wd'set summary text ',,LF,.~summary
  wd'set tops data ',boxtoitem ,top
  wd'set history text ',,LF,.~hist
- wd'set clientes data ',boxtoitem ,_8]\CL
+ wd'set clientes data ',boxtoitem 72{.CL
  wd'set clientes protect 1'
  wd'set cal block'
  wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".meses
@@ -66,8 +68,19 @@ main_meses_button=: 3 : 0
  glrgb 59 66 82
  glbrush''
  glrect 0 0 350 200
- X=. 20+<.330((%*i.@:])#)Y=. <.180*(%>./)dia
- gllines ,X,.200-Y
+ glrgb 0 0 128
+ glbrush ''
+ glrect"1 (-(<.@%(160%~>./))DAYP),.~25,.~180,.~80+40*i.6
+ glfont'Terminus 12 bold'
+ gltextxy 30 170
+ gltext'   0'
+ gltextxy 30,170-<.(>./DAYP)%~160*5000
+ gltext'5000'
+ gltextxy 30 10
+ gltext":<.>./DAYP
+ gllines 70 10 70 180 310 180
+ gltextxy 90 182
+ gltext'L    M    M    J    V    S'
  glpaint''
 )
 
