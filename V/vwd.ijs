@@ -13,8 +13,9 @@ FORM=: 0 : 0
  bin vhv;
  cc meses listbox;
  cc save button;
- bin h; cc new button; cc nomb edit; bin zz;
+ bin z;
  minwh 1600 1;cc reg editm;
+ cc tota listbox;
  bin zh;
  maxwh 350 200; cc grph isidraw;
  minwh 1 140; cc summary static center sunken; set summary text "";
@@ -22,7 +23,7 @@ FORM=: 0 : 0
  maxwh 270 200; cc cal table 7 7;
  bin zhh;
  minwh 1 256; cc history static center sunken; set history text "";
- maxwh 380 283; cc clientes table 9 8; set clientes colwidth 30; set clientes rowheight 42;
+ maxwh 380 283; cc clientes table 9 8;
  bin z;
  maxwh 860 283; cc tops table 10 8;
  pshow;
@@ -34,18 +35,15 @@ main_meses_button=: 3 : 0
  'V CFG'=: ({.;}.)".&>{.F
  prop=: (#~*)0 1 0.25{~CFG
  cls=: 0({"1)_2]\F=: }.F
- tab=: _10]\]
  CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
  gpag=: 0({"1)_2]\]
  pag=: ".&.>1({"1)_2]\F
  MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
  dia=: +/"1 MAT
- top=: |:tab(\:~CL,&.>6&":"0&.>)+/MAT
+ top=: |:_10]\(\:~CL,&.>6&":"0&.>)+/MAT
  prom=: prop(]%&(+/)({.~#))dia
  proy=: prom*+/prop
  
- NB. summary=: ('~V  ',:' D '),.":dia,:~<.0.5+dia%V
- NB. summary=: summary,'','   prom  ~prov   proy  total        prop',:((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia),~' ',~7":<.prom,(prom%V),proy,+/dia
  summary=: ((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia),~11":<.prom,(prom%V),proy,:+/dia
  summary=: summary,"1~' ',.~' prom','~prov',' proy',' parc',:' prop'
 
@@ -56,10 +54,12 @@ main_meses_button=: 3 : 0
  hist=: (SUMA<.@%&.>PREC)(,5&":)&>~PREC(,5&":)&.>~MES(,8&":)&.>SUMA
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
+ wd'set tota items ',boxtoitem <"1 dia,.<.0.5+dia%V
  wd'set summary text ','"',~'"',,LF,.~summary
  wd'set tops data ',boxtoitem ,top
  wd'set history text ',,LF,.~hist
  wd'set clientes data ',boxtoitem 72{.CL
+ wd'set clientes rowheight ',":<.283%9
  wd'set clientes protect 1'
  wd'set cal block'
  wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".meses
@@ -72,11 +72,6 @@ main_meses_button=: 3 : 0
 
 main_save_button=: 3 : 0
  ((":V,CFG),LF,reg) fwrite DIR,meses
- main_meses_button''
-)
-
-main_new_button=: 3 : 0
- (":200,1#~".&>({~(<'   ')&~:i:1:),2}._3<\"1{.>calendar|.0 2000+100#.inv".nomb) fwrite DIR,nomb
  main_meses_button''
 )
 
