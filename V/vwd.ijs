@@ -2,6 +2,7 @@ load'gl2 plot'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
 MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223'
+NMES=: ;:'ene feb mar abr mar jun jul ago sep oct nov dic'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 COL=: '#000000';'#ffffff';'#ffff00'
@@ -12,11 +13,14 @@ FORM=: 0 : 0
  pc main closeok;
  fontdef Terminus 14;
  bin vhv;
+ cc MESES static panel;
  cc meses listbox;
  cc save button;
+ bin zv;
+ cc DIAS static panel;
+ cc tota listbox;
  bin z;
  minwh 1600 1;cc reg editm;
- cc tota listbox;
  bin zh;
  maxwh 350 200; cc grph isidraw;
  minwh 1 140; cc summary static center sunken; set summary text "";
@@ -32,7 +36,7 @@ FORM=: 0 : 0
 
 main_meses_button=: 3 : 0
  G=: 'b'&fread&.>DIR&,&.>MES
- F=: 'b'fread DIR,meses
+ F=: 'b'fread DIR,MES{::~".meses_select
  'V CFG'=: ({.;}.)".&>{.F
  prop=: (#~*)0 1 0.25{~CFG
  cls=: 0({"1)_2]\F=: }.F
@@ -50,7 +54,7 @@ main_meses_button=: 3 : 0
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
- DAYP=: (~.t)/:~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".meses))+i.>:(#dia)i.~+/\t=. 0<CFG
+ DAYP=: (~.t)/:~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
  idx=. ((_1 _22|.@:+100#.inv".)&.>MES)}&(2 12$a:)
  H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
  H1=. idx PREC
@@ -63,14 +67,14 @@ main_meses_button=: 3 : 0
  wd'set summary text ','"',~'"',,LF,.~summary
  wd'set tops data ',boxtoitem ,top
  wd'set tops rowheight ',":<.283%9
- wd'set history data ',boxtoitem ((IHIST{'TOTA','PREC',:'CANT');'2022';'2023'),.(;:'ene feb mar abr mar jun jul ago sep oct nov dic'),IHIST{HIST
+ wd'set history data ',boxtoitem ((IHIST{'TOTA','PREC',:'CANT');'2022';'2023'),.NMES,IHIST{HIST
  wd'set history colwidth 48'
  wd'set history protect 1'
  wd'set clientes data ',boxtoitem 72{.CL
  wd'set clientes rowheight ',":<.283%9
  wd'set clientes protect 1'
  wd'set cal block'
- wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".meses
+ wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".MES{::~".meses_select
  wd'set cal block 1 6 0 6'
  wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
@@ -79,7 +83,7 @@ main_meses_button=: 3 : 0
 )
 
 main_save_button=: 3 : 0
- ((":V,CFG),LF,reg) fwrite DIR,meses
+ ((":V,CFG),LF,reg) fwrite DIR,MES{::~".meses_select
  main_meses_button''
 )
 
@@ -145,6 +149,6 @@ paintgsum=: 3 : 0
 )
 
 wd FORM
-wd'set meses items ',boxtoitem MES
+wd'set meses items ',boxtoitem ((NMES{::~<:@:{.),' ',":@:{:)&.>(0 2000+100#.inv".)&.>MES
 wd'set meses select ',":<:#MES
 main_meses_button meses=: >{:MES
