@@ -5,6 +5,7 @@ MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 COL=: '#000000';'#ffffff';'#ffff00'
+IHIST=: 0
 
 FORM=: 0 : 0
  ide hide;
@@ -22,10 +23,10 @@ FORM=: 0 : 0
  maxwh 1000 200; cc gsum isidraw;
  maxwh 270 200; cc cal table 7 7;
  bin zhh;
- minwh 1 256; cc history static center sunken; set history text "";
+ maxwh 800 283; cc history table 3 13;
  maxwh 380 283; cc clientes table 9 8;
  bin z;
- maxwh 860 283; cc tops table 10 8;
+ maxwh 860 283; cc tops table 9 8;
  pshow;
 )
 
@@ -40,7 +41,7 @@ main_meses_button=: 3 : 0
  pag=: ".&.>1({"1)_2]\F
  MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
  dia=: +/"1 MAT
- top=: |:_10]\(\:~CL,&.>6&":"0&.>)+/MAT
+ top=: |:_9]\(\:~CL,&.>6&":"0&.>)+/MAT
  prom=: prop(]%&(+/)({.~#))dia
  proy=: prom*+/prop
  
@@ -50,14 +51,21 @@ main_meses_button=: 3 : 0
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
  DAYP=: (~.t)/:~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".meses))+i.>:(#dia)i.~+/\t=. 0<CFG
+ idx=. ((_1 _22|.@:+100#.inv".)&.>MES)}&(2 12$a:)
+ H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
+ H1=. idx PREC
+ H2=. idx SUMA<.@%&.>PREC
+ HIST=: H0,H1,:H2
 
- hist=: (SUMA<.@%&.>PREC)(,5&":)&>~PREC(,5&":)&.>~MES(,8&":)&.>SUMA
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
  wd'set tota items ',boxtoitem <"1 dia,.<.0.5+dia%V
  wd'set summary text ','"',~'"',,LF,.~summary
  wd'set tops data ',boxtoitem ,top
- wd'set history text ',,LF,.~hist
+ wd'set tops rowheight ',":<.283%9
+ wd'set history data ',boxtoitem ((IHIST{'TOTA','PREC',:'CANT');'2022';'2023'),.(;:'ene feb mar abr mar jun jul ago sep oct nov dic'),IHIST{HIST
+ wd'set history colwidth 48'
+ wd'set history protect 1'
  wd'set clientes data ',boxtoitem 72{.CL
  wd'set clientes rowheight ',":<.283%9
  wd'set clientes protect 1'
@@ -87,6 +95,10 @@ main_clientes_mbldbl=: 3 : 0
  wd'set reg text ',reg,' ',~wd'get clientes cell ',":clientes
  wd'set reg scroll max'
  wd'set clientes protect 1'
+)
+
+main_history_mbldbl=: 3 : 0
+ if. 0 0-:".history do. main_meses_button IHIST=: 3|>:IHIST end.
 )
 
 paintgrph=: 3 : 0
