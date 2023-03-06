@@ -1,7 +1,7 @@
 load'gl2 plot'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
-MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223'
+MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323'
 NMES=: ;:'ene feb mar abr mar jun jul ago sep oct nov dic'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
@@ -54,7 +54,7 @@ main_meses_button=: 3 : 0
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
- DAYP=: (~.t)/:~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
+ DAYP=: 6{.(~.t)/:~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
  idx=. ((_1 _22|.@:+100#.inv".)&.>MES)}&(2 12$a:)
  H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
  H1=. idx PREC
@@ -63,7 +63,7 @@ main_meses_button=: 3 : 0
 
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
- wd'set tota items ',boxtoitem <"1 dia,.<.0.5+dia%V
+ wd'set tota items ',boxtoitem <"1 (6":"0 dia),"1~2":"0<.0.5+dia%V
  wd'set summary text ','"',~'"',,LF,.~summary
  wd'set tops data ',boxtoitem ,top
  wd'set tops rowheight ',":<.283%9
@@ -143,7 +143,7 @@ paintgsum=: 3 : 0
  gltext'   0'
  gltextxy 10,170-<.(>./dia)%~160*5000
  gltext'5000'
- gltextxy 10 10
+ gltextxy 5 10
  gltext":<.>./dia
  glpaint''
 )
