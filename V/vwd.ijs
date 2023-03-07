@@ -119,7 +119,7 @@ paintgrph=: 3 : 0
  gltext'   0'
  gltextxy 30,170-<.(>./DAYP)%~160*5000
  gltext'5000'
- gltextxy 30 10
+ gltextxy 25 10
  gltext":<.>./DAYP
  gllines 70 10 70 180 310 180
  gltextxy 90 182
