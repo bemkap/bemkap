@@ -1,4 +1,4 @@
-load'gl2 plot'
+load'gl2 plot format/printf'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
 MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323'
@@ -38,7 +38,7 @@ main_meses_button=: 3 : 0
  G=: 'b'&fread&.>DIR&,&.>MES
  F=: 'b'fread DIR,MES{::~".meses_select
  'V CFG'=: ({.;}.)".&>{.F
- prop=: (#~*)0 1 0.25{~CFG
+ prop=: (#~*)CFG
  cls=: 0({"1)_2]\F=: }.F
  CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
  gpag=: 0({"1)_2]\]
@@ -46,11 +46,11 @@ main_meses_button=: 3 : 0
  MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
  dia=: +/"1 MAT
  top=: |:_9]\(\:~CL,&.>6&":"0&.>)+/MAT
- prom=: prop(]%&(+/)({.~#))dia
- proy=: prom*+/prop
- 
- summary=: ((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia),~11":<.prom,(prom%V),proy,:+/dia
- summary=: summary,"1~' ',.~' prom','~prov',' proy',' parc',:' prop'
+ prom=: prop(({.~#)(+/<.@:%#)/.])dia
+ proy=: +/prom{~2=prop
+
+ summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)prom),proy,+/dia
+ summary=: summary,LF,'prop   ',((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia)
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
@@ -64,7 +64,7 @@ main_meses_button=: 3 : 0
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
  wd'set tota items ',boxtoitem <"1 (6":"0 dia),"1~2":"0<.0.5+dia%V
- wd'set summary text ','"',~'"',,LF,.~summary
+ wd'set summary text ',summary NB.'"',~'"',,LF,.~summary
  wd'set tops data ',boxtoitem ,top
  wd'set tops rowheight ',":<.283%9
  wd'set history data ',boxtoitem ((IHIST{'TOTA','PREC',:'CANT');'2022';'2023'),.NMES,IHIST{HIST
