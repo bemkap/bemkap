@@ -50,7 +50,7 @@ main_meses_button=: 3 : 0
  proy=: +/prom{~2=prop
 
  summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)prom),proy,+/dia
- summary=: summary,LF,'prop   ',((+/prop)(],'/',[)&(5j2&":)+/prop({.~#)dia)
+ summary=: summary,LF,'prop   ',((+/0 1 0.5{~prop)(],'/',[)&(5j2&":)+/0 1 0.5{~prop({.~#)dia)
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
