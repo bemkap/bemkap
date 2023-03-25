@@ -64,7 +64,7 @@ main_meses_button=: 3 : 0
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
  wd'set tota items ',boxtoitem <"1 (6":"0 dia),"1~2":"0<.0.5+dia%V
- wd'set summary text ',summary NB.'"',~'"',,LF,.~summary
+ wd'set summary text ',summary
  wd'set tops data ',boxtoitem ,top
  wd'set tops rowheight ',":<.283%9
  wd'set history data ',boxtoitem ((IHIST{'TOTA','PREC',:'CANT');'2022';'2023'),.NMES,IHIST{HIST
@@ -115,12 +115,12 @@ paintgrph=: 3 : 0
  glbrush ''
  glrect"1 (-(<.@%(160%~>./))DAYP),.~25,.~180,.~80+40*i.6
  glfont'Terminus 12 bold'
- gltextxy 30 170
- gltext'   0'
- gltextxy 30,170-<.(>./DAYP)%~160*5000
- gltext'5000'
+ gltextxy 25 170
+ gltext'    0'
+ gltextxy 25,170-<.(>./DAYP)%~160*5000
+ gltext' 5000'
  gltextxy 25 10
- gltext":<.>./DAYP
+ gltext 5":<.>./DAYP
  gllines 70 10 70 180 310 180
  gltextxy 90 182
  gltext'L    M    M    J    V    S'
@@ -139,12 +139,12 @@ paintgsum=: 3 : 0
  glpen 1
  gllines 50 20 50 180,(70+35*<:#dia),180
  glfont'Terminus 12 bold'
- gltextxy 10 170
- gltext'   0'
- gltextxy 10,170-<.(>./dia)%~160*5000
- gltext'5000'
+ gltextxy 5 170
+ gltext'    0'
+ gltextxy 5,170-<.(>./dia)%~160*5000
+ gltext' 5000'
  gltextxy 5 10
- gltext":<.>./dia
+ gltext 5":<.>./dia
  glpaint''
 )
 
