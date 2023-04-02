@@ -1,7 +1,7 @@
 load'gl2 plot format/printf'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
-MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323'
+MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323 0423'
 NMES=: ;:'ene feb mar abr mar jun jul ago sep oct nov dic'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
@@ -46,7 +46,7 @@ main_meses_button=: 3 : 0
  MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
  dia=: +/"1 MAT
  top=: |:_9]\(\:~CL,&.>6&":"0&.>)+/MAT
- prom=: prop(({.~#)(+/<.@:%#)/.])dia
+ prom=: 2{.prop(({.~#)(+/<.@:%#)/.])dia
  proy=: +/prom{~2=prop
 
  summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)prom),proy,+/dia
