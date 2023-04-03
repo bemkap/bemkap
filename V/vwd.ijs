@@ -46,7 +46,7 @@ main_meses_button=: 3 : 0
  MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
  dia=: +/"1 MAT
  top=: |:_9]\(\:~CL,&.>6&":"0&.>)+/MAT
- prom=: 2{.prop(({.~#)(+/<.@:%#)/.])dia
+ prom=: 2{.prop(~.@:[/:~({.~#)(+/<.@:%#)/.])dia
  proy=: +/prom{~2=prop
 
  summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)prom),proy,+/dia
@@ -54,7 +54,7 @@ main_meses_button=: 3 : 0
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
- DAYP=: 6{.(~.t)/:~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
+ DAYP=: (6$0)(<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
  idx=. ((_1 _22|.@:+100#.inv".)&.>MES)}&(2 12$a:)
  H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
  H1=. idx PREC
