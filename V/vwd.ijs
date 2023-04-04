@@ -54,7 +54,7 @@ main_meses_button=: 3 : 0
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
  PREC=: {.@:".&.>{.&>G
- DAYP=: (6$0)(<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
+ DAYP=: (6$0)(~.<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
  idx=. ((_1 _22|.@:+100#.inv".)&.>MES)}&(2 12$a:)
  H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
  H1=. idx PREC
