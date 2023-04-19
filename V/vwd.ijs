@@ -135,9 +135,10 @@ paintgsum=: 3 : 0
  glrect 0 0 1000 200
  glrgb 0 0 0
  glpen 2
- gllines ,(60+35*i.#dia),.180-160(<.@*(%>./))dia
+ gllines ,(60+35*i.#d),.180-160(<.@*(%>./))d=. dia#~1=prop({.~#)dia
+ gllines ,(60+35*i.#e),.180-<.160*(>./d)%~e=. dia#~2=prop({.~#)dia
  glpen 1
- gllines 50 20 50 180,(70+35*<:#dia),180
+ gllines 50 20 50 180,(70+35*<:#d),180
  glfont'Terminus 12 bold'
  gltextxy 5 170
  gltext'    0'
