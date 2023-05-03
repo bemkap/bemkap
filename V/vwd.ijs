@@ -1,7 +1,7 @@
 load'gl2 plot format/printf'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
-MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323 0423'
+MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323 0423 0523'
 NMES=: ;:'ene feb mar abr mar jun jul ago sep oct nov dic'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
@@ -27,33 +27,32 @@ FORM=: 0 : 0
  maxwh 1000 200; cc gsum isidraw;
  maxwh 270 200; cc cal table 7 7;
  bin zhh;
- maxwh 800 283; cc history table 3 13;
- maxwh 380 283; cc clientes table 9 8;
+ maxwh 700 283; cc history table 3 13;
+ maxwh 384 283; cc clientes table 9 8;
  bin z;
- maxwh 860 283; cc tops table 9 8;
+ maxwh 865 283; cc tops table 9 8;
  pshow;
 )
 
 main_meses_button=: 3 : 0
  G=: 'b'&fread&.>DIR&,&.>MES
+ CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
  F=: 'b'fread DIR,MES{::~".meses_select
  'V CFG'=: ({.;}.)".&>{.F
- prop=: (#~*)CFG
- cls=: 0({"1)_2]\F=: }.F
- CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
- gpag=: 0({"1)_2]\]
- pag=: ".&.>1({"1)_2]\F
- MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL
- dia=: +/"1 MAT
- top=: |:_9]\(\:~CL,&.>6&":"0&.>)+/MAT
- prom=: 2{.prop(~.@:[/:~({.~#)(+/<.@:%#)/.])dia
- proy=: +/prom{~2=prop
+ prop=: (#~*)CFG						NB. tipo de dia
+ cls=: 0({"1)_2]\F=: }.F					NB. clientes del dia
+ pag=: ".&.>1({"1)_2]\F						NB. pago del dia
+ MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL NB. matriz dia x cliente
+ dia=: +/"1 MAT							NB. total del dia
+ top=: |:_9]\(\:~CL,&.>6&":"0&.>)+/MAT				NB. tabla de tops
+ prom=: prop(~.@:[/:~2{.({.~#)(+/<.@:%#)/.])dia			NB. promedio normal sabado
+ proy=: +/prom{~2=prop						NB. proyeccion mes
 
  summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)prom),proy,+/dia
  summary=: summary,LF,'prop   ',((+/0 1 0.5{~prop)(],'/',[)&(5j2&":)+/0 1 0.5{~prop({.~#)dia)
 
- SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G
- PREC=: {.@:".&.>{.&>G
+ SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G			NB. suma total por mes
+ PREC=: {.@:".&.>{.&>G						NB. viaje por mes
  DAYP=: (6$0)(~.<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
  idx=. ((_1 _22|.@:+100#.inv".)&.>MES)}&(2 12$a:)
  H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
@@ -71,7 +70,7 @@ main_meses_button=: 3 : 0
  wd'set history colwidth 48'
  wd'set history protect 1'
  wd'set clientes data ',boxtoitem 72{.CL
- wd'set clientes rowheight ',":<.283%9
+ wd'set clientes rowheight ',":<.285%9
  wd'set clientes protect 1'
  wd'set cal block'
  wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".MES{::~".meses_select
@@ -108,7 +107,7 @@ main_history_mbldbl=: 3 : 0
 paintgrph=: 3 : 0
  glsel'grph'
  glclear''
- glrgb 59 66 82
+ glrgb 41 53 59
  glbrush''
  glrect 0 0 350 200
  glrgb 0 0 128
@@ -130,7 +129,7 @@ paintgrph=: 3 : 0
 paintgsum=: 3 : 0
  glsel'gsum'
  glclear''
- glrgb 59 66 82
+ glrgb 41 53 59
  glbrush''
  glrect 0 0 1000 200
  glrgb 0 0 0
