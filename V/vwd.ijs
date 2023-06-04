@@ -25,12 +25,15 @@ FORM=: 0 : 0
  maxwh 350 200; cc grph isidraw;
  minwh 1 140; cc summary static center sunken; set summary text "";
  maxwh 1000 200; cc gsum isidraw;
- maxwh 270 200; cc cal table 7 7;
+ maxwh 270 200; cc cal table 6 7;
  bin zhh;
- maxwh 700 283; cc history table 3 13;
- maxwh 384 283; cc clientes table 9 8;
+ maxwh 385 294; cc clientes table 9 8;
  bin z;
- maxwh 865 283; cc tops table 9 8;
+ maxwh 865 294; cc tops table 9 8;
+ bin v;
+ maxwh 615 150; cc history table 3 13;
+ maxwh 615 135; cc stat static center sunken; set stat text "";
+ bin z;
  pshow;
 )
 
@@ -65,17 +68,15 @@ main_meses_button=: 3 : 0
  wd'set tota items ',boxtoitem <"1 (6":"0 dia),"1~2":"0<.0.5+dia%V
  wd'set summary text ',summary
  wd'set tops data ',boxtoitem ,top
- wd'set tops rowheight ',":<.283%9
+ wd'set tops protect 1'
  wd'set history data ',boxtoitem ((IHIST{'TOTA','PREC',:'CANT');'2022';'2023'),.NMES,IHIST{HIST
- wd'set history colwidth 48'
  wd'set history protect 1'
  wd'set clientes data ',boxtoitem 72{.CL
- wd'set clientes rowheight ',":<.285%9
  wd'set clientes protect 1'
  wd'set cal block'
- wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".MES{::~".meses_select
- wd'set cal block 1 6 0 6'
- wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
+ wd'set cal data ',boxtoitem 42{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".MES{::~".meses_select
+ wd'set cal block 1 5 0 6'
+ wd'set cal foreground ',boxtoitem COL{~35{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
  paintgrph''
  paintgsum''
@@ -98,6 +99,13 @@ main_clientes_mbldbl=: 3 : 0
  wd'set reg text ',reg,' ',~wd'get clientes cell ',":clientes
  wd'set reg scroll max'
  wd'set clientes protect 1'
+)
+
+main_tops_mbldbl=: 3 : 0
+ i=. 1 9+/ .*".tops
+ belo=. 100%~<.10000*i(}.%&(+/)])sm=. \:~+/MAT
+ uniq=. 100%~<.10000*(i{sm)%+/sm
+ wd'set stat text ','acum  %6.2f%%\npunt  %6.2f%%' sprintf belo;uniq
 )
 
 main_history_mbldbl=: 3 : 0
