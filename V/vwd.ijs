@@ -90,8 +90,8 @@ main_save_button=: 3 : 0
 main_cal_mbldbl=: 3 : 0
  i=. <:".wd'get cal cell ',":cal
  CFG=: (3|>:i{CFG)(i})CFG
- wd'set cal block 1 6 0 6'
- wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
+ wd'set cal block 1 5 0 6'
+ wd'set cal foreground ',boxtoitem COL{~35{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
 )
 
