@@ -1,6 +1,7 @@
 load'gl2 plot format/printf'
 coinsert'jgl2'
-DIR=: '/home/bemkap/doc/b/V/'
+NB. DIR=: '/home/bemkap/doc/b/V/'
+DIR=: '\Users\bemkap\Documents\bemkap\V\'
 MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323 0423 0523 0623'
 NMES=: ;:'ene feb mar abr may jun jul ago sep oct nov dic'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
@@ -11,7 +12,7 @@ IHIST=: 0
 FORM=: 0 : 0
  ide hide;
  pc main closeok;
- fontdef Terminus 14;
+ fontdef Courier 10;
  bin vhv;
  cc MESES static panel;
  cc meses listbox;
@@ -115,13 +116,13 @@ main_history_mbldbl=: 3 : 0
 paintgrph=: 3 : 0
  glsel'grph'
  glclear''
- glrgb 41 53 59
+ glrgb 255 255 255 NB.41 53 59
  glbrush''
  glrect 0 0 350 200
  glrgb 0 0 128
  glbrush ''
  glrect"1 (-(<.@%(160%~>./))DAYP),.~25,.~180,.~80+40*i.6
- glfont'Terminus 12 bold'
+ glfont'Courier 10 bold'
  gltextxy 25 170
  gltext'    0'
  gltextxy 25,170-<.(>./DAYP)%~160*5000
@@ -137,7 +138,7 @@ paintgrph=: 3 : 0
 paintgsum=: 3 : 0
  glsel'gsum'
  glclear''
- glrgb 41 53 59
+ glrgb 255 255 255 NB.41 53 59
  glbrush''
  glrect 0 0 1000 200
  glrgb 0 0 0
@@ -146,7 +147,7 @@ paintgsum=: 3 : 0
  gllines ,(60+35*i.#e),.180-<.160*(>./d)%~e=. dia#~2=prop({.~#)dia
  glpen 1
  gllines 50 20 50 180,(70+35*<:#d),180
- glfont'Terminus 12 bold'
+ glfont'Courier 10 bold'
  gltextxy 5 170
  gltext'    0'
  gltextxy 5,170-<.(>./dia)%~160*5000
