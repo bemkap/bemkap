@@ -25,7 +25,7 @@ FORM=: 0 : 0
  maxwh 350 200; cc grph isidraw;
  minwh 1 140; cc summary static center sunken; set summary text "";
  maxwh 1000 200; cc gsum isidraw;
- maxwh 270 200; cc cal table 6 7;
+ maxwh 270 200; cc cal table 7 7;
  bin zhh;
  maxwh 385 294; cc clientes table 9 8;
  bin z;
@@ -74,9 +74,10 @@ main_meses_button=: 3 : 0
  wd'set clientes data ',boxtoitem 72{.CL
  wd'set clientes protect 1'
  wd'set cal block'
- wd'set cal data ',boxtoitem 42{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".MES{::~".meses_select
- wd'set cal block 1 5 0 6'
- wd'set cal foreground ',boxtoitem COL{~35{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
+ wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".MES{::~".meses_select
+ wd'set cal rowheight ',":<.200%7
+ wd'set cal block 1 6 0 6'
+ wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
  paintgrph''
  paintgsum''
@@ -90,8 +91,8 @@ main_save_button=: 3 : 0
 main_cal_mbldbl=: 3 : 0
  i=. <:".wd'get cal cell ',":cal
  CFG=: (3|>:i{CFG)(i})CFG
- wd'set cal block 1 5 0 6'
- wd'set cal foreground ',boxtoitem COL{~35{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
+ wd'set cal block 1 6 0 6'
+ wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
 )
 
