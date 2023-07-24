@@ -40,12 +40,13 @@ FORM=: 0 : 0
 main_meses_button=: 3 : 0
  G=: 'b'&fread&.>DIR&,&.>MES
  CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
- F=: 'b'fread DIR,MES{::~".meses_select
- 'V CFG'=: ({.;}.)".&>{.F
+ FL=: 'b'fread DIR,MES{::~".meses_select
+ 'V CFG'=: ({.;}.)".&>{.FL
  prop=: (#~*)CFG						NB. tipo de dia
- cls=: 0({"1)_2]\F=: }.F					NB. clientes del dia
+ cls=: 0({"1)_2]\F=: }.FL					NB. clientes del dia
  pag=: ".&.>1({"1)_2]\F						NB. pago del dia
- MAT=: (;pag)(<"1;(,.~&.>i.@#)(}:CL)&i.&.>;:&.>cls)}0$~cls,&#CL NB. matriz dia x cliente
+ IX=. <"1;(,.~&.>i.@#)CL&i.&.>;:&.>cls
+ MAT=: (IX+//.;pag)(~.IX)}0$~cls,&#CL                           NB. matriz dia x cliente
  dia=: +/"1 MAT							NB. total del dia
  top=: |:_9]\(\:~CL,&.>6&":"0&.>)+/MAT				NB. tabla de tops
  prom=: prop(~.@:[/:~2{.({.~#)(+/<.@:%#)/.])dia			NB. promedio normal sabado
