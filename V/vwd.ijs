@@ -9,7 +9,7 @@ COL=: '#000000';'#ffffff';'#ffff00'
 IHIST=: 0
 
 FORM=: 0 : 0
- ide hide;
+ ide show;
  pc main closeok;
  fontdef Terminus 14;
  bin vhv;
