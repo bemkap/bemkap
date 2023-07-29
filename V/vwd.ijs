@@ -84,8 +84,13 @@ main_meses_button=: 3 : 0
  paintgsum''
 )
 
+enc=: 3 : ';,&'' ''&.>CL#~*y'
+pie=: 3 : ',('' '',.~4&":"0)(#~*)y'
+
 main_save_button=: 3 : 0
- ((":V,CFG),LF,reg) fwrite DIR,MES{::~".meses_select
+ wd'set reg text ',R=. ;(LF<@:,~enc,LF,pie)"1 MAT
+ wd'set reg scroll max'
+ ((":V,CFG),LF,R) fwrite DIR,MES{::~".meses_select
  main_meses_button''
 )
 
