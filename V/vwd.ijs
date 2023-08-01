@@ -1,11 +1,12 @@
 load'gl2 plot format/printf'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
-MES=: ' 'splitstring'0222 0322 0422 0522 0622 0722 0822 0922 1022 1122 1222 0123 0223 0323 0423 0523 0623 0723'
+MES=: /:~ {."1 ] 1!:0 <'/home/bemkap/doc/b/V/*.basic'
 NMES=: ;:'ene feb mar abr may jun jul ago sep oct nov dic'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 COL=: '#000000';'#ffffff';'#ffff00'
+file2my=: |.@:(2000 0+100#.inv".)@:(4&{.)
 IHIST=: 0
 
 FORM=: 0 : 0
@@ -52,13 +53,13 @@ main_meses_button=: 3 : 0
  prom=: prop(~.@:[/:~2{.({.~#)(+/<.@:%#)/.])dia			NB. promedio normal sabado
  proy=: +/prom{~2=prop						NB. proyeccion mes
 
- summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)prom),proy,+/dia
+ summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)4{.prom),proy,+/dia
  summary=: summary,LF,'prop   ',((+/0 1 0.5{~prop)(],'/',[)&(5j2&":)+/0 1 0.5{~prop({.~#)dia)
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G			NB. suma total por mes
  PREC=: {.@:".&.>{.&>G						NB. viaje por mes
- DAYP=: (6$0)(~.<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.0 2000+100#.inv".MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
- idx=. ((_1 _22|.@:+100#.inv".)&.>MES)}&(2 12$a:)
+ DAYP=: (6$0)(~.<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.file2my MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
+ idx=: ((_1 _2022|.@:+file2my)&.>MES)}&(2 12$a:)
  H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
  H1=. idx PREC
  H2=. idx SUMA<.@%&.>PREC
@@ -75,7 +76,7 @@ main_meses_button=: 3 : 0
  wd'set clientes data ',boxtoitem 72{.CL
  wd'set clientes protect 1'
  wd'set cal block'
- wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.0 2000+100#.inv".MES{::~".meses_select
+ wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.file2my MES{::~".meses_select
  wd'set cal rowheight ',":<.200%7
  wd'set cal block 1 6 0 6'
  wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
@@ -84,13 +85,8 @@ main_meses_button=: 3 : 0
  paintgsum''
 )
 
-enc=: 3 : ';,&'' ''&.>CL#~*y'
-pie=: 3 : ',('' '',.~4&":"0)(#~*)y'
-
 main_save_button=: 3 : 0
- wd'set reg text ',R=. ;(LF<@:,~enc,LF,pie)"1 MAT
- wd'set reg scroll max'
- ((":V,CFG),LF,R) fwrite DIR,MES{::~".meses_select
+ ((":V,CFG),LF,reg) fwrite DIR,MES{::~".meses_select
  main_meses_button''
 )
 
@@ -164,6 +160,6 @@ paintgsum=: 3 : 0
 )
 
 wd FORM
-wd'set meses items ',boxtoitem ((NMES{::~<:@:{.),' ',":@:{:)&.>(0 2000+100#.inv".)&.>MES
+wd'set meses items ',boxtoitem ((NMES{::~<:@:{.),' ',":@:{:)&.>file2my&.> MES
 wd'set meses select ',":<:#MES
 main_meses_button meses=: >{:MES
