@@ -53,7 +53,7 @@ main_meses_button=: 3 : 0
  prom=: prop(~.@:[/:~2{.({.~#)(+/<.@:%#)/.])dia			NB. promedio normal sabado
  proy=: +/prom{~2=prop						NB. proyeccion mes
 
- summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{(,%&V)4{.prom),proy,+/dia
+ summary=: 'prom      %5d %2d\nprom_s    %5d %2d\nproy        %6d\nparc        %6d' sprintf ;/(<.0 2 1 3{4{.(,%&V)prom),proy,+/dia
  summary=: summary,LF,'prop   ',((+/0 1 0.5{~prop)(],'/',[)&(5j2&":)+/0 1 0.5{~prop({.~#)dia)
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G			NB. suma total por mes
