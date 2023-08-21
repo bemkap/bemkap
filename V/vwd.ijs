@@ -21,8 +21,12 @@ FORM=: 0 : 0
  cc DIAS static panel;
  cc tota listbox;
  bin z;
- minwh 1600 1;cc reg editm;
- bin zh;
+ minwh 1300 1;cc reg editm;
+ bin v; cc AHORRO static panel;
+ minwh 300 1;cc aho table;
+ cc tot static center;
+ cc sape button;
+ bin zzh;
  maxwh 350 200; cc grph isidraw;
  minwh 1 140; cc summary static center sunken; set summary text "";
  maxwh 1000 200; cc gsum isidraw;
@@ -65,6 +69,7 @@ main_meses_button=: 3 : 0
  H2=. idx SUMA<.@%&.>PREC
  HIST=: H0,H1,:H2
 
+ wd'set reg wrap 0'
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
  wd'set tota items ',boxtoitem <"1 (6":"0 dia),"1~2":"0<.0.5+dia%V
@@ -83,10 +88,21 @@ main_meses_button=: 3 : 0
  wd'set cal protect 1'
  paintgrph''
  paintgsum''
+
+ 'AHC AHM AHL AHD AHI'=: 'b'fread DIR,'ahorro'
+ wd'set aho shape ',":(2+#;:AHL),3
+ wd'set aho data ',boxtoitem ('USD';0{".AHC),('USC';1{".AHC),(;:AHL),.(' ' splitstring AHD),.((".AHI){;:AHM)
+ wd'set tot text ','%d ARS  ~  %d USD' sprintf (;%&(0{".AHC))(".AHD)+/ .*(".AHI){1,".AHC
 )
 
 main_save_button=: 3 : 0
  ((":V,CFG),LF,reg) fwrite DIR,MES{::~".meses_select
+ main_meses_button''
+)
+
+main_sape_button=: 3 : 0
+ D=. ,".&>1{"1]_3]\<;._2 wd'get aho table'
+ (DIR,'ahorro') fwrite~ }:;(LF,~":)&.>(<2{.D)(0})(<2}.D)(3})'b'fread DIR,'ahorro'
  main_meses_button''
 )
 
