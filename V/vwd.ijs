@@ -1,4 +1,4 @@
-load'gl2 plot format/printf'
+load'gl2 plot format/printf web/gethttp'
 coinsert'jgl2'
 DIR=: '/home/bemkap/doc/b/V/'
 MES=: /:~ {."1 ] 1!:0 <'/home/bemkap/doc/b/V/*.basic'
@@ -8,39 +8,9 @@ hdr=: ((6:I.@:=]),#)@:(7(#~*)@:|(+i.))
 COL=: '#000000';'#ffffff';'#ffff00'
 file2my=: |.@:(2000 0+100#.inv".)@:(4&{.)
 IHIST=: 0
+show=: ('hide';'show')&stringreplace
 
-FORM=: 0 : 0
- ide hide;
- pc main closeok;
- fontdef Terminus 14;
- bin vhv;
- cc MESES static panel;
- cc meses listbox;
- cc save button;
- bin zv;
- cc DIAS static panel;
- cc tota listbox;
- bin z;
- minwh 1300 1;cc reg editm;
- bin v; cc AHORRO static panel;
- minwh 300 1;cc aho table;
- cc tot static center;
- cc sape button;
- bin zzh;
- maxwh 350 200; cc grph isidraw;
- minwh 1 140; cc summary static center sunken; set summary text "";
- maxwh 1000 200; cc gsum isidraw;
- maxwh 270 200; cc cal table 7 7;
- bin zhh;
- maxwh 385 294; cc clientes table 9 8;
- bin z;
- maxwh 865 294; cc tops table 9 8;
- bin v;
- maxwh 615 150; cc history table 3 13;
- maxwh 615 135; cc stat static center sunken; set stat text "";
- bin z;
- pshow;
-)
+FORM=: fread DIR,'FORM'
 
 main_meses_button=: 3 : 0
  G=: 'b'&fread&.>DIR&,&.>MES
@@ -69,7 +39,6 @@ main_meses_button=: 3 : 0
  H2=. idx SUMA<.@%&.>PREC
  HIST=: H0,H1,:H2
 
- wd'set reg wrap 0'
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
  wd'set tota items ',boxtoitem <"1 (6":"0 dia),"1~2":"0<.0.5+dia%V
@@ -88,11 +57,12 @@ main_meses_button=: 3 : 0
  wd'set cal protect 1'
  paintgrph''
  paintgsum''
-
- 'AHC AHM AHL AHD AHI'=: 'b'fread DIR,'ahorro'
- wd'set aho shape ',":(2+#;:AHL),3
- wd'set aho data ',boxtoitem ('USD';0{".AHC),('USC';1{".AHC),(;:AHL),.(' ' splitstring AHD),.((".AHI){;:AHM)
- wd'set tot text ','%d ARS  ~  %d USD' sprintf (;%&(0{".AHC))(".AHD)+/ .*(".AHI){1,".AHC
+ 
+ 'AHC AHM AHL AHD AHI'=. 'b'fread DIR,'ahorro'
+ wd'set cot text USD=',AHC,' ARS'
+ wd'set aho shape ',":(#;:AHL),3
+ wd'set aho data ',boxtoitem (;:AHL),.(' ' splitstring AHD),.((".AHI){;:AHM)
+ wd'set tot text ','%d ARS  ~  %d USD' sprintf (;%&(".AHC))(".AHD)+/ .*(".AHI){1,,~".AHC
 )
 
 main_save_button=: 3 : 0
@@ -102,7 +72,14 @@ main_save_button=: 3 : 0
 
 main_sape_button=: 3 : 0
  D=. ,".&>1{"1]_3]\<;._2 wd'get aho table'
- (DIR,'ahorro') fwrite~ }:;(LF,~":)&.>(<2{.D)(0})(<2}.D)(3})'b'fread DIR,'ahorro'
+ (DIR,'ahorro') fwrite~ }:;(LF,~":)&.>(<D)(3})'b'fread DIR,'ahorro'
+ main_meses_button''
+)
+
+main_upd_button=: 3 : 0
+ D=. gethttp'https://dolarhoy.com/i/cotizaciones/dolar-blue'
+ AHC=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))D
+ (DIR,'ahorro') fwrite~ }:;(LF,~":)&.>(<AHC)(0})'b'fread DIR,'ahorro'
  main_meses_button''
 )
 
@@ -133,12 +110,7 @@ main_history_mbldbl=: 3 : 0
 
 paintgrph=: 3 : 0
  glsel'grph'
- glclear''
- glrgb 41 53 59
- glbrush''
- glrect 0 0 350 200
- glrgb 0 0 128
- glbrush ''
+ glcmds 3 2007 0 5 2032 41 53 59 3 2004 0 6 2031 0 0 350 200 5 2032 0 0 128 3 2004 0
  glrect"1 (-(<.@%(160%~>./))DAYP),.~25,.~180,.~80+40*i.6
  glfont'Terminus 12 bold'
  gltextxy 25 170
@@ -155,11 +127,7 @@ paintgrph=: 3 : 0
 
 paintgsum=: 3 : 0
  glsel'gsum'
- glclear''
- glrgb 41 53 59
- glbrush''
- glrect 0 0 1000 200
- glrgb 0 0 0
+ glcmds 3 2007 0 5 2032 41 53 59 3 2004 0 6 2031 0 0 1000 200 5 2032 0 0 0
  glpen 2
  gllines ,(60+35*i.#d),.180-160(<.@*(%>./))d=. dia#~1=prop({.~#)dia
  gllines ,(60+35*i.#e),.180-<.160*(>./d)%~e=. dia#~2=prop({.~#)dia
