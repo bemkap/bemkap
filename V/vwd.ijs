@@ -18,8 +18,8 @@ main_meses_button=: 3 : 0
  FL=: 'b'fread DIR,MES{::~".meses_select
  'V CFG'=: ({.;}.)".&>{.FL
  prop=: (#~*)CFG						NB. tipo de dia
- cls=: 0({"1)_2]\F=: }.FL					NB. clientes del dia
- pag=: ".&.>1({"1)_2]\F						NB. pago del dia
+ cls=: _2{.\F=: }.FL					        NB. clientes del dia
+ pag=: ".&.>_2{:\F						NB. pago del dia
  IX=. <"1;(,.~&.>i.@#)CL&i.&.>;:&.>cls
  MAT=: (IX+//.;pag)(~.IX)}0$~cls,&#CL                           NB. matriz dia x cliente
  dia=: +/"1 MAT							NB. total del dia
@@ -49,16 +49,14 @@ main_meses_button=: 3 : 0
  wd'set history protect 1'
  wd'set clientes data ',boxtoitem 72{.CL
  wd'set clientes protect 1'
- wd'set cal block'
- wd'set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.file2my MES{::~".meses_select
+ wd'set cal block;set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.file2my MES{::~".meses_select
  wd'set cal rowheight ',":<.200%7
- wd'set cal block 1 6 0 6'
- wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
+ wd'set cal block 1 6 0 6;set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
  paintgrph''
  paintgsum''
  
- 'AHC AHM AHL AHD AHI'=. 'b'fread DIR,'ahorro'
+ 'AHC AHM AHL AHD AHI'=. 'b'fread DIR,'AHOR'
  wd'set cot text USD=',AHC,' ARS'
  wd'set aho shape ',":(#;:AHL),3
  wd'set aho data ',boxtoitem (;:AHL),.(' ' splitstring AHD),.((".AHI){;:AHM)
@@ -72,29 +70,27 @@ main_save_button=: 3 : 0
 
 main_sape_button=: 3 : 0
  D=. ,".&>1{"1]_3]\<;._2 wd'get aho table'
- (DIR,'ahorro') fwrite~ }:;(LF,~":)&.>(<D)(3})'b'fread DIR,'ahorro'
+ (DIR,'AHOR') fwrite~ }:;(LF,~":)&.>(<D)(3})'b'fread DIR,'AHOR'
  main_meses_button''
 )
 
 main_upd_button=: 3 : 0
  D=. gethttp'https://dolarhoy.com/i/cotizaciones/dolar-blue'
  AHC=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))D
- (DIR,'ahorro') fwrite~ }:;(LF,~":)&.>(<AHC)(0})'b'fread DIR,'ahorro'
+ (DIR,'AHOR') fwrite~ }:;(LF,~":)&.>(<AHC)(0})'b'fread DIR,'AHOR'
  main_meses_button''
 )
 
 main_cal_mbldbl=: 3 : 0
  i=. <:".wd'get cal cell ',":cal
  CFG=: (3|>:i{CFG)(i})CFG
- wd'set cal block 1 6 0 6'
- wd'set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
+ wd'set cal block 1 6 0 6;set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
 )
 
 main_clientes_mbldbl=: 3 : 0
  wd'set reg text ',reg,' ',~wd'get clientes cell ',":clientes
- wd'set reg scroll max'
- wd'set clientes protect 1'
+ wd'set reg scroll max;set clientes protect 1'
 )
 
 main_tops_mbldbl=: 3 : 0
