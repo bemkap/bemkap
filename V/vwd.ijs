@@ -10,13 +10,12 @@ file2my=: |.@:(2000 0+100#.inv".)@:(4&{.)
 IHIST=: 0
 show=: ('hide';'show')&stringreplace
 
-FORM=: fread DIR,'FORM'
+FORM=: show fread DIR,'FORM'
 
 main_meses_button=: 3 : 0
  G=: 'b'&fread&.>DIR&,&.>MES
- CL=: /:~~.;;:&.>;(0({"1)_2]\}.)&.>G
- FL=: 'b'fread DIR,MES{::~".meses_select
- 'V CFG'=: ({.;}.)".&>{.FL
+ CL=: /:~~.;;:&.>,(_2{.\}.)&>G
+ 'V CFG'=: ({.;}.)".&>{.FL=: 'b'fread DIR,MES{::~".meses_select
  prop=: (#~*)CFG						NB. tipo de dia
  cls=: _2{.\F=: }.FL					        NB. clientes del dia
  pag=: ".&.>_2{:\F						NB. pago del dia
