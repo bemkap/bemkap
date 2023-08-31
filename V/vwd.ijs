@@ -10,12 +10,12 @@ file2my=: |.@:(2000 0+100#.inv".)@:(4&{.)
 IHIST=: 0
 show=: ('hide';'show')&stringreplace
 
-FORM=: show fread DIR,'FORM'
-
-main_meses_button=: 3 : 0
+main_meses_mbldbl=: 3 : 0
  G=: 'b'&fread&.>DIR&,&.>MES
  CL=: /:~~.;;:&.>,(_2{.\}.)&>G
- 'V CFG'=: ({.;}.)".&>{.FL=: 'b'fread DIR,MES{::~".meses_select
+ FL=: 'b'fread DIR,MESFMT=: '%d%02d.basic'sprintf 21 0+".meses
+ if. FL-:-1 do. return. end.
+ 'V CFG'=: ({.;}.)".&>{.FL
  prop=: (#~*)CFG						NB. tipo de dia
  cls=: _2{.\F=: }.FL					        NB. clientes del dia
  pag=: ".&.>_2{:\F						NB. pago del dia
@@ -30,13 +30,9 @@ main_meses_button=: 3 : 0
  summary=: summary,LF,'prop   ',((+/0 1 0.5{~prop)(],'/',[)&(5j2&":)+/0 1 0.5{~prop({.~#)dia)
 
  SUMA=: +/&.>+/@:".&>L:1(1({"1)_2]\}.)&.>G			NB. suma total por mes
- PREC=: {.@:".&.>{.&>G						NB. viaje por mes
- DAYP=: (6$0)(~.<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.file2my MES{::~".meses_select))+i.>:(#dia)i.~+/\t=. 0<CFG
+ DAYP=: (6$0)(~.<:t)}~dia(+/%#)/.~t=. (#~(t{.~#))7|(weekday (1,~|.file2my MESFMT))+i.>:(#dia)i.~+/\t=. 0<CFG
  idx=: ((_1 _2022|.@:+file2my)&.>MES)}&(2 12$a:)
- H0=. idx (('k',~":)&.>SUMA<.@%&.><1000)
- H1=. idx PREC
- H2=. idx SUMA<.@%&.>PREC
- HIST=: H0,H1,:H2
+ HIST=. idx(":&.>SUMA<.@%&.><1000)
 
  wd'set reg text ',;,&LF&.>F
  wd'set reg scroll max'
@@ -44,11 +40,12 @@ main_meses_button=: 3 : 0
  wd'set summary text ',summary
  wd'set tops data ',boxtoitem ,top
  wd'set tops protect 1'
- wd'set history data ',boxtoitem ((IHIST{'TOTA','PREC',:'CANT');'2022';'2023'),.NMES,IHIST{HIST
- wd'set history protect 1'
+ wd'set meses data ',boxtoitem ('TOTA';'2022';'2023'),.NMES,HIST
+ wd'set meses colwidth ',":_1+<.615%13
+ wd'set meses protect 1'
  wd'set clientes data ',boxtoitem 72{.CL
  wd'set clientes protect 1'
- wd'set cal block;set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.file2my MES{::~".meses_select
+ wd'set cal block;set cal data ',boxtoitem 49{.,CAL=: }._3<\"1{.>calendar|.file2my MESFMT
  wd'set cal rowheight ',":<.200%7
  wd'set cal block 1 6 0 6;set cal foreground ',boxtoitem COL{~42{.CFG,~0#~PAD=: 1 i.~ (<'   ')~:,}.CAL
  wd'set cal protect 1'
@@ -63,21 +60,21 @@ main_meses_button=: 3 : 0
 )
 
 main_save_button=: 3 : 0
- ((":V,CFG),LF,reg) fwrite DIR,MES{::~".meses_select
- main_meses_button''
+ ((":V,CFG),LF,reg) fwrite DIR,MESFMT
+ main_meses_mbldbl''
 )
 
 main_sape_button=: 3 : 0
- D=. ,".&>1{"1]_3]\<;._2 wd'get aho table'
+ D=. ,".&>_3(1&{)\<;._2 wd'get aho table'
  (DIR,'AHOR') fwrite~ }:;(LF,~":)&.>(<D)(3})'b'fread DIR,'AHOR'
- main_meses_button''
+ main_meses_mbldbl''
 )
 
 main_upd_button=: 3 : 0
  D=. gethttp'https://dolarhoy.com/i/cotizaciones/dolar-blue'
  AHC=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))D
  (DIR,'AHOR') fwrite~ }:;(LF,~":)&.>(<AHC)(0})'b'fread DIR,'AHOR'
- main_meses_button''
+ main_meses_mbldbl''
 )
 
 main_cal_mbldbl=: 3 : 0
@@ -97,10 +94,6 @@ main_tops_mbldbl=: 3 : 0
  belo=. 100%~<.10000*i(}.%&(+/)])sm=. \:~+/MAT
  uniq=. 100%~<.10000*(i{sm)%+/sm
  wd'set stat text ','acum  %6.2f%%\npunt  %6.2f%%' sprintf belo;uniq
-)
-
-main_history_mbldbl=: 3 : 0
- if. 0 0-:".history do. main_meses_button IHIST=: 3|>:IHIST end.
 )
 
 paintgrph=: 3 : 0
@@ -138,7 +131,5 @@ paintgsum=: 3 : 0
  glpaint''
 )
 
-wd FORM
-wd'set meses items ',boxtoitem ((NMES{::~<:@:{.),' ',":@:{:)&.>file2my&.> MES
-wd'set meses select ',":<:#MES
-main_meses_button meses=: >{:MES
+wd FORM=: fread DIR,'FORM'
+main_meses_mbldbl meses=: ":1 0+12#.inv 1+#MES
