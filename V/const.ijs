@@ -1,0 +1,10 @@
+set_table_data=: 3 : 0
+ wd'set %s block' sprintf {.y
+ wd'set %s data %s' sprintf y
+ wd'set %s protect 1' sprintf {.y
+)
+
+SUMTOP =: 'reads tot:sum pg by cl from VIAJ where aa=%d and mm=%d order by tot desc'
+SUMAM  =: 'read sum pg from VIAJ where aa=%d and mm=%d'
+SUMAMD =: 'read sum pg from VIAJ where aa=%d and mm=%d and dd=%d'
+SUMCAMD=: 'read pg from VIAJ where cl="%s" and dd=%d and aa=%d and mm=%d'
