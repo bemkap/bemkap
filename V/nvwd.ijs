@@ -15,7 +15,7 @@ upd_cal=: 3 : 0
  P=. 0 1{::jd'read pr from PREC where aa=%d and mm=%d' sprintf AA,MM
  set_table_data 'cal';boxtoitem 42{._3([:<'%2d   %3d\n%8d' sprintf 0 2 1&{)\((<0)&={"0 1,.&a:)<.@{.&.>,(,.(%&P)&.>@:{:"1)(".&.>C),.&,T
  tops=. jd SUMTOP sprintf AA,MM
- set_table_data 'tops';boxtoitem,|:8 9$72{.,<"1 '%4s %6d'&sprintf"1 ,&<"1 0&>/ }."1 tops
+ set_table_data 'tops';boxtoitem,|:6 11$66{.,<"1 '%4s %6d'&sprintf"1 ,&<"1 0&>/ }."1 tops
 )
 
 upd_clientes=: 3 : 0
@@ -50,7 +50,7 @@ upd_summary=: 3 : 0
 
 main_resize=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~~.<"1(0 1){::jd''read cl from VIAJ'''
 
-main_meses_mbldbl=: 3 : 'upd_summary grph_paint gsum_paint upd_cal ''AA MM''=: 21 0+".meses'
+main_meses_mbldbl=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_cal ''AA MM''=: 21 0+".meses'
 
 stat_paint=: 3 : 0
  glsel'stat'
@@ -73,9 +73,9 @@ gsum_paint=: 3 : 0
  glbrush''
  glrect 0 0,glqwh''
  glrgb 0 0 0
- glrect"1 (-(<.@%(160%~>./))T),.~25,.~180,.~80+40*i.7
+ glrect"1 (-(<.@%(160%~>./))T),.~25,.~230,.~80+40*i.7
  glfont'Terminus 12 bold'
- gltextxy 90 190
+ gltextxy 90 240
  gltext'D    L    M    M    J    V    S'
  glpaint''
 )
