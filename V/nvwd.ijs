@@ -53,6 +53,11 @@ main_resize=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_ahorro upd_c
 
 main_meses_mbldbl=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_cal ''AA MM''=: 21 0+".meses'
 
+main_meses_mbrdbl=: 3 : 0
+ I=. wd'mb input int "" "" %d 0 99999 1' sprintf 0:^:(0=#)0 1{::jd PRECAM sprintf am=. 21 0+".meses
+ if. 0<O=. ".`0:@.(0=#)I do. jd'upsert PREC ';'aa';({.am);'mm';({:am);'pr';O end.
+)
+
 stat_paint=: 3 : 0
  glsel'stat'
  glbrush glrgb 41 53 59
