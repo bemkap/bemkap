@@ -1,15 +1,11 @@
 DIR=: '/home/bemkap/doc/b/V/'
-load'gl2 plot graph format/printf web/gethttp jd ',DIR,'const.ijs'
+load'gl2 plot graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
 boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
 show=: (;:'hide show')&stringreplace
 ixapply=: 1 : '(u x{y)(x})y'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 IN=: 0
-textxy=: 4 : 0
- gltextxy x
- gltext y
-)
 
 jdadmin'vwd'
 wd FORM=: fread DIR,'FORM1'
@@ -23,8 +19,7 @@ upd_summary=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
  prom=. (~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
  proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(0{::Q)-.~>:i.MM{MN
- T=. {.0 1{::jd PRECAM sprintf AA,MM
- T=. (proy;parc),~;/,prom,.(<.prom%T)
+ T=. (proy;parc),~;/,prom,.<.prom%{.0 1{::jd PRECAM sprintf AA,MM
  P=. 0 1{::jd PRECAM sprintf AA,MM
  wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d' sprintf P;T
 )
@@ -67,9 +62,7 @@ main_meses_mbrdbl=: 3 : 0
 )
 
 stat_paint=: 3 : 0
- glsel'stat'
- glbrush glrgb 41 53 59
- glrect 0 0,+:C=. -:glqwh''
+ C=. glpre glsel'stat'
  glpen 0
  glbrush glrgb hueRGB 0.6
  glellipse (_120+C),240 240
@@ -99,11 +92,9 @@ main_stat_mmove=: 3 : 0
 gsum_paint=: 3 : 0
  Q=. jd SUMDD sprintf AA,MM
  T=. (7$0)(~.W)}~(W=. weekday(2000+AA),.MM,.0 1{::Q)(+/%#)/.1 1{::Q
- glsel'gsum'
- glbrush glrgb 41 53 59
- glrect 0 0,glqwh''
+ glpre glsel'gsum'
  glbrush glrgb 0 0 196
- glrect"1 (-(<.@%(160%~>./))T),.~25,.~230,.~80+40*i.7
+ glrect"1 (<.-.(%160%~>./)T),.~,&230 25"0]40*2+i.7
  glfont'Terminus 12 bold'
  glpaint 90 240 textxy 'D    L    M    M    J    V    S'
 )
@@ -111,9 +102,7 @@ gsum_paint=: 3 : 0
 grph_paint=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
  M=. >./;T=. (1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q
- glsel'grph'
- glbrush glrgb 41 53 59
- glrect 0 0,glqwh''
+ glpre glsel'grph'
  glrgb 0 0 0
  glpen 2 
  gllines 65 60 65 260,(75+35*<:>./#&>T),260
