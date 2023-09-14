@@ -11,7 +11,7 @@ jdadmin'vwd'
 wd FORM=: fread DIR,'FORM1'
 
 upd_clientes=: 3 : 0
- PG=: <@:(0 1{::jd)"1 SUMCAMD&sprintf"1 CL,"0 1 DD;;/AA,MM
+ PG=: <@:(0 1{::jd)"1 SUMCAMD&sprintf"1 ,&(DD;AA;MM)"0 CL
  set_table_data 'clientes';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]72{.CL,.PG
 )
 
@@ -21,7 +21,10 @@ upd_summary=: 3 : 0
  proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(0{::Q)-.~>:i.MM{MN
  T=. (proy;parc),~;/,prom,.<.prom%{.0 1{::jd PRECAM sprintf AA,MM
  P=. 0 1{::jd PRECAM sprintf AA,MM
- wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d' sprintf P;T
+ SUMH=. ,.&.>/ }."1 jd'read from HIST where aa=%d and mm=%d' sprintf AA,MM
+ SUMV=. ,.&.>/ }."1 jd'read sum pg by dd,mm,aa from VIAJ where aa=%d and mm=%d' sprintf AA,MM
+ TOTD=. +/((_1{<.@%/*2=#)/.~3&{."1){.SUMV,&>SUMH
+ wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\ntotd    %9d' sprintf P;T,<TOTD
 )
 
 upd_ahorro=: 3 : 'upd_total >,.&.>/<"_1&.>{:"1 jd''read from AHOR'''
@@ -52,7 +55,7 @@ upd_cal=: 3 : 0
  stat_paint upd_tops''
 )
 
-main_resize=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~~.<"1(0 1){::jd''read cl from VIAJ'''
+main_resize=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~~.<"1]0 1{::jd''read cl from VIAJ'''
 
 main_meses_mbldbl=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_cal ''AA MM''=: 21 0+".meses'
 
@@ -77,16 +80,15 @@ stat_paint=: 3 : 0
   T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
   S=. +/1 1{::Q
   glfont'Terminus 10'
-  (XY+5 _30) textxy ' ',":0{::T
+  (XY+5 _30) textxy '%12s' sprintf <0{::T
   (XY+5 _15) textxy '%5d %05.2f%%' sprintf (1{::T);100*S%~1{::T
  end.
  glpaint''
 )
 
 main_stat_mmove=: 3 : 0
- XY=. 2{.".sysdata
  C=. -:glqwh''
- stat_paint IN=: (*:120)>+/*:C-XY
+ stat_paint IN=: (*:120)>+/*:C-2{.".sysdata
 )
 
 gsum_paint=: 3 : 0
