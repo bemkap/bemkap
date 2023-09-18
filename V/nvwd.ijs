@@ -11,7 +11,7 @@ jdadmin'vwd'
 wd FORM=: fread DIR,'FORM1'
 
 upd_clientes=: 3 : 0
- PG=: <@:(0 1{::jd)"1 SUMCAMD&sprintf"1 ,&(DD;AA;MM)"0 CL
+ PG=. <@:(0 1{::jd)"1 SUMCAMD&sprintf"1 ,&(DD;AA;MM)"0 CL
  set_table_data 'clientes';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]72{.CL,.PG
 )
 
@@ -19,8 +19,7 @@ upd_summary=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
  prom=. (~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
  proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(0{::Q)-.~>:i.MM{MN
- T=. (proy;parc),~;/,prom,.<.prom%{.0 1{::jd PRECAM sprintf AA,MM
- P=. 0 1{::jd PRECAM sprintf AA,MM
+ T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 1{::jd PRECAM sprintf AA,MM
  SUMH=. ,.&.>/ }."1 jd'read from HIST where aa=%d and mm=%d' sprintf AA,MM
  SUMV=. ,.&.>/ }."1 jd'read sum pg by dd,mm,aa from VIAJ where aa=%d and mm=%d' sprintf AA,MM
  TOTD=. +/((_1{<.@%/*2=#)/.~3&{."1){.SUMV,&>SUMH
@@ -32,7 +31,8 @@ upd_ahorro=: 3 : 'upd_total >,.&.>/<"_1&.>{:"1 jd''read from AHOR'''
 upd_total=: 3 : 0
  wd'set ahorro shape ',":3,~#y
  wd'set ahorro data ',boxtoitem,y
- wd'set cotizacion text USD=',' ARS',~":D=. 0 1{::jd'read from DOLA'
+ if. 0=#D=. 0 1{::jd'read pr from HIST where aa=%d and mm=%d and dd=%d' sprintf AA,MM,DD do. D=. {:0 1{::jd'read pr from HIST' end.
+ wd'set cotizacion text USD=',' ARS',~":D
  wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)(;1&{"1 y)(+/ .*)&x:(1,D,D){~(;:'ARS USD USC')i.{:"1 y
 )
 
@@ -61,7 +61,7 @@ main_meses_mbldbl=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_cal ''
 
 main_meses_mbrdbl=: 3 : 0
  I=. wd'mb input int "" "" %d 0 99999 1' sprintf 0:^:(0=#)0 1{::jd PRECAM sprintf am=. 21 0+".meses
- if. 0<O=. ".`0:@.(0=#)I do. jd'upsert PREC ';'aa';({.am);'mm';({:am);'pr';O end.
+ if. 0<O=. ".`0:@.(0=#)I do. jd'upsert PREC ';'aa mm';'aa';({.am);'mm';({:am);'pr';O end.
 )
 
 stat_paint=: 3 : 0
@@ -87,8 +87,7 @@ stat_paint=: 3 : 0
 )
 
 main_stat_mmove=: 3 : 0
- C=. -:glqwh''
- stat_paint IN=: (*:120)>+/*:C-2{.".sysdata
+ stat_paint IN=: (*:120)>+/*:(-:glqwh'')-2{.".sysdata
 )
 
 gsum_paint=: 3 : 0
@@ -131,11 +130,11 @@ main_save_button=: 3 : 0
 )
 
 main_upd_button=: 3 : 0
+ wd'set total text weire momen...'
  D=. gethttp'https://dolarhoy.com/i/cotizaciones/dolar-blue'
  D=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))D
- jd'delete DOLA'
- jd'insert DOLA ';'mn';D
  upd_total 1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
+ jd'upsert HIST';'aa mm dd';'aa';AA;'mm';MM;'dd';DD;'pr';D
 )
 
 main_sape_button=: 3 : 0
