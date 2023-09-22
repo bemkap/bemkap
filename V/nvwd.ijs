@@ -18,7 +18,7 @@ upd_clientes=: 3 : 0
 upd_summary=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
  prom=. (~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
- proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(0{::Q)-.~>:i.MM{MN
+ proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(#~(>./0{::Q)&<)>:i.MM{MN
  T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 1{::jd PRECAM sprintf AA,MM
  SUMH=. ,.&.>/ }."1 jd'read from HIST where aa=%d and mm=%d' sprintf AA,MM
  SUMV=. ,.&.>/ }."1 jd'read sum pg by dd,mm,aa from VIAJ where aa=%d and mm=%d' sprintf AA,MM
@@ -31,9 +31,16 @@ upd_ahorro=: 3 : 'upd_total >,.&.>/<"_1&.>{:"1 jd''read from AHOR'''
 upd_total=: 3 : 0
  wd'set ahorro shape ',":3,~#y
  wd'set ahorro data ',boxtoitem,y
+ wd'set ahorro protect ',":,(#y)#,:1 0 1
  if. 0=#D=. 0 1{::jd'read pr from HIST where aa=%d and mm=%d and dd=%d' sprintf AA,MM,DD do. D=. {:0 1{::jd'read pr from HIST' end.
  wd'set cotizacion text USD=',' ARS',~":D
  wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)(;1&{"1 y)(+/ .*)&x:(1,D,D){~(;:'ARS USD USC')i.{:"1 y
+)
+
+upd_pago=: 3 : 0
+ wd'set pago shape 6 2'
+ wd'set pago type ',":,6 2$100 0
+ wd'set pago data ',boxtoitem,(<0),.'monotributo';'ingresos brutos';'personal';'seguro auto';'seguro crypton';'seguro smash'
 )
 
 upd_tops=: 3 : 0
@@ -55,7 +62,7 @@ upd_cal=: 3 : 0
  stat_paint upd_tops''
 )
 
-main_resize=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~~.<"1]0 1{::jd''read cl from VIAJ'''
+main_resize=: 3 : 'upd_pago upd_summary stat_paint grph_paint gsum_paint upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~~.<"1]0 1{::jd''read cl from VIAJ'''
 
 main_meses_mbldbl=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_cal ''AA MM''=: 21 0+".meses'
 
