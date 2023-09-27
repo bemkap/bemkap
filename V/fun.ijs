@@ -1,4 +1,4 @@
-BACK=: 41 53 59
+BACK=: 25 35 45
 
 textxy=: 4 : 0
  gltextxy x
@@ -9,3 +9,6 @@ glpre=: 3 : 0
  glrect 0 0,+:C=. -:glqwh''
  C
 )
+boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
+show=: (;:'hide show')&stringreplace
+ixapply=: 1 : '(u x{y)(x})y'

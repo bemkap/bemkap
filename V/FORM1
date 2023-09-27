@@ -1,5 +1,5 @@
 ide hide;
-pc main closeok;
+pc main closeok; ptheme dark;
 fontdef Terminus 14;
 bin vhv;
 minwh 815 300; cc clientes table 6 12;
@@ -21,7 +21,7 @@ cc meses table 7 13;
 minwh 615 1; cc cal table 6 7; set cal hdr DO LU MA MI JU VI SA; set cal hdralign 2;
 bin zh;
 cc stat isidraw;
-cc gsum isidraw;
+cc gsum isigraph flush;
 minwh 1000 1; cc grph isidraw;
 bin z;
 pshow;

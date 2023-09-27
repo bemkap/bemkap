@@ -1,9 +1,6 @@
 DIR=: '/home/bemkap/doc/b/V/'
 load'gl2 plot graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
-boxtoitem=: ' ' joinstring ('"','"',~,@:":)&.>
-show=: (;:'hide show')&stringreplace
-ixapply=: 1 : '(u x{y)(x})y'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 IN=: 0
 
@@ -11,7 +8,7 @@ jdadmin'vwd'
 wd FORM=: fread DIR,'FORM1'
 
 upd_clientes=: 3 : 0
- PG=. <@:(0 1{::jd)"1 SUMCAMD&sprintf"1 ,&(DD;AA;MM)"0 CL
+ PG=. (<"0]4 1{::Q)(CL i. <"1&>1{3{Q=. jd SUMCAMD sprintf AA,MM,DD)}a:{.~#CL
  set_table_data 'clientes';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]72{.CL,.PG
 )
 
@@ -20,8 +17,8 @@ upd_summary=: 3 : 0
  prom=. (~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
  proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(#~(>./0{::Q)&<)>:i.MM{MN
  T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 1{::jd PRECAM sprintf AA,MM
- SUMH=. ,.&.>/ }."1 jd'read from HIST where aa=%d and mm=%d' sprintf AA,MM
- SUMV=. ,.&.>/ }."1 jd'read sum pg by dd,mm,aa from VIAJ where aa=%d and mm=%d' sprintf AA,MM
+ SUMH=. ,.&.>/ }."1 jd HISTAM sprintf AA,MM
+ SUMV=. ,.&.>/ }."1 jd SUMDMA sprintf AA,MM
  TOTD=. +/((_1{<.@%/*2=#)/.~3&{."1){.SUMV,&>SUMH
  wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\ntotd    %9d' sprintf P;T,<TOTD
 )
@@ -29,10 +26,10 @@ upd_summary=: 3 : 0
 upd_ahorro=: 3 : 'upd_total >,.&.>/<"_1&.>{:"1 jd''read from AHOR'''
 
 upd_total=: 3 : 0
- wd'set ahorro shape ',":3,~#y
+ wd'set ahorro shape %d 3' sprintf #y
  wd'set ahorro data ',boxtoitem,y
  wd'set ahorro protect ',":,(#y)#,:1 0 1
- if. 0=#D=. 0 1{::jd'read pr from HIST where aa=%d and mm=%d and dd=%d' sprintf AA,MM,DD do. D=. {:0 1{::jd'read pr from HIST' end.
+ if. 0=#D=. 0 1{::jd HISTAMD sprintf AA,MM,DD do. D=. {:jd'get HIST pr' end.
  wd'set cotizacion text USD=',' ARS',~":D
  wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)(;1&{"1 y)(+/ .*)&x:(1,D,D){~(;:'ARS USD USC')i.{:"1 y
 )
@@ -43,9 +40,7 @@ upd_pago=: 3 : 0
  wd'set pago data ',boxtoitem,(<0),.'monotributo';'ingresos brutos';'personal';'seguro auto';'seguro crypton';'seguro smash'
 )
 
-upd_tops=: 3 : 0
- set_table_data 'tops';boxtoitem,|:6 11$66{.,<"1 '%4s %6d'&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM
-)
+upd_tops=: 3 : 'set_table_data ''tops'';boxtoitem,|:6 11$66{.,<"1 ''%4s %6d''&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM'
 
 upd_meses=: 3 : 0
  PBM=. <.@%&1000&.>(0 1{::SUMAM jd@:sprintf ])&.>{(22+i.6);(>:i.12)
@@ -93,9 +88,7 @@ stat_paint=: 3 : 0
  glpaint''
 )
 
-main_stat_mmove=: 3 : 0
- stat_paint IN=: (*:120)>+/*:(-:glqwh'')-2{.".sysdata
-)
+main_stat_mmove=: 3 : 'stat_paint IN=: (*:120)>+/*:(-:glqwh'''')-2{.".sysdata'
 
 gsum_paint=: 3 : 0
  Q=. jd SUMDD sprintf AA,MM
@@ -103,7 +96,8 @@ gsum_paint=: 3 : 0
  glpre glsel'gsum'
  glbrush glrgb 0 0 196
  glrect"1 (<.-.(%160%~>./)T),.~,&230 25"0]40*2+i.7
- glfont'Terminus 12 bold'
+ glfont'Terminus 12'
+ gltextcolor glrgb 255 255 255
  glpaint 90 240 textxy 'D    L    M    M    J    V    S'
 )
 
@@ -111,9 +105,9 @@ grph_paint=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
  M=. >./;T=. (1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q
  glpre glsel'grph'
- glrgb 0 0 0
- glpen 2 
+ glpen 2:glrgb 0 0 0
  gllines 65 60 65 260,(75+35*<:>./#&>T),260
+ glpen 3
  gllines ,(,.~70+35*i.@:#)Y=. <.60+200*1-M%~0{::T
  glfont'Terminus 12 bold'
  (5,_6+<./Y) textxy '%6d' sprintf (0{::T){~(i.<./)Y
@@ -137,7 +131,6 @@ main_save_button=: 3 : 0
 )
 
 main_upd_button=: 3 : 0
- wd'set total text weire momen...'
  D=. gethttp'https://dolarhoy.com/i/cotizaciones/dolar-blue'
  D=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))D
  upd_total 1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
@@ -150,3 +143,5 @@ main_sape_button=: 3 : 0
 )
 
 main_ahorro_change=: 3 : 'upd_total 1&(".&.>ixapply)"1]_3[\<;._2 wd''get ahorro table'''
+
+main_close=: wd bind 'pclose'
