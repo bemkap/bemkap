@@ -26,12 +26,13 @@ upd_summary=: 3 : 0
 upd_ahorro=: 3 : 'upd_total >,.&.>/<"_1&.>{:"1 jd''read from AHOR'''
 
 upd_total=: 3 : 0
- wd'set ahorro shape %d 3' sprintf #y
- wd'set ahorro data ',boxtoitem,y
- wd'set ahorro protect ',":,(#y)#,:1 0 1
  if. 0=#D=. 0 1{::jd HISTAMD sprintf AA,MM,DD do. D=. {:jd'get HIST pr' end.
+ wd'set ahorro shape %d 3' sprintf #y
+ wd'set ahorro data ',boxtoitem, 1&(10&":&.> ixapply)"1 y
+ wd'set ahorro protect ',":,(#y)#,:1 0 1
+ wd'set ahorro align 2'
  wd'set cotizacion text USD=',' ARS',~":D
- wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)(;1&{"1 y)(+/ .*)&x:(1,D,D){~(;:'ARS USD USC')i.{:"1 y
+ wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)+/(1&{::*(D,1000){~'ARS'-:>@:{:)"1 y
 )
 
 upd_pago=: 3 : 0
