@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.28)  28 SEP 2023 11:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.28)  28 SEP 2023 13:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -165,6 +165,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 20.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 20.
+<cara2.png, id=1, 155.8623pt x 167.6664pt>
+File: cara2.png Graphic file (type png)
+<use cara2.png>
+Package pdftex.def Info: cara2.png  used on input line 31.
+(pdftex.def)             Requested size: 113.81102pt x 122.43124pt.
 
 Overfull \hbox (22.4645pt too wide) in paragraph at lines 34--51
 [] 
@@ -172,26 +177,27 @@ Overfull \hbox (22.4645pt too wide) in paragraph at lines 34--51
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./cv.aux) )
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./cara2.png>] (./cv.aux) )
+
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 18 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 1907 strings out of 477985
- 30803 string characters out of 5840058
- 1858388 words of memory out of 5000000
- 22131 multiletter control sequences out of 15000+600000
+ 1915 strings out of 477985
+ 30901 string characters out of 5840058
+ 1859388 words of memory out of 5000000
+ 22137 multiletter control sequences out of 15000+600000
  518361 words of font info for 52 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  57i,9n,62p,200b,202s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
 b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on cv.pdf (1 page, 52007 bytes).
+Output written on cv.pdf (1 page, 576051 bytes).
 PDF statistics:
- 23 PDF objects out of 1000 (max. 8388607)
- 13 compressed objects within 1 object stream
+ 28 PDF objects out of 1000 (max. 8388607)
+ 15 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 12 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,7 +5,7 @@ textxy=: 4 : 0
  gltext y
 )
 glpre=: 3 : 0
- glbrush glrgb BACK
+ glpen 0:glbrush glrgb BACK
  glrect 0 0,+:C=. -:glqwh''
  C
 )
