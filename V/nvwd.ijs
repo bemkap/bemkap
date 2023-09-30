@@ -105,7 +105,7 @@ gsum_paint=: 3 : 0
 
 grph_paint=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
- M=. >./;T=. (1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q
+ M=. >./;T=. (\:#&>)(1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q
  glpre glsel'grph'
  gltextcolor glpen 1:glrgb 128 128 128
  gllines 65 60 65 260,(75+35*<:>./#&>T),260
