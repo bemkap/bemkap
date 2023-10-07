@@ -2,7 +2,6 @@ DIR=: '/home/bemkap/doc/b/V/'
 load'gl2 plot graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
-IN=: 0
 
 jdadmin'vwd'
 wd FORM=: fread DIR,'FORM1'
@@ -14,14 +13,15 @@ upd_clientes=: 3 : 0
 
 upd_summary=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
- prom=. (~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
+ prom=. 2{.(~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
  proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(#~(>./0{::Q)&<)>:i.MM{MN
  T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 1{::jd PRECAM sprintf AA,MM
  SUMH=. ,.&.>/ }."1 jd HISTAM sprintf AA,MM
  SUMV=. ,.&.>/ }."1 jd SUMDMA sprintf AA,MM
  PARD=. +/((_1{<.@%/*2=#)/.~3&{."1){.SUMV,&>SUMH
- PROP=. ({.;+/)+/&>(0.5 0 1{~6 0 i. weekday"1)&.>(((2000+AA),.MM,.])({.;}.)~i.&DD)>:i.MM{MN
- wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\npard    %9d\n\nprop    %3.1f/%3.1f' sprintf P;T,(<PARD),PROP
+ PROP=. ({.;+/)+/&>(0.5 0 1{~6 0 i. weekday"1)&.>(((2000+AA),.MM,.])({.;}.)~(1+i.&DD))>:i.MM{MN
+ wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\npard    %9d\n\nprop    %4.1f/%4.1f' sprintf P;T,(<PARD),PROP
+ 0
 )
 
 upd_ahorro=: 3 : 'upd_total >,.&.>/<"_1&.>{:"1 jd''read from AHOR'''
@@ -78,7 +78,7 @@ stat_paint=: 3 : 0
   glbrush glrgb hueRGB 0.6+0.2*(>:i)%#P
   glpie i{P
  end.
- if. IN do.
+ if. y do.
   glrect (XY=. 2{.".sysdata),105 _30
   L=. {.,.&(;/)&>/}."1 Q
   T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
@@ -90,7 +90,7 @@ stat_paint=: 3 : 0
  glpaint''
 )
 
-main_stat_mmove=: 3 : 'stat_paint IN=: (*:120)>+/*:(-:glqwh'''')-2{.".sysdata'
+main_stat_mmove=: 3 : 'stat_paint (*:120)>+/*:(-:glqwh'''')-2{.".sysdata'
 
 gsum_paint=: 3 : 0
  Q=. jd SUMDD sprintf AA,MM
@@ -105,17 +105,18 @@ gsum_paint=: 3 : 0
 
 grph_paint=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
- M=. >./;T=. (\:#&>)(1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q
  glpre glsel'grph'
  gltextcolor glpen 1:glrgb 128 128 128
- gllines 65 60 65 260,(75+35*<:>./#&>T),260
- glbrush glrgb 0 0 196
- glrect"1 (,.(260-1&{)"1)20,.~(,.~75+35*i.@:#)Y=. <.60+200*1-M%~0{::T
- glbrush glrgb 0 196 196
- glrect"1 (,.(260-1&{)"1)20,.~(,.~75+35*i.@:#)<.60+200*1-M%~1{::T 
- glfont'Terminus 12'
- gltextcolor glrgb 128 128 128
- glpaint (5,_6+<./Y) textxy '%6d' sprintf (0{::T){~(i.<./)Y
+ if. __<M=. >./;T=. 2{.(\:#&>)(1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q do.
+  gllines 65 60 65 260,(105+35*<:>./#&>T),260
+  glbrush glrgb 0 0 196
+  glrect"1 (,.(260-1&{)"1)20,.~(,.~75+35*i.@:#)Y=. <.60+200*1-M%~0{::T
+  glbrush glrgb 0 196 196
+  glrect"1 (,.(260-1&{)"1)20,.~(,.~75+35*i.@:#)<.60+200*1-M%~1{::T 
+  glfont'Terminus 12'
+  gltextcolor glrgb 128 128 128
+  glpaint (5,_6+<./Y) textxy '%6d' sprintf (0{::T){~(i.<./)Y
+ end.
 )
 
 main_cal_mbldbl=: 3 : 'upd_clientes DD=: ".2{.wd''get cal cell '',cal'

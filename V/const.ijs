@@ -1,8 +1,3 @@
-set_table_data=: 3 : 0
- wd'set %s block' sprintf {.y
- wd'set %s data %s' sprintf y
- wd'set %s protect 1' sprintf {.y
-)
 SUMTOP =: 'read tot:sum pg by cl from VIAJ where aa=%d and mm=%d order by tot desc'
 SUMDMA =: 'read sum pg by dd,mm,aa from VIAJ where aa=%d and mm=%d'
 SUMAM  =: 'read sum pg from VIAJ where aa=%d and mm=%d'

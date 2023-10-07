@@ -1,5 +1,10 @@
 BACK=: 25 35 45
 
+set_table_data=: 3 : 0
+ wd'set %s block' sprintf {.y
+ wd'set %s data %s' sprintf y
+ wd'set %s protect 1' sprintf {.y
+)
 textxy=: 4 : 0
  gltextxy x
  gltext y
