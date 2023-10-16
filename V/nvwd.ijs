@@ -21,17 +21,20 @@ upd_summary=: 3 : 0
  PARD=. +/((_1{<.@%/*2=#)/.~3&{."1){.SUMV,&>SUMH
  PROP=. ({.;+/)+/&>(0.5 0 1{~6 0 i. weekday"1)&.>(((2000+AA),.MM,.])({.;}.)~(1+i.&DD))>:i.MM{MN
  wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\npard    %9d\n\nprop    %4.1f/%4.1f' sprintf P;T,(<PARD),PROP
- 0
 )
 
-upd_ahorro=: 3 : 'upd_total >,.&.>/<"_1&.>{:"1 jd''read from AHOR'''
-
-upd_total=: 3 : 0
- if. 0=#D=. 0 1{::jd HISTAMD sprintf AA,MM,DD do. D=. {:jd'get HIST pr' end.
+upd_ahorro=: 3 : 0
+ y=. >,.&.>/<"_1&.>2({&MO&.> ixapply){:"1 jd AHORAMD sprintf DD,MM,AA
  wd'set ahorro shape %d 3' sprintf #y
  wd'set ahorro data ',boxtoitem, 1&(10&":&.> ixapply)"1 y
  wd'set ahorro protect ',":,(#y)#,:1 0 1
  wd'set ahorro align 2'
+ upd_total y
+)
+
+upd_total=: 3 : 0
+ NB. if. 0=#D=. 0 1{::jd HISTAMD sprintf AA,MM,DD do. D=. {:jd'get HIST pr' end.
+ D=. {:jd'get HIST pr'
  wd'set cotizacion text USD=',' ARS',~":D
  wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)+/(1&{::*(D,1000){~'ARS'-:>@:{:)"1 y
 )
@@ -142,8 +145,8 @@ main_upd_button=: 3 : 0
 )
 
 main_sape_button=: 3 : 0
- jd'delete AHOR'
- jd 50 A. 'insert AHOR';'ly';'mn';'mo';>&.>,&.>/<&.>1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
+ I=. i.#M=. ".&> 1{"1 T=. _3]\<;._2 wd'get ahorro table' 
+ jd'upsert AHORH';'ahdd ahmm ahaa';'ahdd';(DD#~#I);'ahmm';(MM#~#I);'ahaa';(AA#~#I);'ahix';I;'ahmo';M
 )
 
 main_ahorro_change=: 3 : 'upd_total 1&(".&.>ixapply)"1]_3[\<;._2 wd''get ahorro table'''
