@@ -1,10 +1,11 @@
 DIR=: '/home/bemkap/doc/b/V/'
 load'gl2 plot graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
-'AA MM DD'=: _2000 0 0+3{.6!:0''
-
 jdadmin'vwd'
-wd FORM=: fread DIR,'FORM1'
+
+'AA MM DD'=: _2000 0 0+3{.6!:0''
+CL=: DOLARHOY=: a:
+thread=: 0
 
 upd_clientes=: 3 : 0
  PG=. (<"0]4 1{::Q)(CL i. <"1&>1{3{Q=. jd SUMCAMD sprintf AA,MM,DD)}a:{.~#CL
@@ -14,7 +15,7 @@ upd_clientes=: 3 : 0
 upd_summary=: 3 : 0
  Q=. {:"1 jd SUMDD sprintf AA,MM
  prom=. 2{.(~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
- proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(#~(>./0{::Q)&<)>:i.MM{MN
+ proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(#~DD&<)>:i.MM{MN
  T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 1{::jd PRECAM sprintf AA,MM
  SUMH=. ,.&.>/ }."1 jd HISTAM sprintf AA,MM
  SUMV=. ,.&.>/ }."1 jd SUMDMA sprintf AA,MM
@@ -24,7 +25,7 @@ upd_summary=: 3 : 0
 )
 
 upd_ahorro=: 3 : 0
- y=. >,.&.>/<"_1&.>2({&MO&.> ixapply){:"1 jd AHORAMD sprintf DD,MM,AA
+ y=. >,.&.>/<"_1&.>2({&MO&.> ixapply)(<1 6 2;1){jd AHORAMD
  wd'set ahorro shape %d 3' sprintf #y
  wd'set ahorro data ',boxtoitem, 1&(10&":&.> ixapply)"1 y
  wd'set ahorro protect ',":,(#y)#,:1 0 1
@@ -33,16 +34,9 @@ upd_ahorro=: 3 : 0
 )
 
 upd_total=: 3 : 0
- NB. if. 0=#D=. 0 1{::jd HISTAMD sprintf AA,MM,DD do. D=. {:jd'get HIST pr' end.
- D=. {:jd'get HIST pr'
- wd'set cotizacion text USD=',' ARS',~":D
+ L=. 6!:0'DD-MM hh:mm:ss'
+ wd'set cotizacion text USD=%d ARS\n%s' sprintf L;~D=. {:jd'get HIST pr'
  wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)+/(1&{::*(D,1000){~'ARS'-:>@:{:)"1 y
-)
-
-upd_pago=: 3 : 0
- wd'set pago shape 6 2'
- wd'set pago type ',":,6 2$100 0
- wd'set pago data ',boxtoitem,(<0),.'monotributo';'ingresos brutos';'personal';'seguro auto';'seguro crypton';'seguro smash'
 )
 
 upd_tops=: 3 : 'set_table_data ''tops'';boxtoitem,|:6 11$66{.,<"1 ''%4s %6d''&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM'
@@ -62,9 +56,7 @@ upd_cal=: 3 : 0
  stat_paint upd_tops''
 )
 
-main_resize=: 3 : 'upd_pago upd_summary stat_paint grph_paint gsum_paint upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~~.<"1]0 1{::jd''read cl from VIAJ'''
-
-main_meses_mbldbl=: 3 : 'upd_summary stat_paint grph_paint gsum_paint upd_cal ''AA MM''=: 21 0+".meses'
+main_meses_mbldbl=: 3 : 'stat_paint grph_paint gsum_paint upd_summary upd_cal ''AA MM''=: 21 0+".meses'
 
 main_meses_mbrdbl=: 3 : 0
  I=. wd'mb input int "" "" %d 0 99999 1' sprintf 0:^:(0=#)0 1{::jd PRECAM sprintf am=. 21 0+".meses
@@ -75,25 +67,27 @@ stat_paint=: 3 : 0
  C=. glpre glsel'stat'
  glpen 0
  glbrush glrgb hueRGB 0.6
- glellipse (_120+C),240 240
+ glellipse (_100+C),200 200
  A=. -2p1*0,+/\(%+/)1 1{::Q=. jd SUMTOP sprintf AA,MM
- for_i. i.#P=. |.((_120+C),240 240)&,"1 C([,+)"1<.100*(cos,.sin)A do.
+ for_i. i.#P=. |.((_100+C),200 200)&,"1 C([,+)"1<.100*(cos,.sin)A do.
   glbrush glrgb hueRGB 0.6+0.2*(>:i)%#P
   glpie i{P
  end.
  if. y do.
-  glrect (XY=. 2{.".sysdata),105 _30
-  L=. {.,.&(;/)&>/}."1 Q
-  T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
-  S=. +/1 1{::Q
-  glfont'Terminus 10'
-  (XY+5 _30) textxy '%12s' sprintf <0{::T
-  (XY+5 _15) textxy '%5d %05.2f%%' sprintf (1{::T);100*S%~1{::T
+  XY=. 2{.".sysdata
+  glrect XY,(105*_1^l=. 195<{.XY),_30
+  if. 0<#L=. {.,.&(<"_1)&>/}."1 Q do.
+   T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
+   S=. +/1 1{::Q
+   glfont'Terminus 10'
+   (XY+(5-l*105),_30) textxy '%12s' sprintf <0{::T
+   (XY+(5-l*105),_15) textxy '%5d %05.2f%%' sprintf (1{::T);100*S%~1{::T
+  end.
  end.
  glpaint''
 )
 
-main_stat_mmove=: 3 : 'stat_paint (*:120)>+/*:(-:glqwh'''')-2{.".sysdata'
+main_stat_mmove=: 3 : 'stat_paint (*:100)>+/*:(-:glqwh'''')-2{.".sysdata'
 
 gsum_paint=: 3 : 0
  Q=. jd SUMDD sprintf AA,MM
@@ -101,9 +95,29 @@ gsum_paint=: 3 : 0
  glpre glsel'gsum'
  glfont'Terminus 12'
  gltextcolor glpen 1:glrgb 128 128 128
- 90 240 textxy 'D    L    M    M    J    V    S'
+ 50 240 textxy 'D    L    M    M    J    V    S'
  glbrush glrgb 0 0 196
- glpaint glrect"1 (<.-.(%160%~>./)T),.~,&230 25"0]40*2+i.7
+ glpaint glrect"1 (<.-.(%160%~>./)T),.~,&230 25"0]40*>:i.7
+)
+
+gaho_paint=: 3 : 0
+ glpre glsel'gaho'
+ T=. {:"1 jd'read *,AHORL.ahmo from AHORH,AHORH.AHORL'
+ g=. >,.&.>/3&{.T
+ P=. 1000%D=. , (0 1{::jd)"1 'read pr from HIST where dd=%d and mm=%d and aa=%d'&sprintf"1 g
+ h=. *&>/1(({"0 1)&(1000,.D)&.>ixapply)_2{.T
+ i=. *&>/1(({"0 1)&(P,.1)&.>ixapply)_2{.T
+ p=. 1000%~g+//.h
+ m=. >./p,q=. g+//.i
+ gltextcolor glpen 1:glrgb 128 128 128
+ gllines 65 60 65 260,(105+2*#p),260
+ glfont'Terminus 10'
+ gltextcolor glpen glrgb 255 0 0
+ gllines ,(75+2*i.#p),.0.5<.@+60+200*1-p%m
+ 65 265 textxy 'ARS'
+ gltextcolor glpen glrgb 0 255 255
+ gllines ,(75+2*i.#q),.0.5<.@+60+200*1-q%m
+ glpaint 95 265 textxy 'USD'
 )
 
 grph_paint=: 3 : 0
@@ -130,25 +144,45 @@ main_clientes_mbldbl=: 3 : 0
  wd'set clientes data ',boxtoitem <'%6s\n%6d'sprintf(6{.wd'get clientes cell ',clientes);I
 )
 
+main_clientes_mbrdbl=: 3 : 0
+ wd'set hcli shape 10 4'
+ set_table_data 'hcli';boxtoitem 8":&.>,|._10{.&>,.&.>/{:"1 jd'read dd,mm,aa,pg from VIAJ where cl="%s"' sprintf <2}.6{.wd'get clientes cell ',clientes
+)
+
 main_save_button=: 3 : 0
  jd'delete VIAJ ';'aa';AA;'mm';MM;'dd';DD
  T=. ,_6&(0".{.);._2 D=. wd'get clientes table'
  jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{;._2 D);'pg';(#~0&<)T
- upd_summary grph_paint gsum_paint upd_meses upd_cal''
+ grph_paint gsum_paint upd_summary upd_meses upd_cal''
 )
 
 main_upd_button=: 3 : 0
- D=. gethttp'https://dolarhoy.com/i/cotizaciones/dolar-blue'
- D=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))D
+ D=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))>DOLARHOY
  upd_total 1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
  jd'upsert HIST';'aa mm dd';'aa';AA;'mm';MM;'dd';DD;'pr';D
 )
 
 main_sape_button=: 3 : 0
  I=. i.#M=. ".&> 1{"1 T=. _3]\<;._2 wd'get ahorro table' 
- jd'upsert AHORH';'ahdd ahmm ahaa';'ahdd';(DD#~#I);'ahmm';(MM#~#I);'ahaa';(AA#~#I);'ahix';I;'ahmo';M
+ gaho_paint jd'upsert AHORH';'ahaa ahmm ahdd ahix';'ahaa';(AA#~#I);'ahmm';(MM#~#I);'ahdd';(DD#~#I);'ahix';I;'ahmo';M
 )
 
-main_ahorro_change=: 3 : 'upd_total 1&(".&.>ixapply)"1]_3[\<;._2 wd''get ahorro table'''
+main_ahorro_change=: 3 : 'upd_total _3(1(".&.>ixapply)])\<;._2 wd''get ahorro table'''
 
-main_close=: wd bind 'pclose'
+main_close=: 3 : 0
+ 55 T. ''
+ wd'pclose'
+)
+
+main=: 3 : 0
+ wd FORM=: fread DIR,'FORM1'
+ thread=: 0 T. 1
+ DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-blue'
+)
+
+main_resize=: 3 : 0
+ upd_summary upd_ahorro upd_cal upd_meses upd_clientes CL=: <"1/:~~.jd'get VIAJ cl'
+ gaho_paint stat_paint grph_paint gsum_paint''
+)
+
+main''
