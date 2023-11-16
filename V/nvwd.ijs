@@ -67,9 +67,9 @@ stat_paint=: 3 : 0
  C=. glpre glsel'stat'
  glpen 0
  glbrush glrgb hueRGB 0.6
- glellipse (_100+C),200 200
+ glellipse E=. (C-(-:STAT_RAD)),2#STAT_RAD
  A=. -2p1*0,+/\(%+/)1 1{::Q=. jd SUMTOP sprintf AA,MM
- for_i. i.#P=. |.((_100+C),200 200)&,"1 C([,+)"1<.100*(cos,.sin)A do.
+ for_i. i.#P=. |.E&,"1 C([,+)"1<.(-:STAT_RAD)*(cos,.sin)A do.
   glbrush glrgb hueRGB 0.6+0.2*(>:i)%#P
   glpie i{P
  end.
@@ -87,7 +87,7 @@ stat_paint=: 3 : 0
  glpaint''
 )
 
-main_stat_mmove=: 3 : 'stat_paint (*:100)>+/*:(-:glqwh'''')-2{.".sysdata'
+main_stat_mmove=: 3 : 'stat_paint (*:-:STAT_RAD)>+/*:(-:glqwh'''')-2{.".sysdata'
 
 gsum_paint=: 3 : 0
  Q=. jd SUMDD sprintf AA,MM
@@ -95,9 +95,9 @@ gsum_paint=: 3 : 0
  glpre glsel'gsum'
  glfont'Terminus 12'
  gltextcolor glpen 1:glrgb 128 128 128
- 50 240 textxy 'D    L    M    M    J    V    S'
+ ((+:GSUM_WIDTH),10+{:GSUM_Y) textxy 'D    L    M    M    J    V    S'
  glbrush glrgb 0 0 196
- glpaint glrect"1 (<.-.(%160%~>./)T),.~,&230 25"0]40*>:i.7
+ glpaint glrect"1 ((15+GSUM_WIDTH)*>:i.7),.({:GSUM_Y),.GSUM_WIDTH,.<.-.(%(-~/GSUM_Y)%~>./)T
 )
 
 gaho_paint=: 3 : 0
@@ -110,14 +110,14 @@ gaho_paint=: 3 : 0
  p=. 1000%~g+//.h
  m=. >./p,q=. g+//.i
  gltextcolor glpen 1:glrgb 128 128 128
- gllines 65 60 65 260,(105+2*#p),260
+ gllines 0 2 0 3 1 3{GAHO_X,(GAHO_X+2*#p),GAHO_Y
  glfont'Terminus 10'
  gltextcolor glpen glrgb 255 0 0
- gllines ,(75+2*i.#p),.0.5<.@+60+200*1-p%m
- 65 265 textxy 'ARS'
+ gllines ,(5+GAHO_X+2*i.#p),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-p%m
+ (GAHO_X,5+{:GAHO_Y) textxy 'ARS'
  gltextcolor glpen glrgb 0 255 255
- gllines ,(75+2*i.#q),.0.5<.@+60+200*1-q%m
- glpaint 95 265 textxy 'USD'
+ gllines ,(5+GAHO_X+2*i.#q),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-q%m
+ glpaint ((25+GAHO_X),5+{:GAHO_Y) textxy 'USD'
 )
 
 grph_paint=: 3 : 0
@@ -125,14 +125,14 @@ grph_paint=: 3 : 0
  glpre glsel'grph'
  gltextcolor glpen 1:glrgb 128 128 128
  if. __<M=. >./;T=. 2{.(\:#&>)(1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q do.
-  gllines 65 60 65 260,(105+35*<:>./#&>T),260
+  gllines 0 2 0 3 1 3{GRPH_X,((15+GRPH_WIDTH)*>./#&>T),GRPH_Y
   glbrush glrgb 0 0 196
-  glrect"1 (,.(260-1&{)"1)20,.~(,.~75+35*i.@:#)Y=. <.60+200*1-M%~0{::T
+  glrect"1 (,.(({:GRPH_Y)-1&{)"1)GRPH_WIDTH,.~(,.~(GRPH_X+10)+(10+GRPH_WIDTH)*i.@:#)Y=. <.({.GRPH_Y)+(-~/GRPH_Y)*1-M%~0{::T
   glbrush glrgb 0 196 196
-  glrect"1 (,.(260-1&{)"1)20,.~(,.~75+35*i.@:#)<.60+200*1-M%~1{::T 
+  glrect"1 (,.(({:GRPH_Y)-1&{)"1)GRPH_WIDTH,.~(,.~(GRPH_X+10)+(10+GRPH_WIDTH)*i.@:#)    <.({.GRPH_Y)+(-~/GRPH_Y)*1-M%~1{::T
   glfont'Terminus 12'
   gltextcolor glrgb 128 128 128
-  glpaint (5,_6+<./Y) textxy '%6d' sprintf (0{::T){~(i.<./)Y
+  glpaint ((GRPH_X-55),_6+<./Y) textxy '%6d' sprintf (0{::T){~(i.<./)Y
  end.
 )
 

@@ -13,3 +13,17 @@ AHORAMD=: 'read max ahaa,max ahmm,max ahdd,last ahmo by ahix,AHORL.ahly,AHORL.ah
 MO=: 'ARS',:'USD'
 
 MN=: _ 31 28 31 30 31 30 31 31 30 31 30 31
+
+NB. graphs constants
+
+STAT_RAD=: 200
+
+GSUM_Y=: 50 250
+GSUM_WIDTH=: 25
+
+GAHO_Y=: 50 250
+GAHO_X=: 50
+
+GRPH_Y=: 50 250
+GRPH_X=: 50
+GRPH_WIDTH=: 20
