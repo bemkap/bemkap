@@ -8,7 +8,8 @@ CL=: DOLARHOY=: a:
 thread=: 0
 
 upd_clientes=: 3 : 0
- PG=. (<"0&>1{4{Q)((CL i. <"1&>)1{3{Q=. jd SUMCAMD sprintf AA,MM,DD)}a:#~#CL
+ IX=. (CL i. <"1&>)1{3{Q=. jd SUMCAMD sprintf AA,MM,DD
+ PG=. (<"0&>1{4{Q)IX}a:#~#CL
  set_table_data 'clientes';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]72{.CL,.PG
 )
 
