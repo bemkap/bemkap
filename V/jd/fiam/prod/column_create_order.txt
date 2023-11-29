@@ -1,0 +1,6 @@
+prodcodi
+prodnomb
+prodprov
+prodcost
+prodporc
+jdref_prodprov_prov_provcodi

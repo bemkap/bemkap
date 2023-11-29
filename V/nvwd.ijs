@@ -1,11 +1,14 @@
 DIR=: '/home/bemkap/doc/b/V/'
 load'gl2 plot graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
-jdadmin'vwd'
+jdadmin DIR,'jd/vwd'
 
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 CL=: DOLARHOY=: a:
 thread=: 0
+SHOW=: 0
+jdparam=: {:"1@:jd@:sprintf
+col=: >@:{
 
 upd_clientes=: 3 : 0
  IX=. (CL i. <"1&>)1{3{Q=. jd SUMCAMD sprintf AA,MM,DD
@@ -14,15 +17,15 @@ upd_clientes=: 3 : 0
 )
 
 upd_summary=: 3 : 0
- Q=. {:"1 jd SUMDD sprintf AA,MM
- prom=. 2{.(~./:~(+/%#)/.&(1{::Q))6=weekday(2000+AA),.MM,.0{::Q
- proy=. (parc=. +/1{::Q)++/(prom{~6=weekday)(#~0<weekday)(2000+AA),.MM,.(#~DD&<)>:i.MM{MN
- T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 1{::jd PRECAM sprintf AA,MM
- SUMH=. ,.&.>/ }."1 jd HISTAM sprintf AA,MM
- SUMV=. ,.&.>/ }."1 jd SUMDMA sprintf AA,MM
- PARD=. +/((_1{<.@%/*2=#)/.~3&{."1){.SUMV,&>SUMH
- PROP=. ({.;+/)+/&>(0.5 0 1{~6 0 i. weekday"1)&.>(((2000+AA),.MM,.])({.;}.)~(1+i.&DD))>:i.MM{MN
- wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\npard    %9d\n\nprop    %4.1f/%4.1f' sprintf P;T,(<PARD),PROP
+ Q=. SUMDD jdparam AA,MM
+ prom=. 2{.(1&col(avg/.~/:~.@:])(AA,MM)(SAB=daytype)0&col)Q
+ proy=. (parc=. +/1{::Q)++/(prom,0){~2-(AA,MM) daytype DD+>:i.DD-~MM{MN
+ T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 col PRECAM jdparam AA,MM
+ sh=. ,.&.>/ HISTAM jdparam AA,MM
+ sv=. ,.&.>/ SUMDMA jdparam AA,MM
+ pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
+ pr=. ({.;+/)(0 0.5 1+/@:{~(AA,MM)&daytype)&>DD split >:i.MM{MN
+ wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\npard    %9d\n\nprop    %4.1f/%4.1f' sprintf P;T,(<pd),pr
 )
 
 upd_ahorro=: 3 : 0
@@ -43,16 +46,16 @@ upd_total=: 3 : 0
 upd_tops=: 3 : 'set_table_data ''tops'';boxtoitem,|:6 11$66{.,<"1 ''%4s %6d''&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM'
 
 upd_meses=: 3 : 0
- PBM=. <.@%&1000&.>(0 1{::SUMAM jd@:sprintf ])&.>{(22+i.6);(>:i.12)
+ PBM=. (1000 <.@%~ 0 col SUMAM&jdparam)&.>{(22+i.6);(>:i.12)
  PBM=. (;:'ene feb mar abr may jun jul ago sep oct nov dic'),PBM
  PBM=. PBM,.~,.a:,;/2022+i.6
  set_table_data 'meses';boxtoitem,PBM
 )
 
 upd_cal=: 3 : 0
- C=. ".&.>}.{._3<\"1}.&>calendar 2000 0+AA,MM
- T=. SUMAMD&(0 1{::jd@:sprintf)&.>(3{.(AA,MM),,&_1)&.>C
- P=. {.0 1{::jd PRECAM sprintf AA,MM
+ C=. {._3<@:".\"1]2}.&>calendar 2000 0+AA,MM
+ T=. (0 col SUMAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
+ P=. {.0 col PRECAM jdparam AA,MM
  set_table_data 'cal';boxtoitem 42{._3([:<'%2d   %3d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,C),.T,.~&,<.@%&P&.>T
  stat_paint upd_tops''
 )
@@ -60,7 +63,7 @@ upd_cal=: 3 : 0
 main_meses_mbldbl=: 3 : 'stat_paint grph_paint gsum_paint upd_summary upd_cal ''AA MM''=: 21 0+".meses'
 
 main_meses_mbrdbl=: 3 : 0
- I=. wd'mb input int "" "" %d 0 99999 1' sprintf 0:^:(0=#)0 1{::jd PRECAM sprintf am=. 21 0+".meses
+ I=. wd'mb input int "" "" %d 0 99999 1' sprintf 0:^:(0=#)0 col PRECAM jdparam am=. 21 0+".meses
  if. 0<O=. ".`0:@.(0=#)I do. jd'upsert PREC ';'aa mm';'aa';({.am);'mm';({:am);'pr';O end.
 )
 
@@ -69,7 +72,7 @@ stat_paint=: 3 : 0
  glpen 0
  glbrush glrgb hueRGB 0.6
  glellipse E=. (C-(-:STAT_RAD)),2#STAT_RAD
- A=. -2p1*0,+/\(%+/)1 1{::Q=. jd SUMTOP sprintf AA,MM
+ A=. -2p1*0,+/\(%+/)1 col Q=. SUMTOP jdparam AA,MM
  for_i. i.#P=. |.E&,"1 C([,+)"1<.(-:STAT_RAD)*(cos,.sin)A do.
   glbrush glrgb hueRGB 0.6+0.2*(>:i)%#P
   glpie i{P
@@ -77,12 +80,10 @@ stat_paint=: 3 : 0
  if. y do.
   XY=. 2{.".sysdata
   glrect XY,(105*_1^l=. 195<{.XY),_30
-  if. 0<#L=. {.,.&(<"_1)&>/}."1 Q do.
-   T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
-   S=. +/1 1{::Q
+  if. 0<#L=. ,.&>/<"_1&.>Q do.
    glfont'Terminus 10'
-   (XY+(5-l*105),_30) textxy '%12s' sprintf <0{::T
-   (XY+(5-l*105),_15) textxy '%5d %05.2f%%' sprintf (1{::T);100*S%~1{::T
+   (XY+(5-l*105),_30) textxy '%12s' sprintf <0{::T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
+   (XY+(5-l*105),_15) textxy '%5d %05.2f%%' sprintf (1{::T)([;100*%)+/1 col Q
   end.
  end.
  glpaint''
@@ -91,9 +92,9 @@ stat_paint=: 3 : 0
 main_stat_mmove=: 3 : 'stat_paint (*:-:STAT_RAD)>+/*:(-:glqwh'''')-2{.".sysdata'
 
 gsum_paint=: 3 : 0
- Q=. jd SUMDD sprintf AA,MM
- T=. (7$0)(~.W)}~(W=. weekday(2000+AA),.MM,.0 1{::Q)(+/%#)/.1 1{::Q
  glpre glsel'gsum'
+ Q=. SUMDD jdparam AA,MM
+ T=. (7$0)(~.W)}~(W=. weekday(2000+AA),.MM,.0 col Q)avg/.1 col Q 
  glfont'Terminus 12'
  gltextcolor glpen 1:glrgb 128 128 128
  ((+:GSUM_WIDTH),10+{:GSUM_Y) textxy 'D    L    M    M    J    V    S'
@@ -103,13 +104,13 @@ gsum_paint=: 3 : 0
 
 gaho_paint=: 3 : 0
  glpre glsel'gaho'
- T=. {:"1 jd'read *,AHORL.ahmo from AHORH,AHORH.AHORL'
- g=. >,.&.>/3&{.T
- P=. 1000%D=. , (0 1{::jd)"1 'read pr from HIST where dd=%d and mm=%d and aa=%d'&sprintf"1 g
+ Q=. '(',')',~','joinstring~.<"1('(%2d,%2d,%2d)'&sprintf)&>g=. ,.&.>/3{.T=. AHORL jdparam ''
+ a=. 3 col AHORC jdparam ''
+ P=. 1000%D=. a#0 col HISTDMA jdparam <Q
  h=. *&>/1(({"0 1)&(1000,.D)&.>ixapply)_2{.T
  i=. *&>/1(({"0 1)&(P,.1)&.>ixapply)_2{.T
- p=. 1000%~g+//.h
- m=. >./p,q=. g+//.i
+ p=. 1000%~(>g)+//.h
+ m=. >./p,q=. (>g)+//.i
  gltextcolor glpen 1:glrgb 128 128 128
  gllines 0 2 0 3 1 3{GAHO_X,(GAHO_X+2*#p),GAHO_Y
  glfont'Terminus 10'
@@ -122,10 +123,10 @@ gaho_paint=: 3 : 0
 )
 
 grph_paint=: 3 : 0
- Q=. {:"1 jd SUMDD sprintf AA,MM
  glpre glsel'grph'
+ Q=. SUMDD jdparam AA,MM 
  gltextcolor glpen 1:glrgb 128 128 128
- if. __<M=. >./;T=. 2{.(\:#&>)(1{::Q)</.~0 6 e.~weekday(2000+AA),.MM,.0{::Q do.
+ if. __<M=. >./;T=. 2{.(\:#&>)(1 col Q)</.~0 6 e.~weekday(2000+AA),.MM,.0 col Q do.
   gllines 0 2 0 3 1 3{GRPH_X,((15+GRPH_WIDTH)*>./#&>T),GRPH_Y
   glbrush glrgb 0 0 196
   glrect"1 (,.(({:GRPH_Y)-1&{)"1)GRPH_WIDTH,.~(,.~(GRPH_X+10)+(10+GRPH_WIDTH)*i.@:#)Y=. <.({.GRPH_Y)+(-~/GRPH_Y)*1-M%~0{::T
@@ -176,7 +177,7 @@ main_close=: 3 : 0
 )
 
 main=: 3 : 0
- wd FORM=: fread DIR,'FORM1'
+ wd show^:SHOW FORM=: fread DIR,'FORM1'
  thread=: 0 T. 1
  DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-blue'
 )
