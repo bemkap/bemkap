@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.28)  28 SEP 2023 13:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.28)  14 DEC 2023 19:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -194,7 +194,7 @@ Here is how much of TeX's memory you used:
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
 b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on cv.pdf (1 page, 576051 bytes).
+Output written on cv.pdf (1 page, 575806 bytes).
 PDF statistics:
  28 PDF objects out of 1000 (max. 8388607)
  15 compressed objects within 1 object stream
