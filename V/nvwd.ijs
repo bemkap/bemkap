@@ -183,7 +183,7 @@ main=: 3 : 0
 )
 
 main_resize=: 3 : 0
- upd_summary upd_ahorro upd_cal upd_meses upd_clientes CL=: <"1/:~~.jd'get VIAJ cl'
+ upd_summary upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~'b'fread DIR,'CLIE' NB.<"1/:~~.jd'get VIAJ cl'
  gaho_paint stat_paint grph_paint gsum_paint''
 )
 
