@@ -13,7 +13,7 @@ cc ahorro table;
 cc total static center;
 cc sape button;
 bin zv;
-cc hcli table 0 4; set hcli hdr DD MM AA PG;
+minwh 300 1; cc hcli static center; set hcli text "ULTIMOS VIAJES";
 bin zzh;
 minwh 710 359; cc tops table 11 6;
 cc meses table 7 13;

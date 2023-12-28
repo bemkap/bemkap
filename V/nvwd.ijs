@@ -147,8 +147,7 @@ main_clientes_mbldbl=: 3 : 0
 )
 
 main_clientes_mbrdbl=: 3 : 0
- wd'set hcli shape 10 4'
- set_table_data 'hcli';boxtoitem 8":&.>,|._10{.&>,.&.>/{:"1 jd'read dd,mm,aa,pg from VIAJ where cl="%s"' sprintf <2}.6{.wd'get clientes cell ',clientes
+ wd'set hcli text ',,LF,.~'ULTIMOS VIAJES','','%02d-%02d-%02d  %4d' sprintf"1 ] _10{.|:>'read dd,mm,aa,pg from VIAJ where cl="%s"' jdparam <2}.6{.wd'get clientes cell ',clientes
 )
 
 main_save_button=: 3 : 0
