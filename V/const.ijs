@@ -1,24 +1,28 @@
-SUMTOP =: 'read tot:sum pg by cl from VIAJ where aa,mm=%d,%d order by tot desc'
 SUMDMA =: 'read sum pg by dd,mm,aa from VIAJ where aa,mm=%d,%d'
 SUMAM  =: 'read sum pg from VIAJ where aa,mm=%d,%d'
 SUMAMD =: 'read sum pg from VIAJ where aa,mm,dd=%d,%d,%d'
 SUGAMD =: 'read sum pg from GAST where aa,mm,dd=%d,%d,%d'
+SUMGS  =: 'read sum pg from GAST where gs,aa,mm="%s",%d,%d'
+SUMDD  =: 'read sum pg by dd from VIAJ where aa,mm=%d,%d'
+SUMTOP =: 'read tot:sum pg by cl from VIAJ where aa,mm=%d,%d order by tot desc'
+
 SUMCAMD=: 'read from VIAJ where aa,mm,dd=%d,%d,%d'
 SUMGAMD=: 'read from GAST where aa,mm,dd=%d,%d,%d'
-SUMGS  =: 'read sum pg from GAST where gs,aa,mm="%s",%d,%d'
-PRECAM =: 'read pr from PREC where aa,mm=%d,%d'
-SUMDD  =: 'read sum pg by dd from VIAJ where aa,mm=%d,%d'
-PRECAM =: 'read pr from PREC where aa,mm=%d,%d'
 HISTAM =: 'read from HIST where aa,mm=%d,%d'
+
+PRECAM =: 'read pr from PREC where aa,mm=%d,%d'
 HISTAMD=: 'read pr from HIST where aa,mm,dd=%d,%d,%d'
+HISTDMA=: 'read pr from HIST where dd,mm,aa in %s'
+
 AHORAMD=: 'read max ahaa,max ahmm,max ahdd,last ahmo by ahix,AHORL.ahly,AHORL.ahmo from AHORH,AHORH.AHORL'
 AHORL  =: 'read *,AHORL.ahmo from AHORH,AHORH.AHORL'
 AHORC  =: 'read count ahmo by ahdd,ahmm,ahaa from AHORH'
-HISTDMA=: 'read pr from HIST where dd,mm,aa in %s'
 
 MO=: 'ARS',:'USD'
 
 MN=: _ 31 28 31 30 31 30 31 31 30 31 30 31
+
+CHARS=: uucp (16+i.11){a.
 
 NB. daytype constants
 
