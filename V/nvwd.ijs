@@ -4,7 +4,7 @@ coinsert'jgl2'
 jdadmin DIR,'jd/vwd'
 
 'AA MM DD'=: _2000 0 0+3{.6!:0''
-CL=: DOLARHOY=: a:
+GS=: CL=: DOLARHOY=: a:
 thread=: 0
 SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
@@ -16,6 +16,12 @@ upd_clientes=: 3 : 0
  set_table_data 'clientes';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]72{.CL,.PG
 )
 
+upd_gastos=: 3 : 0
+ IX=. (GS i. <"1&>)1{3{Q=. jd SUMGAMD sprintf AA,MM,DD
+ PG=. (<"0&>1{4{Q)IX}a:#~#GS
+ set_table_data 'gastos';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]12{.GS,.PG
+)
+
 upd_summary=: 3 : 0
  Q=. SUMDD jdparam AA,MM
  prom=. 2{.(1&col(avg/.~/:~.@:])(AA,MM)(SAB=daytype)0&col)Q
@@ -25,7 +31,10 @@ upd_summary=: 3 : 0
  sv=. ,.&.>/ SUMDMA jdparam AA,MM
  pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
  pr=. ({.;+/)(0 0.5 1+/@:{~(AA,MM)&daytype)&>DD split >:i.MM{MN
- wd'set summary text ','prec    %9d\n\nprom    %6d %2d\nprom_s  %6d %2d\nproy    %9d\nparc    %9d\npard    %9d\n\nprop    %4.1f/%4.1f' sprintf P;T,(<pd),pr
+ gana=. >cutLF 'prec%13d\n\nprom%10d %2d\nprom_s%8d %2d\nproy%13d\nparc%13d\npard%13d\n\nprop%8.1f/%4.1f' sprintf P;T,(<pd),pr
+ gasta=. '%8s%8d'&sprintf"1(GS,<'tota'),.((,<)+/@:;),SUMGS&jdparam"1 GS,"0 1 AA;MM
+ L=. gana>.&#gasta
+ wd'set summary text ',,LF,.~gana,.&(L&{.)gasta
 )
 
 upd_ahorro=: 3 : 0
@@ -55,8 +64,10 @@ upd_meses=: 3 : 0
 upd_cal=: 3 : 0
  C=. {._3<@:".\"1]2}.&>calendar 2000 0+AA,MM
  T=. (0 col SUMAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
- P=. {.0 col PRECAM jdparam AA,MM
- set_table_data 'cal';boxtoitem 42{._3([:<'%2d   %3d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,C),.T,.~&,<.@%&P&.>T
+ G=. (0 col SUGAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
+ P=. {.0 col PRECAM jdparam AA,MM 
+ NB. set_table_data 'cal';boxtoitem 42{._3([:<'%2d   %3d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,C),.T,.~&,<.@%&P&.>T
+ set_table_data 'cal';boxtoitem 42{._4([:<'%2d   %3d\n%8d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,G),.~(,C),.T,.~&,<.@%&P&.>T
  stat_paint upd_tops''
 )
 
@@ -147,14 +158,21 @@ main_clientes_mbldbl=: 3 : 0
  wd'set clientes data ',boxtoitem <'%6s\n%6d'sprintf(6{.wd'get clientes cell ',clientes);I
 )
 
-main_clientes_mbrdbl=: 3 : 0
- wd'set hcli text ',,LF,.~'ULTIMOS VIAJES','','%02d-%02d-%02d  %4d' sprintf"1 ] _10{.|:>'read dd,mm,aa,pg from VIAJ where cl="%s"' jdparam <2}.6{.wd'get clientes cell ',clientes
+main_gastos_mbldbl=: 3 : 0
+ I=. ".wd'mb input int "" "" 0 0 99999 1'
+ wd'set gastos block ',gastos
+ wd'set gastos data ',boxtoitem <'%6s\n%6d'sprintf(6{.wd'get gastos cell ',gastos);I
 )
 
 main_save_button=: 3 : 0
- jd'delete VIAJ ';'aa';AA;'mm';MM;'dd';DD
- T=. ,_6&(0".{.);._2 D=. wd'get clientes table'
- jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{;._2 D);'pg';(#~0&<)T
+ if. 0<+/T=. ,_6&(0".{.);._2 D=. wd'get clientes table' do.
+  jd'delete VIAJ ';'aa';AA;'mm';MM;'dd';DD  
+  jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{;._2 D);'pg';(#~0&<)T
+ end.
+ if. 0<+/T=. ,_6&(0".{.);._2 D=. wd'get gastos table' do.
+  jd'delete GAST';'aa';AA;'mm';MM;'dd';DD 
+  jd'insert GAST';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'gs';((0<T)#2 3 4 5&{;._2 D);'pg';(#~0&<)T
+ end.
  grph_paint gsum_paint upd_summary upd_meses upd_cal''
 )
 
@@ -183,7 +201,9 @@ main=: 3 : 0
 )
 
 main_resize=: 3 : 0
- upd_summary upd_ahorro upd_cal upd_meses upd_clientes CL=: /:~'b'fread DIR,'CLIE' NB.<"1/:~~.jd'get VIAJ cl'
+ upd_gastos GS=: /:~'b'fread DIR,'GAST'
+ upd_clientes CL=: /:~'b'fread DIR,'CLIE'
+ upd_summary upd_ahorro upd_cal upd_meses''
  gaho_paint stat_paint grph_paint gsum_paint''
 )
 
