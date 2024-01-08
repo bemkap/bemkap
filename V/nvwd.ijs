@@ -150,7 +150,7 @@ grph_paint=: 3 : 0
  end.
 )
 
-main_cal_mbldbl=: 3 : 'upd_clientes DD=: ".2{.wd''get cal cell '',cal'
+main_cal_mbldbl=: 3 : 'upd_gastos upd_clientes DD=: ".2{.wd''get cal cell '',cal'
 
 main_clientes_mbldbl=: 3 : 0
  I=. ".wd'mb input int "" "" 0 0 99999 1'
