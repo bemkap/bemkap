@@ -3,7 +3,7 @@ pc main closeok; ptheme dark;
 fontdef Terminus 14;
 bin vhvh;
 minwh 815 300; cc clientes table 6 12;
-maxwh 215 300; cc gastos table 4 3;
+maxwh 215 300; cc gastos table 3 3;
 bin z;
 cc save button;
 bin zvh;

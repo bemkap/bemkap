@@ -6,7 +6,7 @@ jdadmin DIR,'jd/vwd'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 GS=: CL=: DOLARHOY=: a:
 thread=: 0
-SHOW=: 0
+SHOW=: 1
 jdparam=: {:"1@:jd@:sprintf
 col=: >@:{
 
@@ -19,7 +19,7 @@ upd_clientes=: 3 : 0
 upd_gastos=: 3 : 0
  IX=. (GS i. <"1&>)1{3{Q=. jd SUMGAMD sprintf AA,MM,DD
  PG=. (<"0&>1{4{Q)IX}a:#~#GS
- set_table_data 'gastos';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]12{.GS,.PG
+ set_table_data 'gastos';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]9{.GS,.PG
 )
 
 upd_summary=: 3 : 0
