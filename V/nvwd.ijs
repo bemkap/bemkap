@@ -6,7 +6,7 @@ jdadmin DIR,'jd/vwd'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 GS=: CL=: DOLARHOY=: a:
 thread=: 0
-SHOW=: 1
+SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
 col=: >@:{
 
@@ -49,7 +49,7 @@ upd_ahorro=: 3 : 0
 upd_total=: 3 : 0
  L=. 6!:0'DD-MM hh:mm:ss'
  wd'set cotizacion text USD=%d ARS\n%s' sprintf L;~D=. {:jd'get HIST pr'
- wd'set total text ','%d ARS  ~  %d USD' sprintf <.(,%&D)+/(1&{::*(D,1000){~'ARS'-:>@:{:)"1 y
+ wd'set total text ','ARS %10d\nUSD %10d' sprintf <.(,%&D)+/(1&{::*(D,1000){~'ARS'-:>@:{:)"1 y
 )
 
 upd_tops=: 3 : 'set_table_data ''tops'';boxtoitem,|:6 11$66{.,<"1 ''%4s %6d''&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM'
