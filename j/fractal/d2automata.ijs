@@ -22,7 +22,7 @@ rule1=: +/@nm % 8:
 NB. ----- config -----
 
 RULE =: rule1
-STATE=: 64
+STATE=: 2
 
 NB. ----- prog -----
 

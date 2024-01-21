@@ -1,6 +1,7 @@
 NB.+./ 2 -:/\ (range 0 100 1) I. /:~ 1 v ,: 0 0 1
 
-load'~temp/wdfr/rfr.ijs ~temp/wdfr/cfr.ijs'
+DIR=: '/home/bemkap/doc/b/j/fractal/wdfr/'
+load&>DIR&,&.>'rfr.ijs';'cfr.ijs'
 load'gl2 numeric'
 coinsert'px2j4 jgl2 cfr'
 

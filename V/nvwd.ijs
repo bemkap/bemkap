@@ -177,9 +177,13 @@ main_save_button=: 3 : 0
 )
 
 main_upd_button=: 3 : 0
- D=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))>DOLARHOY
- upd_total 1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
- jd'upsert HIST';'aa mm dd';'aa';AA;'mm';MM;'dd';DD;'pr';D
+ try.
+  D=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))>DOLARHOY
+  upd_total 1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
+  jd'upsert HIST';'aa mm dd';'aa';AA;'mm';MM;'dd';DD;'pr';D
+ catch.
+  DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-blue'
+ end.
 )
 
 main_sape_button=: 3 : 0
