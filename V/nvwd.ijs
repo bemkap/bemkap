@@ -66,7 +66,6 @@ upd_cal=: 3 : 0
  T=. (0 col SUMAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
  G=. (0 col SUGAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
  P=. {.0 col PRECAM jdparam AA,MM 
- NB. set_table_data 'cal';boxtoitem 42{._3([:<'%2d   %3d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,C),.T,.~&,<.@%&P&.>T
  set_table_data 'cal';boxtoitem 42{._4([:<'%2d   %3d\n%8d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,G),.~(,C),.T,.~&,<.@%&P&.>T
  stat_paint upd_tops''
 )
@@ -124,7 +123,7 @@ gaho_paint=: 3 : 0
  m=. >./p,q=. (>g)+//.i
  gltextcolor glpen 1:glrgb 128 128 128
  gllines 0 2 0 3 1 3{GAHO_X,(GAHO_X+2*#p),GAHO_Y
- gllines"1 ,"2(_3 3+{:GAHO_Y),.~"1 0/GAHO_X++:I. 2 ~:/\ 1&{"1 ~.&> ,.&.>/ {:"1 jd'read ahdd,ahmm,ahaa from AHORH'
+ gllines"1 ,"2(_3 3+{:GAHO_Y),.~"1 0/GAHO_X++:I.2~:/\1&{"1~.&>,.&.>/{:"1 jd'read ahdd,ahmm,ahaa from AHORH'
  glfont'Terminus 10'
  gltextcolor glpen glrgb 255 0 0
  gllines ,(5+GAHO_X+2*i.#p),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-p%m

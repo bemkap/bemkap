@@ -8,14 +8,14 @@ SUMTOP =: 'read tot:sum pg by cl from VIAJ where aa,mm=%d,%d order by tot desc'
 
 SUMCAMD=: 'read from VIAJ where aa,mm,dd=%d,%d,%d'
 SUMGAMD=: 'read from GAST where aa,mm,dd=%d,%d,%d'
-HISTAM =: 'read from HIST where aa,mm=%d,%d'
+HISTAM =: 'read from HIST where aa,mm=%d,%d order by aa,mm,dd'
 
 PRECAM =: 'read pr from PREC where aa,mm=%d,%d'
-HISTAMD=: 'read pr from HIST where aa,mm,dd=%d,%d,%d'
-HISTDMA=: 'read pr from HIST where dd,mm,aa in %s'
+HISTAMD=: 'read pr from HIST where aa,mm,dd=%d,%d,%d order by aa,mm,dd'
+HISTDMA=: 'read pr,aa,mm,dd from HIST where dd,mm,aa in %s order by aa,mm,dd'
 
 AHORAMD=: 'read max ahaa,max ahmm,max ahdd,last ahmo by ahix,AHORL.ahly,AHORL.ahmo from AHORH,AHORH.AHORL'
-AHORL  =: 'read *,AHORL.ahmo from AHORH,AHORH.AHORL'
+AHORL  =: 'read *,AHORL.ahmo from AHORH,AHORH.AHORL order by ahaa,ahmm,ahdd'
 AHORC  =: 'read count ahmo by ahdd,ahmm,ahaa from AHORH'
 
 MO=: 'ARS',:'USD'
