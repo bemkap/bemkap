@@ -73,7 +73,7 @@ upd_cal=: 3 : 0
 main_meses_mbldbl=: 3 : 'stat_paint grph_paint gsum_paint upd_summary upd_cal ''AA MM''=: 21 0+".meses'
 
 main_meses_mbrdbl=: 3 : 0
- I=. wd'mb input int "" "" %d 0 99999 1' sprintf 0:^:(0=#)0 col PRECAM jdparam am=. 21 0+".meses
+ I=. wd'mb input int "" "" %d 0 999999 1' sprintf 0:^:(0=#)0 col PRECAM jdparam am=. 21 0+".meses
  if. 0<O=. ".`0:@.(0=#)I do. jd'upsert PREC ';'aa mm';'aa';({.am);'mm';({:am);'pr';O end.
 )
 
@@ -152,13 +152,13 @@ grph_paint=: 3 : 0
 main_cal_mbldbl=: 3 : 'upd_gastos upd_clientes DD=: ".2{.wd''get cal cell '',cal'
 
 main_clientes_mbldbl=: 3 : 0
- I=. ".wd'mb input int "" "" 0 0 99999 1'
+ I=. ".wd'mb input int "" "" 0 0 999999 1'
  wd'set clientes block ',clientes
  wd'set clientes data ',boxtoitem <'%6s\n%6d'sprintf(6{.wd'get clientes cell ',clientes);I
 )
 
 main_gastos_mbldbl=: 3 : 0
- I=. ".wd'mb input int "" "" 0 0 99999 1'
+ I=. ".wd'mb input int "" "" 0 0 999999 1'
  wd'set gastos block ',gastos
  wd'set gastos data ',boxtoitem <'%6s\n%6d'sprintf(6{.wd'get gastos cell ',gastos);I
 )
