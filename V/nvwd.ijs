@@ -6,7 +6,7 @@ jdadmin DIR,'jd/vwd'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 GS=: CL=: DOLARHOY=: a:
 thread=: 0
-SHOW=: 0
+SHOW=: 1
 jdparam=: {:"1@:jd@:sprintf
 col=: >@:{
 
@@ -122,14 +122,14 @@ gaho_paint=: 3 : 0
  p=. 1000%~(>g)+//.h
  m=. >./p,q=. (>g)+//.i
  gltextcolor glpen 1:glrgb 128 128 128
- gllines 0 2 0 3 1 3{GAHO_X,(GAHO_X+2*#p),GAHO_Y
- gllines"1 ,"2(_3 3+{:GAHO_Y),.~"1 0/GAHO_X++:I.2~:/\1&{"1~.&>,.&.>/{:"1 jd'read ahdd,ahmm,ahaa from AHORH'
+ gllines 0 2 0 3 1 3{GAHO_X,(GAHO_X+#p),GAHO_Y
+ gllines"1 ,"2(_3 3+{:GAHO_Y),.~"1 0/GAHO_X+I.2~:/\1&{"1~.&>,.&.>/{:"1 jd'read ahdd,ahmm,ahaa from AHORH'
  glfont'Terminus 10'
  gltextcolor glpen glrgb 255 0 0
- gllines ,(5+GAHO_X+2*i.#p),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-p%m
+ gllines ,(5+GAHO_X+i.#p),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-p%m
  (GAHO_X,7+{:GAHO_Y) textxy 'ARS'
  gltextcolor glpen glrgb 0 255 255
- gllines ,(5+GAHO_X+2*i.#q),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-q%m
+ gllines ,(5+GAHO_X+i.#q),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-q%m
  glpaint ((25+GAHO_X),7+{:GAHO_Y) textxy 'USD'
 )
 
