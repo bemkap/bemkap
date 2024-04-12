@@ -6,7 +6,7 @@ jdadmin DIR,'jd/vwd'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 GS=: CL=: DOLARHOY=: a:
 thread=: 0
-SHOW=: 1
+SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
 col=: >@:{
 
