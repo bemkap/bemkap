@@ -4,7 +4,7 @@ coinsert'jgl2'
 jdadmin DIR,'jd/vwd'
 
 'AA MM DD'=: _2000 0 0+3{.6!:0''
-GS=: CL=: DOLARHOY=: a:
+CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
 SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
@@ -32,7 +32,7 @@ upd_summary=: 3 : 0
  pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
  pr=. ({.;+/)(0 0.5 1+/@:{~(AA,MM)&daytype)&>DD split >:i.MM{MN
  gana=. >cutLF 'prec%13d\n\nprom%10d %2d\nprom_s%8d %2d\nproy%13d\nparc%13d\npard%13d\n\nprop%8.1f/%4.1f' sprintf P;T,(<pd),pr
- gasta=. '%s%8d'&sprintf"1(GS,<'tota'),.((,<)+/@:;),SUMGS&jdparam"1 GS,"0 1 AA;MM
+ gasta=. 4 A. '',~'%s%8d'&sprintf"1(GS,'tota';'cost'),.(,(+/;+/@:(CO&{))@:;),SUMGS&jdparam"1 GS,"0 1 AA;MM
  wd'set summary text ',,LF,.~gana
  wd'set gummary text ',,LF,.~gasta
 )
@@ -205,6 +205,7 @@ main=: 3 : 0
 
 main_resize=: 3 : 0
  upd_gastos GS=: /:~'b'fread DIR,'GAST'
+ CO=: GS i. 'mono';'naft'
  upd_clientes CL=: /:~'b'fread DIR,'CLIE'
  upd_summary upd_ahorro upd_cal upd_meses''
  gaho_paint stat_paint grph_paint gsum_paint''
