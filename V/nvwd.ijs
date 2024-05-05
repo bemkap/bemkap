@@ -41,6 +41,7 @@ upd_ahorro=: 3 : 0
  y=. >,.&.>/<"_1&.>2({&MO&.> ixapply)(<1 6 2;1){jd AHORAMD
  wd'set ahorro shape %d 3' sprintf #y
  wd'set ahorro data ',boxtoitem, 1&(10&":&.> ixapply)"1 y
+ wd'set ahorro colwidth 1'
  wd'set ahorro protect ',":,(#y)#,:1 0 1
  wd'set ahorro align 2'
  upd_total y
@@ -52,13 +53,17 @@ upd_total=: 3 : 0
  wd'set total text ','ARS %10d\nUSD %10d' sprintf <.(,%&D)+/(1&{::*(D,1000){~'ARS'-:>@:{:)"1 y
 )
 
-upd_tops=: 3 : 'set_table_data ''tops'';boxtoitem,|:6 11$66{.,<"1 ''%4s %6d''&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM'
+upd_tops=: 3 : 0
+ set_table_data 'tops';boxtoitem,|:5 13$65{.,<"1 '%4s %6d'&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM
+ wd'set tops align 2'
+)
 
 upd_meses=: 3 : 0
  PBM=. (1000 <.@%~ 0 col SUMAM&jdparam)&.>{(22+i.6);(>:i.12)
  PBM=. (;:'ene feb mar abr may jun jul ago sep oct nov dic'),PBM
  PBM=. PBM,.~,.a:,;/2022+i.6
  set_table_data 'meses';boxtoitem,PBM
+ wd'set meses align 2'
 )
 
 upd_cal=: 3 : 0
