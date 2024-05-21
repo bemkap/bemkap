@@ -170,7 +170,7 @@ main_gastos_mbldbl=: 3 : 0
 
 main_save_button=: 3 : 0
  if. 0<+/T=. ,_6&(0".{.);._2 D=. wd'get clientes table' do.
-  jd'delete VIAJ ';'aa';AA;'mm';MM;'dd';DD  
+  jd'delete VIAJ ';'aa';AA;'mm';MM;'dd';DD
   jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{;._2 D);'pg';(#~0&<)T
  end.
  if. 0<+/T=. ,_6&(0".{.);._2 D=. wd'get gastos table' do.
