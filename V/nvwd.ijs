@@ -31,7 +31,7 @@ upd_summary=: 3 : 0
  sv=. ,.&.>/ SUMDMA jdparam AA,MM
  pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
  pr=. ({.;+/)(0 0.5 1+/@:{~(AA,MM)&daytype)&>DD split >:i.MM{MN
- gana=. >cutLF 'prec%13d\n\nprom%10d %2d\nprom_s%8d %2d\nproy%13d\nparc%13d\npard%13d\n\nprop%8.1f/%4.1f' sprintf P;T,(<pd),pr
+ gana=. >cutLF 'prec%13d\n\nprom%10d %2d\npros%10d %2d\nproy%13d\nparc%13d\npard%13d\n\nprop%8.1f/%4.1f' sprintf P;T,(<pd),pr
  gasta=. 4 A. '',~'%s%8d'&sprintf"1(GS,'tota';'cost'),.(,(+/;+/@:(CO&{))@:;),SUMGS&jdparam"1 GS,"0 1 AA;MM
  wd'set summary text ',,LF,.~gana
  wd'set gummary text ',,LF,.~gasta
