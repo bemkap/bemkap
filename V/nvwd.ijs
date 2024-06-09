@@ -58,6 +58,10 @@ upd_tops=: 3 : 0
  wd'set tops align 2'
 )
 
+main_tops_mbldbl=: 3 : 0
+ upd_cal^:(0<#)<"0]0 col 'read dd from VIAJ where mm=%d and aa=%d and cl="%s"' jdparam MM;AA;4{.wd'get tops cell ',":tops
+)
+
 upd_meses=: 3 : 0
  PBM=. (1000 <.@%~ 0 col SUMAM&jdparam)&.>{(22+i.6);(>:i.12)
  PBM=. (;:'ene feb mar abr may jun jul ago sep oct nov dic'),PBM
@@ -72,10 +76,14 @@ upd_cal=: 3 : 0
  G=. (0 col SUGAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
  P=. {.0 col PRECAM jdparam AA,MM 
  set_table_data 'cal';boxtoitem 42{._4([:<'%2d   %3d\n%8d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,G),.~(,C),.T,.~&,<.@%&P&.>T
- stat_paint upd_tops''
+ if. 0<#y do. wd'set cal background ',boxtoitem (BACK_STR;'#333388'){~,C e. y
+ else. stat_paint upd_tops'' end.
 )
 
-main_meses_mbldbl=: 3 : 'stat_paint grph_paint gsum_paint upd_summary upd_cal ''AA MM''=: 21 0+".meses'
+main_meses_mbldbl=: 3 : 0
+ 'AA MM'=: 21 0+".meses
+ stat_paint grph_paint gsum_paint upd_summary upd_cal''
+)
 
 main_meses_mbrdbl=: 3 : 0
  I=. wd'mb input int "" "" %d 0 999999 1' sprintf 0:^:(0=#)0 col PRECAM jdparam am=. 21 0+".meses
@@ -140,9 +148,9 @@ gaho_paint=: 3 : 0
 
 grph_paint=: 3 : 0
  glpre glsel'grph'
- Q=. SUMDD jdparam AA,MM 
+ Q=. SUMDD jdparam AA,MM
  gltextcolor glpen 1:glrgb 128 128 128
- if. __<M=. >./;T=. 2{.(\:#&>)(1 col Q)</.~0 6 e.~weekday(2000+AA),.MM,.0 col Q do.
+ if. __<M=. >./;T=. 2{.(~./:~(1 col Q)</.~])0 6 e.~weekday(2000+AA),.MM,.0 col Q do.
   gllines 0 2 0 3 1 3{GRPH_X,((15+GRPH_WIDTH)*>./#&>T),GRPH_Y
   glbrush glrgb 0 0 196
   glrect"1 (,.(({:GRPH_Y)-1&{)"1)GRPH_WIDTH,.~(,.~(GRPH_X+10)+(10+GRPH_WIDTH)*i.@:#)Y=. <.({.GRPH_Y)+(-~/GRPH_Y)*1-M%~0{::T

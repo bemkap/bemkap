@@ -1,4 +1,5 @@
 BACK=: 25 35 45
+BACK_STR=: '#',,'0123456789abcdef'{~16 16#:BACK
 
 set_table_data=: 3 : 0
  wd'set %s block' sprintf {.y
