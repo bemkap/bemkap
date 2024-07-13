@@ -8,7 +8,6 @@ CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
 SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
-col=: >@:{
 
 upd_clientes=: 3 : 0
  IX=. (CL i. <"1&>)1{3{Q=. jd SUMCAMD sprintf AA,MM,DD
@@ -151,7 +150,7 @@ grph_paint=: 3 : 0
  Q=. SUMDD jdparam AA,MM
  gltextcolor glpen 1:glrgb 128 128 128
  if. __<M=. >./;T=. 2{.(~./:~(1 col Q)</.~])0 6 e.~weekday(2000+AA),.MM,.0 col Q do.
-  gllines 0 2 0 3 1 3{GRPH_X,((15+GRPH_WIDTH)*>./#&>T),GRPH_Y
+  gllines 0 2 0 3 1 3{GRPH_X,(GRPH_X+(15+GRPH_WIDTH)*>./#&>T),GRPH_Y
   glbrush glrgb 0 0 196
   glrect"1 (,.(({:GRPH_Y)-1&{)"1)GRPH_WIDTH,.~(,.~(GRPH_X+10)+(10+GRPH_WIDTH)*i.@:#)Y=. <.({.GRPH_Y)+(-~/GRPH_Y)*1-M%~0{::T
   glbrush glrgb 0 196 196

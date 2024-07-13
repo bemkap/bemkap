@@ -20,3 +20,4 @@ show=: (;:'hide show')&stringreplace
 ixapply=: 1 : '(u x{y)(x})y'
 daytype=: 0 6 i. 2000 0 0 weekday@:+"1 ,"1 0
 avg=: +/%#
+col=: >@:{
