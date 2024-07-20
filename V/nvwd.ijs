@@ -25,7 +25,7 @@ upd_summary=: 3 : 0
  Q=. SUMDD jdparam AA,MM
  prom=. 2{.(1&col(avg/.~/:~.@:])(AA,MM)(SAB=daytype)0&col)Q
  proy=. (parc=. +/1{::Q)++/(prom,0){~2-(AA,MM) daytype DD+>:i.DD-~MM{MN
- T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 col PRECAM jdparam AA,MM
+ T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 col PRECAM jdparam AA,MM 
  sh=. ,.&.>/ HISTAM jdparam AA,MM
  sv=. ,.&.>/ SUMDMA jdparam AA,MM
  pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
@@ -53,7 +53,7 @@ upd_total=: 3 : 0
 )
 
 upd_tops=: 3 : 0
- set_table_data 'tops';boxtoitem,|:5 13$65{.,<"1 '%4s %6d'&sprintf"1 ,&<"1 0&>/ }."1 jd SUMTOP sprintf AA,MM
+ set_table_data 'tops';boxtoitem,|:5 13$65{.,<"1(,7&":)"1 0&>/SUMTOP jdparam AA,MM
  wd'set tops align 2'
 )
 
