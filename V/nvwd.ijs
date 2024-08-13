@@ -1,5 +1,5 @@
 DIR=: '/home/bemkap/doc/b/V/'
-load'gl2 plot graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
+load'gl2 plot stats graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
 jdadmin DIR,'jd/vwd'
 
@@ -157,7 +157,10 @@ grph_paint=: 3 : 0
   glrect"1 (,.(({:GRPH_Y)-1&{)"1)GRPH_WIDTH,.~(,.~(GRPH_X+10)+(10+GRPH_WIDTH)*i.@:#)    <.({.GRPH_Y)+(-~/GRPH_Y)*1-M%~1{::T
   glfont'Terminus 12'
   gltextcolor glrgb 128 128 128
-  glpaint ((GRPH_X-55),_6+<./Y) textxy '%6d' sprintf (0{::T){~(i.<./)Y
+  ((GRPH_X+(10+GRPH_WIDTH)*2+#0{::T),   GRPH_Y) textxy 'x- = %d' sprintf avg 0{::T
+  ((GRPH_X+(10+GRPH_WIDTH)*2+#0{::T),14+GRPH_Y) textxy 'x∽ = %d' sprintf median 0{::T
+  ((GRPH_X+(10+GRPH_WIDTH)*2+#0{::T),28+GRPH_Y) textxy 'σ  = %d' sprintf stddev 0{::T
+  glpaint ((GRPH_X+(10+GRPH_WIDTH)*2+#0{::T),42+GRPH_Y) textxy 'M  = %d' sprintf >./0{::T
  end.
 )
 
