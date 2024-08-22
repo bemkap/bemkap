@@ -58,7 +58,7 @@ upd_tops=: 3 : 0
 )
 
 main_tops_mbldbl=: 3 : 0
- upd_cal^:(0<#)<"0]0 col 'read dd from VIAJ where mm=%d and aa=%d and cl="%s"' jdparam MM;AA;4{.wd'get tops cell ',":tops
+ upd_cal^:(0<#)<"0]0 col DDCL jdparam MM;AA;4{.wd'get tops cell ',":tops
 )
 
 upd_meses=: 3 : 0
@@ -184,7 +184,7 @@ main_save_button=: 3 : 0
   jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{;._2 D);'pg';(#~0&<)T
  end.
  if. 0<+/T=. ,_6&(0".{.);._2 D=. wd'get gastos table' do.
-  jd'delete GAST';'aa';AA;'mm';MM;'dd';DD 
+  jd'delete GAST';'aa';AA;'mm';MM;'dd';DD
   jd'insert GAST';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'gs';((0<T)#2 3 4 5&{;._2 D);'pg';(#~0&<)T
  end.
  grph_paint gsum_paint upd_summary upd_meses upd_cal''

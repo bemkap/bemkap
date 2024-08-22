@@ -6,6 +6,8 @@ SUMGS  =: 'read sum pg from GAST where gs,aa,mm="%s",%d,%d'
 SUMDD  =: 'read sum pg by dd from VIAJ where aa,mm=%d,%d order by dd'
 SUMTOP =: 'read tot:sum pg by cl from VIAJ where aa,mm=%d,%d order by tot desc'
 
+DDCL   =: 'read dd from VIAJ where mm=%d and aa=%d and cl="%s"'
+
 SUMCAMD=: 'read from VIAJ where aa,mm,dd=%d,%d,%d'
 SUMGAMD=: 'read from GAST where aa,mm,dd=%d,%d,%d'
 HISTAM =: 'read from HIST where aa,mm=%d,%d order by aa,mm,dd'
