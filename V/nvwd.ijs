@@ -22,10 +22,10 @@ upd_gastos=: 3 : 0
 )
 
 upd_summary=: 3 : 0
- Q=. SUMDD jdparam AA,MM
- prom=. 2{.(1&col(avg/.~/:~.@:])(AA,MM)(SAB=daytype)0&col)Q
- proy=. (parc=. +/1{::Q)++/(prom,0){~2-(AA,MM) daytype DD+>:i.DD-~MM{MN
- T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 col PRECAM jdparam AA,MM 
+ T=. (AA,MM)(SAB=daytype)0 col Q=. SUMDD jdparam AA,MM
+ prom=. 0 0(~.T)}~T avg/. 1 col Q
+ proy=. (parc=. +/1{::Q)++/(prom,0){~2-(AA,MM) daytype DD-.~&(1+i.)MM{MN
+ T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 col PRECAM jdparam AA,MM
  sh=. ,.&.>/ HISTAM jdparam AA,MM
  sv=. ,.&.>/ SUMDMA jdparam AA,MM
  pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
@@ -150,7 +150,7 @@ grph_paint=: 3 : 0
  Q=. SUMDD jdparam AA,MM
  gltextcolor glpen 1:glrgb 128 128 128
  if. __<M=. >./;T=. 2{.(~./:~(1 col Q)</.~])0 6 e.~weekday(2000+AA),.MM,.0 col Q do.
-  gllines 0 2 0 3 1 3{GRPH_X,(GRPH_X+(15+GRPH_WIDTH)*>./#&>T),GRPH_Y
+  gllines 0 2 0 3 1 3{GRPH_X,(GRPH_X+(11+GRPH_WIDTH)*>./#&>T),GRPH_Y
   glbrush glrgb 0 0 196
   glrect"1 (,.(({:GRPH_Y)-1&{)"1)GRPH_WIDTH,.~(,.~(GRPH_X+10)+(10+GRPH_WIDTH)*i.@:#)Y=. <.({.GRPH_Y)+(-~/GRPH_Y)*1-M%~0{::T
   glbrush glrgb 0 196 196
