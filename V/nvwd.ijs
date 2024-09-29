@@ -62,10 +62,15 @@ main_tops_mbldbl=: 3 : 0
 )
 
 upd_meses=: 3 : 0
- PBM=. (1000 <.@%~ 0 col SUMAM&jdparam)&.>{(22+i.6);(>:i.12)
- PBM=. (;:'ene feb mar abr may jun jul ago sep oct nov dic'),PBM
- PBM=. PBM,.~,.a:,;/2022+i.6
- set_table_data 'meses';boxtoitem,PBM
+ P=. {(22+i.6);(>:i.12)
+ T=. (1000<.@%~0 col SUMAM&jdparam)&.>P
+ Q=. ((10(%~<.)100%~avg)@:((1 col ])#~[(SAB~:daytype)(0 col ]))SUMDD&jdparam)&.>P
+ T=. (Q=<0)}T,:a:$~$T
+ Q=. (Q=<0)}Q,:a:$~$T
+ T=. ($T)$([:<'%4d\n%4.1f'&sprintf)"1(,T),.(,Q)
+ T=. (;:'ene feb mar abr may jun jul ago sep oct nov dic'),T
+ T=. T,.~,.a:,;/2022+i.6
+ set_table_data 'meses';boxtoitem,T
  wd'set meses align 2'
 )
 
