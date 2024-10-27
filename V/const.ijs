@@ -20,6 +20,8 @@ AHORAMD=: 'read max ahaa,max ahmm,max ahdd,last ahmo by ahix,AHORL.ahly,AHORL.ah
 AHORL  =: 'read *,AHORL.ahmo from AHORH,AHORH.AHORL order by ahaa,ahmm,ahdd'
 AHORC  =: 'read count ahmo by ahdd,ahmm,ahaa from AHORH'
 
+CNTAMD =: 'read count cl from VIAJ where aa,mm,dd=%d,%d,%d'
+
 MO=: 'ARS',:'USD'
 
 MN=: _ 31 28 31 30 31 30 31 31 30 31 30 31

@@ -78,8 +78,10 @@ upd_cal=: 3 : 0
  C=. {._3<@:".\"1]2}.&>calendar 2000 0+AA,MM
  T=. (0 col SUMAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
  G=. (0 col SUGAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
- P=. {.0 col PRECAM jdparam AA,MM 
- set_table_data 'cal';boxtoitem 42{._4([:<'%2d   %3d\n%8d\n%8d'&sprintf)\(0&-:&>{"0 1,.&a:),(,G),.~(,C),.T,.~&,<.@%&P&.>T
+ P=. {.0 col PRECAM jdparam AA,MM
+ N=. (0 col CNTAMD jdparam (AA,MM)&,)^:(0<#)&.>C
+ N=. (N=<0)}N,:a:
+ set_table_data 'cal';boxtoitem 42{._5([:<'%2d %5d\n%2d %5.1f\n%8.1f'&sprintf)\(0&-:&>{"0 1,.&a:),(,0.001&*&.>G),.~(,C),.(,N),.(0.001&*&.>T),.~&,<.@%&P&.>T
  if. 0<#y do. wd'set cal background ',boxtoitem (BACK_STR;'#333388'){~,C e. y
  else. stat_paint upd_tops'' end.
 )
