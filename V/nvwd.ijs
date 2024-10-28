@@ -8,6 +8,7 @@ CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
 SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
+AHGX=: AHGI=: 0
 
 upd_clientes=: 3 : 0
  IX=. (CL i. <"1&>)1{3{Q=. jd SUMCAMD sprintf AA,MM,DD
@@ -81,7 +82,7 @@ upd_cal=: 3 : 0
  P=. {.0 col PRECAM jdparam AA,MM
  N=. (0 col CNTAMD jdparam (AA,MM)&,)^:(0<#)&.>C
  N=. (N=<0)}N,:a:
- set_table_data 'cal';boxtoitem 42{._5([:<'%2d %5d\n%2d %5.1f\n%8.1f'&sprintf)\(0&-:&>{"0 1,.&a:),(,0.001&*&.>G),.~(,C),.(,N),.(0.001&*&.>T),.~&,<.@%&P&.>T
+ set_table_data 'cal';boxtoitem 42{._5([:<'%2d\n%2d %5.1f\n%2d %5.1f'&sprintf)\(0&-:&>{"0 1,.&a:),(,0.001&*&.>G),.~(,N),.~(,C),.(0.001&*&.>T),.~&,<.@%&P&.>T
  if. 0<#y do. wd'set cal background ',boxtoitem (BACK_STR;'#333388'){~,C e. y
  else. stat_paint upd_tops'' end.
 )
@@ -140,9 +141,11 @@ gaho_paint=: 3 : 0
  i=. *&>/1(({"0 1)&(P,.1)&.>ixapply)_2{.T
  p=. 1000%~(>g)+//.h
  m=. >./p,q=. (>g)+//.i
+ p=. _250{.(AHGI=: 0<.AHGI>.-_250+#p)}.p
+ q=. _250{.AHGI}.q
  gltextcolor glpen 1:glrgb 128 128 128
  gllines 0 2 0 3 1 3{GAHO_X,(GAHO_X+#p),GAHO_Y
- gllines"1 ,"2(_3 3+{:GAHO_Y),.~"1 0/GAHO_X+I.2~:/\1&{"1~.&>,.&.>/{:"1 jd'read ahdd,ahmm,ahaa from AHORH'
+ gllines"1 ,"2(_3 3+{:GAHO_Y),.~"1 0/GAHO_X+I.2~:/\_250{.AHGI}.1&{"1~.&>,.&.>/'read ahdd,ahmm,ahaa from AHORH' jdparam ''
  glfont'Terminus 10'
  gltextcolor glpen glrgb 255 0 0
  gllines ,(5+GAHO_X+i.#p),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-p%m
@@ -150,6 +153,15 @@ gaho_paint=: 3 : 0
  gltextcolor glpen glrgb 0 255 255
  gllines ,(5+GAHO_X+i.#q),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-q%m
  glpaint ((25+GAHO_X),7+{:GAHO_Y) textxy 'USD'
+)
+
+main_gaho_mbldown=: 3 : 'AHGX=: 0{".sysdata'
+
+main_gaho_mmove=: 3 : 0
+ if. 4{".sysdata do.
+  AHGI=: AHGI+7**AHGX-0{".sysdata
+  gaho_paint AHGX=: 0{".sysdata
+ end.
 )
 
 grph_paint=: 3 : 0
