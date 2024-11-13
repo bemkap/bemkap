@@ -8,7 +8,7 @@ CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
 SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
-AHGX=: AHGI=: 0
+AHGI=: 0
 
 upd_clientes=: 3 : 0
  IX=. (CL i. <"1&>)1{3{Q=. jd SUMCAMD sprintf AA,MM,DD
@@ -105,7 +105,7 @@ stat_paint=: 3 : 0
  A=. -2p1*0,+/\(%+/)1 col Q=. SUMTOP jdparam AA,MM
  for_i. i.#P=. |.E&,"1 C([,+)"1<.(-:STAT_RAD)*(cos,.sin)A do.
   glbrush glrgb hueRGB 0.6+0.2*(>:i)%#P
-  glpie i{P
+  glpie <.i{P
  end.
  if. y do.
   XY=. 2{.".sysdata
@@ -155,14 +155,8 @@ gaho_paint=: 3 : 0
  glpaint ((25+GAHO_X),7+{:GAHO_Y) textxy 'USD'
 )
 
-main_gaho_mbldown=: 3 : 'AHGX=: 0{".sysdata'
 
-main_gaho_mmove=: 3 : 0
- if. 4{".sysdata do.
-  AHGI=: AHGI+7**AHGX-0{".sysdata
-  gaho_paint AHGX=: 0{".sysdata
- end.
-)
+main_gaho_mwheel=: 3 : 'gaho_paint AHGI=: AHGI+15**11{".sysdata'
 
 grph_paint=: 3 : 0
  glpre glsel'grph'
