@@ -228,7 +228,7 @@ main_close=: 3 : 0
 main=: 3 : 0
  wd show^:SHOW FORM=: fread DIR,'FORM1'
  thread=: 0 T. 1
- DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-blue'
+ DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-mep'
 )
 
 main_resize=: 3 : 0
