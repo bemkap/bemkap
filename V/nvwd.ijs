@@ -6,7 +6,7 @@ jdadmin DIR,'jd/vwd'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
-SHOW=: 0
+SHOW=: 1
 jdparam=: {:"1@:jd@:sprintf
 AHGI=: 0
 
@@ -22,11 +22,11 @@ upd_gastos=: 3 : 0
  set_table_data 'gastos';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]12{.GS,.PG
 )
 
-upd_summary=: 3 : 0
+upd_summary=: 3 : 0 
  T=. (AA,MM)(SAB=daytype)0 col Q=. SUMDD jdparam AA,MM
  prom=. 0 0(~.T)}~T avg/. 1 col Q
  proy=. (parc=. +/1{::Q)++/(prom,0){~2-(AA,MM) daytype DD-.~&(1+i.)MM{MN
- T=. (proy;parc),~;/,prom,.<.prom%{.P=. 0 col PRECAM jdparam AA,MM
+ T=. (proy;parc),~;/,prom,.<.prom%P=. {.0 col PRECAM jdparam AA,MM
  sh=. ,.&.>/ HISTAM jdparam AA,MM
  sv=. ,.&.>/ SUMDMA jdparam AA,MM
  pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
@@ -109,11 +109,11 @@ stat_paint=: 3 : 0
  end.
  if. y do.
   XY=. 2{.".sysdata
-  glrect XY,(105*_1^l=. 195<{.XY),_30
+  glrect XY,(110*_1^l=. 195<{.XY),_30
   if. 0<#L=. ,.&>/<"_1&.>Q do.
    glfont'Terminus 10'
-   (XY+(5-l*105),_30) textxy '%12s' sprintf <0{::T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
-   (XY+(5-l*105),_15) textxy '%5d %05.2f%%' sprintf (1{::T)([;100*%)+/1 col Q
+   (XY+(5-l*110),_30) textxy '%12s' sprintf <0{::T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
+   (XY+(5-l*110),_15) textxy '%5d %05.2f%%' sprintf (1{::T)([;100*%)+/1 col Q
   end.
  end.
  glpaint''
@@ -132,9 +132,11 @@ gsum_paint=: 3 : 0
  glpaint glrect"1 ((15+GSUM_WIDTH)*>:i.7),.({:GSUM_Y),.GSUM_WIDTH,.<.-.(%(-~/GSUM_Y)%~>./)T
 )
 
-gaho_paint=: 3 : 0
+gaho_paint=: main_gaho_mbldown
+
+main_gaho_mbldown=: 3 : 0
  glpre glsel'gaho'
- Q=. '(',')',~','joinstring~.<"1('(%2d,%2d,%2d)'&sprintf)&>g=. ,.&.>/3{.T=. AHORL jdparam ''
+ Q=. '(',')',~','joinstring<"1('(%2d,%2d,%2d)'&sprintf)&>~.&.>g=. ,.&.>/3{.T=. AHORL jdparam ''
  a=. 3 col AHORC jdparam ''
  P=. 1000%D=. a#0 col HISTDMA jdparam <Q
  h=. *&>/1(({"0 1)&(1000,.D)&.>ixapply)_2{.T
@@ -143,6 +145,7 @@ gaho_paint=: 3 : 0
  m=. >./p,q=. (>g)+//.i
  p=. _250{.(AHGI=: 0<.AHGI>.-_250+#p)}.p
  q=. _250{.AHGI}.q
+ c=. (5+GAHO_X+i.#q),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-q%m
  gltextcolor glpen 1:glrgb 128 128 128
  gllines 0 2 0 3 1 3{GAHO_X,(GAHO_X+#p),GAHO_Y
  gllines"1 ,"2(_3 3+{:GAHO_Y),.~"1 0/GAHO_X+I.2~:/\_250{.AHGI}.1&{"1~.&>,.&.>/'read ahdd,ahmm,ahaa from AHORH' jdparam ''
@@ -151,10 +154,15 @@ gaho_paint=: 3 : 0
  gllines ,(5+GAHO_X+i.#p),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-p%m
  (GAHO_X,7+{:GAHO_Y) textxy 'ARS'
  gltextcolor glpen glrgb 0 255 255
- gllines ,(5+GAHO_X+i.#q),.0.5<.@+({.GAHO_Y)+(-~/GAHO_Y)*1-q%m
+ gllines ,c
+ if. 1=((<./,>./){."1 c)I.j=. 0:^:(0=#){.".sysdata do.
+  glellipse 6 6,~_3+c{~t=. (<:#c)<.0 i.~ ({."1 c)<j
+  glfont'Terminus 8'
+  (_12 5+t{c)textxy":<.q{~t
+ end.
+ glfont'Terminus 10'
  glpaint ((25+GAHO_X),7+{:GAHO_Y) textxy 'USD'
 )
-
 
 main_gaho_mwheel=: 3 : 'gaho_paint AHGI=: AHGI+15**11{".sysdata'
 
@@ -214,7 +222,7 @@ main_upd_button=: 3 : 0
 )
 
 main_sape_button=: 3 : 0
- I=. i.#M=. ".&> 1{"1 T=. _3]\<;._2 wd'get ahorro table' 
+ I=. i.#M=. ".;._2 wd'get ahorro col 1'
  gaho_paint jd'upsert AHORH';'ahaa ahmm ahdd ahix';'ahaa';(AA#~#I);'ahmm';(MM#~#I);'ahdd';(DD#~#I);'ahix';I;'ahmo';M
 )
 
@@ -239,4 +247,4 @@ main_resize=: 3 : 0
  gaho_paint stat_paint grph_paint gsum_paint''
 )
 
-main''
+wd'mb info mb_ok "" "',(":6!:2'main'''''),'"'
