@@ -6,7 +6,7 @@ jdadmin DIR,'jd/vwd'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
-SHOW=: 1
+SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
 AHGI=: 0
 
@@ -64,11 +64,14 @@ main_tops_mbldbl=: 3 : 0
 
 upd_meses=: 3 : 0
  P=. {(22+i.6);(>:i.12)
- T=. (1000<.@%~0 col SUMAM&jdparam)&.>P
- Q=. ((10(%~<.)100%~avg)@:((1 col ])#~[(SAB~:daytype)(0 col ]))SUMDD&jdparam)&.>P
- T=. (Q=<0)}T,:a:$~$T
- Q=. (Q=<0)}Q,:a:$~$T
- T=. ($T)$([:<'%4d\n%4.1f'&sprintf)"1(,T),.(,Q)
+ Q=. SUMMM jdparam ''
+ T=. (<"0<.1000%~2 col Q)((,P)i.<"1&>,.&.>/2{.Q)}a:#~#,P
+ Q=. 'read sum pg by aa,mm,dd from VIAJ' jdparam ''
+ t=. (6~:weekday@:(2000 0 0&+"1))&>d=. ,.&.>/3{.Q
+ m=. 2{."1>d
+ Q=. <"0(10(%~<.)%&100)(t#m)avg/.t#>{:Q
+ Q=. Q((,P)i.<"1~.m)}a:#~#,P
+ T=. ($P)$([:<'%4d\n%4.1f'&sprintf)"1 T,.Q
  T=. (;:'ene feb mar abr may jun jul ago sep oct nov dic'),T
  T=. T,.~,.a:,;/2022+i.6
  set_table_data 'meses';boxtoitem,T
@@ -77,11 +80,13 @@ upd_meses=: 3 : 0
 
 upd_cal=: 3 : 0
  C=. {._3<@:".\"1]2}.&>calendar 2000 0+AA,MM
- T=. (0 col SUMAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
- G=. (0 col SUGAMD&jdparam)&.>(3{.(AA,MM),,&_1)&.>C
+ Q=. <"0&.>SUMDD jdparam AA,MM
+ R=. <"0&.>SUGDD jdparam AA,MM
+ S=. <"0&.>CNTAM jdparam AA,MM
+ T=. ($C)$(a:#~#,C)((,C)i.0 col Q)}~1 col Q 
+ G=. ($C)$(a:#~#,C)((,C)i.0 col R)}~1 col R
  P=. {.0 col PRECAM jdparam AA,MM
- N=. (0 col CNTAMD jdparam (AA,MM)&,)^:(0<#)&.>C
- N=. (N=<0)}N,:a:
+ N=. ($C)$(a:#~#,C)((,C)i.0 col S)}~1 col S
  set_table_data 'cal';boxtoitem 42{._5([:<'%2d\n%2d %5.1f\n%2d %5.1f'&sprintf)\(0&-:&>{"0 1,.&a:),(,0.001&*&.>G),.~(,N),.~(,C),.(0.001&*&.>T),.~&,<.@%&P&.>T
  if. 0<#y do. wd'set cal background ',boxtoitem (BACK_STR;'#333388'){~,C e. y
  else. stat_paint upd_tops'' end.
@@ -136,11 +141,11 @@ gaho_paint=: main_gaho_mbldown
 
 main_gaho_mbldown=: 3 : 0
  glpre glsel'gaho'
- Q=. '(',')',~','joinstring<"1('(%2d,%2d,%2d)'&sprintf)&>~.&.>g=. ,.&.>/3{.T=. AHORL jdparam ''
- a=. 3 col AHORC jdparam ''
- P=. 1000%D=. a#0 col HISTDMA jdparam <Q
- h=. *&>/1(({"0 1)&(1000,.D)&.>ixapply)_2{.T
- i=. *&>/1(({"0 1)&(P,.1)&.>ixapply)_2{.T
+ T=. _3 _1{Q=. AHORL jdparam ''
+ g=. ,.&.>/3{.Q
+ P=. 1000%D=. _2 col Q
+ h=. *&>/1(({"0 1)&(1000,.D)&.>ixapply)T
+ i=. *&>/1(({"0 1)&(P,.1)&.>ixapply)T
  p=. 1000%~(>g)+//.h
  m=. >./p,q=. (>g)+//.i
  p=. _250{.(AHGI=: 0<.AHGI>.-_250+#p)}.p
@@ -247,4 +252,5 @@ main_resize=: 3 : 0
  gaho_paint stat_paint grph_paint gsum_paint''
 )
 
-wd'mb info mb_ok "" "',(":6!:2'main'''''),'"'
+main''
+NB. wd'mb info mb_ok "" "',(":6!:2'main'''''),'"'

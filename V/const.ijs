@@ -4,7 +4,9 @@ SUMAMD =: 'read sum pg from VIAJ where aa,mm,dd=%d,%d,%d'
 SUGAMD =: 'read sum pg from GAST where aa,mm,dd=%d,%d,%d'
 SUMGS  =: 'read sum pg from GAST where gs,aa,mm="%s",%d,%d'
 SUMDD  =: 'read sum pg by dd from VIAJ where aa,mm=%d,%d order by dd'
+SUGDD  =: 'read sum pg by dd from GAST where aa,mm=%d,%d order by dd'
 SUMTOP =: 'read tot:sum pg by cl from VIAJ where aa,mm=%d,%d order by tot desc'
+SUMMM  =: 'read sum pg by aa,mm from VIAJ'
 
 DDCL   =: 'read dd from VIAJ where mm=%d and aa=%d and cl="%s"'
 
@@ -17,10 +19,10 @@ HISTAMD=: 'read pr from HIST where aa,mm,dd=%d,%d,%d order by aa,mm,dd'
 HISTDMA=: 'read pr,aa,mm,dd from HIST where dd,mm,aa in %s order by aa,mm,dd'
 
 AHORAMD=: 'read max ahaa,max ahmm,max ahdd,last ahmo by ahix,AHORL.ahly,AHORL.ahmo from AHORH,AHORH.AHORL'
-AHORL  =: 'read *,AHORL.ahmo from AHORH,AHORH.AHORL order by ahaa,ahmm,ahdd'
+AHORL  =: 'read ahdd,ahmm,ahaa,ahix,ahmo,HIST.pr,AHORL.ahmo from AHORH,AHORH.HIST,AHORH.AHORL'
 AHORC  =: 'read count ahmo by ahdd,ahmm,ahaa from AHORH'
 
-CNTAMD =: 'read count cl from VIAJ where aa,mm,dd=%d,%d,%d'
+CNTAM  =: 'read count cl by dd from VIAJ where aa,mm=%d,%d'
 
 MO=: 'ARS',:'USD'
 
