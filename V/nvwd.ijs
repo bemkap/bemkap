@@ -66,7 +66,7 @@ upd_meses=: 3 : 0
  P=. {(22+i.6);(>:i.12)
  Q=. SUMMM jdparam ''
  T=. (<"0<.1000%~2 col Q)((,P)i.<"1&>,.&.>/2{.Q)}a:#~#,P
- Q=. 'read sum pg by aa,mm,dd from VIAJ' jdparam ''
+ Q=. SUMAA jdparam ''
  t=. (6~:weekday@:(2000 0 0&+"1))&>d=. ,.&.>/3{.Q
  m=. 2{."1>d
  Q=. <"0(10(%~<.)%&100)(t#m)avg/.t#>{:Q

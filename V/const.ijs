@@ -8,6 +8,8 @@ SUGDD  =: 'read sum pg by dd from GAST where aa,mm=%d,%d order by dd'
 SUMTOP =: 'read tot:sum pg by cl from VIAJ where aa,mm=%d,%d order by tot desc'
 SUMMM  =: 'read sum pg by aa,mm from VIAJ'
 
+SUMAA  =: 'read sum pg by aa,mm,dd from VIAJ'
+
 DDCL   =: 'read dd from VIAJ where mm=%d and aa=%d and cl="%s"'
 
 SUMCAMD=: 'read from VIAJ where aa,mm,dd=%d,%d,%d'
