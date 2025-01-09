@@ -1,10 +1,12 @@
 ide hide;
 pc main closeok; ptheme dark;
 fontdef Terminus 14;
-bin vhvh;
-minwh 815 1; cc clientes table 6 12;
-minwh 0 300; cc gastos table 4 3;
-bin z;
+bin vhvhv;
+minwh 815 1; cc clientes table 7 12;
+bin zv;
+cc importe edit;
+cc descripcion editm;
+bin zz;
 cc save button;
 bin zvh;
 cc cotizacion static center; cc upd button; set upd text "ACT";
