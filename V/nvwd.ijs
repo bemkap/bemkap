@@ -6,7 +6,7 @@ jdadmin DIR,'jd/vwd'
 'AA MM DD'=: _2000 0 0+3{.6!:0''
 CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
-SHOW=: 1
+SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
 AHGI=: 0
 
@@ -19,12 +19,6 @@ upd_clientes=: 3 : 0
  DT=. DT,12{.GS,.PG
  set_table_data 'clientes';boxtoitem'%6s\n%6d'&(<@:sprintf)"1 DT
 )
-
-NB. upd_gastos=: 3 : 0
-NB.  IX=. (<:#GS)<.(GS i. <"1&>)1{3{Q=. jd SUMGAMD sprintf AA,MM,DD
-NB.  PG=. (<"0&>1{4{Q)IX}a:#~#GS
-NB.  set_table_data 'gastos';boxtoitem'%6s\n%6d'&(<@:sprintf)"1]10{.GS,.PG
-NB. )
 
 upd_summary=: 3 : 0 
  T=. (AA,MM)(SAB=daytype)0 col Q=. SUMDD jdparam AA,MM
@@ -212,13 +206,17 @@ main_save_button=: 3 : 0
  D=. <;._2 wd'get clientes table'
  if. 0<+/T=. ,".&>_6&{.&.>(#CL){.D do.
   jd'delete VIAJ ';'aa';AA;'mm';MM;'dd';DD
-  jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{&>(#CL){.D);'pg';(#~0&<)T
+  jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{&>(#CL){.D);'pg';((#~0&<)T);'ds';(+/0<T)#,:32#' '
  end. 
  if. 0<+/T=. ,".&>_6&{.&.>(#GS){._12{.D do.
   jd'delete GAST';'aa';AA;'mm';MM;'dd';DD
   jd'insert GAST';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'gs';((0<T)#2 3 4 5&{&>(#GS){._12{.D);'pg';(#~0&<)T
  end.
  grph_paint gsum_paint upd_summary upd_meses upd_cal''
+)
+
+main_clientes_mark=: 3 : 0
+ wd'set descripcion text "%d"' sprintf <".clientes
 )
 
 main_upd_button=: 3 : 0
