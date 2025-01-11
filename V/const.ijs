@@ -26,6 +26,8 @@ AHORC  =: 'read count ahmo by ahdd,ahmm,ahaa from AHORH'
 
 CNTAM  =: 'read count cl by dd from VIAJ where aa,mm=%d,%d'
 
+REPORT =: 'read dd,mm,aa,pg,ds from VIAJ where cl="%s" and aa,mm=(%d,%d)'
+
 MO=: 'ARS',:'USD'
 
 MN=: _ 31 28 31 30 31 30 31 31 30 31 30 31
@@ -47,3 +49,14 @@ GAHO_X=: 50
 GRPH_Y=: 50 250
 GRPH_X=: 50
 GRPH_WIDTH=: 20
+
+NB. clientes
+
+CLDIM=: 5 12
+CLSZ=: 65 45
+GSDIM=: 3 4
+GSSZ=: 65 45
+
+RETURN_K   =: 239 160 132
+BACKSPACE_K=: 239 160 131
+DELETE_K   =: 239 160 135

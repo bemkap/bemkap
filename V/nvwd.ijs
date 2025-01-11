@@ -1,5 +1,5 @@
 DIR=: '/home/bemkap/doc/b/V/'
-load'gl2 plot stats graph format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
+load'gl2 plot stats graph format/publish format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
 jdadmin DIR,'jd/vwd'
 
@@ -8,16 +8,92 @@ CO=: GS=: CL=: DOLARHOY=: a:
 thread=: 0
 SHOW=: 0
 jdparam=: {:"1@:jd@:sprintf
-AHGI=: 0
+GSSEL=: CLSEL=: AHGI=: 0
 
 upd_clientes=: 3 : 0
- IX=. (<:#CL)<.(CL i. <"1&>)1{3{Q=. jd SUMCAMD sprintf AA,MM,DD
- PG=. (<"0&>1{4{Q)IX}a:#~#CL
- DT=. 72{.CL,.PG
- IX=. (<:#GS)<.(GS i. <"1&>)1{3{Q=. jd SUMGAMD sprintf AA,MM,DD
- PG=. (<"0&>1{4{Q)IX}a:#~#GS
- DT=. DT,12{.GS,.PG
- set_table_data 'clientes';boxtoitem'%6s\n%6d'&(<@:sprintf)"1 DT
+ IX=. (<:#CL)<.(CL i. <"1) 3 col Q=. SUMCAMD jdparam AA,MM,DD
+ CLMNT=: (<"0]4 col Q)(IX})(<0)#~#CL
+ DESC=: (<"1]5 col Q)(IX})a:#~#CL
+ clientes_paint''
+)
+
+upd_gastos=: 3 : 0
+ IX=. (<:#GS)<.(GS i. <"1) 3 col Q=. SUMGAMD jdparam AA,MM,DD
+ GSMNT=: (<"0]4 col Q)(IX})(<0)#~#GS
+ gastos_paint''
+)
+
+clientes_paint=: 3 : 0
+ glpre'clientes'
+ glrgb 255 255 255
+ gltextcolor''
+ glfont'Terminus 12' 
+ glrgb 96 96 96
+ glpen 1
+ for_i. i.#CL do.
+  glrect (5+CLSZ*|.CLDIM#:i),CLSZ
+  gltextxy 10 10+CLSZ*|.CLDIM#:i
+  gltext '%7s' sprintf i{CL
+  gltextxy 10 28+CLSZ*|.CLDIM#:i
+  gltext '%7s' sprintf ":`(''"_)@.(0&=)&.> i{CLMNT
+ end.
+ glrgb 0 127 255
+ glpen 3
+ glbrushnull''
+ glrect (5+CLSZ*|.CLDIM#:CLSEL),CLSZ
+ glpaint''
+ wd'set descripcion text "%s"' sprintf CLSEL{DESC
+)
+
+gastos_paint=: 3 : 0
+ glpre'gastos'
+ glrgb 255 255 255
+ gltextcolor''
+ glfont'Terminus 12' 
+ glrgb 96 96 96
+ glpen 1
+ for_i. i.#GS do.
+  glrect (5+GSSZ*|.GSDIM#:i),GSSZ
+  gltextxy 10 10+GSSZ*|.GSDIM#:i
+  gltext '%7s' sprintf i{GS
+  gltextxy 10 28+GSSZ*|.GSDIM#:i
+  gltext '%7s' sprintf ":`(''"_)@.(0&=)&.> i{GSMNT
+ end.
+ glrgb 0 127 255
+ glpen 3
+ glbrushnull''
+ glrect (5+GSSZ*|.GSDIM#:GSSEL),GSSZ
+ glpaint''
+)
+
+main_clientes_mbldown=: 3 : 'clientes_paint CLSEL=: (#CL)|CLDIM#.|.<.CLSZ%~_5+2{.".sysdata'
+
+main_gastos_mbldown=: 3 : 'gastos_paint GSSEL=: (#GL)|GSDIM#.<.|.GSSZ%~_5+2{.".sysdata'
+
+main_clientes_char=: 3 : 0
+ CLSEL=: (#CL)|CLSEL+RETURN_K-:a.i.sysdata
+ if. sysdata e. '0123456789' do.
+  n=. {. '0123456789' i. sysdata
+  CLMNT=: (n&(+10&*)&.>CLSEL{CLMNT)(CLSEL})CLMNT
+ elseif. BACKSPACE_K-:a.i.sysdata do.
+  DESC=: (}:&.>CLSEL{DESC)(CLSEL})DESC
+ elseif. DELETE_K-:a.i.sysdata do.
+  CLMNT=: (<0)(CLSEL})CLMNT
+ elseif. sysdata e. (a.{~33+i.>:125-33)-.'0123456789' do.
+  DESC=: (,&sysdata&.>CLSEL{DESC)(CLSEL})DESC
+ end. 
+ clientes_paint''
+)
+
+main_gastos_char=: 3 : 0
+ GSSEL=: (#GS)|GSSEL+RETURN_K-:a.i.sysdata
+ if. sysdata e. '0123456789' do.
+  n=. {. '0123456789' i. sysdata
+  GSMNT=: (n&(+10&*)&.>GSSEL{GSMNT)(GSSEL})GSMNT
+ elseif. DELETE_K-:a.i.sysdata do.
+  GSMNT=: (<0)(GSSEL})GSMNT
+ end. 
+ gastos_paint''
 )
 
 upd_summary=: 3 : 0 
@@ -57,7 +133,13 @@ upd_tops=: 3 : 0
 )
 
 main_tops_mbldbl=: 3 : 0
- upd_cal^:(0<#)<"0]0 col DDCL jdparam MM;AA;4{.wd'get tops cell ',":tops
+ NB. upd_cal^:(0<#)<"0]0 col DDCL jdparam MM;AA;4{.wd'get tops cell ',":tops
+ publish DIR,'master.txt'
+)
+
+gettable=: 3 : 0
+ Q=. REPORT jdparam (4{.wd'get tops cell ',":tops);AA;MM
+ ,LF,.~(":>([:,.&.>/4&{.)Q) ,"1 ' ',.'"',.'"',.~>{:Q
 )
 
 upd_meses=: 3 : 0
@@ -101,7 +183,7 @@ main_meses_mbrdbl=: 3 : 0
 )
 
 stat_paint=: 3 : 0
- C=. glpre glsel'stat'
+ C=. glpre'stat'
  glpen 0
  glbrush glrgb hueRGB 0.6
  glellipse E=. (C-(-:STAT_RAD)),2#STAT_RAD
@@ -125,7 +207,7 @@ stat_paint=: 3 : 0
 main_stat_mmove=: 3 : 'stat_paint (*:-:STAT_RAD)>+/*:(-:glqwh'''')-2{.".sysdata'
 
 gsum_paint=: 3 : 0
- glpre glsel'gsum'
+ glpre'gsum'
  Q=. SUMDD jdparam AA,MM
  T=. (7$0)(~.W)}~(W=. weekday(2000+AA),.MM,.0 col Q)avg/.1 col Q 
  glfont'Terminus 12'
@@ -138,7 +220,7 @@ gsum_paint=: 3 : 0
 gaho_paint=: main_gaho_mbldown
 
 main_gaho_mbldown=: 3 : 0
- glpre glsel'gaho'
+ glpre'gaho'
  T=. _3 _1{Q=. AHORL jdparam ''
  g=. ,.&.>/3{.Q
  P=. 1000%D=. _2 col Q
@@ -170,7 +252,7 @@ main_gaho_mbldown=: 3 : 0
 main_gaho_mwheel=: 3 : 'gaho_paint AHGI=: AHGI+15**11{".sysdata'
 
 grph_paint=: 3 : 0
- glpre glsel'grph'
+ glpre'grph'
  Q=. SUMDD jdparam AA,MM
  gltextcolor glpen 1:glrgb 128 128 128
  if. __<M=. >./;T=. 2{.(~./:~(1 col Q)</.~])0 6 e.~weekday(2000+AA),.MM,.0 col Q do.
@@ -188,7 +270,7 @@ grph_paint=: 3 : 0
  end.
 )
 
-main_cal_mbldbl=: 3 : 'upd_clientes DD=: ".2{.wd''get cal cell '',cal'
+main_cal_mbldbl=: 3 : 'upd_gastos upd_clientes DD=: ".2{.wd''get cal cell '',cal'
 
 main_clientes_mbldbl=: 3 : 0
  I=. ".wd'mb input int "" "" 0 0 999999 1'
@@ -203,20 +285,15 @@ main_gastos_mbldbl=: 3 : 0
 )
 
 main_save_button=: 3 : 0
- D=. <;._2 wd'get clientes table'
- if. 0<+/T=. ,".&>_6&{.&.>(#CL){.D do.
+ if. 0<#IX=. I.,(0&<)&>CLMNT do.
   jd'delete VIAJ ';'aa';AA;'mm';MM;'dd';DD
-  jd'insert VIAJ';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'cl';((0<T)#2 3 4 5&{&>(#CL){.D);'pg';((#~0&<)T);'ds';(+/0<T)#,:32#' '
- end. 
- if. 0<+/T=. ,".&>_6&{.&.>(#GS){._12{.D do.
-  jd'delete GAST';'aa';AA;'mm';MM;'dd';DD
-  jd'insert GAST';'aa';(C#AA);'mm';(C#MM);'dd';(DD#~C=. +/0<T);'gs';((0<T)#2 3 4 5&{&>(#GS){._12{.D);'pg';(#~0&<)T
+  jd'insert VIAJ';'aa';(AA#~#IX);'mm';(MM#~#IX);'dd';(DD#~#IX);'cl';(>IX{CL);'pg';(>IX{CLMNT);'ds';>IX{DESC
+ end.
+ if. 0<#IX=. I.,(0&<)&>GSMNT do.
+  jd'delete GAST ';'aa';AA;'mm';MM;'dd';DD
+  jd'insert GAST';'aa';(AA#~#IX);'mm';(MM#~#IX);'dd';(DD#~#IX);'gs';(>IX{GS);'pg';(>IX{GSMNT)
  end.
  grph_paint gsum_paint upd_summary upd_meses upd_cal''
-)
-
-main_clientes_mark=: 3 : 0
- wd'set descripcion text "%d"' sprintf <".clientes
 )
 
 main_upd_button=: 3 : 0
@@ -250,7 +327,7 @@ main=: 3 : 0
 main_resize=: 3 : 0
  GS=: /:~'b'fread DIR,'GAST'
  CO=: GS i. 'mono';'naft'
- upd_clientes CL=: /:~'b'fread DIR,'CLIE'
+ upd_gastos upd_clientes CL=: /:~'b'fread DIR,'CLIE' 
  upd_summary upd_ahorro upd_cal upd_meses''
  gaho_paint stat_paint grph_paint gsum_paint''
 )
