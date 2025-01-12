@@ -13,7 +13,7 @@ GSSEL=: CLSEL=: AHGI=: 0
 upd_clientes=: 3 : 0
  IX=. (<:#CL)<.(CL i. <"1) 3 col Q=. SUMCAMD jdparam AA,MM,DD
  CLMNT=: (<"0]4 col Q)(IX})(<0)#~#CL
- DESC=: (<"1]5 col Q)(IX})a:#~#CL
+ DESC=: (<"1]5 col Q)(IX})(<'')#~#CL
  clientes_paint''
 )
 
@@ -42,7 +42,7 @@ clientes_paint=: 3 : 0
  glbrushnull''
  glrect (5+CLSZ*|.CLDIM#:CLSEL),CLSZ
  glpaint''
- wd'set descripcion text "%s"' sprintf CLSEL{DESC
+ wd'set descripcion text "descripcion: %s"' sprintf CLSEL{DESC
 )
 
 gastos_paint=: 3 : 0
@@ -68,7 +68,7 @@ gastos_paint=: 3 : 0
 
 main_clientes_mbldown=: 3 : 'clientes_paint CLSEL=: (#CL)|CLDIM#.|.<.CLSZ%~_5+2{.".sysdata'
 
-main_gastos_mbldown=: 3 : 'gastos_paint GSSEL=: (#GL)|GSDIM#.<.|.GSSZ%~_5+2{.".sysdata'
+main_gastos_mbldown=: 3 : 'gastos_paint GSSEL=: (#GS)|GSDIM#.<.|.GSSZ%~_5+2{.".sysdata'
 
 main_clientes_char=: 3 : 0
  CLSEL=: (#CL)|CLSEL+RETURN_K-:a.i.sysdata
@@ -79,7 +79,7 @@ main_clientes_char=: 3 : 0
   DESC=: (}:&.>CLSEL{DESC)(CLSEL})DESC
  elseif. DELETE_K-:a.i.sysdata do.
   CLMNT=: (<0)(CLSEL})CLMNT
- elseif. sysdata e. (a.{~33+i.>:125-33)-.'0123456789' do.
+ elseif. sysdata e. (a.{~32+i.>:126-32)-.'0123456789' do.
   DESC=: (,&sysdata&.>CLSEL{DESC)(CLSEL})DESC
  end. 
  clientes_paint''
@@ -132,14 +132,13 @@ upd_tops=: 3 : 0
  wd'set tops align 2'
 )
 
-main_tops_mbldbl=: 3 : 0
- NB. upd_cal^:(0<#)<"0]0 col DDCL jdparam MM;AA;4{.wd'get tops cell ',":tops
- publish DIR,'master.txt'
-)
+main_tops_mbldbl=: {{0:publish DIR,'master.txt'}}
 
 gettable=: 3 : 0
  Q=. REPORT jdparam (4{.wd'get tops cell ',":tops);AA;MM
- ,LF,.~(":>([:,.&.>/4&{.)Q) ,"1 ' ',.'"',.'"',.~>{:Q
+ d=. '"%02d/%02d/%02d" "%7d"'&sprintf"1&>,.&.>/}:Q
+ s=. (' "%s"'sprintf<)"1&>{:Q
+ ,LF,.~d ,"1 s
 )
 
 upd_meses=: 3 : 0
@@ -168,8 +167,7 @@ upd_cal=: 3 : 0
  P=. {.0 col PRECAM jdparam AA,MM
  N=. ($C)$(a:#~#,C)((,C)i.0 col S)}~1 col S
  set_table_data 'cal';boxtoitem 42{._5([:<'%2d\n%2d %5.1f\n%2d %5.1f'&sprintf)\(0&-:&>{"0 1,.&a:),(,0.001&*&.>G),.~(,N),.~(,C),.(0.001&*&.>T),.~&,<.@%&P&.>T
- if. 0<#y do. wd'set cal background ',boxtoitem (BACK_STR;'#333388'){~,C e. y
- else. stat_paint upd_tops'' end.
+ stat_paint upd_tops''
 )
 
 main_meses_mbldbl=: 3 : 0
@@ -296,11 +294,13 @@ main_save_button=: 3 : 0
  grph_paint gsum_paint upd_summary upd_meses upd_cal''
 )
 
+upd_dolar=: {{jd'upsert HIST';'aa mm dd';'aa';AA;'mm';MM;'dd';DD;'pr';y}}
+
 main_upd_button=: 3 : 0
  try.
   D=. (+%2:)&".&>/(3{;:)&>0 2{(<;.1~('<p>'&E.+.'</p>'&E.))>DOLARHOY
   upd_total 1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
-  jd'upsert HIST';'aa mm dd';'aa';AA;'mm';MM;'dd';DD;'pr';D
+  upd_dolar D
  catch.
   DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-blue'
  end.

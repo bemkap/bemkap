@@ -1,1 +1,1 @@
-<table><col>dd mm aa importe descripcion</col><data><j>gettable''</j></data></table>
+<table><col>fecha importe descripcion</col><data><j>gettable''</j></data></table>
