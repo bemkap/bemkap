@@ -74,14 +74,12 @@ main_clientes_char=: 3 : 0
  CLSEL=: (#CL)|CLSEL+RETURN_K-:a.i.sysdata
  if. sysdata e. '0123456789' do.
   n=. {. '0123456789' i. sysdata
-  CLMNT=: (n&(+10&*)&.>CLSEL{CLMNT)(CLSEL})CLMNT
- elseif. BACKSPACE_K-:a.i.sysdata do.
-  DESC=: (}:&.>CLSEL{DESC)(CLSEL})DESC
- elseif. DELETE_K-:a.i.sysdata do.
-  CLMNT=: (<0)(CLSEL})CLMNT
- elseif. sysdata e. (a.{~32+i.>:126-32)-.'0123456789' do.
-  DESC=: (,&sysdata&.>CLSEL{DESC)(CLSEL})DESC
- end. 
+  CLMNT=: (n&(9999<.(+10&*))&.>CLSEL{CLMNT)(CLSEL})CLMNT
+ elseif. BACKSPACE_K-:a.i.sysdata  do.
+  CLMNT=: ((<.@%)&10&.>CLSEL{CLMNT)(CLSEL})CLMNT
+ elseif. sysdata='d' do.
+  DESC=: (<wd'mb input text "" "" ""')(CLSEL})DESC
+ end.
  clientes_paint''
 )
 
@@ -302,7 +300,7 @@ main_upd_button=: 3 : 0
   upd_total 1&(".&.>ixapply)"1]_3]\<;._2 wd'get ahorro table'
   upd_dolar D
  catch.
-  DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-blue'
+  DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-mep'
  end.
 )
 
