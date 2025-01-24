@@ -74,7 +74,7 @@ main_clientes_char=: 3 : 0
  CLSEL=: (#CL)|CLSEL+RETURN_K-:a.i.sysdata
  if. sysdata e. '0123456789' do.
   n=. {. '0123456789' i. sysdata
-  CLMNT=: (n&(9999<.(+10&*))&.>CLSEL{CLMNT)(CLSEL})CLMNT
+  CLMNT=: (n&(99999<.(+10&*))&.>CLSEL{CLMNT)(CLSEL})CLMNT
  elseif. BACKSPACE_K-:a.i.sysdata  do.
   CLMNT=: ((<.@%)&10&.>CLSEL{CLMNT)(CLSEL})CLMNT
  elseif. sysdata='d' do.
