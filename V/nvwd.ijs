@@ -134,7 +134,7 @@ main_tops_mbldbl=: {{0:publish DIR,'master.txt'}}
 
 gettable=: 3 : 0
  Q=. REPORT jdparam (4{.wd'get tops cell ',":tops);AA;MM
- d=. '"%02d/%02d/%02d" "%7d"'&sprintf"1&>,.&.>/}:Q
+ d=. '"%02d/%02d/%02d" "%7d" "%7d"'&sprintf"1&>,.&.>/(,+/\&.>@:{:)}:Q
  s=. (' "%s"'sprintf<)"1&>{:Q
  ,LF,.~d ,"1 s
 )
@@ -170,6 +170,7 @@ upd_cal=: 3 : 0
 
 main_meses_mbldbl=: 3 : 0
  'AA MM'=: 21 0+".meses
+ DD=: MM{MN
  stat_paint grph_paint gsum_paint upd_summary upd_cal''
 )
 
