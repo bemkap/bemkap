@@ -130,7 +130,10 @@ upd_tops=: 3 : 0
  wd'set tops align 2'
 )
 
-main_tops_mbldbl=: {{0:publish DIR,'master.txt'}}
+main_tops_mbldbl=: 3 : 0
+ publish DIR,'master.txt'
+ 0
+)
 
 gettable=: 3 : 0
  Q=. REPORT jdparam (4{.wd'get tops cell ',":tops);AA;MM
