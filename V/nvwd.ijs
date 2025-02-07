@@ -150,7 +150,7 @@ upd_meses=: 3 : 0
  t=. (6~:weekday@:(2000 0 0&+"1))&>d=. ,.&.>/3{.Q
  m=. 2{."1>d
  Q=. <"0(10(%~<.)%&100)(t#m)avg/.t#>{:Q
- Q=. Q((,P)i.<"1~.m)}a:#~#,P
+ Q=. ((#q){.Q)((,P)i.q=. <"1~.m)}a:#~#,P
  T=. ($P)$([:<'%4d\n%4.1f'&sprintf)"1 T,.Q
  T=. (;:'ene feb mar abr may jun jul ago sep oct nov dic'),T
  T=. T,.~,.a:,;/2022+i.6
