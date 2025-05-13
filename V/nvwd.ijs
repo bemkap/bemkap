@@ -101,7 +101,7 @@ upd_summary=: 3 : 0
  T=. (proy;parc),~;/,prom,.<.prom%P=. {.0 col PRECAM jdparam AA,MM
  sh=. ,.&.>/ HISTAM jdparam AA,MM
  sv=. ,.&.>/ SUMDMA jdparam AA,MM
- pd=. +/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
+ pd=. 0:^:(0=#)+/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
  pr=. ({.;+/)(0 0.5 1+/@:{~(AA,MM)&daytype)&>DD split >:i.MM{MN
  gana=. >cutLF 'prec%13d\n\nprom%10d %2d\npros%10d %2d\nproy%13d\nparc%13d\npard%13d\n\nprop%8.1f/%4.1f' sprintf P;T,(<pd),pr
  gasta=. 4 A. '',~'%s%8d'&sprintf"1(GS,'tota';'cost'),.(,(+/;+/@:(CO&{))@:;),SUMGS&jdparam"1 GS,"0 1 AA;MM
@@ -126,20 +126,24 @@ upd_total=: 3 : 0
 )
 
 upd_tops=: 3 : 0
- set_table_data 'tops';boxtoitem,|:5 13$65{.,<"1(,7&":)"1 0&>/SUMTOP jdparam AA,MM
+ S=. (,7j1":%&1000)"1 0&>/D=. SUMTOP jdparam AA,MM
+ set_table_data 'tops';boxtoitem,|:5 13$65{.<"1 S
  wd'set tops align 2'
 )
 
 main_tops_mbldbl=: 3 : 0
- publish DIR,'master.txt'
- 0
+ Q=. |.&.>REPORT jdparam <(4{.wd'get tops cell ',":tops)
+ t=. 1=(_1 0 + todayno@:strtodate&> fecha1;fecha2) I. todayno@:(2000 0 0+2 1 0&{)"1&>,.&.>/3{.Q
+ Q=. t&#&.>Q
+ d=. <"1'"%02d/%02d/%02d"'&sprintf"1 >,.&.>/3{.Q
+ n=. <"1 '"%7d"'&sprintf"0 >3{Q
+ s=. <"1 ('"%s"'sprintf<)"1 >{:Q
+ wd'set cuenta data ',;150{.(150$<'""'),~,d,.n,.s
+ wd'set cuenta align 2'
 )
 
-gettable=: 3 : 0
- Q=. REPORT jdparam (4{.wd'get tops cell ',":tops);AA;MM
- d=. '"%02d/%02d/%02d" "%7d" "%7d"'&sprintf"1&>,.&.>/(,+/\&.>@:{:)}:Q
- s=. (' "%s"'sprintf<)"1&>{:Q
- ,LF,.~d ,"1 s
+main_filtrar_button=: 3 : 0
+ main_tops_mbldbl''
 )
 
 upd_meses=: 3 : 0
@@ -168,13 +172,13 @@ upd_cal=: 3 : 0
  P=. {.0 col PRECAM jdparam AA,MM
  N=. ($C)$(a:#~#,C)((,C)i.0 col S)}~1 col S
  set_table_data 'cal';boxtoitem 42{._5([:<'%2d\n%2d %5.1f\n%2d %5.1f'&sprintf)\(0&-:&>{"0 1,.&a:),(,0.001&*&.>G),.~(,N),.~(,C),.(0.001&*&.>T),.~&,<.@%&P&.>T
- stat_paint upd_tops''
+ upd_tops''
 )
 
 main_meses_mbldbl=: 3 : 0
  'AA MM'=: 21 0+".meses
  DD=: MM{MN
- stat_paint grph_paint gsum_paint upd_summary upd_cal''
+ grph_paint gsum_paint upd_summary upd_cal''
 )
 
 main_meses_mbrdbl=: 3 : 0
@@ -182,29 +186,7 @@ main_meses_mbrdbl=: 3 : 0
  if. 0<O=. ".`0:@.(0=#)I do. jd'upsert PREC ';'aa mm';'aa';({.am);'mm';({:am);'pr';O end.
 )
 
-stat_paint=: 3 : 0
- C=. glpre'stat'
- glpen 0
- glbrush glrgb hueRGB 0.6
- glellipse E=. (C-(-:STAT_RAD)),2#STAT_RAD
- A=. -2p1*0,+/\(%+/)1 col Q=. SUMTOP jdparam AA,MM
- for_i. i.#P=. |.E&,"1 C([,+)"1<.(-:STAT_RAD)*(cos,.sin)A do.
-  glbrush glrgb hueRGB 0.6+0.2*(>:i)%#P
-  glpie <.i{P
- end.
- if. y do.
-  XY=. 2{.".sysdata
-  glrect XY,(110*_1^l=. 195<{.XY),_30
-  if. 0<#L=. ,.&>/<"_1&.>Q do.
-   glfont'Terminus 10'
-   (XY+(5-l*110),_30) textxy '%12s' sprintf <0{::T=. (L{~_1+i.&0)A>(-2p1*0&<)atan2 j./XY-C
-   (XY+(5-l*110),_15) textxy '%5d %05.2f%%' sprintf (1{::T)([;100*%)+/1 col Q
-  end.
- end.
- glpaint''
-)
-
-main_stat_mmove=: 3 : 'stat_paint (*:-:STAT_RAD)>+/*:(-:glqwh'''')-2{.".sysdata'
+main_stat_mmove=: 3 : '(*:-:STAT_RAD)>+/*:(-:glqwh'''')-2{.".sysdata'
 
 gsum_paint=: 3 : 0
  glpre'gsum'
@@ -322,6 +304,8 @@ main_close=: 3 : 0
 
 main=: 3 : 0
  wd show^:SHOW FORM=: fread DIR,'FORM1'
+ wd'set fecha1 value ','01',~6!:0'YYYYMM'
+ wd'set fecha2 value ',6!:0'YYYYMMDD'
  thread=: 0 T. 1
  DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-mep'
 )
@@ -331,7 +315,7 @@ main_resize=: 3 : 0
  CO=: GS i. 'mono';'naft'
  upd_gastos upd_clientes CL=: /:~'b'fread DIR,'CLIE' 
  upd_summary upd_ahorro upd_cal upd_meses''
- gaho_paint stat_paint grph_paint gsum_paint''
+ gaho_paint grph_paint gsum_paint''
 )
 
 main''

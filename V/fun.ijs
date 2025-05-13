@@ -22,3 +22,4 @@ ixapply=: 1 : '(u x{y)(x})y'
 daytype=: 0 6 i. 2000 0 0 weekday@:+"1 ,"1 0
 avg=: +/%#
 col=: >@:{
+strtodate=: ".&>@:(0 1 2 3&{;4 5&{;6 7&{)

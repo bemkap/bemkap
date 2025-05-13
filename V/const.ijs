@@ -26,7 +26,7 @@ AHORC  =: 'read count ahmo by ahdd,ahmm,ahaa from AHORH'
 
 CNTAM  =: 'read count cl by dd from VIAJ where aa,mm=%d,%d'
 
-REPORT =: 'read dd,mm,aa,pg,ds from VIAJ where cl="%s" and aa,mm=(%d,%d) order by aa,mm,dd'
+REPORT =: 'read dd,mm,aa,pg,ds from VIAJ where cl="%s" order by aa,mm,dd'
 
 MO=: 'ARS',:'USD'
 
