@@ -138,7 +138,8 @@ main_tops_mbldbl=: 3 : 0
  d=. <"1'"%02d/%02d/%02d"'&sprintf"1 >,.&.>/3{.Q
  n=. <"1 '"%7d"'&sprintf"0 >3{Q
  s=. <"1 ('"%s"'sprintf<)"1 >{:Q
- wd'set cuenta data ',;150{.(150$<'""'),~,d,.n,.s
+ wd'set cuenta shape %d 3' sprintf <#d
+ wd'set cuenta data ',;d,.n,.s
  wd'set cuenta align 2'
 )
 
