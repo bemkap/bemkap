@@ -95,7 +95,7 @@ main_gastos_char=: 3 : 0
 )
 
 upd_summary=: 3 : 0 
- T=. (AA,MM)(SAB=daytype)0 col Q=. SUMDD jdparam AA,MM
+ T=. (AA,MM)((SAB,DOM) e.~ daytype)0 col Q=. SUMDD jdparam AA,MM
  prom=. 0 0(~.T)}~T avg/. 1 col Q
  proy=. (parc=. +/1{::Q)++/(prom,0){~2-(AA,MM) daytype DD-.~&(1+i.)MM{MN
  T=. (proy;parc),~;/,prom,.<.prom%P=. {.0 col PRECAM jdparam AA,MM
@@ -152,7 +152,7 @@ upd_meses=: 3 : 0
  Q=. SUMMM jdparam ''
  T=. (<"0<.1000%~2 col Q)((,P)i.<"1&>,.&.>/2{.Q)}a:#~#,P
  Q=. SUMAA jdparam ''
- t=. (6~:weekday@:(2000 0 0&+"1))&>d=. ,.&.>/3{.Q
+ t=. (0 6-.@:e.~weekday@:(2000 0 0&+"1))&>d=. ,.&.>/3{.Q
  m=. 2{."1>d
  Q=. <"0(10(%~<.)%&100)(t#m)avg/.t#>{:Q
  Q=. ((#q){.Q)((,P)i.q=. <"1~.m)}a:#~#,P
