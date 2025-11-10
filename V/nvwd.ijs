@@ -101,7 +101,8 @@ upd_summary=: 3 : 0
  T=. (proy;parc),~;/,prom,.<.prom%P=. {.0 col PRECAM jdparam AA,MM
  sh=. ,.&.>/ HISTAM jdparam AA,MM
  sv=. ,.&.>/ SUMDMA jdparam AA,MM
- pd=. 0:^:(0=#)+/((_1{<.@%/*2=#)/.~3&{."1)sv,&>sh
+ pd=. (+_1&|.*0&=)^:_({:"1&>sh)(<:{."1&>sh)}0$~MM{MN
+ pd=. +/pd%~({:"1&>sv)(<:{."1&>sv)}0$~MM{MN
  pr=. ({.;+/)(0 0.5 1+/@:{~(AA,MM)&daytype)&>DD split >:i.MM{MN
  gana=. >cutLF 'prec%13d\n\nprom%10d %2d\npros%10d %2d\nproy%13d\nparc%13d\npard%13d\n\nprop%8.1f/%4.1f' sprintf P;T,(<pd),pr
  gasta=. 4 A. '',~'%s%8d'&sprintf"1(GS,'tota';'cost'),.(,(+/;+/@:(CO&{))@:;),SUMGS&jdparam"1 GS,"0 1 AA;MM
