@@ -1,4 +1,4 @@
-DIR=: '/home/bemkap/doc/b/V/'
+DIR=: 'C:\Users\bemka\Documents\bemkap\V\'
 load'gl2 plot stats graph format/publish format/printf web/gethttp jd ',DIR,'const.ijs ',DIR,'fun.ijs'
 coinsert'jgl2'
 jdadmin DIR,'jd/vwd'

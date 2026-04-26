@@ -38,4 +38,4 @@ maxwh 350 500; cc gsum isigraph flush;
 maxwh 350 500; cc gaho isidraw;
 tabend;
 bin z;
-pshow;
+pshow maximized;
