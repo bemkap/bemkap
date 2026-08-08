@@ -309,7 +309,7 @@ main=: 3 : 0
  wd'set fecha1 value ','01',~6!:0'YYYYMM'
  wd'set fecha2 value ',6!:0'YYYYMMDD'
  thread=: 0 T. 1
- DOLARHOY=: gethttp t. thread 'www.dolarhoy.com/i/cotizaciones/dolar-mep'
+ DOLARHOY=: gethttp t. thread 'https://www.dolarhoy.com/i/cotizaciones/dolar-mep'
 )
 
 main_resize=: 3 : 0
