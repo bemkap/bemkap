@@ -205,9 +205,10 @@ gaho_paint=: main_gaho_mbldown
 
 main_gaho_mbldown=: 3 : 0
  glpre'gaho'
+ f=. {{(0=y)}(,:_1&|.)y}}
  T=. _3 _1{Q=. AHORL jdparam ''
  g=. ,.&.>/3{.Q
- P=. 1000%D=. _2 col Q
+ P=. 1000%D=. f^:_]_2 col Q
  h=. *&>/1(({"0 1)&(1000,.D)&.>ixapply)T
  i=. *&>/1(({"0 1)&(P,.1)&.>ixapply)T
  p=. 1000%~(>g)+//.h
